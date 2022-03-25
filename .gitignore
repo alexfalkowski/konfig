@@ -2,6 +2,6 @@ vendor
 *.prof
 *.cov
 *.out
-konfig
+/konfig
 tmp
 api/google
