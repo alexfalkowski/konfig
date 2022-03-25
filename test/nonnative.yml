@@ -2,16 +2,16 @@ version: 1.0
 strategy: startup
 processes:
   -
-    name: serve
+    name: server
     go:
       output: reports
       executable: ../konfig
-      command: serve
+      command: server
     timeout: 5
     port: 8080
-    log: reports/serve.log
+    log: reports/server.log
     environment:
-      CONFIG_FILE: .config/serve.config.yml
+      CONFIG_FILE: .config/server.config.yml
   -
     name: worker
     go:
