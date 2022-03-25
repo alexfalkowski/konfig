@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-When('the system requests the health status with HTTP') do
-  @response = Konfig.observability.health
-end
-
-When('the system requests metrics') do
-  @response = Konfig.observability.metrics
+When('the system requests the {string} with HTTP') do |name|
+  @response = Konfig.observability.send(name)
 end
 
 When('the system requests the health status with gRPC') do
