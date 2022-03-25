@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option go_package = "github.com/alexfalkowski/konfig/server/v1/transport/grpc";
+option ruby_package = "Konfig::V1";
+
+import "google/api/annotations.proto";
+
+package konfig.v1;
+
+// GetConfigRequest for a specific application and environment.
+message GetConfigRequest {
+  string application = 1;
+  string environment = 2;
+}
+
+// GetConfigResponse for a specific application and environment with the data and content type.
+message GetConfigResponse {
+  string application = 1;
+  string environment = 2;
+  string content_type = 3;
+  bytes data = 4;
+}
+
+// Configurator allows to manage all application configurations.
+service Configurator {
+  // GetConfig for a specific application and environment.
+  rpc GetConfig (GetConfigRequest) returns (GetConfigResponse) {
+    option (google.api.http) = {
+      get: "/v1/konfig/{application}/{environment}"
+    };
+  }
+}
