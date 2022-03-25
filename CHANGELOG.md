@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/alexfalkowski/konfig/compare/v1.1.0...v1.2.0) (2022-03-25)
+
+
+### Features
+
+* **server:** add get config stub ([#4](https://github.com/alexfalkowski/konfig/issues/4)) ([7b570cc](https://github.com/alexfalkowski/konfig/commit/7b570cc780016bde232342a628a7c0ce25e70fe3))
+
 ## 1.1.0 (2022-03-25)
 
 
