@@ -17,7 +17,7 @@ module Konfig
     end
 
     def server_config
-      @server_config ||= YAML.load_file('.config/serve.config.yml')
+      @server_config ||= YAML.load_file('.config/server.config.yml')
     end
 
     def worker_config

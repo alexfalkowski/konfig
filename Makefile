@@ -57,11 +57,11 @@ features: build-test ## Run all the features
 	make -C test features
 
 remove-generated-coverage:
-	cat test/reports/konfig-serve.cov | grep -v -E '(.pb|main.go)' > test/reports/serve.cov
+	cat test/reports/konfig-server.cov | grep -v -E '(.pb|main.go)' > test/reports/server.cov
 	cat test/reports/konfig-worker.cov | grep -v -E '(.pb|main.go)' > test/reports/worker.cov
 
 merge-coverage:
-	gocovmerge test/reports/serve.cov test/reports/worker.cov > test/reports/final.cov
+	gocovmerge test/reports/server.cov test/reports/worker.cov > test/reports/final.cov
 
 html-coverage: remove-generated-coverage merge-coverage ## Get the HTML coverage for go
 	go tool cover -html test/reports/final.cov
