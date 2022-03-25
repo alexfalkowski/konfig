@@ -1,0 +1,6 @@
+vendor
+*.prof
+*.cov
+*.out
+konfig
+api/google
