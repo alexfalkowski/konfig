@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Make sure we have a tmp folder (this is ignored in git).
+mkdir -p tmp
+mkdir -p api/google/api
+
+readonly code_path="tmp"
+readonly googleapis_path="$code_path/googleapis"
+
+# Make sure we have googleapis.
+if [[ -d $googleapis_path ]]
+then
+    (cd $googleapis_path && git pull --rebase)
+else
+    (cd $code_path && git clone git@github.com:googleapis/googleapis.git)
+fi
+
+# Copy the proto files we need.
+(cd $googleapis_path && cp google/api/annotations.proto ../../api/google/api && cp google/api/http.proto ../../api/google/api)

@@ -1,0 +1,25 @@
+trace:
+  opentracing:
+    datadog:
+      host: localhost:8126
+    jaeger:
+      host: localhost:6831
+transport:
+  http:
+    port: 8080
+    user_agent: "Konfig/1.0 http/1.0"
+    retry:
+      timeout: 2s
+      attempts: 3
+    rate_limit:
+      every: 1s
+      burst: 10
+  grpc:
+    port: 9090
+    user_agent: "Konfig/1.0 grpc/1.0"
+    retry:
+      timeout: 2s
+      attempts: 3
+    rate_limit:
+      every: 1s
+      burst: 10

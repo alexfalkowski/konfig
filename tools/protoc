@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Generate API.
+protoc -I api --go_out=konfig/transport/grpc --go_opt=paths=source_relative \
+    --go-grpc_out=konfig/transport/grpc --go-grpc_opt=paths=source_relative \
+    --grpc-gateway_out=konfig/transport/grpc --grpc-gateway_opt=paths=source_relative \
+    api/konfig.proto

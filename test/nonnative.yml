@@ -1,0 +1,25 @@
+version: 1.0
+strategy: startup
+processes:
+  -
+    name: serve
+    go:
+      output: reports
+      executable: ../konfig
+      command: serve
+    timeout: 5
+    port: 8080
+    log: reports/serve.log
+    environment:
+      CONFIG_FILE: .config/serve.config.yml
+  -
+    name: worker
+    go:
+      output: reports
+      executable: ../konfig
+      command: worker
+    timeout: 5
+    port: 8081
+    log: reports/worker.log
+    environment:
+      CONFIG_FILE: .config/worker.config.yml
