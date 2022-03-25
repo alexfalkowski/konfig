@@ -3,4 +3,5 @@ vendor
 *.cov
 *.out
 konfig
+tmp
 api/google
