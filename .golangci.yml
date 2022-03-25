@@ -1,6 +1,8 @@
 run:
   skip-dirs:
     - tmp
+  skip-files:
+    - ".*\\.pb*"
 linters:
   disable-all: true
   enable:

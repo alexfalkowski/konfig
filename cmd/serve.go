@@ -7,6 +7,7 @@ import (
 	"github.com/alexfalkowski/go-service/transport"
 	"github.com/alexfalkowski/konfig/config"
 	"github.com/alexfalkowski/konfig/health"
+	v1 "github.com/alexfalkowski/konfig/server/v1"
 	ktransport "github.com/alexfalkowski/konfig/transport"
 	"go.uber.org/fx"
 )
@@ -16,5 +17,5 @@ var ServeOptions = []fx.Option{
 	fx.NopLogger, config.Module, health.Module,
 	logger.ZapModule, metrics.PrometheusModule,
 	transport.HTTPServerModule, ktransport.GRPCServerModule,
-	trace.JaegerOpenTracingModule,
+	trace.JaegerOpenTracingModule, v1.ServeModule,
 }
