@@ -1,24 +1,3 @@
-cache:
-  redis:
-    host: localhost:6380
-  ristretto:
-    max_counters: 10000000
-    max_cost: 100000000
-    buffer_items: 64
-health:
-  url: http://localhost:4567
-security:
-  auth0:
-    url: test_url
-    client_id: test_client_id
-    client_secret: test_client_secret
-    audience: test_audience
-    issuer: test_issuer
-    algorithm: test_algorithm
-    json_web_key_set: test_json_web_key_set
-sql:
-  pg:
-    url: postgres://test:test@localhost:5433/test?sslmode=disable
 trace:
   opentracing:
     datadog:
@@ -28,7 +7,7 @@ trace:
 transport:
   http:
     port: 8081
-    user_agent: "Svc/1.0 http/1.0"
+    user_agent: "Konfig/1.0 http/1.0"
     retry:
       timeout: 2s
       attempts: 3
@@ -37,14 +16,10 @@ transport:
       burst: 10
   grpc:
     port: 9091
-    user_agent: "Svc/1.0 grpc/1.0"
+    user_agent: "Konfig/1.0 grpc/1.0"
     retry:
       timeout: 2s
       attempts: 3
     rate_limit:
       every: 1s
       burst: 10
-  nsq:
-    lookup_host: localhost:4162
-    host: localhost:4152
-    user_agent: "Svc/1.0 nsq/1.0"
