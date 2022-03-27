@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alexfalkowski/go-health v1.9.0
-	github.com/alexfalkowski/go-service v1.36.0
+	github.com/alexfalkowski/go-service v1.37.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.9.0
 	go.uber.org/fx v1.17.1
 	go.uber.org/zap v1.21.0
