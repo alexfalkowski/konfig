@@ -30,3 +30,6 @@ transport:
       every: 1s
       burst: 10
       ttl: 24h
+vcs:
+  git:
+    url: https://github.com/alexfalkowski/app-config

@@ -52,6 +52,16 @@ func request_Configurator_GetConfig_0(ctx context.Context, marshaler runtime.Mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "application", err)
 	}
 
+	val, ok = pathParams["version"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
+	}
+
+	protoReq.Version, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
+	}
+
 	val, ok = pathParams["environment"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "environment")
@@ -60,6 +70,16 @@ func request_Configurator_GetConfig_0(ctx context.Context, marshaler runtime.Mar
 	protoReq.Environment, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "environment", err)
+	}
+
+	val, ok = pathParams["command"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "command")
+	}
+
+	protoReq.Command, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "command", err)
 	}
 
 	msg, err := client.GetConfig(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -88,6 +108,16 @@ func local_request_Configurator_GetConfig_0(ctx context.Context, marshaler runti
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "application", err)
 	}
 
+	val, ok = pathParams["version"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "version")
+	}
+
+	protoReq.Version, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "version", err)
+	}
+
 	val, ok = pathParams["environment"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "environment")
@@ -96,6 +126,16 @@ func local_request_Configurator_GetConfig_0(ctx context.Context, marshaler runti
 	protoReq.Environment, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "environment", err)
+	}
+
+	val, ok = pathParams["command"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "command")
+	}
+
+	protoReq.Command, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "command", err)
 	}
 
 	msg, err := server.GetConfig(ctx, &protoReq)
@@ -116,7 +156,7 @@ func RegisterConfiguratorHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/konfig.v1.Configurator/GetConfig", runtime.WithHTTPPathPattern("/v1/konfig/{application}/{environment}"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/konfig.v1.Configurator/GetConfig", runtime.WithHTTPPathPattern("/v1/config/{application}/{version}/{environment}/{command}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -179,7 +219,7 @@ func RegisterConfiguratorHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/konfig.v1.Configurator/GetConfig", runtime.WithHTTPPathPattern("/v1/konfig/{application}/{environment}"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/konfig.v1.Configurator/GetConfig", runtime.WithHTTPPathPattern("/v1/config/{application}/{version}/{environment}/{command}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -199,7 +239,7 @@ func RegisterConfiguratorHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_Configurator_GetConfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "konfig", "application", "environment"}, ""))
+	pattern_Configurator_GetConfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5}, []string{"v1", "config", "application", "version", "environment", "command"}, ""))
 )
 
 var (

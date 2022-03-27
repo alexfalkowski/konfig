@@ -10,6 +10,7 @@ import (
 	"github.com/alexfalkowski/konfig/health"
 	v1 "github.com/alexfalkowski/konfig/server/v1"
 	ktransport "github.com/alexfalkowski/konfig/transport"
+	"github.com/alexfalkowski/konfig/vcs"
 	"go.uber.org/fx"
 )
 
@@ -18,5 +19,6 @@ var ServerOptions = []fx.Option{
 	fx.NopLogger, config.Module, health.Module,
 	logger.ZapModule, metrics.PrometheusModule,
 	transport.HTTPServerModule, ktransport.GRPCServerModule,
-	cache.RistrettoModule, trace.JaegerOpenTracingModule, v1.ServeModule,
+	cache.RistrettoModule, trace.JaegerOpenTracingModule,
+	v1.ServeModule, vcs.Module,
 }

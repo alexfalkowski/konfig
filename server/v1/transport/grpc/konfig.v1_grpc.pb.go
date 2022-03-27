@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ConfiguratorClient interface {
-	// GetConfig for a specific application and environment.
+	// GetConfig for a specific application, version, environment and command.
 	GetConfig(ctx context.Context, in *GetConfigRequest, opts ...grpc.CallOption) (*GetConfigResponse, error)
 }
 
@@ -47,7 +47,7 @@ func (c *configuratorClient) GetConfig(ctx context.Context, in *GetConfigRequest
 // All implementations must embed UnimplementedConfiguratorServer
 // for forward compatibility
 type ConfiguratorServer interface {
-	// GetConfig for a specific application and environment.
+	// GetConfig for a specific application, version, environment and command.
 	GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error)
 	mustEmbedUnimplementedConfiguratorServer()
 }

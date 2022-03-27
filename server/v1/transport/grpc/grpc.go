@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	tgrpc "github.com/alexfalkowski/go-service/transport/grpc"
+	"github.com/alexfalkowski/konfig/vcs"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
@@ -17,15 +18,16 @@ import (
 type RegisterParams struct {
 	fx.In
 
-	GRPCServer *grpc.Server
-	HTTPServer *http.Server
-	Config     *tgrpc.Config
-	Logger     *zap.Logger
+	GRPCServer   *grpc.Server
+	HTTPServer   *http.Server
+	Config       *tgrpc.Config
+	Logger       *zap.Logger
+	Configurator vcs.Configurator
 }
 
 // Register server.
 func Register(lc fx.Lifecycle, params RegisterParams) error {
-	server := NewServer()
+	server := NewServer(params.Configurator)
 	RegisterConfiguratorServer(params.GRPCServer, server)
 
 	var conn *grpc.ClientConn
@@ -49,4 +51,9 @@ func Register(lc fx.Lifecycle, params RegisterParams) error {
 	})
 
 	return nil
+}
+
+// NewServer for gRPC.
+func NewServer(conf vcs.Configurator) ConfiguratorServer {
+	return &Server{conf: conf}
 }
