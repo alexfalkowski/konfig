@@ -32,29 +32,19 @@ func Register(lc fx.Lifecycle, params RegisterParams) error {
 
 	lc.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
-			var err error
-
 			cparams := &tgrpc.ClientParams{
 				Host:   fmt.Sprintf("127.0.0.1:%s", params.Config.Port),
 				Config: params.Config,
 				Logger: params.Logger,
 			}
 
-			conn, err = tgrpc.NewClient(ctx, cparams, grpc.WithBlock(), grpc.WithTransportCredentials(insecure.NewCredentials()))
-			if err != nil {
-				return err
-			}
-
+			conn, _ = tgrpc.NewClient(ctx, cparams, grpc.WithBlock(), grpc.WithTransportCredentials(insecure.NewCredentials()))
 			mux := params.HTTPServer.Handler.(*runtime.ServeMux)
 
 			return RegisterConfiguratorHandler(ctx, mux, conn)
 		},
 		OnStop: func(ctx context.Context) error {
-			if conn != nil {
-				return conn.Close()
-			}
-
-			return nil
+			return conn.Close()
 		},
 	})
 
