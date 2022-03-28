@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/alexfalkowski/konfig/compare/v1.2.1...v1.3.0) (2022-03-28)
+
+
+### Features
+
+* **vcs:** add git ([#6](https://github.com/alexfalkowski/konfig/issues/6)) ([875026e](https://github.com/alexfalkowski/konfig/commit/875026e1a840cd880bdd3c3ef4e0cc30bbd00820))
+
 ### [1.2.1](https://github.com/alexfalkowski/konfig/compare/v1.2.0...v1.2.1) (2022-03-25)
 
 ## [1.2.0](https://github.com/alexfalkowski/konfig/compare/v1.1.0...v1.2.0) (2022-03-25)
