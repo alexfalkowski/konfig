@@ -3,6 +3,9 @@ run:
     - tmp
   skip-files:
     - ".*\\.pb*"
+linters-settings:
+  lll:
+    line-length: 150
 linters:
   disable-all: true
   enable:

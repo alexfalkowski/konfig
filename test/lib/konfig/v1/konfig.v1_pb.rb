@@ -9,13 +9,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("konfig.v1.proto", :syntax => :proto3) do
     add_message "konfig.v1.GetConfigRequest" do
       optional :application, :string, 1
-      optional :environment, :string, 2
+      optional :version, :string, 2
+      optional :environment, :string, 3
+      optional :command, :string, 4
     end
     add_message "konfig.v1.GetConfigResponse" do
       optional :application, :string, 1
-      optional :environment, :string, 2
-      optional :content_type, :string, 3
-      optional :data, :bytes, 4
+      optional :version, :string, 2
+      optional :environment, :string, 3
+      optional :command, :string, 4
+      optional :content_type, :string, 5
+      optional :data, :bytes, 6
     end
   end
 end

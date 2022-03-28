@@ -12,7 +12,7 @@ import (
 )
 
 func TestFeatures(t *testing.T) {
-	command, err := scmd.New(15*time.Second, cmd.ServeOptions, cmd.WorkerOptions)
+	command, err := scmd.New(15*time.Second, cmd.ServerOptions, cmd.WorkerOptions)
 	if err != nil {
 		t.Fatal(err.Error())
 	}

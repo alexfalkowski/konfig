@@ -7,26 +7,30 @@ import "google/api/annotations.proto";
 
 package konfig.v1;
 
-// GetConfigRequest for a specific application and environment.
+// GetConfigRequest for a specific application, version, environment and command.
 message GetConfigRequest {
   string application = 1;
-  string environment = 2;
+  string version = 2;
+  string environment = 3;
+  string command = 4;
 }
 
-// GetConfigResponse for a specific application and environment with the data and content type.
+// GetConfigResponse for a specific application, version, environment and command with the data and content type.
 message GetConfigResponse {
   string application = 1;
-  string environment = 2;
-  string content_type = 3;
-  bytes data = 4;
+  string version = 2;
+  string environment = 3;
+  string command = 4;
+  string content_type = 5;
+  bytes data = 6;
 }
 
 // Configurator allows to manage all application configurations.
 service Configurator {
-  // GetConfig for a specific application and environment.
+  // GetConfig for a specific application, version, environment and command.
   rpc GetConfig (GetConfigRequest) returns (GetConfigResponse) {
     option (google.api.http) = {
-      get: "/v1/konfig/{application}/{environment}"
+      get: "/v1/config/{application}/{version}/{environment}/{command}"
     };
   }
 }

@@ -15,7 +15,7 @@ module Konfig
         self.unmarshal_class_method = :decode
         self.service_name = 'konfig.v1.Configurator'
 
-        # GetConfig for a specific application and environment.
+        # GetConfig for a specific application, version, environment and command.
         rpc :GetConfig, ::Konfig::V1::GetConfigRequest, ::Konfig::V1::GetConfigResponse
       end
 
