@@ -56,20 +56,16 @@ fix-lint: go-fix-lint ruby-fix-lint ## Fix the lint issues in the code (if possi
 features: build-test ## Run all the features
 	make -C test features
 
-remove-generated-coverage:
-	cat test/reports/konfig-server.cov | grep -v -E '(.pb|main.go)' > test/reports/server.cov
-	cat test/reports/konfig-worker.cov | grep -v -E '(.pb|main.go)' > test/reports/worker.cov
+sanitize-coverage:
+	./tools/coverage
 
-merge-coverage:
-	gocovmerge test/reports/server.cov test/reports/worker.cov > test/reports/final.cov
-
-html-coverage: remove-generated-coverage merge-coverage ## Get the HTML coverage for go
+html-coverage: sanitize-coverage ## Get the HTML coverage for go
 	go tool cover -html test/reports/final.cov
 
-func-coverage: remove-generated-coverage merge-coverage ## Get the func coverage for go
+func-coverage: sanitize-coverage ## Get the func coverage for go
 	go tool cover -func test/reports/final.cov
 
-goveralls: remove-generated-coverage merge-coverage ## Send coveralls data
+goveralls: sanitize-coverage ## Send coveralls data
 	goveralls -coverprofile=test/reports/final.cov -service=circle-ci -repotoken=1r7TP3L2xhnSiOOutstLIB306z67K120W
 
 ruby-generate-proto: ## Generate proto for ruby
