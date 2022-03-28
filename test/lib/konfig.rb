@@ -7,8 +7,8 @@ require 'base64'
 require 'grpc/health/v1/health_services_pb'
 
 require 'konfig/v1/http'
-require 'konfig/v1/konfig.v1_pb'
-require 'konfig/v1/konfig.v1_services_pb'
+require 'konfig/v1/service_pb'
+require 'konfig/v1/service_services_pb'
 
 module Konfig
   class << self

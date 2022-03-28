@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/alexfalkowski/konfig/server/v1/transport/grpc";
+option go_package = "github.com/alexfalkowski/konfig/api/konfig/v1";
 option ruby_package = "Konfig::V1";
 
 import "google/api/annotations.proto";

@@ -28,7 +28,7 @@ clean-reports:
 clean: clean-reports
 
 generate-proto:
-	bundle exec grpc_tools_ruby_protoc -I ../api --ruby_out=lib/konfig/v1 --grpc_out=lib/konfig/v1 ../api/konfig.v1.proto
+	bundle exec grpc_tools_ruby_protoc -I ../api --ruby_out=lib --grpc_out=lib ../api/konfig/v1/service.proto
 
 update-dep:
 	bundle update $(gem)
