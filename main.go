@@ -10,12 +10,15 @@ import (
 
 // nolint:gomnd
 func main() {
-	command, err := scmd.New(15*time.Second, cmd.ServerOptions, cmd.WorkerOptions)
+	command, err := scmd.New(15 * time.Second)
 	if err != nil {
 		os.Exit(1)
 	}
 
-	if err := command.Execute(); err != nil {
+	command.AddServer(cmd.ServerOptions)
+	command.AddWorker(cmd.WorkerOptions)
+
+	if err := command.Run(); err != nil {
 		os.Exit(2)
 	}
 }
