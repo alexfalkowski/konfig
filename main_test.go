@@ -11,7 +11,7 @@ import (
 )
 
 func TestFeatures(t *testing.T) {
-	command, err := scmd.New(15 * time.Second) // nolint:gomnd
+	command, err := scmd.New(15 * time.Second)
 	if err != nil {
 		t.Fatal(err.Error())
 	}

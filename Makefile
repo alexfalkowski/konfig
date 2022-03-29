@@ -38,10 +38,10 @@ build-test: ## Build test binary
 	go test -mod vendor -c -tags features -covermode=count -o konfig -coverpkg=./... github.com/alexfalkowski/konfig
 
 go-lint: ## Lint all the go code
-	golangci-lint run --timeout 5m
+	golangci-lint run --build-tags features --timeout 5m
 
 go-fix-lint: ## Fix the lint issues in the go code (if possible)
-	golangci-lint run --timeout 5m --fix
+	golangci-lint run --build-tags features --timeout 5m --fix
 
 ruby-lint: ## Lint all the ruby code
 	make -C test lint
