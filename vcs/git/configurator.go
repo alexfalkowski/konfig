@@ -31,7 +31,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cmd string)
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
-	if err := c.clone(); err != nil {
+	if err := c.clone(ctx); err != nil {
 		meta.WithAttribute(ctx, "git.clone_error", err.Error())
 
 		return nil, verrors.ErrNotFound
@@ -103,12 +103,14 @@ func (c *Configurator) pull(ctx context.Context) error {
 	return nil
 }
 
-func (c *Configurator) clone() error {
+func (c *Configurator) clone(ctx context.Context) error {
 	if c.repo != nil {
 		return nil
 	}
 
-	r, err := git.Clone(memory.NewStorage(), memfs.New(), &git.CloneOptions{Auth: &http.BasicAuth{Username: "a", Password: c.cfg.Token}, URL: c.cfg.URL})
+	opts := &git.CloneOptions{Auth: &http.BasicAuth{Username: "a", Password: c.cfg.Token}, URL: c.cfg.URL}
+
+	r, err := git.CloneContext(ctx, memory.NewStorage(), memfs.New(), opts)
 	if err != nil {
 		return err
 	}
