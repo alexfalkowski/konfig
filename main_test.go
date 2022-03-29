@@ -1,5 +1,4 @@
 //go:build features
-// +build features
 
 package main
 
@@ -12,12 +11,15 @@ import (
 )
 
 func TestFeatures(t *testing.T) {
-	command, err := scmd.New(15*time.Second, cmd.ServerOptions, cmd.WorkerOptions)
+	command, err := scmd.New(15 * time.Second) // nolint:gomnd
 	if err != nil {
 		t.Fatal(err.Error())
 	}
 
-	if err := command.Execute(); err != nil {
+	command.AddServer(cmd.ServerOptions)
+	command.AddWorker(cmd.WorkerOptions)
+
+	if err := command.Run(); err != nil {
 		t.Fatal(err.Error())
 	}
 }
