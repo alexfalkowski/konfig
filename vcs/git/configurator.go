@@ -2,12 +2,14 @@ package git
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"sync"
 
 	"github.com/alexfalkowski/go-service/meta"
-	"github.com/alexfalkowski/konfig/vcs/errors"
+	verrors "github.com/alexfalkowski/konfig/vcs/errors"
+	"github.com/go-git/go-billy/v5"
 	"github.com/go-git/go-billy/v5/memfs"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
@@ -32,30 +34,31 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cmd string)
 	if err := c.clone(); err != nil {
 		meta.WithAttribute(ctx, "git.clone_error", err.Error())
 
-		return nil, errors.ErrNotFound
+		return nil, verrors.ErrNotFound
 	}
 
-	tree, _ := c.repo.Worktree()
+	if err := c.pull(ctx); err != nil {
+		meta.WithAttribute(ctx, "git.pull_error", err.Error())
 
-	err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(fmt.Sprintf("%s/%s", app, ver))})
+		return nil, verrors.ErrNotFound
+	}
+
+	file, err := c.file(app, ver, env, cmd)
 	if err != nil {
-		meta.WithAttribute(ctx, "git.checkout_error", err.Error())
+		meta.WithAttribute(ctx, "git.file_error", err.Error())
 
-		return nil, errors.ErrNotFound
+		return nil, verrors.ErrNotFound
 	}
 
-	file, err := tree.Filesystem.Open(fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd))
-	if err != nil {
-		meta.WithAttribute(ctx, "git.open_error", err.Error())
+	return c.bytes(file), nil
+}
 
-		return nil, errors.ErrNotFound
-	}
-
+func (c *Configurator) bytes(reader io.Reader) []byte {
 	data := make([]byte, 0)
 	buf := make([]byte, buffSize)
 
 	for {
-		n, err := file.Read(buf)
+		n, err := reader.Read(buf)
 		if err == io.EOF {
 			break
 		}
@@ -63,7 +66,41 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cmd string)
 		data = append(data, buf[:n]...)
 	}
 
-	return data, nil
+	return data
+}
+
+func (c *Configurator) file(app, ver, env, cmd string) (billy.File, error) {
+	tree, _ := c.repo.Worktree()
+
+	err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(fmt.Sprintf("%s/%s", app, ver))})
+	if err != nil {
+		return nil, err
+	}
+
+	file, err := tree.Filesystem.Open(fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd))
+	if err != nil {
+		return nil, err
+	}
+
+	return file, nil
+}
+
+func (c *Configurator) pull(ctx context.Context) error {
+	tree, _ := c.repo.Worktree()
+
+	if err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.Master}); err != nil {
+		return err
+	}
+
+	if err := tree.PullContext(ctx, &git.PullOptions{RemoteName: "origin"}); err != nil {
+		if errors.Is(err, git.NoErrAlreadyUpToDate) {
+			return nil
+		}
+
+		return err
+	}
+
+	return nil
 }
 
 func (c *Configurator) clone() error {
