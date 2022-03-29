@@ -18,88 +18,88 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// ConfiguratorClient is the client API for Configurator service.
+// ConfiguratorServiceClient is the client API for ConfiguratorService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ConfiguratorClient interface {
+type ConfiguratorServiceClient interface {
 	// GetConfig for a specific application, version, environment and command.
 	GetConfig(ctx context.Context, in *GetConfigRequest, opts ...grpc.CallOption) (*GetConfigResponse, error)
 }
 
-type configuratorClient struct {
+type configuratorServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewConfiguratorClient(cc grpc.ClientConnInterface) ConfiguratorClient {
-	return &configuratorClient{cc}
+func NewConfiguratorServiceClient(cc grpc.ClientConnInterface) ConfiguratorServiceClient {
+	return &configuratorServiceClient{cc}
 }
 
-func (c *configuratorClient) GetConfig(ctx context.Context, in *GetConfigRequest, opts ...grpc.CallOption) (*GetConfigResponse, error) {
+func (c *configuratorServiceClient) GetConfig(ctx context.Context, in *GetConfigRequest, opts ...grpc.CallOption) (*GetConfigResponse, error) {
 	out := new(GetConfigResponse)
-	err := c.cc.Invoke(ctx, "/konfig.v1.Configurator/GetConfig", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/konfig.v1.ConfiguratorService/GetConfig", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ConfiguratorServer is the server API for Configurator service.
-// All implementations must embed UnimplementedConfiguratorServer
+// ConfiguratorServiceServer is the server API for ConfiguratorService service.
+// All implementations must embed UnimplementedConfiguratorServiceServer
 // for forward compatibility
-type ConfiguratorServer interface {
+type ConfiguratorServiceServer interface {
 	// GetConfig for a specific application, version, environment and command.
 	GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error)
-	mustEmbedUnimplementedConfiguratorServer()
+	mustEmbedUnimplementedConfiguratorServiceServer()
 }
 
-// UnimplementedConfiguratorServer must be embedded to have forward compatible implementations.
-type UnimplementedConfiguratorServer struct {
+// UnimplementedConfiguratorServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedConfiguratorServiceServer struct {
 }
 
-func (UnimplementedConfiguratorServer) GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error) {
+func (UnimplementedConfiguratorServiceServer) GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
 }
-func (UnimplementedConfiguratorServer) mustEmbedUnimplementedConfiguratorServer() {}
+func (UnimplementedConfiguratorServiceServer) mustEmbedUnimplementedConfiguratorServiceServer() {}
 
-// UnsafeConfiguratorServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ConfiguratorServer will
+// UnsafeConfiguratorServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ConfiguratorServiceServer will
 // result in compilation errors.
-type UnsafeConfiguratorServer interface {
-	mustEmbedUnimplementedConfiguratorServer()
+type UnsafeConfiguratorServiceServer interface {
+	mustEmbedUnimplementedConfiguratorServiceServer()
 }
 
-func RegisterConfiguratorServer(s grpc.ServiceRegistrar, srv ConfiguratorServer) {
-	s.RegisterService(&Configurator_ServiceDesc, srv)
+func RegisterConfiguratorServiceServer(s grpc.ServiceRegistrar, srv ConfiguratorServiceServer) {
+	s.RegisterService(&ConfiguratorService_ServiceDesc, srv)
 }
 
-func _Configurator_GetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ConfiguratorService_GetConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetConfigRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ConfiguratorServer).GetConfig(ctx, in)
+		return srv.(ConfiguratorServiceServer).GetConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/konfig.v1.Configurator/GetConfig",
+		FullMethod: "/konfig.v1.ConfiguratorService/GetConfig",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConfiguratorServer).GetConfig(ctx, req.(*GetConfigRequest))
+		return srv.(ConfiguratorServiceServer).GetConfig(ctx, req.(*GetConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Configurator_ServiceDesc is the grpc.ServiceDesc for Configurator service.
+// ConfiguratorService_ServiceDesc is the grpc.ServiceDesc for ConfiguratorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Configurator_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "konfig.v1.Configurator",
-	HandlerType: (*ConfiguratorServer)(nil),
+var ConfiguratorService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "konfig.v1.ConfiguratorService",
+	HandlerType: (*ConfiguratorServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetConfig",
-			Handler:    _Configurator_GetConfig_Handler,
+			Handler:    _ConfiguratorService_GetConfig_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

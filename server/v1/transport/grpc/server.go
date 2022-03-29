@@ -15,7 +15,7 @@ import (
 // Server for gRPC.
 type Server struct {
 	conf vcs.Configurator
-	v1.UnimplementedConfiguratorServer
+	v1.UnimplementedConfiguratorServiceServer
 }
 
 // GetConfig for gRPC.
