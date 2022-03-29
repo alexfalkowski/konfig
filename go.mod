@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alexfalkowski/go-health v1.9.0
-	github.com/alexfalkowski/go-service v1.39.1
+	github.com/alexfalkowski/go-service v1.39.2
 	github.com/dgraph-io/ristretto v0.1.0
 	github.com/go-git/go-billy/v5 v5.3.1
 	github.com/go-git/go-git/v5 v5.4.2
