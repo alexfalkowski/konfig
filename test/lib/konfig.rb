@@ -7,8 +7,8 @@ require 'base64'
 require 'grpc/health/v1/health_services_pb'
 
 require 'konfig/v1/http'
-require 'konfig/v1/konfig.v1_pb'
-require 'konfig/v1/konfig.v1_services_pb'
+require 'konfig/v1/service_pb'
+require 'konfig/v1/service_services_pb'
 
 module Konfig
   class << self
@@ -33,7 +33,7 @@ module Konfig
     end
 
     def server_grpc
-      @server_grpc ||= Konfig::V1::Configurator::Stub.new('localhost:9090', :this_channel_is_insecure)
+      @server_grpc ||= Konfig::V1::ConfiguratorService::Stub.new('localhost:9090', :this_channel_is_insecure)
     end
   end
 end

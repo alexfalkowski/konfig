@@ -3,7 +3,7 @@
 set -e
 
 # Generate API.
-protoc -I api --go_out=server/v1/transport/grpc --go_opt=paths=source_relative \
-    --go-grpc_out=server/v1/transport/grpc --go-grpc_opt=paths=source_relative \
-    --grpc-gateway_out=server/v1/transport/grpc --grpc-gateway_opt=paths=source_relative \
-    api/konfig.v1.proto
+protoc -I api --go_out=api --go_opt=paths=source_relative \
+    --go-grpc_out=api --go-grpc_opt=paths=source_relative \
+    --grpc-gateway_out=api --grpc-gateway_opt=paths=source_relative \
+    api/konfig/v1/service.proto

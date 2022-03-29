@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 
+	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/vcs"
 	verrors "github.com/alexfalkowski/konfig/vcs/errors"
 	"google.golang.org/grpc/codes"
@@ -14,12 +15,12 @@ import (
 // Server for gRPC.
 type Server struct {
 	conf vcs.Configurator
-	UnimplementedConfiguratorServer
+	v1.UnimplementedConfiguratorServiceServer
 }
 
 // GetConfig for gRPC.
-func (s *Server) GetConfig(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
-	resp := &GetConfigResponse{
+func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.GetConfigResponse, error) {
+	resp := &v1.GetConfigResponse{
 		Application: req.Application,
 		Version:     req.Version,
 		Environment: req.Environment,
@@ -47,7 +48,7 @@ func (s *Server) GetConfig(ctx context.Context, req *GetConfigRequest) (*GetConf
 	return resp, nil
 }
 
-func (s *Server) validateGetConfigRequest(req *GetConfigRequest) error {
+func (s *Server) validateGetConfigRequest(req *v1.GetConfigRequest) error {
 	if req.Application == "" {
 		return status.Error(codes.InvalidArgument, "invalid application")
 	}
