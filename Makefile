@@ -13,9 +13,6 @@ tools: ## Setup all the tools
 ruby-setup: ## Setup ruby
 	make -C test setup
 
-ruby-dep: ## Setup ruby deps
-	make -C test dep
-
 setup: tools go-dep ruby-setup ruby-dep ## Setup everything
 
 download:
@@ -26,10 +23,6 @@ tidy:
 
 vendor:
 	go mod vendor
-
-go-dep: download tidy vendor ## Setup go deps
-
-dep: go-dep ruby-dep ## Setup all deps
 
 build: ## Build release binary
 	go build -mod vendor -o konfig main.go
@@ -89,8 +82,23 @@ go-get: ## Get go dep
 
 go-update-dep: go-get tidy vendor ## Update go dep
 
+go-dep-update-all: ## Update all go deps
+	go get -u all
+
+go-dep: download tidy vendor ## Setup go deps
+
 ruby-update-dep: ## Update ruby dep
 	make -C test gem=$(gem) update-dep
+
+ruby-dep: ## Setup ruby deps
+	make -C test dep
+
+ruby-dep-update-all: ## Update all ruby deps
+	make -C test update-all
+
+dep: go-dep ruby-dep ## Setup all deps
+
+dep-update-all: go-dep-update-all go-dep ruby-dep-update-all ruby-dep ## Update all deps
 
 start: ## Start the environment
 	tools/env start
