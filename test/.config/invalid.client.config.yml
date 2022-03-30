@@ -1,0 +1,16 @@
+trace:
+  opentracing:
+    jaeger:
+      host: localhost:6831
+transport:
+  grpc:
+    user_agent: "Konfig-client/1.0 grpc/1.0"
+    retry:
+      timeout: 2s
+      attempts: 3
+client:
+  host: localhost:9091
+  application: test
+  version: v1.2.0
+  environment: staging
+  command: server

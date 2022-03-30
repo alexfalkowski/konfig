@@ -2,6 +2,7 @@ package config
 
 import (
 	"github.com/alexfalkowski/go-service/config"
+	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/vcs"
 )
 
@@ -14,4 +15,8 @@ func NewConfigurator() config.Configurator {
 
 func vcsConfig(cfg config.Configurator) *vcs.Config {
 	return &cfg.(*Config).Server.VCS
+}
+
+func clientConfig(cfg config.Configurator) *client.Config {
+	return &cfg.(*Config).Client
 }

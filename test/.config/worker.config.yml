@@ -5,7 +5,7 @@ trace:
 transport:
   http:
     port: 8081
-    user_agent: "Konfig/1.0 http/1.0"
+    user_agent: "Konfig-worker/1.0 http/1.0"
     retry:
       timeout: 2s
       attempts: 3

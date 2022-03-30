@@ -6,15 +6,15 @@ Feature: Server
   Scenario: Existing cfg with HTTP
     Given I have a valid vcs token
     And I start nonnative
-    When I request "test" app with "v1.1.0" ver from "staging" env and "server" cmd with HTTP
-    Then I should receive a valid cfg from "test" app with "v1.1.0" ver and "staging" env and "server" cmd from HTTP
+    When I request "test" app with "v1.2.0" ver from "staging" env and "server" cmd with HTTP
+    Then I should receive a valid cfg from "test" app with "v1.2.0" ver and "staging" env and "server" cmd from HTTP
 
   Scenario: Existing cfg twice with HTTP
     Given I have a valid vcs token
     And I start nonnative
-    And I request "test" app with "v1.1.0" ver from "staging" env and "server" cmd with HTTP
-    When I request "test" app with "v1.1.0" ver from "staging" env and "server" cmd with HTTP
-    Then I should receive a valid cfg from "test" app with "v1.1.0" ver and "staging" env and "server" cmd from HTTP
+    And I request "test" app with "v1.2.0" ver from "staging" env and "server" cmd with HTTP
+    When I request "test" app with "v1.2.0" ver from "staging" env and "server" cmd with HTTP
+    Then I should receive a valid cfg from "test" app with "v1.2.0" ver and "staging" env and "server" cmd from HTTP
 
   Scenario Outline: Missing cfg with HTTP
     Given I have a valid vcs token
@@ -24,14 +24,14 @@ Feature: Server
 
     Examples:
       | app     | ver    | env     | cmd     |
-      | missing | v1.1.0 | staging | server  |
-      | test    | v1.1.0 | staging | missing |
+      | missing | v1.2.0 | staging | server  |
+      | test    | v1.2.0 | staging | missing |
 
   Scenario: Misconfigured cfg with HTTP
     Given I have a misconfigured vcs token
     And I start nonnative
-    When I request "test" app with "v1.1.0" ver from "staging" env and "server" cmd with HTTP
-    Then I should receive a missing cfg from "test" app with "v1.1.0" ver and "staging" env and "server" cmd from HTTP
+    When I request "test" app with "v1.2.0" ver from "staging" env and "server" cmd with HTTP
+    Then I should receive a missing cfg from "test" app with "v1.2.0" ver and "staging" env and "server" cmd from HTTP
 
   Scenario Outline: Invalid cfg with HTTP
     Given I have a valid vcs token
@@ -41,23 +41,23 @@ Feature: Server
 
     Examples:
       | app  | ver    | env     | cmd    |
-      |      | v1.1.0 | staging | server |
+      |      | v1.2.0 | staging | server |
       | test |        | staging | server |
-      | test | v1.1.0 |         | server |
-      | test | v1.1.0 | staging |        |
+      | test | v1.2.0 |         | server |
+      | test | v1.2.0 | staging |        |
 
   Scenario: Existing cfg with gRPC
     Given I have a valid vcs token
     And I start nonnative
-    When I request "test" app with "v1.1.0" ver from "staging" env and "server" cmd with gRPC
-    Then I should receive a valid cfg from "test" app with "v1.1.0" ver and "staging" env and "server" cmd from gRPC
+    When I request "test" app with "v1.2.0" ver from "staging" env and "server" cmd with gRPC
+    Then I should receive a valid cfg from "test" app with "v1.2.0" ver and "staging" env and "server" cmd from gRPC
 
   Scenario: Existing cfg twice with gRPC
     Given I have a valid vcs token
     And I start nonnative
-    And I request "test" app with "v1.1.0" ver from "staging" env and "server" cmd with gRPC
-    When I request "test" app with "v1.1.0" ver from "staging" env and "server" cmd with gRPC
-    Then I should receive a valid cfg from "test" app with "v1.1.0" ver and "staging" env and "server" cmd from gRPC
+    And I request "test" app with "v1.2.0" ver from "staging" env and "server" cmd with gRPC
+    When I request "test" app with "v1.2.0" ver from "staging" env and "server" cmd with gRPC
+    Then I should receive a valid cfg from "test" app with "v1.2.0" ver and "staging" env and "server" cmd from gRPC
 
   Scenario Outline: Missing cfg with gRPC
     Given I have a valid vcs token
@@ -67,14 +67,14 @@ Feature: Server
 
     Examples:
       | app     | ver    | env     | cmd     |
-      | missing | v1.1.0 | staging | server  |
-      | test    | v1.1.0 | staging | missing |
+      | missing | v1.2.0 | staging | server  |
+      | test    | v1.2.0 | staging | missing |
 
   Scenario: Misconfigured cfg with gRPC
     Given I have a misconfigured vcs token
     And I start nonnative
-    When I request "test" app with "v1.1.0" ver from "staging" env and "server" cmd with gRPC
-    Then I should receive a missing cfg from "test" app with "v1.1.0" ver and "staging" env and "server" cmd from gRPC
+    When I request "test" app with "v1.2.0" ver from "staging" env and "server" cmd with gRPC
+    Then I should receive a missing cfg from "test" app with "v1.2.0" ver and "staging" env and "server" cmd from gRPC
 
   Scenario Outline: Invalid cfg with gRPC
     Given I have a valid vcs token
@@ -84,7 +84,7 @@ Feature: Server
 
     Examples:
       | app  | ver    | env     | cmd    |
-      |      | v1.1.0 | staging | server |
+      |      | v1.2.0 | staging | server |
       | test |        | staging | server |
-      | test | v1.1.0 |         | server |
-      | test | v1.1.0 | staging |        |
+      | test | v1.2.0 |         | server |
+      | test | v1.2.0 | staging |        |

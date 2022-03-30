@@ -17,6 +17,7 @@ func main() {
 
 	command.AddServer(cmd.ServerOptions)
 	command.AddWorker(cmd.WorkerOptions)
+	command.AddClient(cmd.ClientOptions)
 
 	if err := command.Run(); err != nil {
 		os.Exit(2)
