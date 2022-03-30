@@ -2,13 +2,13 @@ package config
 
 import (
 	"github.com/alexfalkowski/go-service/config"
-	"github.com/alexfalkowski/konfig/vcs"
+	"github.com/alexfalkowski/konfig/server"
 	"gopkg.in/yaml.v3"
 )
 
 // Config for the service.
 type Config struct {
-	VCS           vcs.Config `yaml:"vcs"`
+	Server        server.Config `yaml:"server"`
 	config.Config `yaml:",inline"`
 }
 

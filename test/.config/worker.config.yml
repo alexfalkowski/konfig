@@ -1,12 +1,5 @@
-cache:
-  ristretto:
-    max_counters: 10000000
-    max_cost: 100000000
-    buffer_items: 64
 trace:
   opentracing:
-    datadog:
-      host: localhost:8126
     jaeger:
       host: localhost:6831
 transport:
@@ -20,16 +13,3 @@ transport:
       every: 1s
       burst: 10
       ttl: 24h
-  grpc:
-    port: 9091
-    user_agent: "Konfig/1.0 grpc/1.0"
-    retry:
-      timeout: 2s
-      attempts: 3
-    rate_limit:
-      every: 1s
-      burst: 10
-      ttl: 24h
-vcs:
-  git:
-    url: https://github.com/alexfalkowski/app-config

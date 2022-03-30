@@ -13,6 +13,5 @@ import (
 var WorkerOptions = []fx.Option{
 	fx.NopLogger, config.Module,
 	logger.ZapModule, metrics.PrometheusModule,
-	transport.HTTPServerModule, transport.GRPCServerModule,
-	trace.JaegerOpenTracingModule,
+	transport.HTTPServerModule, trace.JaegerOpenTracingModule,
 }

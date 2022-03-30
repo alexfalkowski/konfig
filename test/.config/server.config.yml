@@ -5,8 +5,6 @@ cache:
     buffer_items: 64
 trace:
   opentracing:
-    datadog:
-      host: localhost:8126
     jaeger:
       host: localhost:6831
 transport:
@@ -30,6 +28,7 @@ transport:
       every: 1s
       burst: 10
       ttl: 24h
-vcs:
-  git:
-    url: https://github.com/alexfalkowski/app-config
+server:
+  vcs:
+    git:
+      url: https://github.com/alexfalkowski/app-config

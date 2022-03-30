@@ -13,5 +13,5 @@ func NewConfigurator() config.Configurator {
 }
 
 func vcsConfig(cfg config.Configurator) *vcs.Config {
-	return &cfg.(*Config).VCS
+	return &cfg.(*Config).Server.VCS
 }
