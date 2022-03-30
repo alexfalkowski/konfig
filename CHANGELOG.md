@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/alexfalkowski/konfig/compare/v1.4.3...v1.5.0) (2022-03-30)
+
+
+### Features
+
+* **client:** add ability to get config ([#12](https://github.com/alexfalkowski/konfig/issues/12)) ([8278da6](https://github.com/alexfalkowski/konfig/commit/8278da630cd6137258c69264a9bfb09d90b67fcb))
+
 ### [1.4.3](https://github.com/alexfalkowski/konfig/compare/v1.4.2...v1.4.3) (2022-03-29)
 
 ### [1.4.2](https://github.com/alexfalkowski/konfig/compare/v1.4.1...v1.4.2) (2022-03-29)
