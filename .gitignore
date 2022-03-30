@@ -5,3 +5,4 @@ vendor
 /konfig
 tmp
 api/google
+test/.config/*.server.config.yml

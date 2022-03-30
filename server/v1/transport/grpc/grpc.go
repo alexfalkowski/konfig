@@ -27,7 +27,7 @@ type RegisterParams struct {
 }
 
 // Register server.
-func Register(lc fx.Lifecycle, params RegisterParams) error {
+func Register(lc fx.Lifecycle, params RegisterParams) {
 	server := NewServer(params.Configurator)
 	v1.RegisterConfiguratorServiceServer(params.GRPCServer, server)
 
@@ -50,8 +50,6 @@ func Register(lc fx.Lifecycle, params RegisterParams) error {
 			return conn.Close()
 		},
 	})
-
-	return nil
 }
 
 // NewServer for gRPC.

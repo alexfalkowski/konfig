@@ -19,6 +19,9 @@ dep:
 outdated:
 	bundle outdated --only-explicit
 
+update-all:
+	bundle update
+
 features: clean-reports
 	bundle exec cucumber --profile report --fail-fast $(feature)
 

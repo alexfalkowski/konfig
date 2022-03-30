@@ -16,5 +16,6 @@ var (
 	ConfigModule = fx.Options(
 		config.ConfigModule,
 		fx.Provide(vcsConfig),
+		fx.Provide(clientConfig),
 	)
 )

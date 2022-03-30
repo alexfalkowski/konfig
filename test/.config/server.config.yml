@@ -5,14 +5,12 @@ cache:
     buffer_items: 64
 trace:
   opentracing:
-    datadog:
-      host: localhost:8126
     jaeger:
       host: localhost:6831
 transport:
   http:
     port: 8080
-    user_agent: "Konfig/1.0 http/1.0"
+    user_agent: "Konfig-server/1.0 http/1.0"
     retry:
       timeout: 2s
       attempts: 3
@@ -22,7 +20,7 @@ transport:
       ttl: 24h
   grpc:
     port: 9090
-    user_agent: "Konfig/1.0 grpc/1.0"
+    user_agent: "Konfig-server/1.0 grpc/1.0"
     retry:
       timeout: 2s
       attempts: 3
@@ -30,6 +28,7 @@ transport:
       every: 1s
       burst: 10
       ttl: 24h
-vcs:
-  git:
-    url: https://github.com/alexfalkowski/app-config
+server:
+  vcs:
+    git:
+      url: https://github.com/alexfalkowski/app-config
