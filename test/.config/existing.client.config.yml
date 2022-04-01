@@ -11,6 +11,6 @@ transport:
 client:
   host: localhost:9090
   application: test
-  version: v1.2.0
+  version: v1.3.0
   environment: staging
   command: server

@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
+	"github.com/alexfalkowski/konfig/config"
 	"github.com/alexfalkowski/konfig/vcs"
 	verrors "github.com/alexfalkowski/konfig/vcs/errors"
 	"google.golang.org/grpc/codes"
@@ -41,6 +42,11 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		}
 
 		return resp, err
+	}
+
+	data, err = config.Transform(ctx, data)
+	if err != nil {
+		return resp, status.Error(codes.Internal, "could not transform")
 	}
 
 	resp.Data = data
