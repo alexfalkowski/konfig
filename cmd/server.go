@@ -19,6 +19,6 @@ var ServerOptions = []fx.Option{
 	fx.NopLogger, config.Module, health.Module,
 	logger.ZapModule, metrics.PrometheusModule,
 	transport.HTTPServerModule, ktransport.GRPCServerModule,
-	cache.RistrettoModule, trace.JaegerOpenTracingModule,
+	cache.RistrettoModule, cache.RedisModule, trace.JaegerOpenTracingModule,
 	v1.ServeModule, vcs.Module,
 }

@@ -1,4 +1,6 @@
 cache:
+  redis:
+    host: localhost:6380
   ristretto:
     max_counters: 10000000
     max_cost: 100000000
