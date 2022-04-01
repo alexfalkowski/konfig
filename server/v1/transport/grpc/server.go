@@ -15,7 +15,8 @@ import (
 
 // Server for gRPC.
 type Server struct {
-	conf vcs.Configurator
+	conf  vcs.Configurator
+	trans *config.Transformer
 	v1.UnimplementedConfiguratorServiceServer
 }
 
@@ -44,7 +45,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		return resp, err
 	}
 
-	data, err = config.Transform(ctx, data)
+	data, err = s.trans.Transform(ctx, data)
 	if err != nil {
 		return resp, status.Error(codes.Internal, "could not transform")
 	}

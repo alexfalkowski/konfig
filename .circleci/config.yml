@@ -4,8 +4,12 @@ jobs:
   build:
     docker:
       - image: alexfalkowski/go:1.18
+      - image: vault
+        environment:
+          VAULT_DEV_ROOT_TOKEN_ID: vault-plaintext-root-token
     steps:
       - checkout
+      - run: dockerize -wait tcp://localhost:8200 -timeout 1m
       - run: make dep
       - run: make lint
       - run: make features

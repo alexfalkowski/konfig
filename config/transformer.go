@@ -9,8 +9,18 @@ import (
 	"github.com/alexfalkowski/konfig/config/provider"
 )
 
-// Transform the config.
-func Transform(ctx context.Context, bytes []byte) ([]byte, error) {
+// Transformer for config.
+type Transformer struct {
+	pt *provider.Transformer
+}
+
+// NewTransformer for config.
+func NewTransformer(pt *provider.Transformer) *Transformer {
+	return &Transformer{pt: pt}
+}
+
+// Transform config.
+func (t *Transformer) Transform(ctx context.Context, bytes []byte) ([]byte, error) {
 	cfg := config.Map{}
 	if err := config.UnmarshalFromBytes(bytes, cfg); err != nil {
 		meta.WithAttribute(ctx, "config.unmarshal_error", err.Error())
@@ -18,7 +28,11 @@ func Transform(ctx context.Context, bytes []byte) ([]byte, error) {
 		return nil, errors.ErrUnmarshalError
 	}
 
-	traverse(cfg)
+	if err := t.traverse(cfg); err != nil {
+		meta.WithAttribute(ctx, "config.traverse_error", err.Error())
+
+		return nil, errors.ErrTraverseError
+	}
 
 	data, err := config.MarshalToBytes(cfg)
 	if err != nil {
@@ -30,16 +44,22 @@ func Transform(ctx context.Context, bytes []byte) ([]byte, error) {
 	return data, nil
 }
 
-func traverse(cfg config.Map) {
+func (t *Transformer) traverse(cfg config.Map) error {
 	for key, val := range cfg {
 		switch v := val.(type) {
 		case string:
-			t := provider.NewTransformer(v)
-			if t != nil {
-				cfg[key] = t.Transform()
+			vt, err := t.pt.Transform(v)
+			if err != nil {
+				return err
 			}
+
+			cfg[key] = vt
 		case config.Map:
-			traverse(v)
+			if err := t.traverse(v); err != nil {
+				return err
+			}
 		}
 	}
+
+	return nil
 }
