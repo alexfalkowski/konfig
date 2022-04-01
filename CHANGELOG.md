@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/alexfalkowski/konfig/compare/v1.5.1...v1.6.0) (2022-04-01)
+
+
+### Features
+
+* **config:** get env variables ([#14](https://github.com/alexfalkowski/konfig/issues/14)) ([3bf1fd4](https://github.com/alexfalkowski/konfig/commit/3bf1fd44345d0d28459b3b18edf5bba8a98318ca))
+
 ### [1.5.1](https://github.com/alexfalkowski/konfig/compare/v1.5.0...v1.5.1) (2022-03-31)
 
 ## [1.5.0](https://github.com/alexfalkowski/konfig/compare/v1.4.3...v1.5.0) (2022-03-30)
