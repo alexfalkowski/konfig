@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/alexfalkowski/konfig/compare/v1.6.0...v1.7.0) (2022-04-01)
+
+
+### Features
+
+* read configs from vault ([#15](https://github.com/alexfalkowski/konfig/issues/15)) ([9708972](https://github.com/alexfalkowski/konfig/commit/9708972353ddf688dee912191e4acd920ca8c72a))
+
 ## [1.6.0](https://github.com/alexfalkowski/konfig/compare/v1.5.1...v1.6.0) (2022-04-01)
 
 
