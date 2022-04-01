@@ -4,26 +4,35 @@ import (
 	"strings"
 
 	"github.com/alexfalkowski/konfig/config/provider/env"
+	"github.com/alexfalkowski/konfig/config/provider/vault"
 )
 
 const argumentsLen = 2
 
 // Transformer for provider.
-type Transformer interface {
-	Transform() string
+type Transformer struct {
+	et *env.Transformer
+	vt *vault.Transformer
 }
 
 // NewTransformer for provider.
-func NewTransformer(value string) Transformer {
+func NewTransformer(et *env.Transformer, vt *vault.Transformer) *Transformer {
+	return &Transformer{et: et, vt: vt}
+}
+
+// Transform for provider.
+func (t *Transformer) Transform(value string) (string, error) {
 	args := strings.Split(value, ":")
 	if len(args) != argumentsLen {
-		return nil
+		return value, nil
 	}
 
 	switch args[0] {
 	case "env":
-		return env.NewTransformer(args[1])
+		return t.et.Transform(args[1])
+	case "vault":
+		return t.vt.Transform(args[1])
 	default:
-		return nil
+		return value, nil
 	}
 }

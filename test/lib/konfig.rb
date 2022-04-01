@@ -3,9 +3,11 @@
 require 'securerandom'
 require 'yaml'
 require 'base64'
+require 'vault'
 
 require 'grpc/health/v1/health_services_pb'
 
+require 'konfig/vault'
 require 'konfig/v1/http'
 require 'konfig/v1/service_pb'
 require 'konfig/v1/service_services_pb'
@@ -14,6 +16,10 @@ module Konfig
   class << self
     def observability
       @observability ||= Nonnative::Observability.new('http://localhost:8080')
+    end
+
+    def vault
+      @vault ||= Konfig::Vault.new
     end
 
     def server_config

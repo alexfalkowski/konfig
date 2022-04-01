@@ -8,6 +8,10 @@ Given('I have a misconfigured vcs token') do
   Nonnative.configuration.processes[0].environment['KONFIG_GIT_TOKEN'] = 'not_a_valid_token'
 end
 
+Given('I have key {string} with {string} value in vault') do |key, value|
+  Konfig.vault.write(key, value)
+end
+
 When('I request {string} app with {string} ver from {string} env and {string} cmd with HTTP') do |app, ver, env, cmd|
   headers = {
     request_id: SecureRandom.uuid,
