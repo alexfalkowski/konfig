@@ -38,10 +38,15 @@ Then('I should receive a valid cfg from {string} app with {string} ver and {stri
   expect(@response.code).to eq(200)
 
   resp = JSON.parse(@response.body)
-  resp['data'] = YAML.safe_load(Base64.decode64(resp['data']))
+  data = YAML.safe_load(Base64.decode64(resp['data']))
 
-  expect(resp).to eq('application' => app, 'version' => ver, 'environment' => env, 'command' => cmd,
-                     'contentType' => 'application/yaml', 'data' => Konfig.server_config)
+  expect(resp['application']).to eq(app)
+  expect(resp['version']).to eq(ver)
+  expect(resp['environment']).to eq(env)
+  expect(resp['command']).to eq(cmd)
+  expect(resp['contentType']).to eq('application/yaml')
+  expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
+  expect(data['server']['vcs']['git']['url']).to eq(ENV['GITHUB_URL'])
 end
 
 Then('I should receive a missing cfg from {string} app with {string} ver and {string} env and {string} cmd from HTTP') do |_, _, _, _|
@@ -52,13 +57,20 @@ Then('I should receive an invalid cfg from {string} app with {string} ver and {s
   expect(@response.code).to eq(400)
 end
 
+Then('I should receive an internal error from {string} app with {string} ver and {string} env and {string} cmd from HTTP') do |_, _, _, _|
+  expect(@response.code).to eq(500)
+end
+
 Then('I should receive a valid cfg from {string} app with {string} ver and {string} env and {string} cmd from gRPC') do |app, ver, env, cmd|
+  data = YAML.safe_load(@response.data)
+
   expect(@response.application).to eq(app)
   expect(@response.version).to eq(ver)
   expect(@response.environment).to eq(env)
   expect(@response.command).to eq(cmd)
   expect(@response.content_type).to eq('application/yaml')
-  expect(YAML.safe_load(@response.data)).to eq(Konfig.server_config)
+  expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
+  expect(data['server']['vcs']['git']['url']).to eq(ENV['GITHUB_URL'])
 end
 
 Then('I should receive a missing cfg from {string} app with {string} ver and {string} env and {string} cmd from gRPC') do |_, _, _, _|
@@ -67,4 +79,8 @@ end
 
 Then('I should receive an invalid cfg from {string} app with {string} ver and {string} env and {string} cmd from gRPC') do |_, _, _, _|
   expect(@response).to be_a(GRPC::InvalidArgument)
+end
+
+Then('I should receive an internal error from {string} app with {string} ver and {string} env and {string} cmd from gRPC') do |_, _, _, _|
+  expect(@response).to be_a(GRPC::Internal)
 end
