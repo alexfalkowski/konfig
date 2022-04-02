@@ -53,6 +53,18 @@ Feature: Server
       | test | v1.5.0 |         | server |
       | test | v1.5.0 | staging |        |
 
+  Scenario: Existing cfg over HTTP with broken vault
+    Given I have a valid vcs token
+    And I start nonnative
+    And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
+    And I have a fresh cache
+    And I set the proxy for service 'vault' to 'close_all'
+    And I wait for 2 seconds for the changes to apply
+    When I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with HTTP
+    Then I should receive an internal error from "test" app with "v1.5.0" ver and "staging" env and "server" cmd from HTTP
+    And I should reset the proxy for service 'vault'
+    And I wait for 2 seconds for the changes to apply
+
   Scenario: Existing cfg over HTTP with broken cache
     Given I have a valid vcs token
     And I start nonnative

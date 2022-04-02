@@ -57,6 +57,10 @@ Then('I should receive an invalid cfg from {string} app with {string} ver and {s
   expect(@response.code).to eq(400)
 end
 
+Then('I should receive an internal error from {string} app with {string} ver and {string} env and {string} cmd from HTTP') do |_, _, _, _|
+  expect(@response.code).to eq(500)
+end
+
 Then('I should receive a valid cfg from {string} app with {string} ver and {string} env and {string} cmd from gRPC') do |app, ver, env, cmd|
   data = YAML.safe_load(@response.data)
 
