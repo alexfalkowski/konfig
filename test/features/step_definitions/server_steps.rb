@@ -76,3 +76,7 @@ end
 Then('I should receive an invalid cfg from {string} app with {string} ver and {string} env and {string} cmd from gRPC') do |_, _, _, _|
   expect(@response).to be_a(GRPC::InvalidArgument)
 end
+
+Then('I should receive an internal error from {string} app with {string} ver and {string} env and {string} cmd from gRPC') do |_, _, _, _|
+  expect(@response).to be_a(GRPC::Internal)
+end
