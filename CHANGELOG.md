@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/alexfalkowski/konfig/compare/v1.7.0...v1.8.0) (2022-04-02)
+
+
+### Features
+
+* **server:** add redis caching ([#16](https://github.com/alexfalkowski/konfig/issues/16)) ([48aee64](https://github.com/alexfalkowski/konfig/commit/48aee647fbc678390a58668f8d4f8cc79f6559d3))
+
 ## [1.7.0](https://github.com/alexfalkowski/konfig/compare/v1.6.0...v1.7.0) (2022-04-01)
 
 
