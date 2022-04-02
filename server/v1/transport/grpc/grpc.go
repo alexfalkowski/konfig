@@ -2,7 +2,6 @@ package grpc
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	tgrpc "github.com/alexfalkowski/go-service/transport/grpc"
@@ -13,9 +12,7 @@ import (
 	"github.com/go-redis/cache/v8"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"go.uber.org/fx"
-	"go.uber.org/zap"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 )
 
 // RegisterParams for gRPC.
@@ -25,7 +22,6 @@ type RegisterParams struct {
 	GRPCServer   *grpc.Server
 	HTTPServer   *http.Server
 	Config       *tgrpc.Config
-	Logger       *zap.Logger
 	Configurator vcs.Configurator
 	Transformer  *config.Transformer
 	Cache        *cache.Cache
@@ -40,13 +36,7 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 
 	lc.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
-			cparams := &tgrpc.ClientParams{
-				Host:   fmt.Sprintf("127.0.0.1:%s", params.Config.Port),
-				Config: params.Config,
-				Logger: params.Logger,
-			}
-
-			conn, _ = tgrpc.NewClient(ctx, cparams, grpc.WithBlock(), grpc.WithTransportCredentials(insecure.NewCredentials()))
+			conn, _ = tgrpc.NewLocalClient(ctx, params.Config)
 			mux := params.HTTPServer.Handler.(*runtime.ServeMux)
 
 			return v1.RegisterConfiguratorServiceHandler(ctx, mux, conn)
