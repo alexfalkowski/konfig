@@ -1,6 +1,7 @@
 package env
 
 import (
+	"context"
 	"os"
 )
 
@@ -14,6 +15,6 @@ func NewTransformer() *Transformer {
 }
 
 // Transform for env.
-func (e *Transformer) Transform(value string) (string, error) {
+func (e *Transformer) Transform(ctx context.Context, value string) (string, error) {
 	return os.Getenv(value), nil
 }

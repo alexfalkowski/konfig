@@ -28,7 +28,7 @@ func (t *Transformer) Transform(ctx context.Context, bytes []byte) ([]byte, erro
 		return nil, errors.ErrUnmarshalError
 	}
 
-	if err := t.traverse(cfg); err != nil {
+	if err := t.traverse(ctx, cfg); err != nil {
 		meta.WithAttribute(ctx, "config.traverse_error", err.Error())
 
 		return nil, errors.ErrTraverseError
@@ -44,18 +44,18 @@ func (t *Transformer) Transform(ctx context.Context, bytes []byte) ([]byte, erro
 	return data, nil
 }
 
-func (t *Transformer) traverse(cfg config.Map) error {
+func (t *Transformer) traverse(ctx context.Context, cfg config.Map) error {
 	for key, val := range cfg {
 		switch v := val.(type) {
 		case string:
-			vt, err := t.pt.Transform(v)
+			vt, err := t.pt.Transform(ctx, v)
 			if err != nil {
 				return err
 			}
 
 			cfg[key] = vt
 		case config.Map:
-			if err := t.traverse(v); err != nil {
+			if err := t.traverse(ctx, v); err != nil {
 				return err
 			}
 		}
