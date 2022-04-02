@@ -2,16 +2,16 @@ package grpc
 
 import (
 	"context"
-	"net/http"
 
-	tgrpc "github.com/alexfalkowski/go-service/transport/grpc"
+	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
+	shttp "github.com/alexfalkowski/go-service/transport/http"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/config"
 	"github.com/alexfalkowski/konfig/server/v1/transport/grpc/cache/redis"
 	"github.com/alexfalkowski/konfig/vcs"
 	"github.com/go-redis/cache/v8"
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"go.uber.org/fx"
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 )
 
@@ -20,8 +20,9 @@ type RegisterParams struct {
 	fx.In
 
 	GRPCServer   *grpc.Server
-	HTTPServer   *http.Server
-	Config       *tgrpc.Config
+	HTTPServer   *shttp.Server
+	Config       *sgrpc.Config
+	Logger       *zap.Logger
 	Configurator vcs.Configurator
 	Transformer  *config.Transformer
 	Cache        *cache.Cache
@@ -36,10 +37,9 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 
 	lc.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
-			conn, _ = tgrpc.NewLocalClient(ctx, params.Config)
-			mux := params.HTTPServer.Handler.(*runtime.ServeMux)
+			conn, _ = sgrpc.NewLocalClient(ctx, &sgrpc.ClientParams{Config: params.Config, Logger: params.Logger})
 
-			return v1.RegisterConfiguratorServiceHandler(ctx, mux, conn)
+			return v1.RegisterConfiguratorServiceHandler(ctx, params.HTTPServer.Mux, conn)
 		},
 		OnStop: func(ctx context.Context) error {
 			return conn.Close()
