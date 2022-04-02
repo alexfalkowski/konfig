@@ -1,10 +1,19 @@
 package vault
 
-import "github.com/hashicorp/vault/api"
+import (
+	"github.com/alexfalkowski/go-service/transport/http"
+	"github.com/hashicorp/vault/api"
+	"go.uber.org/zap"
+)
 
 // NewConfig for vault.
-func NewConfig() *api.Config {
-	return api.DefaultConfig()
+func NewConfig(cfg *http.Config, logger *zap.Logger) *api.Config {
+	client := http.NewClient(&http.ClientParams{Config: cfg, Logger: logger})
+	config := api.DefaultConfig()
+
+	config.HttpClient = client
+
+	return config
 }
 
 // NewClient for vault.
