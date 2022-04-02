@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/alexfalkowski/konfig/compare/v1.8.1...v1.9.0) (2022-04-02)
+
+
+### Features
+
+* **vault:** use http client ([#18](https://github.com/alexfalkowski/konfig/issues/18)) ([5b03455](https://github.com/alexfalkowski/konfig/commit/5b03455f590b38689172f0c554f67850da347cd1))
+
 ### [1.8.1](https://github.com/alexfalkowski/konfig/compare/v1.8.0...v1.8.1) (2022-04-02)
 
 ## [1.8.0](https://github.com/alexfalkowski/konfig/compare/v1.7.0...v1.8.0) (2022-04-02)
