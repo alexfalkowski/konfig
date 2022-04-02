@@ -1,6 +1,8 @@
 package vault
 
 import (
+	"context"
+
 	"github.com/hashicorp/vault/api"
 )
 
@@ -15,8 +17,8 @@ func NewTransformer(client *api.Client) *Transformer {
 }
 
 // Transform for vault.
-func (t *Transformer) Transform(value string) (string, error) {
-	s, err := t.client.Logical().Read(value)
+func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
+	s, err := t.client.Logical().ReadWithContext(ctx, value)
 	if err != nil {
 		return "", err
 	}

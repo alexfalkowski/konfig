@@ -1,6 +1,7 @@
 package provider
 
 import (
+	"context"
 	"strings"
 
 	"github.com/alexfalkowski/konfig/config/provider/env"
@@ -21,7 +22,7 @@ func NewTransformer(et *env.Transformer, vt *vault.Transformer) *Transformer {
 }
 
 // Transform for provider.
-func (t *Transformer) Transform(value string) (string, error) {
+func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
 	args := strings.Split(value, ":")
 	if len(args) != argumentsLen {
 		return value, nil
@@ -29,9 +30,9 @@ func (t *Transformer) Transform(value string) (string, error) {
 
 	switch args[0] {
 	case "env":
-		return t.et.Transform(args[1])
+		return t.et.Transform(ctx, args[1])
 	case "vault":
-		return t.vt.Transform(args[1])
+		return t.vt.Transform(ctx, args[1])
 	default:
 		return value, nil
 	}
