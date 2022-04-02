@@ -17,7 +17,7 @@ import (
 	"github.com/go-git/go-git/v5/storage/memory"
 )
 
-const buffSize = 256
+const buffSize = 8192
 
 // Configurator for git.
 type Configurator struct {
