@@ -3,11 +3,12 @@ package grpc
 import (
 	"context"
 
+	"github.com/alexfalkowski/go-service/cache/redis"
 	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	shttp "github.com/alexfalkowski/go-service/transport/http"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/config"
-	"github.com/alexfalkowski/konfig/server/v1/transport/grpc/cache/redis"
+	tredis "github.com/alexfalkowski/konfig/server/v1/transport/grpc/cache/redis"
 	"github.com/alexfalkowski/konfig/vcs"
 	"github.com/go-redis/cache/v8"
 	"go.uber.org/fx"
@@ -21,7 +22,8 @@ type RegisterParams struct {
 
 	GRPCServer   *grpc.Server
 	HTTPServer   *shttp.Server
-	Config       *sgrpc.Config
+	GRPCConfig   *sgrpc.Config
+	RedisConfig  *redis.Config
 	Logger       *zap.Logger
 	Configurator vcs.Configurator
 	Transformer  *config.Transformer
@@ -30,14 +32,14 @@ type RegisterParams struct {
 
 // Register server.
 func Register(lc fx.Lifecycle, params RegisterParams) {
-	server := NewServer(params.Configurator, params.Transformer, params.Cache)
+	server := NewServer(params.Configurator, params.Transformer, params.RedisConfig, params.Cache)
 	v1.RegisterConfiguratorServiceServer(params.GRPCServer, server)
 
 	var conn *grpc.ClientConn
 
 	lc.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
-			conn, _ = sgrpc.NewLocalClient(ctx, &sgrpc.ClientParams{Config: params.Config, Logger: params.Logger})
+			conn, _ = sgrpc.NewLocalClient(ctx, &sgrpc.ClientParams{Config: params.GRPCConfig, Logger: params.Logger})
 
 			return v1.RegisterConfiguratorServiceHandler(ctx, params.HTTPServer.Mux, conn)
 		},
@@ -48,9 +50,9 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 }
 
 // NewServer for gRPC.
-func NewServer(conf vcs.Configurator, trans *config.Transformer, cache *cache.Cache) v1.ConfiguratorServiceServer {
+func NewServer(conf vcs.Configurator, trans *config.Transformer, cfg *redis.Config, cache *cache.Cache) v1.ConfiguratorServiceServer {
 	var server v1.ConfiguratorServiceServer = &Server{conf: conf, trans: trans}
-	server = redis.NewServer(cache, server)
+	server = tredis.NewServer(cfg, cache, server)
 
 	return server
 }
