@@ -6,8 +6,6 @@ import (
 )
 
 // NewObserver for gRPC.
-func NewObserver(healthServer *server.Server) (*grpc.Observer, error) {
-	ob, _ := healthServer.Observe("noop")
-
-	return &grpc.Observer{Observer: ob}, nil
+func NewObserver(healthServer *server.Server) *grpc.Observer {
+	return &grpc.Observer{Observer: healthServer.Observe("noop")}
 }
