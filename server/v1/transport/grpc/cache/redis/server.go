@@ -12,6 +12,7 @@ import (
 
 const (
 	cacheError = "server.cache_error"
+	cacheKey   = "server.cache_key"
 	cached     = "server.cached"
 )
 
@@ -28,6 +29,7 @@ type Server struct {
 // GetConfig for redis.
 func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.GetConfigResponse, error) {
 	key := key(req)
+	ctx = meta.WithAttribute(ctx, cacheKey, key)
 
 	var resp v1.GetConfigResponse
 
