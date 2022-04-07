@@ -6,22 +6,16 @@ import (
 )
 
 // NewHealthObserver for HTTP.
-func NewHealthObserver(healthServer *server.Server) (*http.HealthObserver, error) {
-	ob, _ := healthServer.Observe("noop")
-
-	return &http.HealthObserver{Observer: ob}, nil
+func NewHealthObserver(healthServer *server.Server) *http.HealthObserver {
+	return &http.HealthObserver{Observer: healthServer.Observe("git", "redis")}
 }
 
 // NewLivenessObserver for HTTP.
-func NewLivenessObserver(healthServer *server.Server) (*http.LivenessObserver, error) {
-	ob, _ := healthServer.Observe("noop")
-
-	return &http.LivenessObserver{Observer: ob}, nil
+func NewLivenessObserver(healthServer *server.Server) *http.LivenessObserver {
+	return &http.LivenessObserver{Observer: healthServer.Observe("noop")}
 }
 
 // NewReadinessObserver for HTTP.
-func NewReadinessObserver(healthServer *server.Server) (*http.ReadinessObserver, error) {
-	ob, _ := healthServer.Observe("noop")
-
-	return &http.ReadinessObserver{Observer: ob}, nil
+func NewReadinessObserver(healthServer *server.Server) *http.ReadinessObserver {
+	return &http.ReadinessObserver{Observer: healthServer.Observe("noop")}
 }
