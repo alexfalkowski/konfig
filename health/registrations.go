@@ -27,9 +27,7 @@ type Params struct {
 // NewRegistrations for health.
 func NewRegistrations(params Params) health.Registrations {
 	duration := 1 * time.Minute
-
-	client := http.NewClient(&http.ClientParams{Config: params.HTTP, Logger: params.Logger})
-
+	client := http.NewClient(params.HTTP, params.Logger)
 	registrations := health.Registrations{
 		server.NewRegistration("noop", duration, checker.NewNoopChecker()),
 		server.NewRegistration("git", duration, checker.NewHTTPChecker(params.VCS.Git.URL, client)),
