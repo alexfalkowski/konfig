@@ -12,7 +12,6 @@ import (
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 )
 
 // RegisterParams for gRPC.
@@ -26,8 +25,6 @@ type RegisterParams struct {
 
 // Register client.
 func Register(lc fx.Lifecycle, params RegisterParams) {
-	cp := &tgrpc.ClientParams{Host: params.Client.Host, Config: params.Config, Logger: params.Logger}
-
 	var (
 		conn *grpc.ClientConn
 		err  error
@@ -35,7 +32,7 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 
 	lc.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
-			conn, err = tgrpc.NewClient(ctx, cp, grpc.WithTransportCredentials(insecure.NewCredentials()))
+			conn, err = tgrpc.NewClient(ctx, params.Client.Host, params.Config, params.Logger)
 			if err != nil {
 				return err
 			}

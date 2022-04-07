@@ -8,7 +8,7 @@ import (
 
 // NewConfig for vault.
 func NewConfig(cfg *http.Config, logger *zap.Logger) *api.Config {
-	client := http.NewClient(&http.ClientParams{Config: cfg, Logger: logger})
+	client := http.NewClient(cfg, logger)
 	config := api.DefaultConfig()
 
 	config.HttpClient = client
