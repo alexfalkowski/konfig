@@ -18,8 +18,9 @@ var (
 	// ConfigModule for fx.
 	ConfigModule = fx.Options(
 		config.ConfigModule,
-		fx.Provide(vcsConfig),
+		fx.Provide(gitConfig),
 		fx.Provide(clientConfig),
+		fx.Provide(healthConfig),
 		fx.Provide(env.NewTransformer),
 		fx.Provide(vault.NewConfig),
 		fx.Provide(vault.NewClient),

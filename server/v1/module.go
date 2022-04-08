@@ -6,6 +6,6 @@ import (
 )
 
 var (
-	// ServeModule for fx.
-	ServeModule = fx.Options(fx.Invoke(grpc.Register))
+	// ServerModule for fx.
+	ServerModule = fx.Options(fx.Invoke(grpc.Register))
 )

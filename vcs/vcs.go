@@ -12,6 +12,6 @@ type Configurator interface {
 }
 
 // NewConfigurator for vcs.
-func NewConfigurator(cfg *Config) Configurator {
-	return git.NewConfigurator(&cfg.Git)
+func NewConfigurator(cfg *git.Config) Configurator {
+	return git.NewConfigurator(cfg)
 }

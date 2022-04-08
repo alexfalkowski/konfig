@@ -20,5 +20,5 @@ var ServerOptions = []fx.Option{
 	logger.ZapModule, metrics.PrometheusModule,
 	transport.HTTPServerModule, ktransport.GRPCServerModule,
 	cache.RistrettoModule, cache.RedisModule, trace.JaegerOpenTracingModule,
-	v1.ServeModule, vcs.Module,
+	v1.ServerModule, vcs.Module,
 }
