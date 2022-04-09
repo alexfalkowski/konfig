@@ -11,5 +11,5 @@ import (
 // ClientOptions for cmd.
 var ClientOptions = []fx.Option{
 	fx.NopLogger, config.Module, logger.ZapModule,
-	trace.JaegerOpenTracingModule, v1.ClientModule,
+	trace.JaegerOpenTracingModule, v1.Module,
 }

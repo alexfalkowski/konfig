@@ -7,13 +7,9 @@ import (
 
 var (
 	// Module for fx.
-	Module = fx.Options(ConfiguratorModule, config.UnmarshalModule, ConfigModule)
-
-	// ConfiguratorModule for fx.
-	ConfiguratorModule = fx.Provide(NewConfigurator)
-
-	// ConfigModule for fx.
-	ConfigModule = fx.Options(
+	Module = fx.Options(
+		fx.Provide(NewConfigurator),
+		config.UnmarshalModule,
 		config.ConfigModule,
 		fx.Provide(v1GitConfig),
 		fx.Provide(clientConfig),

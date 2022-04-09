@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	// GRPCServerModule for fx.
-	GRPCServerModule = fx.Options(
+	// Module for fx.
+	Module = fx.Options(
 		fx.Provide(tgrpc.NewServer),
 		fx.Provide(grpc.UnaryServerInterceptor),
 		fx.Provide(grpc.StreamServerInterceptor),
