@@ -34,10 +34,10 @@ health:
   duration: 1s
   timeout: 1s
 server:
-  vcs:
-    git:
-      url: https://github.com/alexfalkowski/app-config
   v1:
     cache:
       redis:
         ttl: 1h
+    vcs:
+      git:
+        url: https://github.com/alexfalkowski/app-config

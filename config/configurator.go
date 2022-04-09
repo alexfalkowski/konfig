@@ -15,8 +15,8 @@ func NewConfigurator() config.Configurator {
 	return cfg
 }
 
-func gitConfig(cfg config.Configurator) *git.Config {
-	return &cfg.(*Config).Server.VCS.Git
+func v1GitConfig(cfg config.Configurator) *git.Config {
+	return &cfg.(*Config).Server.V1.VCS.Git
 }
 
 func clientConfig(cfg config.Configurator) *client.Config {
@@ -27,6 +27,6 @@ func healthConfig(cfg config.Configurator) *health.Config {
 	return &cfg.(*Config).Health
 }
 
-func redisConfig(cfg config.Configurator) *redis.Config {
+func v1RedisConfig(cfg config.Configurator) *redis.Config {
 	return &cfg.(*Config).Server.V1.Cache.Redis
 }

@@ -15,9 +15,9 @@ var (
 	// ConfigModule for fx.
 	ConfigModule = fx.Options(
 		config.ConfigModule,
-		fx.Provide(gitConfig),
+		fx.Provide(v1GitConfig),
 		fx.Provide(clientConfig),
 		fx.Provide(healthConfig),
-		fx.Provide(redisConfig),
+		fx.Provide(v1RedisConfig),
 	)
 )
