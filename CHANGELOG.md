@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/alexfalkowski/konfig/compare/v1.10.4...v1.11.0) (2022-04-09)
+
+
+### Features
+
+* have configurable health and server ([#24](https://github.com/alexfalkowski/konfig/issues/24)) ([ed213d1](https://github.com/alexfalkowski/konfig/commit/ed213d1eb9b2852d18eee3af962418343dba7ece))
+
 ### [1.10.4](https://github.com/alexfalkowski/konfig/compare/v1.10.3...v1.10.4) (2022-04-08)
 
 ### [1.10.3](https://github.com/alexfalkowski/konfig/compare/v1.10.2...v1.10.3) (2022-04-08)
