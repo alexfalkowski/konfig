@@ -6,6 +6,7 @@ import (
 	"github.com/alexfalkowski/go-service/health"
 	schecker "github.com/alexfalkowski/go-service/health/checker"
 	"github.com/alexfalkowski/go-service/transport/http"
+	khealth "github.com/alexfalkowski/konfig/health"
 	"github.com/alexfalkowski/konfig/vcs/git"
 	"github.com/go-redis/redis/v8"
 	"go.uber.org/fx"
@@ -20,7 +21,7 @@ type Params struct {
 	Git    *git.Config
 	Redis  *redis.Ring
 	Logger *zap.Logger
-	Health *Config
+	Health *khealth.Config
 }
 
 // NewRegistrations for health.

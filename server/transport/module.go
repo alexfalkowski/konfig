@@ -2,7 +2,7 @@ package transport
 
 import (
 	tgrpc "github.com/alexfalkowski/go-service/transport/grpc"
-	"github.com/alexfalkowski/konfig/transport/grpc"
+	"github.com/alexfalkowski/konfig/server/transport/grpc"
 	"go.uber.org/fx"
 )
 
