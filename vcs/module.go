@@ -4,7 +4,7 @@ import (
 	"go.uber.org/fx"
 )
 
-// Module for fx.
-var Module = fx.Options(
-	fx.Provide(NewConfigurator),
+var (
+	// Module for fx.
+	Module = fx.Options(fx.Provide(NewConfigurator))
 )

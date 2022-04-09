@@ -4,8 +4,8 @@ import (
 	"context"
 	"strings"
 
-	"github.com/alexfalkowski/konfig/config/provider/env"
-	"github.com/alexfalkowski/konfig/config/provider/vault"
+	"github.com/alexfalkowski/konfig/server/config/provider/env"
+	"github.com/alexfalkowski/konfig/server/config/provider/vault"
 )
 
 const argumentsLen = 2

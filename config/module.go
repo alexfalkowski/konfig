@@ -2,29 +2,18 @@ package config
 
 import (
 	"github.com/alexfalkowski/go-service/config"
-	"github.com/alexfalkowski/konfig/config/provider"
-	"github.com/alexfalkowski/konfig/config/provider/env"
-	"github.com/alexfalkowski/konfig/config/provider/vault"
 	"go.uber.org/fx"
 )
 
 var (
 	// Module for fx.
-	Module = fx.Options(ConfiguratorModule, config.UnmarshalModule, ConfigModule)
-
-	// ConfiguratorModule for fx.
-	ConfiguratorModule = fx.Provide(NewConfigurator)
-
-	// ConfigModule for fx.
-	ConfigModule = fx.Options(
+	Module = fx.Options(
+		fx.Provide(NewConfigurator),
+		config.UnmarshalModule,
 		config.ConfigModule,
-		fx.Provide(vcsConfig),
+		fx.Provide(v1GitConfig),
 		fx.Provide(clientConfig),
-		fx.Provide(env.NewTransformer),
-		fx.Provide(vault.NewConfig),
-		fx.Provide(vault.NewClient),
-		fx.Provide(vault.NewTransformer),
-		fx.Provide(NewTransformer),
-		fx.Provide(provider.NewTransformer),
+		fx.Provide(healthConfig),
+		fx.Provide(v1RedisConfig),
 	)
 )

@@ -3,7 +3,6 @@ package redis
 import (
 	"context"
 	"fmt"
-	"time"
 
 	"github.com/alexfalkowski/go-service/meta"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
@@ -16,13 +15,10 @@ const (
 	cached     = "server.cached"
 )
 
-var (
-	ttl = 24 * time.Hour
-)
-
 // Server for redis.
 type Server struct {
-	cache *cache.Cache
+	config *Config
+	cache  *cache.Cache
 	v1.ConfiguratorServiceServer
 }
 
@@ -42,7 +38,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 			return nil, err
 		}
 
-		if err := s.cache.Set(&cache.Item{Ctx: ctx, Key: key, Value: resp, TTL: ttl}); err != nil {
+		if err := s.cache.Set(&cache.Item{Ctx: ctx, Key: key, Value: resp, TTL: s.config.TTL}); err != nil {
 			meta.WithAttribute(ctx, cacheError, err.Error())
 		}
 

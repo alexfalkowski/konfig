@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
-	"github.com/alexfalkowski/konfig/config"
+	"github.com/alexfalkowski/konfig/server/config"
 	"github.com/alexfalkowski/konfig/vcs"
 	verrors "github.com/alexfalkowski/konfig/vcs/errors"
 	"google.golang.org/grpc/codes"

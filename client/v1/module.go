@@ -6,6 +6,6 @@ import (
 )
 
 var (
-	// ClientModule for fx.
-	ClientModule = fx.Options(fx.Invoke(grpc.Register))
+	// Module for fx.
+	Module = fx.Options(fx.Invoke(grpc.Register))
 )

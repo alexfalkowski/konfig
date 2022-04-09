@@ -6,12 +6,14 @@ import (
 	"github.com/alexfalkowski/go-service/trace"
 	"github.com/alexfalkowski/go-service/transport"
 	"github.com/alexfalkowski/konfig/config"
+	"github.com/alexfalkowski/konfig/worker/health"
 	"go.uber.org/fx"
 )
 
 // WorkerOptions for cmd.
 var WorkerOptions = []fx.Option{
-	fx.NopLogger, config.Module,
+	fx.NopLogger, config.Module, health.Module,
 	logger.ZapModule, metrics.PrometheusModule,
-	transport.HTTPServerModule, trace.JaegerOpenTracingModule,
+	transport.HTTPServerModule, transport.GRPCServerModule,
+	trace.JaegerOpenTracingModule,
 }

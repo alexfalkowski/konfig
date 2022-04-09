@@ -5,8 +5,8 @@ import (
 
 	"github.com/alexfalkowski/go-service/config"
 	"github.com/alexfalkowski/go-service/meta"
-	"github.com/alexfalkowski/konfig/config/errors"
-	"github.com/alexfalkowski/konfig/config/provider"
+	"github.com/alexfalkowski/konfig/server/config/errors"
+	"github.com/alexfalkowski/konfig/server/config/provider"
 )
 
 // Transformer for config.
