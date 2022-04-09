@@ -8,8 +8,8 @@ import (
 	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	shttp "github.com/alexfalkowski/go-service/transport/http"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
-	"github.com/alexfalkowski/konfig/config"
-	tredis "github.com/alexfalkowski/konfig/server/v1/transport/grpc/cache/redis"
+	"github.com/alexfalkowski/konfig/server/config"
+	kredis "github.com/alexfalkowski/konfig/server/v1/transport/grpc/cache/redis"
 	"github.com/alexfalkowski/konfig/vcs"
 	"github.com/go-redis/cache/v8"
 	"go.uber.org/fx"
@@ -21,19 +21,28 @@ import (
 type RegisterParams struct {
 	fx.In
 
-	GRPCServer   *grpc.Server
-	HTTPServer   *shttp.Server
-	GRPCConfig   *sgrpc.Config
-	RedisConfig  *redis.Config
-	Logger       *zap.Logger
-	Configurator vcs.Configurator
-	Transformer  *config.Transformer
-	Cache        *cache.Cache
+	GRPCServer        *grpc.Server
+	HTTPServer        *shttp.Server
+	GRPCConfig        *sgrpc.Config
+	RedisConfig       *redis.Config
+	ServerRedisConfig *kredis.Config
+	Logger            *zap.Logger
+	Configurator      vcs.Configurator
+	Transformer       *config.Transformer
+	Cache             *cache.Cache
 }
 
 // Register server.
 func Register(lc fx.Lifecycle, params RegisterParams) {
-	server := NewServer(params.Configurator, params.Transformer, params.RedisConfig, params.Cache)
+	sparams := ServerParams{
+		RedisConfig:       params.RedisConfig,
+		ServerRedisConfig: params.ServerRedisConfig,
+		Configurator:      params.Configurator,
+		Transformer:       params.Transformer,
+		Cache:             params.Cache,
+	}
+	server := NewServer(sparams)
+
 	v1.RegisterConfiguratorServiceServer(params.GRPCServer, server)
 
 	var conn *grpc.ClientConn
@@ -52,10 +61,19 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 	})
 }
 
+// ServerParams for gRPC.
+type ServerParams struct {
+	RedisConfig       *redis.Config
+	ServerRedisConfig *kredis.Config
+	Configurator      vcs.Configurator
+	Transformer       *config.Transformer
+	Cache             *cache.Cache
+}
+
 // NewServer for gRPC.
-func NewServer(conf vcs.Configurator, trans *config.Transformer, cfg *redis.Config, cache *cache.Cache) v1.ConfiguratorServiceServer {
-	var server v1.ConfiguratorServiceServer = &Server{conf: conf, trans: trans}
-	server = tredis.NewServer(cfg, cache, server)
+func NewServer(params ServerParams) v1.ConfiguratorServiceServer {
+	var server v1.ConfiguratorServiceServer = &Server{conf: params.Configurator, trans: params.Transformer}
+	server = kredis.NewServer(params.ServerRedisConfig, params.RedisConfig, params.Cache, server)
 
 	return server
 }

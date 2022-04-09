@@ -9,9 +9,9 @@ import (
 )
 
 // NewServer for redis.
-func NewServer(cfg *redis.Config, cache *cache.Cache, server v1.ConfiguratorServiceServer) v1.ConfiguratorServiceServer {
-	var s v1.ConfiguratorServiceServer = &Server{cache: cache, ConfiguratorServiceServer: server}
-	s = opentracing.NewServer(cfg, s)
+func NewServer(config *Config, redisConfig *redis.Config, cache *cache.Cache, server v1.ConfiguratorServiceServer) v1.ConfiguratorServiceServer {
+	var s v1.ConfiguratorServiceServer = &Server{config: config, cache: cache, ConfiguratorServiceServer: server}
+	s = opentracing.NewServer(redisConfig, s)
 
 	return s
 }

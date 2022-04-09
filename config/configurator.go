@@ -4,6 +4,7 @@ import (
 	"github.com/alexfalkowski/go-service/config"
 	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/health"
+	"github.com/alexfalkowski/konfig/server/v1/transport/grpc/cache/redis"
 	"github.com/alexfalkowski/konfig/vcs/git"
 )
 
@@ -24,4 +25,8 @@ func clientConfig(cfg config.Configurator) *client.Config {
 
 func healthConfig(cfg config.Configurator) *health.Config {
 	return &cfg.(*Config).Health
+}
+
+func redisConfig(cfg config.Configurator) *redis.Config {
+	return &cfg.(*Config).Server.V1.Cache.Redis
 }
