@@ -9,6 +9,7 @@ import (
 	khealth "github.com/alexfalkowski/konfig/health"
 	"github.com/alexfalkowski/konfig/vcs/git"
 	"github.com/go-redis/redis/v8"
+	"github.com/hashicorp/vault/api"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -20,6 +21,7 @@ type Params struct {
 	HTTP   *http.Config
 	Git    *git.Config
 	Redis  *redis.Ring
+	Vault  *api.Config
 	Logger *zap.Logger
 	Health *khealth.Config
 }
@@ -31,6 +33,7 @@ func NewRegistrations(params Params) health.Registrations {
 		server.NewRegistration("noop", params.Health.Duration, checker.NewNoopChecker()),
 		server.NewRegistration("git", params.Health.Duration, checker.NewHTTPChecker(params.Git.URL, client)),
 		server.NewRegistration("redis", params.Health.Duration, schecker.NewRedisChecker(params.Redis, params.Health.Timeout)),
+		server.NewRegistration("vault", params.Health.Duration, checker.NewHTTPChecker(params.Vault.Address, client)),
 	}
 
 	return registrations
