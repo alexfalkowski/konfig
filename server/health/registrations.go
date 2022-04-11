@@ -7,7 +7,7 @@ import (
 	schecker "github.com/alexfalkowski/go-service/health/checker"
 	"github.com/alexfalkowski/go-service/transport/http"
 	khealth "github.com/alexfalkowski/konfig/health"
-	"github.com/alexfalkowski/konfig/source/git"
+	"github.com/alexfalkowski/konfig/source"
 	"github.com/go-redis/redis/v8"
 	"github.com/hashicorp/vault/api"
 	"go.uber.org/fx"
@@ -19,7 +19,7 @@ type Params struct {
 	fx.In
 
 	HTTP   *http.Config
-	Git    *git.Config
+	Source *source.Config
 	Redis  *redis.Ring
 	Vault  *api.Config
 	Logger *zap.Logger
@@ -31,9 +31,12 @@ func NewRegistrations(params Params) health.Registrations {
 	client := http.NewClient(params.HTTP, params.Logger)
 	registrations := health.Registrations{
 		server.NewRegistration("noop", params.Health.Duration, checker.NewNoopChecker()),
-		server.NewRegistration("git", params.Health.Duration, checker.NewHTTPChecker(params.Git.URL, client)),
 		server.NewRegistration("redis", params.Health.Duration, schecker.NewRedisChecker(params.Redis, params.Health.Timeout)),
 		server.NewRegistration("vault", params.Health.Duration, checker.NewHTTPChecker(params.Vault.Address, client)),
+	}
+
+	if params.Source.IsGit() {
+		registrations = append(registrations, server.NewRegistration("git", params.Health.Duration, checker.NewHTTPChecker(params.Source.Git.URL, client)))
 	}
 
 	return registrations

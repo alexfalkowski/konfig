@@ -1,0 +1,36 @@
+cache:
+  redis:
+    host: localhost:6380
+  ristretto:
+    max_counters: 10000000
+    max_cost: 100000000
+    buffer_items: 64
+trace:
+  opentracing:
+    jaeger:
+      host: localhost:6831
+transport:
+  http:
+    port: 8080
+    user_agent: vault:secret/data/transport/http/user_agent
+    retry:
+      timeout: 2s
+      attempts: 3
+    rate_limit:
+      every: 1s
+      burst: 10
+      ttl: 24h
+  grpc:
+    port: 9090
+    user_agent: "Konfig-server/1.0 grpc/1.0"
+    retry:
+      timeout: 2s
+      attempts: 3
+    rate_limit:
+      every: 1s
+      burst: 10
+      ttl: 24h
+server:
+  vcs:
+    git:
+      url: env:GITHUB_URL

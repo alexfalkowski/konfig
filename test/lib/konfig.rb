@@ -27,8 +27,8 @@ module Konfig
       @vault ||= Konfig::Vault.new
     end
 
-    def server_config
-      @server_config ||= YAML.load_file('.config/server.config.yml')
+    def server_config(source)
+      YAML.load_file(".config/#{source}.server.config.yml")
     end
 
     def worker_config

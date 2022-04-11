@@ -5,7 +5,7 @@ import (
 	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/health"
 	"github.com/alexfalkowski/konfig/server/v1/transport/grpc/cache/redis"
-	"github.com/alexfalkowski/konfig/source/git"
+	"github.com/alexfalkowski/konfig/source"
 )
 
 // NewConfigurator for config.
@@ -15,8 +15,8 @@ func NewConfigurator() config.Configurator {
 	return cfg
 }
 
-func v1GitConfig(cfg config.Configurator) *git.Config {
-	return &cfg.(*Config).Server.V1.Source.Git
+func v1SourceConfig(cfg config.Configurator) *source.Config {
+	return &cfg.(*Config).Server.V1.Source
 }
 
 func clientConfig(cfg config.Configurator) *client.Config {

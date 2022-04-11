@@ -39,6 +39,6 @@ server:
       redis:
         ttl: 1h
     source:
-      git:
-        url: https://github.com/alexfalkowski/app-config
-        dir: tmp/app-config
+      type: folder
+      folder:
+        dir: bob
