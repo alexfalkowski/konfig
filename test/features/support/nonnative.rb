@@ -8,10 +8,6 @@ Given('I start nonnative') do
   Nonnative.start
 end
 
-Given('I wait for {int} seconds for the changes to apply') do |seconds|
-  sleep seconds # HACK: Need to give the server sometime to adjust to the change.
-end
-
 Before('@startup') do
   Nonnative.start
 end
