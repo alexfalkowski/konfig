@@ -1,17 +1,17 @@
-package vcs
+package source
 
 import (
 	"context"
 
-	"github.com/alexfalkowski/konfig/vcs/git"
+	"github.com/alexfalkowski/konfig/source/git"
 )
 
-// Configurator for vcs.
+// Configurator for source.
 type Configurator interface {
 	GetConfig(ctx context.Context, app, ver, env, cmd string) ([]byte, error)
 }
 
-// NewConfigurator for vcs.
+// NewConfigurator for source.
 func NewConfigurator(cfg *git.Config) Configurator {
 	return git.NewConfigurator(cfg)
 }

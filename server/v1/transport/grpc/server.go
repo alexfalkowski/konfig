@@ -7,15 +7,15 @@ import (
 
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/server/config"
-	"github.com/alexfalkowski/konfig/vcs"
-	verrors "github.com/alexfalkowski/konfig/vcs/errors"
+	"github.com/alexfalkowski/konfig/source"
+	kerrors "github.com/alexfalkowski/konfig/source/errors"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
 // Server for gRPC.
 type Server struct {
-	conf  vcs.Configurator
+	conf  source.Configurator
 	trans *config.Transformer
 	v1.UnimplementedConfiguratorServiceServer
 }
@@ -36,7 +36,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 
 	data, err := s.conf.GetConfig(ctx, req.Application, req.Version, req.Environment, req.Command)
 	if err != nil {
-		if errors.Is(err, verrors.ErrNotFound) {
+		if errors.Is(err, kerrors.ErrNotFound) {
 			msg := fmt.Sprintf("%s/%s/%s/%s was not found", req.Application, req.Version, req.Environment, req.Command)
 
 			return resp, status.Error(codes.NotFound, msg)

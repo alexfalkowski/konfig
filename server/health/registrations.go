@@ -7,7 +7,7 @@ import (
 	schecker "github.com/alexfalkowski/go-service/health/checker"
 	"github.com/alexfalkowski/go-service/transport/http"
 	khealth "github.com/alexfalkowski/konfig/health"
-	"github.com/alexfalkowski/konfig/vcs/git"
+	"github.com/alexfalkowski/konfig/source/git"
 	"github.com/go-redis/redis/v8"
 	"github.com/hashicorp/vault/api"
 	"go.uber.org/fx"

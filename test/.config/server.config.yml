@@ -38,7 +38,7 @@ server:
     cache:
       redis:
         ttl: 1h
-    vcs:
+    source:
       git:
         url: https://github.com/alexfalkowski/app-config
         dir: tmp/app-config
