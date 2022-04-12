@@ -177,7 +177,6 @@ PLATFORMS
 
 DEPENDENCIES
   cucumber
-  grpc-tools
   nonnative
   redis
   rspec-expectations

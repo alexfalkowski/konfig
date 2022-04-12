@@ -2,6 +2,7 @@
 # Source: konfig/v1/service.proto for package 'Konfig.V1'
 
 require 'grpc'
+require 'konfig/v1/service_pb'
 
 module Konfig
   module V1
