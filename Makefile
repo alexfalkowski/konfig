@@ -50,7 +50,10 @@ protobuf-lint: ## Lint protobuf
 
 lint: go-lint ruby-lint docker-lint protobuf-lint ## Lint all the code
 
-fix-lint: go-fix-lint ruby-fix-lint ## Fix the lint issues in the code (if possible)
+protobuf-format: ## Format protobuf
+	make -C api format
+
+fix-lint: go-fix-lint ruby-fix-lint protobuf-format ## Fix the lint issues in the code (if possible)
 
 features: build-test ## Run all the features
 	make -C test features
