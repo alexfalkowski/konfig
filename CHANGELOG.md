@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/alexfalkowski/konfig/compare/v1.11.1...v1.12.0) (2022-04-12)
+
+
+### Features
+
+* **source:** add support for folder ([#26](https://github.com/alexfalkowski/konfig/issues/26)) ([2b2cdc3](https://github.com/alexfalkowski/konfig/commit/2b2cdc376cf9b1a21ee9ecdeda3559d7dff5b315))
+
 ### [1.11.1](https://github.com/alexfalkowski/konfig/compare/v1.11.0...v1.11.1) (2022-04-11)
 
 ## [1.11.0](https://github.com/alexfalkowski/konfig/compare/v1.10.4...v1.11.0) (2022-04-09)
