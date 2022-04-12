@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.12.2](https://github.com/alexfalkowski/konfig/compare/v1.12.1...v1.12.2) (2022-04-12)
+
+
+### Bug Fixes
+
+* **docker:** do not use makefile ([#28](https://github.com/alexfalkowski/konfig/issues/28)) ([49ce102](https://github.com/alexfalkowski/konfig/commit/49ce102c4410345c880974df09cb392efc68e241))
+
 ### [1.12.1](https://github.com/alexfalkowski/konfig/compare/v1.12.0...v1.12.1) (2022-04-12)
 
 ## [1.12.0](https://github.com/alexfalkowski/konfig/compare/v1.11.1...v1.12.0) (2022-04-12)
