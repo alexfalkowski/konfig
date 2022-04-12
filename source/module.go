@@ -1,4 +1,4 @@
-package vcs
+package source
 
 import (
 	"go.uber.org/fx"

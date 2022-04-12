@@ -5,16 +5,15 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"os"
 	"sync"
 
 	"github.com/alexfalkowski/go-service/meta"
-	verrors "github.com/alexfalkowski/konfig/vcs/errors"
+	serrors "github.com/alexfalkowski/konfig/source/errors"
 	"github.com/go-git/go-billy/v5"
-	"github.com/go-git/go-billy/v5/memfs"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
-	"github.com/go-git/go-git/v5/storage/memory"
 )
 
 const buffSize = 8192
@@ -34,20 +33,20 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cmd string)
 	if err := c.clone(ctx); err != nil {
 		meta.WithAttribute(ctx, "git.clone_error", err.Error())
 
-		return nil, verrors.ErrNotFound
+		return nil, serrors.ErrNotFound
 	}
 
 	if err := c.pull(ctx); err != nil {
 		meta.WithAttribute(ctx, "git.pull_error", err.Error())
 
-		return nil, verrors.ErrNotFound
+		return nil, serrors.ErrNotFound
 	}
 
 	file, err := c.file(app, ver, env, cmd)
 	if err != nil {
 		meta.WithAttribute(ctx, "git.file_error", err.Error())
 
-		return nil, verrors.ErrNotFound
+		return nil, serrors.ErrNotFound
 	}
 
 	return c.bytes(file), nil
@@ -108,9 +107,13 @@ func (c *Configurator) clone(ctx context.Context) error {
 		return nil
 	}
 
+	if err := os.RemoveAll(c.cfg.Dir); err != nil {
+		return err
+	}
+
 	opts := &git.CloneOptions{Auth: &http.BasicAuth{Username: "a", Password: c.cfg.Token}, URL: c.cfg.URL}
 
-	r, err := git.CloneContext(ctx, memory.NewStorage(), memfs.New(), opts)
+	r, err := git.PlainCloneContext(ctx, c.cfg.Dir, false, opts)
 	if err != nil {
 		return err
 	}

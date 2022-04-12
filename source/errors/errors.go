@@ -5,6 +5,6 @@ import (
 )
 
 var (
-	// ErrNotFound in vcs.
+	// ErrNotFound in source.
 	ErrNotFound = errors.New("not found")
 )

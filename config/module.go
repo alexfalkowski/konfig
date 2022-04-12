@@ -11,7 +11,7 @@ var (
 		fx.Provide(NewConfigurator),
 		config.UnmarshalModule,
 		config.ConfigModule,
-		fx.Provide(v1GitConfig),
+		fx.Provide(v1SourceConfig),
 		fx.Provide(clientConfig),
 		fx.Provide(healthConfig),
 		fx.Provide(v1RedisConfig),

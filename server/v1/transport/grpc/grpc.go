@@ -10,7 +10,7 @@ import (
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/server/config"
 	kredis "github.com/alexfalkowski/konfig/server/v1/transport/grpc/cache/redis"
-	"github.com/alexfalkowski/konfig/vcs"
+	"github.com/alexfalkowski/konfig/source"
 	"github.com/go-redis/cache/v8"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
@@ -27,7 +27,7 @@ type RegisterParams struct {
 	RedisConfig       *redis.Config
 	ServerRedisConfig *kredis.Config
 	Logger            *zap.Logger
-	Configurator      vcs.Configurator
+	Configurator      source.Configurator
 	Transformer       *config.Transformer
 	Cache             *cache.Cache
 }
@@ -65,7 +65,7 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 type ServerParams struct {
 	RedisConfig       *redis.Config
 	ServerRedisConfig *kredis.Config
-	Configurator      vcs.Configurator
+	Configurator      source.Configurator
 	Transformer       *config.Transformer
 	Cache             *cache.Cache
 }

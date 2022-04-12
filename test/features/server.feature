@@ -3,150 +3,376 @@ Feature: Server
 
   Server allows users to manage their application configurations.
 
-  Scenario: Existing cfg with HTTP
-    Given I have a valid vcs token
+  Scenario Outline: Existing config with HTTP
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
     And I start nonnative
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
-    When I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with HTTP
-    Then I should receive a valid cfg from "test" app with "v1.5.0" ver and "staging" env and "server" cmd from HTTP
+    When I request a config with HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a valid config from HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
 
-  Scenario: Existing cfg twice with HTTP
-    Given I have a valid vcs token
+    Examples:
+      | source | app  | ver    | env     | cmd    |
+      | git    | test | v1.5.0 | staging | server |
+      | folder | test | v1.5.0 | staging | server |
+
+  Scenario: Existing config multiple times with HTTP
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
     And I start nonnative
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
-    And I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with HTTP
-    When I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with HTTP
-    Then I should receive a valid cfg from "test" app with "v1.5.0" ver and "staging" env and "server" cmd from HTTP
-
-  Scenario Outline: Missing cfg with HTTP
-    Given I have a valid vcs token
-    And I start nonnative
-    And I have a fresh cache
-    When I request "<app>" app with "<ver>" ver from "<env>" env and "<cmd>" cmd with HTTP
-    Then I should receive a missing cfg from "<app>" app with "<ver>" ver and "<env>" env and "<cmd>" cmd from HTTP
-
-    Examples:
-      | app     | ver    | env     | cmd     |
-      | missing | v1.5.0 | staging | server  |
-      | test    | v1.5.0 | staging | missing |
-
-  Scenario: Misconfigured cfg with HTTP
-    Given I have a misconfigured vcs token
-    And I start nonnative
-    And I have a fresh cache
-    When I request "test" app with "v1.5.0" ver from "test" env and "server" cmd with HTTP
-    Then I should receive a missing cfg from "test" app with "v1.5.0" ver and "test" env and "server" cmd from HTTP
-
-  Scenario Outline: Invalid cfg with HTTP
-    Given I have a valid vcs token
-    And I start nonnative
-    And I have a fresh cache
-    When I request "<app>" app with "<ver>" ver from "<env>" env and "<cmd>" cmd with HTTP
-    Then I should receive an invalid cfg from "<app>" app with "<ver>" ver and "<env>" env and "<cmd>" cmd from HTTP
+    When I request a config with HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    And I request a config with HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a valid config from HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
 
     Examples:
-      | app  | ver    | env     | cmd    |
-      |      | v1.5.0 | staging | server |
-      | test |        | staging | server |
-      | test | v1.5.0 |         | server |
-      | test | v1.5.0 | staging |        |
+      | source | app  | ver    | env     | cmd    |
+      | git    | test | v1.5.0 | staging | server |
+      | folder | test | v1.5.0 | staging | server |
 
-  Scenario: Existing cfg over HTTP with broken vault
-    Given I have a valid vcs token
+  Scenario Outline: Missing config with HTTP
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
+    And I start nonnative
+    And I have a fresh cache
+    When I request a config with HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a missing config from HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+
+    Examples:
+      | source | app     | ver    | env     | cmd     |
+      | git    | missing | v1.5.0 | staging | server  |
+      | git    | test    | v1.5.0 | staging | missing |
+      | folder | missing | v1.5.0 | staging | server  |
+      | folder | test    | v1.5.0 | staging | missing |
+
+  Scenario: Misconfigured config with HTTP
+    Given I have a "<source>" invalid setup
+    And I have "<source>" as the config file
+    And I start nonnative
+    And I have a fresh cache
+    When I request a config with HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a missing config from HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+
+    Examples:
+      | source | app  | ver    | env     | cmd    |
+      | git    | test | v1.5.0 | staging | server |
+      | folder | test | v1.5.0 | staging | server |
+
+  Scenario Outline: Invalid config with HTTP
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
+    And I start nonnative
+    And I have a fresh cache
+    When I request a config with HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a invalid config from HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+
+    Examples:
+      | source | app  | ver    | env     | cmd    |
+      | git    |      | v1.5.0 | staging | server |
+      | git    | test |        | staging | server |
+      | git    | test | v1.5.0 |         | server |
+      | git    | test | v1.5.0 | staging |        |
+      | folder |      | v1.5.0 | staging | server |
+      | folder | test |        | staging | server |
+      | folder | test | v1.5.0 |         | server |
+      | folder | test | v1.5.0 | staging |        |
+
+  Scenario Outline: Existing config with HTTP and broken vault
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
     And I start nonnative
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
     And I set the proxy for service 'vault' to 'close_all'
     And I should see "vault" as unhealthy
-    When I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with HTTP
-    Then I should receive an internal error from "test" app with "v1.5.0" ver and "staging" env and "server" cmd from HTTP
+    When I request a config with HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive an internal error from HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
     And I should reset the proxy for service 'vault'
     And I should see "vault" as healthy
 
-  Scenario: Existing cfg over HTTP with broken cache
-    Given I have a valid vcs token
+    Examples:
+      | source | app  | ver    | env     | cmd    |
+      | git    | test | v1.5.0 | staging | server |
+      | folder | test | v1.5.0 | staging | server |
+
+  Scenario Outline: Existing config with HTTP and broken redis
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
     And I start nonnative
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
     And I set the proxy for service 'redis' to 'close_all'
     And I should see "redis" as unhealthy
-    When I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with HTTP
-    Then I should receive a valid cfg from "test" app with "v1.5.0" ver and "staging" env and "server" cmd from HTTP
+    When I request a config with HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a valid config from HTTP:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
     And I should reset the proxy for service 'redis'
     And I should see "redis" as healthy
 
-  Scenario: Existing cfg with gRPC
-    Given I have a valid vcs token
+    Examples:
+      | source | app  | ver    | env     | cmd    |
+      | git    | test | v1.5.0 | staging | server |
+      | folder | test | v1.5.0 | staging | server |
+
+  Scenario Outline: Existing config with gRPC
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
     And I start nonnative
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
-    When I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with gRPC
-    Then I should receive a valid cfg from "test" app with "v1.5.0" ver and "staging" env and "server" cmd from gRPC
-
-  Scenario: Existing cfg twice with gRPC
-    Given I have a valid vcs token
-    And I start nonnative
-    And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
-    And I have a fresh cache
-    And I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with gRPC
-    When I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with gRPC
-    Then I should receive a valid cfg from "test" app with "v1.5.0" ver and "staging" env and "server" cmd from gRPC
-
-  Scenario Outline: Missing cfg with gRPC
-    Given I have a valid vcs token
-    And I start nonnative
-    And I have a fresh cache
-    When I request "<app>" app with "<ver>" ver from "<env>" env and "<cmd>" cmd with gRPC
-    Then I should receive a missing cfg from "<app>" app with "<ver>" ver and "<env>" env and "<cmd>" cmd from gRPC
+    When I request a config with gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a valid config from gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
 
     Examples:
-      | app     | ver    | env     | cmd     |
-      | missing | v1.5.0 | staging | server  |
-      | test    | v1.5.0 | staging | missing |
+      | source | app  | ver    | env     | cmd    |
+      | git    | test | v1.5.0 | staging | server |
+      | folder | test | v1.5.0 | staging | server |
 
-  Scenario: Misconfigured cfg with gRPC
-    Given I have a misconfigured vcs token
-    And I start nonnative
-    And I have a fresh cache
-    When I request "test" app with "v1.5.0" ver from "test" env and "server" cmd with gRPC
-    Then I should receive a missing cfg from "test" app with "v1.5.0" ver and "test" env and "server" cmd from gRPC
-
-  Scenario Outline: Invalid cfg with gRPC
-    Given I have a valid vcs token
-    And I start nonnative
-    And I have a fresh cache
-    When I request "<app>" app with "<ver>" ver from "<env>" env and "<cmd>" cmd with gRPC
-    Then I should receive an invalid cfg from "<app>" app with "<ver>" ver and "<env>" env and "<cmd>" cmd from gRPC
-
-    Examples:
-      | app  | ver    | env     | cmd    |
-      |      | v1.5.0 | staging | server |
-      | test |        | staging | server |
-      | test | v1.5.0 |         | server |
-      | test | v1.5.0 | staging |        |
-
-  Scenario: Existing cfg over gRPC with broken cache
-    Given I have a valid vcs token
+  Scenario: Existing config multiple times with gRPC
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
     And I start nonnative
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
-    And I set the proxy for service 'redis' to 'close_all'
-    And I should see "redis" as unhealthy
-    When I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with gRPC
-    Then I should receive a valid cfg from "test" app with "v1.5.0" ver and "staging" env and "server" cmd from gRPC
-    And I should reset the proxy for service 'redis'
-    And I should see "redis" as healthy
+    When I request a config with gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    And I request a config with gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a valid config from gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
 
-  Scenario: Existing cfg over gRPC with broken vault
-    Given I have a valid vcs token
+    Examples:
+      | source | app  | ver    | env     | cmd    |
+      | git    | test | v1.5.0 | staging | server |
+      | folder | test | v1.5.0 | staging | server |
+
+  Scenario Outline: Missing config with gRPC
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
+    And I start nonnative
+    And I have a fresh cache
+    When I request a config with gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a missing config from gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+
+    Examples:
+      | source | app     | ver    | env     | cmd     |
+      | git    | missing | v1.5.0 | staging | server  |
+      | git    | test    | v1.5.0 | staging | missing |
+      | folder | missing | v1.5.0 | staging | server  |
+      | folder | test    | v1.5.0 | staging | missing |
+
+  Scenario: Misconfigured config with gRPC
+    Given I have a "<source>" invalid setup
+    And I have "<source>" as the config file
+    And I start nonnative
+    And I have a fresh cache
+    When I request a config with gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a missing config from gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+
+    Examples:
+      | source | app  | ver    | env     | cmd    |
+      | git    | test | v1.5.0 | staging | server |
+      | folder | test | v1.5.0 | staging | server |
+
+  Scenario Outline: Invalid config with gRPC
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
+    And I start nonnative
+    And I have a fresh cache
+    When I request a config with gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a invalid config from gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+
+    Examples:
+      | source | app  | ver    | env     | cmd    |
+      | git    |      | v1.5.0 | staging | server |
+      | git    | test |        | staging | server |
+      | git    | test | v1.5.0 |         | server |
+      | git    | test | v1.5.0 | staging |        |
+      | folder |      | v1.5.0 | staging | server |
+      | folder | test |        | staging | server |
+      | folder | test | v1.5.0 |         | server |
+      | folder | test | v1.5.0 | staging |        |
+
+  Scenario Outline: Existing config with gRPC and broken vault
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
     And I start nonnative
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
     And I set the proxy for service 'vault' to 'close_all'
     And I should see "vault" as unhealthy
-    When I request "test" app with "v1.5.0" ver from "staging" env and "server" cmd with gRPC
-    Then I should receive an internal error from "test" app with "v1.5.0" ver and "staging" env and "server" cmd from gRPC
+    When I request a config with gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive an internal error from gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
     And I should reset the proxy for service 'vault'
     And I should see "vault" as healthy
+
+    Examples:
+      | source | app  | ver    | env     | cmd    |
+      | git    | test | v1.5.0 | staging | server |
+      | folder | test | v1.5.0 | staging | server |
+
+  Scenario Outline: Existing config with gRPC and broken redis
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
+    And I start nonnative
+    And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
+    And I have a fresh cache
+    And I set the proxy for service 'redis' to 'close_all'
+    And I should see "redis" as unhealthy
+    When I request a config with gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    Then I should receive a valid config from gRPC:
+      | source | <source> |
+      | app    | <app>    |
+      | ver    | <ver>    |
+      | env    | <env>    |
+      | cmd    | <cmd>    |
+    And I should reset the proxy for service 'redis'
+    And I should see "redis" as healthy
+
+    Examples:
+      | source | app  | ver    | env     | cmd    |
+      | git    | test | v1.5.0 | staging | server |
+      | folder | test | v1.5.0 | staging | server |
