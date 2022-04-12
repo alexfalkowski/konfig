@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+latest_tag=$(git tag | sort -V | tail -1)
+
+# Build and push docker.
+docker build -t alexfalkowski/konfig:"$latest_tag" .
+docker push alexfalkowski/konfig:"$latest_tag"

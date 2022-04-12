@@ -42,7 +42,10 @@ ruby-lint: ## Lint all the ruby code
 ruby-fix-lint: ## Fix the lint issues in the ruby code (if possible)
 	make -C test fix-lint
 
-lint: go-lint ruby-lint ## Lint all the code
+docker-lint: ## Lint Dockerfile
+	hadolint Dockerfile
+
+lint: go-lint ruby-lint docker-lint ## Lint all the code
 
 fix-lint: go-fix-lint ruby-fix-lint ## Fix the lint issues in the code (if possible)
 
@@ -99,6 +102,9 @@ ruby-dep-update-all: ## Update all ruby deps
 dep: go-dep ruby-dep ## Setup all deps
 
 dep-update-all: go-dep-update-all go-dep ruby-dep-update-all ruby-dep ## Update all deps
+
+docker: ## Release to docker hub
+	tools/docker
 
 start: ## Start the environment
 	tools/env start
