@@ -8,18 +8,18 @@ require 'google/api/annotations_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("konfig/v1/service.proto", :syntax => :proto3) do
     add_message "konfig.v1.GetConfigRequest" do
-      optional :application, :string, 1
-      optional :version, :string, 2
-      optional :environment, :string, 3
-      optional :command, :string, 4
+      optional :application, :string, 1, json_name: "application"
+      optional :version, :string, 2, json_name: "version"
+      optional :environment, :string, 3, json_name: "environment"
+      optional :command, :string, 4, json_name: "command"
     end
     add_message "konfig.v1.GetConfigResponse" do
-      optional :application, :string, 1
-      optional :version, :string, 2
-      optional :environment, :string, 3
-      optional :command, :string, 4
-      optional :content_type, :string, 5
-      optional :data, :bytes, 6
+      optional :application, :string, 1, json_name: "application"
+      optional :version, :string, 2, json_name: "version"
+      optional :environment, :string, 3, json_name: "environment"
+      optional :command, :string, 4, json_name: "command"
+      optional :content_type, :string, 5, json_name: "contentType"
+      optional :data, :bytes, 6, json_name: "data"
     end
   end
 end

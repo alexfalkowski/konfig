@@ -6,14 +6,10 @@ help: ## Display this help
 	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "    \033[36m%-10s\033[0m - %s\n", $$1, $$2}'
 	@ echo
 
-tools: ## Setup all the tools
-	tools/deps
-	tools/googleapis
-
 ruby-setup: ## Setup ruby
 	make -C test setup
 
-setup: tools go-dep ruby-setup ruby-dep ## Setup everything
+setup: go-dep ruby-setup ruby-dep ## Setup everything
 
 download:
 	go mod download
@@ -45,12 +41,18 @@ ruby-fix-lint: ## Fix the lint issues in the ruby code (if possible)
 docker-lint: ## Lint Dockerfile
 	hadolint Dockerfile
 
-protobuf-lint: ## Lint protobuf
+proto-lint: ## Lint proto
 	make -C api lint
 
-lint: go-lint ruby-lint docker-lint protobuf-lint ## Lint all the code
+lint: go-lint ruby-lint docker-lint proto-lint proto-breaking ## Lint all the code
 
-fix-lint: go-fix-lint ruby-fix-lint ## Fix the lint issues in the code (if possible)
+proto-format: ## Format proto
+	make -C api format
+
+proto-breaking: ## Detect breaking changes in api.
+	make -C api breaking
+
+fix-lint: go-fix-lint ruby-fix-lint proto-format ## Fix the lint issues in the code (if possible)
 
 features: build-test ## Run all the features
 	make -C test features
@@ -67,13 +69,8 @@ func-coverage: sanitize-coverage ## Get the func coverage for go
 goveralls: sanitize-coverage ## Send coveralls data
 	goveralls -coverprofile=test/reports/final.cov -service=circle-ci -repotoken=1r7TP3L2xhnSiOOutstLIB306z67K120W
 
-ruby-generate-proto: ## Generate proto for ruby
-	make -C test generate-proto
-
-go-generate-proto: ## Generate proto for go
-	tools/protoc
-
-generate-proto: go-generate-proto ruby-generate-proto ## Generate proto
+generate-proto: ## Generate proto
+	make -C api generate
 
 ruby-outdated: ## Check outdated ruby deps
 	make -C test outdated
@@ -102,9 +99,12 @@ ruby-dep: ## Setup ruby deps
 ruby-dep-update-all: ## Update all ruby deps
 	make -C test update-all
 
+proto-update-all: ## Update proto deps
+	make -C api update-all
+
 dep: go-dep ruby-dep ## Setup all deps
 
-dep-update-all: go-dep-update-all go-dep ruby-dep-update-all ruby-dep ## Update all deps
+dep-update-all: go-dep-update-all go-dep ruby-dep-update-all ruby-dep proto-update-all ## Update all deps
 
 docker: ## Release to docker hub
 	tools/docker
