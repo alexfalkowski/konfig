@@ -45,7 +45,10 @@ ruby-fix-lint: ## Fix the lint issues in the ruby code (if possible)
 docker-lint: ## Lint Dockerfile
 	hadolint Dockerfile
 
-lint: go-lint ruby-lint docker-lint ## Lint all the code
+protobuf-lint: ## Lint protobuf
+	make -C api lint
+
+lint: go-lint ruby-lint docker-lint protobuf-lint ## Lint all the code
 
 fix-lint: go-fix-lint ruby-fix-lint ## Fix the lint issues in the code (if possible)
 
