@@ -23,6 +23,16 @@ jobs:
     steps:
       - checkout
       - run: release
+  docker:
+    docker:
+      - image: alexfalkowski/go:1.18
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: make login
+          command: echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+      - run: make docker
 
 workflows:
   konfig:
@@ -32,6 +42,13 @@ workflows:
           context: gh
           requires:
             - build
+          filters:
+            branches:
+              only: master
+      - docker:
+          context: docker
+          requires:
+            - release
           filters:
             branches:
               only: master
