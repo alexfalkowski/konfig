@@ -48,10 +48,13 @@ docker-lint: ## Lint Dockerfile
 protobuf-lint: ## Lint protobuf
 	make -C api lint
 
-lint: go-lint ruby-lint docker-lint protobuf-lint ## Lint all the code
+lint: go-lint ruby-lint docker-lint protobuf-lint protobuf-breaking ## Lint all the code
 
 protobuf-format: ## Format protobuf
 	make -C api format
+
+protobuf-breaking: ## Detect breaking changes in api.
+	make -C api breaking
 
 fix-lint: go-fix-lint ruby-fix-lint protobuf-format ## Fix the lint issues in the code (if possible)
 
