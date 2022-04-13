@@ -6,7 +6,7 @@ Feature: Server
   Scenario Outline: Existing config with gRPC
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
-    And I start nonnative
+    And I start the system
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
     When I request a config with gRPC:
@@ -30,7 +30,7 @@ Feature: Server
   Scenario: Existing config multiple times with gRPC
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
-    And I start nonnative
+    And I start the system
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
     When I request a config with gRPC:
@@ -60,7 +60,7 @@ Feature: Server
   Scenario Outline: Missing config with gRPC
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
-    And I start nonnative
+    And I start the system
     And I have a fresh cache
     When I request a config with gRPC:
       | source | <source> |
@@ -85,7 +85,7 @@ Feature: Server
   Scenario: Misconfigured config with gRPC
     Given I have a "<source>" invalid setup
     And I have "<source>" as the config file
-    And I start nonnative
+    And I start the system
     And I have a fresh cache
     When I request a config with gRPC:
       | source | <source> |
@@ -108,7 +108,7 @@ Feature: Server
   Scenario Outline: Invalid config with gRPC
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
-    And I start nonnative
+    And I start the system
     And I have a fresh cache
     When I request a config with gRPC:
       | source | <source> |
@@ -137,7 +137,7 @@ Feature: Server
   Scenario Outline: Existing config with gRPC and broken vault
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
-    And I start nonnative
+    And I start the system
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
     And I set the proxy for service 'vault' to 'close_all'
@@ -165,7 +165,7 @@ Feature: Server
   Scenario Outline: Existing config with gRPC and broken redis
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
-    And I start nonnative
+    And I start the system
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
     And I have a fresh cache
     And I set the proxy for service 'redis' to 'close_all'
