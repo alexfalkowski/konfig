@@ -15,10 +15,6 @@ Feature: Observability
     When the system requests the "readiness" with HTTP
     Then the system should respond with a healthy status with HTTP
 
-  Scenario: Health with gRPC
-    When the system requests the health status with gRPC
-    Then the system should respond with a healthy status with gRPC
-
   Scenario: Metrics
     When the system requests the "metrics" with HTTP
     Then the system should respond with metrics
