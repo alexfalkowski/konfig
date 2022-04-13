@@ -4,7 +4,7 @@ Nonnative.configure do |config|
   config.load_file('nonnative.yml')
 end
 
-Given('I start nonnative') do
+Given('I start the system') do
   Nonnative.start
 end
 
