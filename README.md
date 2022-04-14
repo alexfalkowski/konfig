@@ -32,11 +32,36 @@ We recommend that you find a way to validate your configurations. We recommend l
 - [CUE](https://cuelang.org/)
 - [yamllint](https://github.com/adrienverge/yamllint)
 
-## Source
+### Providers
+
+The configuration can be augmented with values that might be sensitive and need to be retrieved at runtime.
+
+#### Environment Variables
+
+To retrieve an environment variables the value of the key in the config should be `env:VARIABLE`, ex: `env:GITHUB_URL`.
+
+#### Vault
+
+You can also store values in [vault](https://learn.hashicorp.com/vault) for safe keeping. To retrieve the value of the key in the config should be `vault:secret/data/key`, ex: `vault:secret/data/transport/http/user_agent`.
+
+## Server
+
+The server is defined by the following [proto contract](api/konfig/v1/service.proto). So each version of the service will have a new contract.
+
+To configure we just need the have the following configuration:
+
+```yaml
+server:
+  v1:
+    source:
+      type: git or folder (see below)
+```
+
+### Source
 
 This system allows you to store your configuration from various sources. Though we highly recommend that you follow configuration as code.
 
-### Git
+#### Git
 
 [Distributed version control](https://en.wikipedia.org/wiki/Distributed_version_control) is awesome and we believe should be used when managing configuration.
 
@@ -59,7 +84,7 @@ We expect the repo to have the following conventions:
 
 Take a look at [app-config)](https://github.com/alexfalkowski/app-config) as an example.
 
-### Folder
+#### Folder
 
 This is mainly used for testing or if you want to quickly run it. If you have a secure way to mount these configs, then by all means go for it.
 
@@ -94,6 +119,18 @@ client:
 ```
 
 The client writes the config to the location specified by `APP_CONFIG_FILE` environment variable.
+
+## Health
+
+The system defines a way to monitor all of it's dependencies.
+
+To configure we just need the have the following configuration:
+
+```yaml
+health:
+  duration: 1s (how often to check)
+  timeout: 1s (when we should timeout the check)
+```
 
 ## Deployment
 
