@@ -5,7 +5,6 @@ go 1.18
 require (
 	github.com/alexfalkowski/go-health v1.10.2
 	github.com/alexfalkowski/go-service v1.51.1
-	github.com/dgraph-io/ristretto v0.1.0
 	github.com/go-git/go-billy/v5 v5.3.1
 	github.com/go-git/go-git/v5 v5.4.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.0
@@ -32,6 +31,7 @@ require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cenkalti/backoff/v3 v3.2.2 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
+	github.com/dgraph-io/ristretto v0.1.0 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/dlmiddlecote/sqlstats v1.0.2 // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
