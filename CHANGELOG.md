@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.12.8](https://github.com/alexfalkowski/konfig/compare/v1.12.7...v1.12.8) (2022-04-14)
+
+
+### Bug Fixes
+
+* **server:** remove caching as we can not detect changes in config ([#34](https://github.com/alexfalkowski/konfig/issues/34)) ([15c03a7](https://github.com/alexfalkowski/konfig/commit/15c03a7c15dc2af4c55b4075565a4f0fb102c8e4))
+
 ### [1.12.7](https://github.com/alexfalkowski/konfig/compare/v1.12.6...v1.12.7) (2022-04-14)
 
 ### [1.12.6](https://github.com/alexfalkowski/konfig/compare/v1.12.5...v1.12.6) (2022-04-13)
