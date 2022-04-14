@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.12.10](https://github.com/alexfalkowski/konfig/compare/v1.12.9...v1.12.10) (2022-04-14)
+
+
+### Bug Fixes
+
+* **server:** remove rate limit for an internal service ([#36](https://github.com/alexfalkowski/konfig/issues/36)) ([6b6249f](https://github.com/alexfalkowski/konfig/commit/6b6249fd29056168fd84a60c954557f32f199c9a))
+
 ### [1.12.9](https://github.com/alexfalkowski/konfig/compare/v1.12.8...v1.12.9) (2022-04-14)
 
 ### [1.12.8](https://github.com/alexfalkowski/konfig/compare/v1.12.7...v1.12.8) (2022-04-14)
