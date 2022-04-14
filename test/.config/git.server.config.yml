@@ -9,20 +9,12 @@ transport:
     retry:
       timeout: 2s
       attempts: 3
-    rate_limit:
-      every: 1s
-      burst: 10
-      ttl: 24h
   grpc:
     port: 9090
     user_agent: "Konfig-server/1.0 grpc/1.0"
     retry:
       timeout: 2s
       attempts: 3
-    rate_limit:
-      every: 1s
-      burst: 10
-      ttl: 24h
 health:
   duration: 1s
   timeout: 1s

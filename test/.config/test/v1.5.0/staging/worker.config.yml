@@ -9,7 +9,3 @@ transport:
     retry:
       timeout: 2s
       attempts: 3
-    rate_limit:
-      every: 1s
-      burst: 10
-      ttl: 24h
