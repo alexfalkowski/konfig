@@ -1,4 +1,4 @@
-@manual @clear
+@manual
 Feature: Server
 
   Server allows users to manage their application configurations.
@@ -8,7 +8,6 @@ Feature: Server
     And I have "<source>" as the config file
     And I start the system
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
-    And I have a fresh cache
     When I request a config with HTTP:
       | source | <source> |
       | app    | <app>    |
@@ -32,7 +31,6 @@ Feature: Server
     And I have "<source>" as the config file
     And I start the system
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
-    And I have a fresh cache
     When I request a config with HTTP:
       | source | <source> |
       | app    | <app>    |
@@ -61,7 +59,6 @@ Feature: Server
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have a fresh cache
     When I request a config with HTTP:
       | source | <source> |
       | app    | <app>    |
@@ -86,7 +83,6 @@ Feature: Server
     Given I have a "<source>" invalid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have a fresh cache
     When I request a config with HTTP:
       | source | <source> |
       | app    | <app>    |
@@ -109,7 +105,6 @@ Feature: Server
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have a fresh cache
     When I request a config with HTTP:
       | source | <source> |
       | app    | <app>    |
@@ -139,7 +134,6 @@ Feature: Server
     And I have "<source>" as the config file
     And I start the system
     And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
-    And I have a fresh cache
     And I set the proxy for service 'vault' to 'close_all'
     And I should see "vault" as unhealthy
     When I request a config with HTTP:
@@ -156,34 +150,6 @@ Feature: Server
       | cmd    | <cmd>    |
     And I should reset the proxy for service 'vault'
     And I should see "vault" as healthy
-
-    Examples:
-      | source | app  | ver    | env     | cmd    |
-      | git    | test | v1.5.0 | staging | server |
-      | folder | test | v1.5.0 | staging | server |
-
-  Scenario Outline: Existing config with HTTP and broken redis
-    Given I have a "<source>" valid setup
-    And I have "<source>" as the config file
-    And I start the system
-    And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
-    And I have a fresh cache
-    And I set the proxy for service 'redis' to 'close_all'
-    And I should see "redis" as unhealthy
-    When I request a config with HTTP:
-      | source | <source> |
-      | app    | <app>    |
-      | ver    | <ver>    |
-      | env    | <env>    |
-      | cmd    | <cmd>    |
-    Then I should receive a valid config from HTTP:
-      | source | <source> |
-      | app    | <app>    |
-      | ver    | <ver>    |
-      | env    | <env>    |
-      | cmd    | <cmd>    |
-    And I should reset the proxy for service 'redis'
-    And I should see "redis" as healthy
 
     Examples:
       | source | app  | ver    | env     | cmd    |

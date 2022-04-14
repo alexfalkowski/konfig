@@ -14,6 +14,5 @@ var (
 		fx.Provide(v1SourceConfig),
 		fx.Provide(clientConfig),
 		fx.Provide(healthConfig),
-		fx.Provide(v1RedisConfig),
 	)
 )
