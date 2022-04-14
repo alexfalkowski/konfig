@@ -9,9 +9,7 @@ import (
 	shttp "github.com/alexfalkowski/go-service/transport/http"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/server/config"
-	kredis "github.com/alexfalkowski/konfig/server/v1/transport/grpc/cache/redis"
 	"github.com/alexfalkowski/konfig/source"
-	"github.com/go-redis/cache/v8"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -21,25 +19,21 @@ import (
 type RegisterParams struct {
 	fx.In
 
-	GRPCServer        *grpc.Server
-	HTTPServer        *shttp.Server
-	GRPCConfig        *sgrpc.Config
-	RedisConfig       *redis.Config
-	ServerRedisConfig *kredis.Config
-	Logger            *zap.Logger
-	Configurator      source.Configurator
-	Transformer       *config.Transformer
-	Cache             *cache.Cache
+	GRPCServer   *grpc.Server
+	HTTPServer   *shttp.Server
+	GRPCConfig   *sgrpc.Config
+	RedisConfig  *redis.Config
+	Logger       *zap.Logger
+	Configurator source.Configurator
+	Transformer  *config.Transformer
 }
 
 // Register server.
 func Register(lc fx.Lifecycle, params RegisterParams) {
 	sparams := ServerParams{
-		RedisConfig:       params.RedisConfig,
-		ServerRedisConfig: params.ServerRedisConfig,
-		Configurator:      params.Configurator,
-		Transformer:       params.Transformer,
-		Cache:             params.Cache,
+		RedisConfig:  params.RedisConfig,
+		Configurator: params.Configurator,
+		Transformer:  params.Transformer,
 	}
 	server := NewServer(sparams)
 
@@ -63,17 +57,12 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 
 // ServerParams for gRPC.
 type ServerParams struct {
-	RedisConfig       *redis.Config
-	ServerRedisConfig *kredis.Config
-	Configurator      source.Configurator
-	Transformer       *config.Transformer
-	Cache             *cache.Cache
+	RedisConfig  *redis.Config
+	Configurator source.Configurator
+	Transformer  *config.Transformer
 }
 
 // NewServer for gRPC.
 func NewServer(params ServerParams) v1.ConfiguratorServiceServer {
-	var server v1.ConfiguratorServiceServer = &Server{conf: params.Configurator, trans: params.Transformer}
-	server = kredis.NewServer(params.ServerRedisConfig, params.RedisConfig, params.Cache, server)
-
-	return server
+	return &Server{conf: params.Configurator, trans: params.Transformer}
 }

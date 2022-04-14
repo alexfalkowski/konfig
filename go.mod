@@ -8,8 +8,6 @@ require (
 	github.com/dgraph-io/ristretto v0.1.0
 	github.com/go-git/go-billy/v5 v5.3.1
 	github.com/go-git/go-git/v5 v5.4.2
-	github.com/go-redis/cache/v8 v8.4.3
-	github.com/go-redis/redis/v8 v8.11.5
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.0
 	github.com/hashicorp/vault/api v1.5.0
 	github.com/opentracing/opentracing-go v1.2.0
@@ -41,6 +39,8 @@ require (
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/form3tech-oss/jwt-go v3.2.5+incompatible // indirect
 	github.com/go-git/gcfg v1.5.0 // indirect
+	github.com/go-redis/cache/v8 v8.4.3 // indirect
+	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/golang/glog v1.0.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect

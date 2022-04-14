@@ -25,15 +25,6 @@ processes:
       CONFIG_FILE: .config/worker.config.yml
 services:
   -
-    name: redis
-    port: 6380
-    proxy:
-      type: fault_injection
-      port: 6379
-      log: reports/proxy_redis.log
-      options:
-        delay: 2
-  -
     name: vault
     port: 8300
     proxy:

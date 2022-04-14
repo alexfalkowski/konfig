@@ -4,7 +4,6 @@ require 'securerandom'
 require 'yaml'
 require 'base64'
 
-require 'redis'
 require 'vault'
 require 'grpc/health/v1/health_services_pb'
 
@@ -14,10 +13,6 @@ require 'konfig/v1/service_services_pb'
 
 module Konfig
   class << self
-    def cache
-      @cache ||= Redis.new(url: 'redis://localhost:6380')
-    end
-
     def observability
       @observability ||= Nonnative::Observability.new('http://localhost:8080')
     end
