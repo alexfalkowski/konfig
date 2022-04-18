@@ -1,14 +1,25 @@
 package vault
 
 import (
+	sopentracing "github.com/alexfalkowski/go-service/trace/opentracing"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/hashicorp/vault/api"
+	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
 
+// ConfigParams for vault.
+type ConfigParams struct {
+	fx.In
+
+	Config *http.Config
+	Logger *zap.Logger
+	Tracer sopentracing.TransportTracer
+}
+
 // NewConfig for vault.
-func NewConfig(cfg *http.Config, logger *zap.Logger) *api.Config {
-	client := http.NewClient(cfg, logger)
+func NewConfig(params ConfigParams) *api.Config {
+	client := http.NewClient(http.WithClientConfig(params.Config), http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer))
 	config := api.DefaultConfig()
 
 	config.HttpClient = client

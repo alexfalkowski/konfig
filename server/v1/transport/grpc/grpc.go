@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/alexfalkowski/go-service/cache/redis"
+	sopentracing "github.com/alexfalkowski/go-service/trace/opentracing"
 	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	shttp "github.com/alexfalkowski/go-service/transport/http"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
@@ -24,6 +25,7 @@ type RegisterParams struct {
 	GRPCConfig   *sgrpc.Config
 	RedisConfig  *redis.Config
 	Logger       *zap.Logger
+	Tracer       sopentracing.TransportTracer
 	Configurator source.Configurator
 	Transformer  *config.Transformer
 }
@@ -43,8 +45,9 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 
 	lc.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
-			conn, _ = sgrpc.NewClient(ctx, fmt.Sprintf("127.0.0.1:%s", params.GRPCConfig.Port), params.GRPCConfig, params.Logger,
-				sgrpc.WithClientDialOption(grpc.WithBlock()),
+			conn, _ = sgrpc.NewClient(ctx, fmt.Sprintf("127.0.0.1:%s", params.GRPCConfig.Port),
+				sgrpc.WithClientConfig(params.GRPCConfig), sgrpc.WithClientLogger(params.Logger),
+				sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientDialOption(grpc.WithBlock()),
 			)
 
 			return v1.RegisterConfiguratorServiceHandler(ctx, params.HTTPServer.Mux, conn)
