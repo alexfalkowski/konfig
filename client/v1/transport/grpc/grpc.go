@@ -3,6 +3,7 @@ package grpc
 import (
 	"context"
 
+	sopentracing "github.com/alexfalkowski/go-service/trace/opentracing"
 	tgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/client"
@@ -20,6 +21,7 @@ type RegisterParams struct {
 
 	Config *tgrpc.Config
 	Logger *zap.Logger
+	Tracer sopentracing.TransportTracer
 	Client *client.Config
 }
 
@@ -32,7 +34,10 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 
 	lc.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
-			conn, err = tgrpc.NewClient(ctx, params.Client.Host, params.Config, params.Logger)
+			conn, err = tgrpc.NewClient(ctx, params.Client.Host,
+				tgrpc.WithClientConfig(params.Config), tgrpc.WithClientLogger(params.Logger),
+				tgrpc.WithClientTracer(params.Tracer),
+			)
 			if err != nil {
 				return err
 			}

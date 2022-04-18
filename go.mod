@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alexfalkowski/go-health v1.10.2
-	github.com/alexfalkowski/go-service v1.51.3
+	github.com/alexfalkowski/go-service v1.52.1
 	github.com/go-git/go-billy/v5 v5.3.1
 	github.com/go-git/go-git/v5 v5.4.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.0
@@ -12,13 +12,13 @@ require (
 	github.com/opentracing/opentracing-go v1.2.0
 	go.uber.org/fx v1.17.1
 	go.uber.org/zap v1.21.0
-	google.golang.org/genproto v0.0.0-20220407144326-9054f6ed7bac
+	google.golang.org/genproto v0.0.0-20220414192740-2d67ff6cf2b4
 	google.golang.org/grpc v1.45.0
 	google.golang.org/protobuf v1.28.0
 )
 
 require (
-	github.com/DataDog/datadog-agent/pkg/obfuscate v0.35.0 // indirect
+	github.com/DataDog/datadog-agent/pkg/obfuscate v0.35.1 // indirect
 	github.com/DataDog/datadog-go v4.8.3+incompatible // indirect
 	github.com/DataDog/datadog-go/v5 v5.1.0 // indirect
 	github.com/DataDog/sketches-go v1.4.1 // indirect
@@ -110,14 +110,14 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/dig v1.14.1 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
-	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29 // indirect
-	golang.org/x/exp v0.0.0-20220407100705-7b9b53b0aca4 // indirect
-	golang.org/x/net v0.0.0-20220407224826-aac1ed45d8e3 // indirect
+	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4 // indirect
+	golang.org/x/exp v0.0.0-20220414153411-bcd21879b8fd // indirect
+	golang.org/x/net v0.0.0-20220412020605-290c469a71a5 // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/sys v0.0.0-20220406163625-3f8b81556e12 // indirect
+	golang.org/x/sys v0.0.0-20220412211240-33da011f77ad // indirect
 	golang.org/x/text v0.3.7 // indirect
-	golang.org/x/time v0.0.0-20220224211638-0e9765cccd65 // indirect
-	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
+	golang.org/x/time v0.0.0-20220411224347-583f2d630306 // indirect
+	golang.org/x/xerrors v0.0.0-20220411194840-2f41105eb62f // indirect
 	gopkg.in/DataDog/dd-trace-go.v1 v1.37.1 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
