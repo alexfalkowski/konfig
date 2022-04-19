@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.13.0](https://github.com/alexfalkowski/konfig/compare/v1.12.13...v1.13.0) (2022-04-19)
+
+
+### Features
+
+* add cluster support ([#41](https://github.com/alexfalkowski/konfig/issues/41)) ([86d3867](https://github.com/alexfalkowski/konfig/commit/86d38676ca2cced2eb92dfd56e6f1b0cc911e316))
+
 ### [1.12.13](https://github.com/alexfalkowski/konfig/compare/v1.12.12...v1.12.13) (2022-04-19)
 
 ### [1.12.12](https://github.com/alexfalkowski/konfig/compare/v1.12.11...v1.12.12) (2022-04-18)
