@@ -79,7 +79,7 @@ source:
 We expect the repo to have the following conventions:
 - Each application name is at the root of the repository.
 - Under the application we have the environments (staging, production, etc).
-- Under each environment we have the configuration that follows `command.config.yml`. Where command should follow the commands that your service has. Like server, worker, etc.
+- Under each environment we have the configuration that follows `command.config.yml` for all clusters or a file under a specific cluster. Where command should follow the commands that your service has. Like server, worker, etc.
 - Versions are tracked by having the name of the service and the version. So a tag would would look like `test/v1.5.0`.
 
 Take a look at [app-config)](https://github.com/alexfalkowski/app-config) as an example.
@@ -101,7 +101,7 @@ We expect that the folders to have the following conventions:
 - Each application name is at the root of the folder.
 - Each version is under the application and is in the format of `v1.5.0`
 - Under the version we have the environments (staging, production, etc).
-- Under each environment we have the configuration that follows `command.config.yml`. Where command should follow the commands that your service has. Like server, worker, etc.
+- Under each environment we have the configuration that follows `command.config.yml` for all clusters or a file under a specific cluster. Where command should follow the commands that your service has. Like server, worker, etc.
 
 ## Client
 
@@ -115,6 +115,7 @@ client:
   application: test
   version: v1.5.0
   environment: staging
+  cluster: '*'
   command: server
 ```
 
