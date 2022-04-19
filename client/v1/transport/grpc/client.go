@@ -19,6 +19,7 @@ func (c *clt) Perform(ctx context.Context) error {
 		Application: c.cfg.Application,
 		Version:     c.cfg.Version,
 		Environment: c.cfg.Environment,
+		Cluster:     c.cfg.Cluster,
 		Command:     c.cfg.Command,
 	}
 

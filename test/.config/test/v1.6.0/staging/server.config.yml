@@ -15,7 +15,13 @@ transport:
     retry:
       timeout: 2s
       attempts: 3
+health:
+  duration: 1s
+  timeout: 1s
 server:
-  vcs:
-    git:
-      url: env:GITHUB_URL
+  v1:
+    source:
+      type: git
+      git:
+        url: env:GITHUB_URL
+        dir: tmp/app-config

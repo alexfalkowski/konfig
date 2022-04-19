@@ -22,10 +22,15 @@ type Server struct {
 
 // GetConfig for gRPC.
 func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.GetConfigResponse, error) {
+	if req.Cluster == "" {
+		req.Cluster = "*"
+	}
+
 	resp := &v1.GetConfigResponse{
 		Application: req.Application,
 		Version:     req.Version,
 		Environment: req.Environment,
+		Cluster:     req.Cluster,
 		Command:     req.Command,
 		ContentType: "application/yaml",
 	}
@@ -34,7 +39,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		return resp, err
 	}
 
-	data, err := s.conf.GetConfig(ctx, req.Application, req.Version, req.Environment, req.Command)
+	data, err := s.conf.GetConfig(ctx, req.Application, req.Version, req.Environment, req.Cluster, req.Command)
 	if err != nil {
 		if errors.Is(err, kerrors.ErrNotFound) {
 			msg := fmt.Sprintf("%s/%s/%s/%s was not found", req.Application, req.Version, req.Environment, req.Command)

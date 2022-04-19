@@ -7,7 +7,8 @@ When('I request a config with HTTP:') do |table|
     user_agent: Konfig.server_config(rows['source'])['transport']['grpc']['user_agent']
   }
 
-  @response = Konfig.server_http.get_config(rows['app'], rows['ver'], rows['env'], rows['cmd'], headers)
+  params = { app: rows['app'], ver: rows['ver'], env: rows['env'], cluster: rows['cluster'], cmd: rows['cmd'] }
+  @response = Konfig.server_http.get_config(params, headers)
 end
 
 Then('I should receive a valid config from HTTP:') do |table|
@@ -20,10 +21,11 @@ Then('I should receive a valid config from HTTP:') do |table|
   expect(resp['application']).to eq(rows['app'])
   expect(resp['version']).to eq(rows['ver'])
   expect(resp['environment']).to eq(rows['env'])
+  expect(resp['cluster']).to eq(rows['cluster'])
   expect(resp['command']).to eq(rows['cmd'])
   expect(resp['contentType']).to eq('application/yaml')
   expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
-  expect(data['server']['vcs']['git']['url']).to eq(ENV['GITHUB_URL'])
+  expect(data['server']['v1']['source']['git']['url']).to eq(ENV['GITHUB_URL'])
 end
 
 Then('I should receive a missing config from HTTP:') do |_|

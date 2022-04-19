@@ -26,7 +26,7 @@ type Configurator struct {
 }
 
 // GetConfig for git.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cmd string) ([]byte, error) {
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cmd string) ([]byte, error) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
@@ -42,7 +42,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cmd string)
 		return nil, serrors.ErrNotFound
 	}
 
-	file, err := c.file(app, ver, env, cmd)
+	file, err := c.file(app, ver, env, cluster, cmd)
 	if err != nil {
 		meta.WithAttribute(ctx, "git.file_error", err.Error())
 
@@ -68,7 +68,7 @@ func (c *Configurator) bytes(reader io.Reader) []byte {
 	return data
 }
 
-func (c *Configurator) file(app, ver, env, cmd string) (billy.File, error) {
+func (c *Configurator) file(app, ver, env, cluster, cmd string) (billy.File, error) {
 	tree, _ := c.repo.Worktree()
 
 	err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(fmt.Sprintf("%s/%s", app, ver))})
@@ -76,7 +76,15 @@ func (c *Configurator) file(app, ver, env, cmd string) (billy.File, error) {
 		return nil, err
 	}
 
-	file, err := tree.Filesystem.Open(fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd))
+	var path string
+
+	if cluster == "*" {
+		path = fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd)
+	} else {
+		path = fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, cluster, cmd)
+	}
+
+	file, err := tree.Filesystem.Open(path)
 	if err != nil {
 		return nil, err
 	}
