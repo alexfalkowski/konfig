@@ -30,7 +30,10 @@ When('I request a config with gRPC:') do |table|
     'ua' => Konfig.server_config(rows['source'])['transport']['grpc']['user_agent']
   }
 
-  request = Konfig::V1::GetConfigRequest.new(application: rows['app'], version: rows['ver'], environment: rows['env'], command: rows['cmd'])
+  rows['cluster'] ||= '*'
+
+  request = Konfig::V1::GetConfigRequest.new(application: rows['app'], version: rows['ver'], environment: rows['env'],
+                                             cluster: rows['cluster'], command: rows['cmd'])
   @response = Konfig.server_grpc.get_config(request, { metadata: metadata })
 rescue StandardError => e
   @response = e
@@ -40,9 +43,12 @@ Then('I should receive a valid config from gRPC:') do |table|
   data = YAML.safe_load(@response.data)
   rows = table.rows_hash
 
+  rows['cluster'] ||= '*'
+
   expect(@response.application).to eq(rows['app'])
   expect(@response.version).to eq(rows['ver'])
   expect(@response.environment).to eq(rows['env'])
+  expect(@response.cluster).to eq(rows['cluster'])
   expect(@response.command).to eq(rows['cmd'])
   expect(@response.content_type).to eq('application/yaml')
   expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')

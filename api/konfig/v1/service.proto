@@ -12,7 +12,8 @@ message GetConfigRequest {
   string application = 1;
   string version = 2;
   string environment = 3;
-  string command = 4;
+  string cluster = 4;
+  string command = 5;
 }
 
 // GetConfigResponse for a specific application, version, environment and command with the data and content type.
@@ -20,9 +21,10 @@ message GetConfigResponse {
   string application = 1;
   string version = 2;
   string environment = 3;
-  string command = 4;
-  string content_type = 5;
-  bytes data = 6;
+  string cluster = 4;
+  string command = 5;
+  string content_type = 6;
+  bytes data = 7;
 }
 
 // ConfiguratorService allows to manage all application configurations.
@@ -30,7 +32,7 @@ service ConfiguratorService {
   // GetConfig for a specific application, version, environment and command.
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {
     option (google.api.http) = {
-      get: "/v1/config/{application}/{version}/{environment}/{command}"
+      get: "/v1/config/{application}/{version}/{environment}/{cluster}/{command}"
     };
   }
 }

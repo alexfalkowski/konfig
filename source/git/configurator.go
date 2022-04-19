@@ -26,7 +26,7 @@ type Configurator struct {
 }
 
 // GetConfig for git.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cmd string) ([]byte, error) {
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cmd string) ([]byte, error) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 

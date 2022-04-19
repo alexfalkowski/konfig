@@ -9,7 +9,7 @@ import (
 
 // Configurator for source.
 type Configurator interface {
-	GetConfig(ctx context.Context, app, ver, env, cmd string) ([]byte, error)
+	GetConfig(ctx context.Context, app, ver, env, cluster, cmd string) ([]byte, error)
 }
 
 // NewConfigurator for source.

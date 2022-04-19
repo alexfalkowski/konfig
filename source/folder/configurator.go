@@ -16,7 +16,7 @@ type Configurator struct {
 }
 
 // GetConfig for folder.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cmd string) ([]byte, error) {
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cmd string) ([]byte, error) {
 	path := filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s.config.yml", app, ver, env, cmd))
 
 	data, err := os.ReadFile(path)
