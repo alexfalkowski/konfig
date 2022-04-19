@@ -93,8 +93,8 @@ github.com/alecthomas/units v0.0.0-20190717042225-c3de453c63f4/go.mod h1:ybxpYRF
 github.com/alecthomas/units v0.0.0-20190924025748-f65c72e2690d/go.mod h1:rBZYJk541a8SKzHPHnH3zbiI+7dagKZ0cgpgrD7Fyho=
 github.com/alexfalkowski/go-health v1.10.2 h1:6bYzVGDBSdf8m7wf0BGPJ18yhXoBFLskviziX0Nkg9Q=
 github.com/alexfalkowski/go-health v1.10.2/go.mod h1:TkTDC/lpYYNP4VKnNmSgiZexzaOdU4gDRL8j8r4c45w=
-github.com/alexfalkowski/go-service v1.52.1 h1:AdyayFX4N27YT5106LgeegefbZPtdwD+fot9in6vhV0=
-github.com/alexfalkowski/go-service v1.52.1/go.mod h1:nf6hOgBrFRNaKb4l6pPPyYYRJCGYA6J3njUo+/tblEM=
+github.com/alexfalkowski/go-service v1.53.0 h1:ZonbRgQ2ygOMQwN3gb+OaEgPQ8RYAhbtaUvkvk2XaZw=
+github.com/alexfalkowski/go-service v1.53.0/go.mod h1:nf6hOgBrFRNaKb4l6pPPyYYRJCGYA6J3njUo+/tblEM=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/andybalholm/cascadia v1.1.0/go.mod h1:GsXiBklL0woXo1j/WYWtSYYC4ouU9PqHO0sqidkEA4Y=
 github.com/anmitsu/go-shlex v0.0.0-20161002113705-648efa622239 h1:kFOfPq6dUM1hTo4JG6LR5AXSUEsOjtdm0kw0FtQtMJA=

@@ -5,12 +5,12 @@ import (
 	"fmt"
 
 	"github.com/alexfalkowski/go-service/cache/redis"
-	sopentracing "github.com/alexfalkowski/go-service/trace/opentracing"
 	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	shttp "github.com/alexfalkowski/go-service/transport/http"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/server/config"
 	"github.com/alexfalkowski/konfig/source"
+	"github.com/opentracing/opentracing-go"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -25,7 +25,7 @@ type RegisterParams struct {
 	GRPCConfig   *sgrpc.Config
 	RedisConfig  *redis.Config
 	Logger       *zap.Logger
-	Tracer       sopentracing.TransportTracer
+	Tracer       opentracing.Tracer
 	Configurator source.Configurator
 	Transformer  *config.Transformer
 }

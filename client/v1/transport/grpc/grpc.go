@@ -3,13 +3,13 @@ package grpc
 import (
 	"context"
 
-	sopentracing "github.com/alexfalkowski/go-service/trace/opentracing"
 	tgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/client"
 	kzap "github.com/alexfalkowski/konfig/client/v1/transport/grpc/logger/zap"
 	"github.com/alexfalkowski/konfig/client/v1/transport/grpc/task"
-	"github.com/alexfalkowski/konfig/client/v1/transport/grpc/trace/opentracing"
+	gopentracing "github.com/alexfalkowski/konfig/client/v1/transport/grpc/trace/opentracing"
+	"github.com/opentracing/opentracing-go"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -21,7 +21,7 @@ type RegisterParams struct {
 
 	Config *tgrpc.Config
 	Logger *zap.Logger
-	Tracer sopentracing.TransportTracer
+	Tracer opentracing.Tracer
 	Client *client.Config
 }
 
@@ -60,7 +60,7 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 func NewClient(client v1.ConfiguratorServiceClient, cfg *client.Config, logger *zap.Logger) task.Client {
 	var clt task.Client = &clt{client: client, cfg: cfg}
 	clt = kzap.NewClient(logger, cfg, clt)
-	clt = opentracing.NewClient(cfg, clt)
+	clt = gopentracing.NewClient(cfg, clt)
 
 	return clt
 }
