@@ -4,11 +4,11 @@ import (
 	"github.com/alexfalkowski/go-health/checker"
 	"github.com/alexfalkowski/go-health/server"
 	"github.com/alexfalkowski/go-service/health"
-	sopentracing "github.com/alexfalkowski/go-service/trace/opentracing"
 	"github.com/alexfalkowski/go-service/transport/http"
 	khealth "github.com/alexfalkowski/konfig/health"
 	"github.com/alexfalkowski/konfig/source"
 	"github.com/hashicorp/vault/api"
+	"github.com/opentracing/opentracing-go"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -21,7 +21,7 @@ type Params struct {
 	Source *source.Config
 	Vault  *api.Config
 	Logger *zap.Logger
-	Tracer sopentracing.TransportTracer
+	Tracer opentracing.Tracer
 	Health *khealth.Config
 }
 

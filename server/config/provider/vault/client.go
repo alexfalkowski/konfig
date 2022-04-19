@@ -1,9 +1,9 @@
 package vault
 
 import (
-	sopentracing "github.com/alexfalkowski/go-service/trace/opentracing"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/hashicorp/vault/api"
+	"github.com/opentracing/opentracing-go"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -14,7 +14,7 @@ type ConfigParams struct {
 
 	Config *http.Config
 	Logger *zap.Logger
-	Tracer sopentracing.TransportTracer
+	Tracer opentracing.Tracer
 }
 
 // NewConfig for vault.
