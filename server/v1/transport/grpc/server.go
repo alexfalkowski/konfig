@@ -17,7 +17,7 @@ import (
 type Server struct {
 	conf  source.Configurator
 	trans *config.Transformer
-	v1.UnimplementedConfiguratorServiceServer
+	v1.UnimplementedServiceServer
 }
 
 // GetConfig for gRPC.
@@ -27,12 +27,14 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 	}
 
 	resp := &v1.GetConfigResponse{
-		Application: req.Application,
-		Version:     req.Version,
-		Environment: req.Environment,
-		Cluster:     req.Cluster,
-		Command:     req.Command,
-		ContentType: "application/yaml",
+		Config: &v1.Config{
+			Application: req.Application,
+			Version:     req.Version,
+			Environment: req.Environment,
+			Cluster:     req.Cluster,
+			Command:     req.Command,
+			ContentType: "application/yaml",
+		},
 	}
 
 	if err := s.validateGetConfigRequest(req); err != nil {
@@ -55,7 +57,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		return resp, status.Error(codes.Internal, "could not transform")
 	}
 
-	resp.Data = data
+	resp.Config.Data = data
 
 	return resp, nil
 }

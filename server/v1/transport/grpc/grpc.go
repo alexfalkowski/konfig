@@ -39,7 +39,7 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 	}
 	server := NewServer(sparams)
 
-	v1.RegisterConfiguratorServiceServer(params.GRPCServer, server)
+	v1.RegisterServiceServer(params.GRPCServer, server)
 
 	var conn *grpc.ClientConn
 
@@ -50,7 +50,7 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 				sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientDialOption(grpc.WithBlock()),
 			)
 
-			return v1.RegisterConfiguratorServiceHandler(ctx, params.HTTPServer.Mux, conn)
+			return v1.RegisterServiceHandler(ctx, params.HTTPServer.Mux, conn)
 		},
 		OnStop: func(ctx context.Context) error {
 			return conn.Close()
@@ -66,6 +66,6 @@ type ServerParams struct {
 }
 
 // NewServer for gRPC.
-func NewServer(params ServerParams) v1.ConfiguratorServiceServer {
+func NewServer(params ServerParams) v1.ServiceServer {
 	return &Server{conf: params.Configurator, trans: params.Transformer}
 }

@@ -15,15 +15,16 @@ Then('I should receive a valid config from HTTP:') do |table|
   expect(@response.code).to eq(200)
 
   resp = JSON.parse(@response.body)
-  data = YAML.safe_load(Base64.decode64(resp['data']))
+  config = resp['config']
+  data = YAML.safe_load(Base64.decode64(config['data']))
   rows = table.rows_hash
 
-  expect(resp['application']).to eq(rows['app'])
-  expect(resp['version']).to eq(rows['ver'])
-  expect(resp['environment']).to eq(rows['env'])
-  expect(resp['cluster']).to eq(rows['cluster'])
-  expect(resp['command']).to eq(rows['cmd'])
-  expect(resp['contentType']).to eq('application/yaml')
+  expect(config['application']).to eq(rows['app'])
+  expect(config['version']).to eq(rows['ver'])
+  expect(config['environment']).to eq(rows['env'])
+  expect(config['cluster']).to eq(rows['cluster'])
+  expect(config['command']).to eq(rows['cmd'])
+  expect(config['contentType']).to eq('application/yaml')
   expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
   expect(data['server']['v1']['source']['git']['url']).to eq(ENV['GITHUB_URL'])
 end

@@ -7,6 +7,17 @@ import "google/api/annotations.proto";
 option go_package = "github.com/alexfalkowski/konfig/api/konfig/v1";
 option ruby_package = "Konfig::V1";
 
+// Config for a specific application, version, environment and command with the data and content type.
+message Config {
+  string application = 1;
+  string version = 2;
+  string environment = 3;
+  string cluster = 4;
+  string command = 5;
+  string content_type = 6;
+  bytes data = 7;
+}
+
 // GetConfigRequest for a specific application, version, environment and command.
 message GetConfigRequest {
   string application = 1;
@@ -18,17 +29,11 @@ message GetConfigRequest {
 
 // GetConfigResponse for a specific application, version, environment and command with the data and content type.
 message GetConfigResponse {
-  string application = 1;
-  string version = 2;
-  string environment = 3;
-  string cluster = 4;
-  string command = 5;
-  string content_type = 6;
-  bytes data = 7;
+  Config config = 1;
 }
 
-// ConfiguratorService allows to manage all application configurations.
-service ConfiguratorService {
+// Service allows to manage all application configurations.
+service Service {
   // GetConfig for a specific application, version, environment and command.
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {
     option (google.api.http) = {

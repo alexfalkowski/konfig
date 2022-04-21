@@ -31,7 +31,7 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-func request_ConfiguratorService_GetConfig_0(ctx context.Context, marshaler runtime.Marshaler, client ConfiguratorServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Service_GetConfig_0(ctx context.Context, marshaler runtime.Marshaler, client ServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetConfigRequest
 	var metadata runtime.ServerMetadata
 
@@ -97,7 +97,7 @@ func request_ConfiguratorService_GetConfig_0(ctx context.Context, marshaler runt
 
 }
 
-func local_request_ConfiguratorService_GetConfig_0(ctx context.Context, marshaler runtime.Marshaler, server ConfiguratorServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_Service_GetConfig_0(ctx context.Context, marshaler runtime.Marshaler, server ServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq GetConfigRequest
 	var metadata runtime.ServerMetadata
 
@@ -163,25 +163,25 @@ func local_request_ConfiguratorService_GetConfig_0(ctx context.Context, marshale
 
 }
 
-// RegisterConfiguratorServiceHandlerServer registers the http handlers for service ConfiguratorService to "mux".
-// UnaryRPC     :call ConfiguratorServiceServer directly.
+// RegisterServiceHandlerServer registers the http handlers for service Service to "mux".
+// UnaryRPC     :call ServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
-// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterConfiguratorServiceHandlerFromEndpoint instead.
-func RegisterConfiguratorServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ConfiguratorServiceServer) error {
+// Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterServiceHandlerFromEndpoint instead.
+func RegisterServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ServiceServer) error {
 
-	mux.Handle("GET", pattern_ConfiguratorService_GetConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Service_GetConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/konfig.v1.ConfiguratorService/GetConfig", runtime.WithHTTPPathPattern("/v1/config/{application}/{version}/{environment}/{cluster}/{command}"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/konfig.v1.Service/GetConfig", runtime.WithHTTPPathPattern("/v1/config/{application}/{version}/{environment}/{cluster}/{command}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ConfiguratorService_GetConfig_0(ctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Service_GetConfig_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -189,16 +189,16 @@ func RegisterConfiguratorServiceHandlerServer(ctx context.Context, mux *runtime.
 			return
 		}
 
-		forward_ConfiguratorService_GetConfig_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Service_GetConfig_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
 	return nil
 }
 
-// RegisterConfiguratorServiceHandlerFromEndpoint is same as RegisterConfiguratorServiceHandler but
+// RegisterServiceHandlerFromEndpoint is same as RegisterServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterConfiguratorServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -218,40 +218,40 @@ func RegisterConfiguratorServiceHandlerFromEndpoint(ctx context.Context, mux *ru
 		}()
 	}()
 
-	return RegisterConfiguratorServiceHandler(ctx, mux, conn)
+	return RegisterServiceHandler(ctx, mux, conn)
 }
 
-// RegisterConfiguratorServiceHandler registers the http handlers for service ConfiguratorService to "mux".
+// RegisterServiceHandler registers the http handlers for service Service to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterConfiguratorServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterConfiguratorServiceHandlerClient(ctx, mux, NewConfiguratorServiceClient(conn))
+func RegisterServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterServiceHandlerClient(ctx, mux, NewServiceClient(conn))
 }
 
-// RegisterConfiguratorServiceHandlerClient registers the http handlers for service ConfiguratorService
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ConfiguratorServiceClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ConfiguratorServiceClient"
+// RegisterServiceHandlerClient registers the http handlers for service Service
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ServiceClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ServiceClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "ConfiguratorServiceClient" to call the correct interceptors.
-func RegisterConfiguratorServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ConfiguratorServiceClient) error {
+// "ServiceClient" to call the correct interceptors.
+func RegisterServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ServiceClient) error {
 
-	mux.Handle("GET", pattern_ConfiguratorService_GetConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Service_GetConfig_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/konfig.v1.ConfiguratorService/GetConfig", runtime.WithHTTPPathPattern("/v1/config/{application}/{version}/{environment}/{cluster}/{command}"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/konfig.v1.Service/GetConfig", runtime.WithHTTPPathPattern("/v1/config/{application}/{version}/{environment}/{cluster}/{command}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ConfiguratorService_GetConfig_0(ctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Service_GetConfig_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_ConfiguratorService_GetConfig_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Service_GetConfig_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -259,9 +259,9 @@ func RegisterConfiguratorServiceHandlerClient(ctx context.Context, mux *runtime.
 }
 
 var (
-	pattern_ConfiguratorService_GetConfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"v1", "config", "application", "version", "environment", "cluster", "command"}, ""))
+	pattern_Service_GetConfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"v1", "config", "application", "version", "environment", "cluster", "command"}, ""))
 )
 
 var (
-	forward_ConfiguratorService_GetConfig_0 = runtime.ForwardResponseMessage
+	forward_Service_GetConfig_0 = runtime.ForwardResponseMessage
 )

@@ -6,15 +6,15 @@ require 'konfig/v1/service_pb'
 
 module Konfig
   module V1
-    module ConfiguratorService
-      # ConfiguratorService allows to manage all application configurations.
+    module Service
+      # Service allows to manage all application configurations.
       class Service
 
         include ::GRPC::GenericService
 
         self.marshal_class_method = :encode
         self.unmarshal_class_method = :decode
-        self.service_name = 'konfig.v1.ConfiguratorService'
+        self.service_name = 'konfig.v1.Service'
 
         # GetConfig for a specific application, version, environment and command.
         rpc :GetConfig, ::Konfig::V1::GetConfigRequest, ::Konfig::V1::GetConfigResponse

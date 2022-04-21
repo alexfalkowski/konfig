@@ -9,7 +9,7 @@ import (
 )
 
 type clt struct {
-	client v1.ConfiguratorServiceClient
+	client v1.ServiceClient
 	cfg    *client.Config
 }
 
@@ -28,5 +28,5 @@ func (c *clt) Perform(ctx context.Context) error {
 		return err
 	}
 
-	return config.WriteFileToEnv("APP_CONFIG_FILE", resp.Data)
+	return config.WriteFileToEnv("APP_CONFIG_FILE", resp.Config.Data)
 }
