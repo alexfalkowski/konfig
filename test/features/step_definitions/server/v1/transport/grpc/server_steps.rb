@@ -38,15 +38,15 @@ rescue StandardError => e
 end
 
 Then('I should receive a valid config from gRPC:') do |table|
-  data = YAML.safe_load(@response.data)
+  data = YAML.safe_load(@response.config.data)
   rows = table.rows_hash
 
-  expect(@response.application).to eq(rows['app'])
-  expect(@response.version).to eq(rows['ver'])
-  expect(@response.environment).to eq(rows['env'])
-  expect(@response.cluster).to eq(rows['cluster'])
-  expect(@response.command).to eq(rows['cmd'])
-  expect(@response.content_type).to eq('application/yaml')
+  expect(@response.config.application).to eq(rows['app'])
+  expect(@response.config.version).to eq(rows['ver'])
+  expect(@response.config.environment).to eq(rows['env'])
+  expect(@response.config.cluster).to eq(rows['cluster'])
+  expect(@response.config.command).to eq(rows['cmd'])
+  expect(@response.config.content_type).to eq('application/yaml')
   expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
   expect(data['server']['v1']['source']['git']['url']).to eq(ENV['GITHUB_URL'])
 end

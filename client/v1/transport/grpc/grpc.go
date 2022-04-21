@@ -42,7 +42,7 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 				return err
 			}
 
-			client := NewClient(v1.NewConfiguratorServiceClient(conn), params.Client, params.Logger)
+			client := NewClient(v1.NewServiceClient(conn), params.Client, params.Logger)
 
 			return client.Perform(ctx)
 		},
@@ -57,7 +57,7 @@ func Register(lc fx.Lifecycle, params RegisterParams) {
 }
 
 // NewClient for gRPC.
-func NewClient(client v1.ConfiguratorServiceClient, cfg *client.Config, logger *zap.Logger) task.Client {
+func NewClient(client v1.ServiceClient, cfg *client.Config, logger *zap.Logger) task.Client {
 	var clt task.Client = &clt{client: client, cfg: cfg}
 	clt = kzap.NewClient(logger, cfg, clt)
 	clt = gopentracing.NewClient(cfg, clt)

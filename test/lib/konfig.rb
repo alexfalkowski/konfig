@@ -38,7 +38,7 @@ module Konfig
     end
 
     def server_grpc
-      @server_grpc ||= Konfig::V1::ConfiguratorService::Stub.new('localhost:9090', :this_channel_is_insecure)
+      @server_grpc ||= Konfig::V1::Service::Stub.new('localhost:9090', :this_channel_is_insecure)
     end
   end
 end

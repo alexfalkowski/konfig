@@ -3,6 +3,4 @@ vendor
 *.cov
 *.out
 /konfig
-tmp
-api/google
 test/.config/existing.server.config.yml
