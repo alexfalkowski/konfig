@@ -1,15 +1,11 @@
-.PHONY: vendor tools
+.PHONY: vendor
 
-help: ## Display this help
-	@ echo "Please use \`make <target>' where <target> is one of:"
-	@ echo
-	@ grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "    \033[36m%-10s\033[0m - %s\n", $$1, $$2}'
-	@ echo
-
-ruby-setup: ## Setup ruby
+# Setup ruby
+ruby-setup:
 	make -C test setup
 
-setup: go-dep ruby-setup ruby-dep ## Setup everything
+# Setup everything
+setup: go-dep ruby-setup ruby-dep
 
 download:
 	go mod download
@@ -20,97 +16,130 @@ tidy:
 vendor:
 	go mod vendor
 
-build: ## Build release binary
+# Build release binary
+build:
 	go build -mod vendor -o konfig main.go
 
-build-test: ## Build test binary
+# Build test binary
+build-test:
 	go test -mod vendor -c -tags features -covermode=count -o konfig -coverpkg=./... github.com/alexfalkowski/konfig
 
-go-lint: ## Lint all the go code
+# Lint all the go code
+go-lint:
 	golangci-lint run --build-tags features --timeout 5m
 
-go-fix-lint: ## Fix the lint issues in the go code (if possible)
+# Fix the lint issues in the go code (if possible)
+go-fix-lint:
 	golangci-lint run --build-tags features --timeout 5m --fix
 
-ruby-lint: ## Lint all the ruby code
+# Lint all the ruby code
+ruby-lint:
 	make -C test lint
 
-ruby-fix-lint: ## Fix the lint issues in the ruby code (if possible)
+# Fix the lint issues in the ruby code (if possible)
+ruby-fix-lint:
 	make -C test fix-lint
 
-docker-lint: ## Lint Dockerfile
+# Lint Dockerfile
+docker-lint:
 	hadolint Dockerfile
 
-proto-lint: ## Lint proto
+# Lint proto
+proto-lint:
 	make -C api lint
 
-lint: go-lint ruby-lint docker-lint proto-lint proto-breaking ## Lint all the code
+# Lint all the code
+lint: go-lint ruby-lint docker-lint proto-lint proto-breaking
 
-proto-format: ## Format proto
+# Format proto
+proto-format:
 	make -C api format
 
-proto-breaking: ## Detect breaking changes in api.
+# Detect breaking changes in api.
+proto-breaking:
 	make -C api breaking
 
-fix-lint: go-fix-lint ruby-fix-lint proto-format ## Fix the lint issues in the code (if possible)
+# Fix the lint issues in the code (if possible)
+fix-lint: go-fix-lint ruby-fix-lint proto-format
 
-features: build-test ## Run all the features
+# Run all the features
+features: build-test
 	make -C test features
 
 sanitize-coverage:
 	./tools/coverage
 
-html-coverage: sanitize-coverage ## Get the HTML coverage for go
+# Get the HTML coverage for go
+html-coverage: sanitize-coverage
 	go tool cover -html test/reports/final.cov
 
-func-coverage: sanitize-coverage ## Get the func coverage for go
+# Get the func coverage for go
+func-coverage: sanitize-coverage
 	go tool cover -func test/reports/final.cov
 
-goveralls: sanitize-coverage ## Send coveralls data
+# Send coveralls data
+goveralls: sanitize-coverage
 	goveralls -coverprofile=test/reports/final.cov -service=circle-ci -repotoken=1r7TP3L2xhnSiOOutstLIB306z67K120W
 
-generate-proto: ## Generate proto
+# Generate proto
+generate-proto:
 	make -C api generate
 
-ruby-outdated: ## Check outdated ruby deps
+# Check outdated ruby deps
+ruby-outdated:
 	make -C test outdated
 
-go-outdated: ## Check outdated go deps
+# Check outdated go deps
+go-outdated:
 	go list -u -m -mod=mod -json all | go-mod-outdated -update -direct
 
-outdated: go-outdated ruby-outdated  ## Check outdated deps
+# Check outdated deps
+outdated: go-outdated ruby-outdated
 
-go-get: ## Get go dep
+# Get go dep
+go-get:
 	go get $(module)
 
-go-update-dep: go-get tidy vendor ## Update go dep
+# Update go dep
+go-update-dep: go-get tidy vendor
 
-go-dep-update-all: ## Update all go deps
+# Update all go deps
+go-dep-update-all:
 	go get -u all
 
-go-dep: download tidy vendor ## Setup go deps
+# Setup go deps
+go-dep: download tidy vendor
 
-ruby-update-dep: ## Update ruby dep
+# Update ruby dep
+ruby-update-dep:
 	make -C test gem=$(gem) update-dep
 
-ruby-dep: ## Setup ruby deps
+# Setup ruby deps
+ruby-dep:
 	make -C test dep
 
-ruby-dep-update-all: ## Update all ruby deps
+ # Update all ruby deps
+ruby-dep-update-all:
 	make -C test update-all
 
-proto-update-all: ## Update proto deps
+# Update proto deps
+proto-update-all:
 	make -C api update-all
 
-dep: go-dep ruby-dep ## Setup all deps
+# Setup all deps
+dep: go-dep ruby-dep
 
-dep-update-all: go-dep-update-all go-dep ruby-dep-update-all ruby-dep proto-update-all ## Update all deps
+# Update all deps
+dep-update-all: go-dep-update-all go-dep ruby-dep-update-all ruby-dep proto-update-all
 
-docker: ## Release to docker hub
+# Release to docker hub
+docker:
 	tools/docker
 
-start: ## Start the environment
+# Start the environment
+start:
 	tools/env start
 
-stop: ## Stop the environment
+# Stop the environment
+stop:
 	tools/env stop
