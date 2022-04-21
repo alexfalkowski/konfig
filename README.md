@@ -155,16 +155,8 @@ The project follows the structure in [golang-standards/project-layout](https://g
 ### Dependencies
 
 Please make sure that you have the following installed:
-- Ruby (look at the .ruby-version)
+- [Ruby](.ruby-version)
 - Golang
-
-### Help
-
-To see what can be run, please run the following:
-
-```sh
-make help
-```
 
 ### Setup
 
