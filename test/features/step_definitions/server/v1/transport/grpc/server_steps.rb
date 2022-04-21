@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Given('I have a {string} valid setup') do |source|
-  Nonnative.configuration.processes[0].environment['KONFIG_GIT_TOKEN'] = ENV['GITHUB_TOKEN'] if source == 'git'
+  Nonnative.configuration.processes[0].environment['KONFIG_GIT_TOKEN'] = ENV.fetch('GITHUB_TOKEN', nil) if source == 'git'
 end
 
 Given('I have a {string} invalid setup') do |source|
@@ -48,7 +48,7 @@ Then('I should receive a valid config from gRPC:') do |table|
   expect(@response.config.command).to eq(rows['cmd'])
   expect(@response.config.content_type).to eq('application/yaml')
   expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
-  expect(data['server']['v1']['source']['git']['url']).to eq(ENV['GITHUB_URL'])
+  expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
 end
 
 Then('I should receive a missing config from gRPC:') do |_|
