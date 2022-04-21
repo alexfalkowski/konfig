@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/alexfalkowski/konfig/compare/v1.13.1...v1.14.0) (2022-04-21)
+
+
+### Features
+
+* **server:** return config in response ([#43](https://github.com/alexfalkowski/konfig/issues/43)) ([886e461](https://github.com/alexfalkowski/konfig/commit/886e461bad29ea2a3a5b74cab81577add2f6aea8))
+
 ### [1.13.1](https://github.com/alexfalkowski/konfig/compare/v1.13.0...v1.13.1) (2022-04-19)
 
 ## [1.13.0](https://github.com/alexfalkowski/konfig/compare/v1.12.13...v1.13.0) (2022-04-19)
