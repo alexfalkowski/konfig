@@ -26,7 +26,7 @@ Then('I should receive a valid config from HTTP:') do |table|
   expect(config['command']).to eq(rows['cmd'])
   expect(config['contentType']).to eq('application/yaml')
   expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
-  expect(data['server']['v1']['source']['git']['url']).to eq(ENV['GITHUB_URL'])
+  expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
 end
 
 Then('I should receive a missing config from HTTP:') do |_|
