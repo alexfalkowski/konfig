@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 
 Dir['test/reports/*.cov'].each do |f|
-    nf = "#{File.dirname(f)}/#{File.basename(f, File.extname(f))}-new#{File.extname(f)}"
+  nf = "#{File.dirname(f)}/#{File.basename(f, File.extname(f))}-new#{File.extname(f)}"
 
-    File.open(nf, 'w') do |out_file|
-        File.foreach(f) do |line|
-        out_file.puts line unless line =~ /(.pb|main.go)/
-        end
+  File.open(nf, 'w') do |out_file|
+    File.foreach(f) do |line|
+      out_file.puts line unless line =~ /(.pb|main.go)/
     end
+  end
 end
 
 files = Dir['test/reports/*-new.cov'].join(' ')
