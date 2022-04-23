@@ -29,6 +29,24 @@ Then('I should receive a valid config from HTTP:') do |table|
   expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
 end
 
+Then('I should receive a valid config with missing vault value from HTTP:') do |table|
+  expect(@response.code).to eq(200)
+
+  resp = JSON.parse(@response.body)
+  config = resp['config']
+  data = YAML.safe_load(Base64.decode64(config['data']))
+  rows = table.rows_hash
+
+  expect(config['application']).to eq(rows['app'])
+  expect(config['version']).to eq(rows['ver'])
+  expect(config['environment']).to eq(rows['env'])
+  expect(config['cluster']).to eq(rows['cluster'])
+  expect(config['command']).to eq(rows['cmd'])
+  expect(config['contentType']).to eq('application/yaml')
+  expect(data['transport']['http']['user_agent']).to eq('secret/data/transport/http/user_agent')
+  expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
+end
+
 Then('I should receive a missing config from HTTP:') do |_|
   expect(@response.code).to eq(404)
 end

@@ -14,10 +14,6 @@ Given('I have a {string} invalid setup') do |source|
   end
 end
 
-Given('I have key {string} with {string} value in vault') do |key, value|
-  Konfig.vault.write(key, value)
-end
-
 Given('I have {string} as the config file') do |source|
   Nonnative.configuration.processes[0].environment['CONFIG_FILE'] = ".config/#{source}.server.config.yml" unless @config_set
 end
@@ -48,6 +44,20 @@ Then('I should receive a valid config from gRPC:') do |table|
   expect(@response.config.command).to eq(rows['cmd'])
   expect(@response.config.content_type).to eq('application/yaml')
   expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
+  expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
+end
+
+Then('I should receive a valid config with missing vault value from gRPC:') do |table|
+  data = YAML.safe_load(@response.config.data)
+  rows = table.rows_hash
+
+  expect(@response.config.application).to eq(rows['app'])
+  expect(@response.config.version).to eq(rows['ver'])
+  expect(@response.config.environment).to eq(rows['env'])
+  expect(@response.config.cluster).to eq(rows['cluster'])
+  expect(@response.config.command).to eq(rows['cmd'])
+  expect(@response.config.content_type).to eq('application/yaml')
+  expect(data['transport']['http']['user_agent']).to eq('secret/data/transport/http/user_agent')
   expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
 end
 
