@@ -47,6 +47,20 @@ Then('I should receive a valid config from gRPC:') do |table|
   expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
 end
 
+Then('I should receive a valid config with missing vault value from gRPC:') do |table|
+  data = YAML.safe_load(@response.config.data)
+  rows = table.rows_hash
+
+  expect(@response.config.application).to eq(rows['app'])
+  expect(@response.config.version).to eq(rows['ver'])
+  expect(@response.config.environment).to eq(rows['env'])
+  expect(@response.config.cluster).to eq(rows['cluster'])
+  expect(@response.config.command).to eq(rows['cmd'])
+  expect(@response.config.content_type).to eq('application/yaml')
+  expect(data['transport']['http']['user_agent']).to eq('secret/data/transport/http/user_agent')
+  expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
+end
+
 Then('I should receive a missing config from gRPC:') do |_|
   expect(@response).to be_a(GRPC::NotFound)
 end
