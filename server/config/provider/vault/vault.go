@@ -18,10 +18,30 @@ func NewTransformer(client *api.Client) *Transformer {
 
 // Transform for vault.
 func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
-	s, err := t.client.Logical().ReadWithContext(ctx, value)
+	sec, err := t.client.Logical().ReadWithContext(ctx, value)
 	if err != nil {
-		return "", err
+		return value, err
 	}
 
-	return s.Data["data"].(map[string]any)["value"].(string), nil
+	d := sec.Data["data"]
+	if d == nil {
+		return value, nil
+	}
+
+	md, ok := d.(map[string]any)
+	if !ok {
+		return value, nil
+	}
+
+	v := md["value"]
+	if v == nil {
+		return value, nil
+	}
+
+	s, ok := v.(string)
+	if !ok {
+		return value, nil
+	}
+
+	return s, nil
 }
