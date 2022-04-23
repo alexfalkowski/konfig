@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.14.4](https://github.com/alexfalkowski/konfig/compare/v1.14.3...v1.14.4) (2022-04-23)
+
+
+### Bug Fixes
+
+* **docker:** add ca-certificate ([#47](https://github.com/alexfalkowski/konfig/issues/47)) ([7e16144](https://github.com/alexfalkowski/konfig/commit/7e1614467e0c205c712669f117401a8af616bf30))
+
 ### [1.14.3](https://github.com/alexfalkowski/konfig/compare/v1.14.2...v1.14.3) (2022-04-23)
 
 
