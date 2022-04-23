@@ -23,7 +23,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 		return value, err
 	}
 
-	if sec.Data == nil {
+	if sec == nil || sec.Data == nil {
 		return value, nil
 	}
 
