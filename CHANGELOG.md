@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.14.5](https://github.com/alexfalkowski/konfig/compare/v1.14.4...v1.14.5) (2022-04-23)
+
+
+### Bug Fixes
+
+* **vault:** safely check for errors ([#48](https://github.com/alexfalkowski/konfig/issues/48)) ([1b41240](https://github.com/alexfalkowski/konfig/commit/1b4124063497b114034cf6ae6bb8c4c55a373329))
+
 ### [1.14.4](https://github.com/alexfalkowski/konfig/compare/v1.14.3...v1.14.4) (2022-04-23)
 
 
