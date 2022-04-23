@@ -6,6 +6,10 @@ module Konfig
       @client = ::Vault.logical
     end
 
+    def delete(key)
+      client.delete("secret/data/#{key}")
+    end
+
     def read(key)
       client.read("secret/data/#{key}").data[:data][:value]
     end
