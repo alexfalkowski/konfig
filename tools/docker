@@ -6,4 +6,4 @@ latest_tag=$(git tag | sort -V | tail -1)
 
 # Build and push docker.
 docker build -t alexfalkowski/konfig -t alexfalkowski/konfig:"$latest_tag" .
-docker push alexfalkowski/konfig --a
+docker push alexfalkowski/konfig --all-tags
