@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.14.3](https://github.com/alexfalkowski/konfig/compare/v1.14.2...v1.14.3) (2022-04-23)
+
+
+### Bug Fixes
+
+* **tools:** docker needs all-tags ([#46](https://github.com/alexfalkowski/konfig/issues/46)) ([461dbdc](https://github.com/alexfalkowski/konfig/commit/461dbdc1480f1c4e04ad8b4ee0e76a82a9bce22e))
+
 ### [1.14.2](https://github.com/alexfalkowski/konfig/compare/v1.14.1...v1.14.2) (2022-04-22)
 
 ### [1.14.1](https://github.com/alexfalkowski/konfig/compare/v1.14.0...v1.14.1) (2022-04-21)
