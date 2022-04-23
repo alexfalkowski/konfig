@@ -12,7 +12,11 @@ FROM debian:bullseye-slim
 
 WORKDIR /
 
-RUN apt-get update && apt-get -y upgrade && rm -rf /var/lib/apt/lists/*
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get -y upgrade && \
+    apt-get install -y --no-install-recommends \
+    ca-certificates && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /app/konfig /konfig
 ENTRYPOINT ["/konfig"]
