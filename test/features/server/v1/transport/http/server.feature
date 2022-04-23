@@ -7,7 +7,7 @@ Feature: Server
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
+    And I have key "secret/data/transport/http/user_agent" with '{"data": { "value": "Konfig-server/1.0 http/1.0" }}' value in vault
     When I request a config with HTTP:
       | source  | <source>  |
       | app     | <app>     |
@@ -35,7 +35,7 @@ Feature: Server
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have no key "transport/http/user_agent" in vault
+    And I have no key "secret/data/transport/http/user_agent" in vault
     When I request a config with HTTP:
       | source  | <source>  |
       | app     | <app>     |
@@ -146,7 +146,7 @@ Feature: Server
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
+    And I have key "secret/data/transport/http/user_agent" with '{"data": { "value": "Konfig-server/1.0 http/1.0" }}' value in vault
     And I set the proxy for service 'vault' to 'close_all'
     And I should see "vault" as unhealthy
     When I request a config with HTTP:

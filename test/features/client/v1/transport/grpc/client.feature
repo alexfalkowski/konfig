@@ -7,7 +7,7 @@ Feature: Client
     Given I have a "folder" valid setup
     And I have "folder" as the config file
     And I start the system
-    And I have key "transport/http/user_agent" with "Konfig-server/1.0 http/1.0" value in vault
+    And I have key "secret/data/transport/http/user_agent" with '{"data": { "value": "Konfig-server/1.0 http/1.0" }}' value in vault
     When I download the configuration for "existing" application
     Then I should have a configuration for "existing" application
 
