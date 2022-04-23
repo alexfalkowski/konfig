@@ -31,11 +31,39 @@ Feature: Server
       | git    | test | v1.6.0 | staging | eu      | server |
       | folder | test | v1.6.0 | staging | eu      | server |
 
-  Scenario Outline: Existing config with missing vault value with HTTP
+  Scenario Outline: Existing config with missing vault key with HTTP
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
     And I have no key "secret/data/transport/http/user_agent" in vault
+    When I request a config with HTTP:
+      | source  | <source>  |
+      | app     | <app>     |
+      | ver     | <ver>     |
+      | env     | <env>     |
+      | cluster | <cluster> |
+      | cmd     | <cmd>     |
+    Then I should receive a valid config with missing vault value from HTTP:
+      | source  | <source>  |
+      | app     | <app>     |
+      | ver     | <ver>     |
+      | env     | <env>     |
+      | cluster | <cluster> |
+      | cmd     | <cmd>     |
+    And the process 'server' should consume less than '40mb' of memory
+
+    Examples:
+      | source | app  | ver    | env     | cluster | cmd    |
+      | git    | test | v1.6.0 | staging | *       | server |
+      | folder | test | v1.6.0 | staging | *       | server |
+      | git    | test | v1.6.0 | staging | eu      | server |
+      | folder | test | v1.6.0 | staging | eu      | server |
+
+  Scenario Outline: Existing config with missing vault data with HTTP
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
+    And I start the system
+    And I have key "secret/data/transport/http/user_agent" with '{"data": {}}' value in vault
     When I request a config with HTTP:
       | source  | <source>  |
       | app     | <app>     |
