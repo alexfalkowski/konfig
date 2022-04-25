@@ -4,7 +4,7 @@ import (
 	"context"
 )
 
-// Client for client.
-type Client interface {
+// Task to be performed.
+type Task interface {
 	Perform(context.Context) error
 }

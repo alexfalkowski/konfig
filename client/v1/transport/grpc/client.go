@@ -8,13 +8,14 @@ import (
 	"github.com/alexfalkowski/konfig/client"
 )
 
-type clt struct {
+// Client for v1.
+type Client struct {
 	client v1.ServiceClient
 	cfg    *client.Config
 }
 
-// Perform default.
-func (c *clt) Perform(ctx context.Context) error {
+// Perform getting config.
+func (c *Client) Perform(ctx context.Context) error {
 	req := &v1.GetConfigRequest{
 		Application: c.cfg.Application,
 		Version:     c.cfg.Version,

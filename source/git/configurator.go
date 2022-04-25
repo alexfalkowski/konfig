@@ -99,11 +99,7 @@ func (c *Configurator) pull(ctx context.Context) error {
 		return err
 	}
 
-	if err := tree.PullContext(ctx, &git.PullOptions{RemoteName: "origin"}); err != nil {
-		if errors.Is(err, git.NoErrAlreadyUpToDate) {
-			return nil
-		}
-
+	if err := tree.PullContext(ctx, &git.PullOptions{RemoteName: "origin"}); err != nil && !errors.Is(err, git.NoErrAlreadyUpToDate) {
 		return err
 	}
 

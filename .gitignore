@@ -3,4 +3,3 @@ vendor
 *.cov
 *.out
 /konfig
-test/.config/existing.server.config.yml

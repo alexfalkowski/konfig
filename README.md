@@ -112,6 +112,7 @@ To configure we just need the have the following configuration:
 ```yaml
 client:
   host: localhost:9090
+  timeout: 5s
   application: test
   version: v1.5.0
   environment: staging
