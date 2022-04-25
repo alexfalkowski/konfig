@@ -6,8 +6,8 @@ import (
 	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/client"
+	"github.com/alexfalkowski/konfig/client/task"
 	kzap "github.com/alexfalkowski/konfig/client/v1/transport/grpc/logger/zap"
-	"github.com/alexfalkowski/konfig/client/v1/transport/grpc/task"
 	gopentracing "github.com/alexfalkowski/konfig/client/v1/transport/grpc/trace/opentracing"
 	"github.com/opentracing/opentracing-go"
 	"go.uber.org/fx"
@@ -15,8 +15,8 @@ import (
 	"google.golang.org/grpc"
 )
 
-// RegisterParams for gRPC.
-type RegisterParams struct {
+// ClientConnParams for gRPC.
+type ClientConnParams struct {
 	fx.In
 
 	Config *sgrpc.Config
@@ -25,30 +25,48 @@ type RegisterParams struct {
 	Client *client.Config
 }
 
-// Register client.
-func Register(lc fx.Lifecycle, params RegisterParams) {
-	var conn *grpc.ClientConn
+// NewClientConn for gRPC.
+func NewClientConn(lc fx.Lifecycle, params ClientConnParams) (*grpc.ClientConn, error) {
+	conn, err := sgrpc.NewClient(context.Background(), params.Client.Host,
+		sgrpc.WithClientConfig(params.Config), sgrpc.WithClientLogger(params.Logger),
+		sgrpc.WithClientTracer(params.Tracer),
+	)
+	if err != nil {
+		return nil, err
+	}
 
 	lc.Append(fx.Hook{
-		OnStart: func(ctx context.Context) error {
-			conn, _ = sgrpc.NewClient(ctx, params.Client.Host,
-				sgrpc.WithClientConfig(params.Config), sgrpc.WithClientLogger(params.Logger),
-				sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientDialOption(grpc.WithBlock()),
-			)
-
-			client := NewClient(v1.NewServiceClient(conn), params.Client, params.Logger)
-
-			return client.Perform(ctx)
-		},
 		OnStop: func(ctx context.Context) error {
 			return conn.Close()
+		},
+	})
+
+	return conn, err
+}
+
+// RegisterParams for gRPC.
+type RegisterParams struct {
+	fx.In
+
+	Conn   *grpc.ClientConn
+	Logger *zap.Logger
+	Client *client.Config
+}
+
+// Register client.
+func Register(lc fx.Lifecycle, params RegisterParams) {
+	lc.Append(fx.Hook{
+		OnStart: func(ctx context.Context) error {
+			client := NewClient(v1.NewServiceClient(params.Conn), params.Client, params.Logger)
+
+			return client.Perform(ctx)
 		},
 	})
 }
 
 // NewClient for gRPC.
-func NewClient(client v1.ServiceClient, cfg *client.Config, logger *zap.Logger) task.Client {
-	var clt task.Client = &clt{client: client, cfg: cfg}
+func NewClient(client v1.ServiceClient, cfg *client.Config, logger *zap.Logger) task.Task {
+	var clt task.Task = &Client{client: client, cfg: cfg}
 	clt = kzap.NewClient(logger, cfg, clt)
 	clt = gopentracing.NewClient(cfg, clt)
 

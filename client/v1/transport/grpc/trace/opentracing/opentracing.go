@@ -6,7 +6,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/time"
 	"github.com/alexfalkowski/konfig/client"
-	"github.com/alexfalkowski/konfig/client/v1/transport/grpc/task"
+	"github.com/alexfalkowski/konfig/client/task"
 	"github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/ext"
 	"github.com/opentracing/opentracing-go/log"
@@ -15,12 +15,12 @@ import (
 // Client for opentracing.
 type Client struct {
 	cfg *client.Config
-	task.Client
+	task.Task
 }
 
 // NewClient for zap.
-func NewClient(cfg *client.Config, task task.Client) *Client {
-	return &Client{cfg: cfg, Client: task}
+func NewClient(cfg *client.Config, task task.Task) *Client {
+	return &Client{cfg: cfg, Task: task}
 }
 
 // Perform logger for client.
@@ -41,7 +41,7 @@ func (c *Client) Perform(ctx context.Context) error {
 	span, ctx := opentracing.StartSpanFromContextWithTracer(ctx, tracer, operationName, opts...)
 	defer span.Finish()
 
-	err := c.Client.Perform(ctx)
+	err := c.Task.Perform(ctx)
 
 	span.SetTag("client.duration", time.ToMilliseconds(time.Since(start)))
 
