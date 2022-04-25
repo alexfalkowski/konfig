@@ -17,10 +17,20 @@ Feature: Client
     And I start the system
     When I download the configuration for "missing" application
     Then I should not have a configuration for "missing" application
+    And I should see a log entry of "not found" in the file "reports/missing.client.log"
 
-   Scenario: Download invalid config
+  Scenario: Download invalid host in config
     Given I have a "folder" valid setup
     And I have "folder" as the config file
     And I start the system
-    When I download the configuration for "invalid" application
-    Then I should not have a configuration for "invalid" application
+    When I download the configuration for "invalid_host" application
+    Then I should not have a configuration for "invalid_host" application
+    And I should see a log entry of "context deadline exceeded" in the file "reports/invalid_host.client.log"
+
+  Scenario: Download invalid content type in config
+    Given I have a "folder" valid setup
+    And I have "folder" as the config file
+    And I start the system
+    When I download the configuration for "invalid_content_type" application
+    Then I should not have a configuration for "invalid_content_type" application
+    And I should see a log entry of "could not transform" in the file "reports/invalid_content_type.client.log"
