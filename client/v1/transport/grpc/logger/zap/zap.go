@@ -3,7 +3,6 @@ package zap
 import (
 	"context"
 
-	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/time"
 	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/client/v1/transport/grpc/task"
@@ -36,10 +35,6 @@ func (c *Client) Perform(ctx context.Context) error {
 		zap.String("client.command", c.cfg.Command),
 		zap.String("span.kind", "client"),
 		zap.String("component", "client"),
-	}
-
-	for k, v := range meta.Attributes(ctx) {
-		fields = append(fields, zap.String(k, v))
 	}
 
 	if d, ok := ctx.Deadline(); ok {

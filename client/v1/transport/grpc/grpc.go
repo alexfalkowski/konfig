@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 
-	tgrpc "github.com/alexfalkowski/go-service/transport/grpc"
+	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/client"
 	kzap "github.com/alexfalkowski/konfig/client/v1/transport/grpc/logger/zap"
@@ -19,7 +19,7 @@ import (
 type RegisterParams struct {
 	fx.In
 
-	Config *tgrpc.Config
+	Config *sgrpc.Config
 	Logger *zap.Logger
 	Tracer opentracing.Tracer
 	Client *client.Config
@@ -27,31 +27,21 @@ type RegisterParams struct {
 
 // Register client.
 func Register(lc fx.Lifecycle, params RegisterParams) {
-	var (
-		conn *grpc.ClientConn
-		err  error
-	)
+	var conn *grpc.ClientConn
 
 	lc.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
-			conn, err = tgrpc.NewClient(ctx, params.Client.Host,
-				tgrpc.WithClientConfig(params.Config), tgrpc.WithClientLogger(params.Logger),
-				tgrpc.WithClientTracer(params.Tracer),
+			conn, _ = sgrpc.NewClient(ctx, params.Client.Host,
+				sgrpc.WithClientConfig(params.Config), sgrpc.WithClientLogger(params.Logger),
+				sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientDialOption(grpc.WithBlock()),
 			)
-			if err != nil {
-				return err
-			}
 
 			client := NewClient(v1.NewServiceClient(conn), params.Client, params.Logger)
 
 			return client.Perform(ctx)
 		},
 		OnStop: func(ctx context.Context) error {
-			if conn != nil {
-				return conn.Close()
-			}
-
-			return nil
+			return conn.Close()
 		},
 	})
 }

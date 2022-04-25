@@ -12,13 +12,15 @@ When('I download the configuration for {string} application') do |app|
   cmd = Nonnative.go_executable('reports', '../konfig', 'client')
   pid = spawn(env, cmd, %i[out err] => ["reports/#{app}.client.log", 'a'])
 
-  Process.waitpid2(pid)
+  _, @status = Process.waitpid2(pid)
 end
 
 Then('I should have a configuration for {string} application') do |_|
   expect(File.file?(@config_file)).to be true
+  expect(@status.exitstatus).to eq(0)
 end
 
 Then('I should not have a configuration for {string} application') do |_|
   expect(File.file?(@config_file)).to be false
+  expect(@status.exitstatus).to eq(1)
 end

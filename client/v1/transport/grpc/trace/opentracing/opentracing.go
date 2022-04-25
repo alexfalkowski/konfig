@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/time"
 	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/client/v1/transport/grpc/task"
@@ -41,10 +40,6 @@ func (c *Client) Perform(ctx context.Context) error {
 
 	span, ctx := opentracing.StartSpanFromContextWithTracer(ctx, tracer, operationName, opts...)
 	defer span.Finish()
-
-	for k, v := range meta.Attributes(ctx) {
-		span.SetTag(k, v)
-	}
 
 	err := c.Client.Perform(ctx)
 
