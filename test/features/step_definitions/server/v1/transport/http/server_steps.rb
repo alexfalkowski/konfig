@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 When('I request a config with HTTP:') do |table|
-  rows = table.rows_hash
-  headers = {
-    request_id: SecureRandom.uuid,
-    user_agent: Konfig.server_config(rows['source'])['transport']['grpc']['user_agent']
-  }
+  @response = request_with_http(table)
+end
 
-  params = { app: rows['app'], ver: rows['ver'], env: rows['env'], cluster: rows['cluster'], cmd: rows['cmd'] }
-  @response = Konfig.server_http.get_config(params, headers)
+When('I request a config with HTTP {int} times:') do |times, table|
+  times.times do
+    @response = request_with_http(table)
+  end
 end
 
 Then('I should receive a valid config from HTTP:') do |table|
@@ -57,4 +56,12 @@ end
 
 Then('I should receive an internal error from HTTP:') do |_|
   expect(@response.code).to eq(500)
+end
+
+def request_with_http(table)
+  rows = table.rows_hash
+  headers = { request_id: SecureRandom.uuid, user_agent: Konfig.server_config(rows['source'])['transport']['grpc']['user_agent'] }
+
+  params = { app: rows['app'], ver: rows['ver'], env: rows['env'], cluster: rows['cluster'], cmd: rows['cmd'] }
+  Konfig.server_http.get_config(params, headers)
 end

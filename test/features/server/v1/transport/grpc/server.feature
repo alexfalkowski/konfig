@@ -31,6 +31,34 @@ Feature: Server
       | git    | test | v1.6.0 | staging | eu      | server |
       | folder | test | v1.6.0 | staging | eu      | server |
 
+  Scenario Outline: Existing config with gRPC multiple times
+    Given I have a "<source>" valid setup
+    And I have "<source>" as the config file
+    And I start the system
+    And I have key "secret/data/transport/http/user_agent" with '{"data": { "value": "Konfig-server/1.0 http/1.0" }}' value in vault
+    When I request a config with gRPC 2 times:
+      | source  | <source>  |
+      | app     | <app>     |
+      | ver     | <ver>     |
+      | env     | <env>     |
+      | cluster | <cluster> |
+      | cmd     | <cmd>     |
+    Then I should receive a valid config from gRPC:
+      | source  | <source>  |
+      | app     | <app>     |
+      | ver     | <ver>     |
+      | env     | <env>     |
+      | cluster | <cluster> |
+      | cmd     | <cmd>     |
+    And the process 'server' should consume less than '40mb' of memory
+
+    Examples:
+      | source | app  | ver    | env     | cluster | cmd    |
+      | git    | test | v1.6.0 | staging | *       | server |
+      | folder | test | v1.6.0 | staging | *       | server |
+      | git    | test | v1.6.0 | staging | eu      | server |
+      | folder | test | v1.6.0 | staging | eu      | server |
+
   Scenario Outline: Existing config with missing vault value with gRPC
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file

@@ -19,18 +19,13 @@ Given('I have {string} as the config file') do |source|
 end
 
 When('I request a config with gRPC:') do |table|
-  rows = table.rows_hash
-  @request_id = SecureRandom.uuid
-  metadata = {
-    'request-id' => @request_id,
-    'ua' => Konfig.server_config(rows['source'])['transport']['grpc']['user_agent']
-  }
+  @response = request_with_grpc(table)
+end
 
-  request = Konfig::V1::GetConfigRequest.new(application: rows['app'], version: rows['ver'], environment: rows['env'],
-                                             cluster: rows['cluster'], command: rows['cmd'])
-  @response = Konfig.server_grpc.get_config(request, { metadata: metadata })
-rescue StandardError => e
-  @response = e
+When('I request a config with gRPC {int} times:') do |times, table|
+  times.times do
+    @response = request_with_grpc(table)
+  end
 end
 
 Then('I should receive a valid config from gRPC:') do |table|
@@ -71,4 +66,16 @@ end
 
 Then('I should receive an internal error from gRPC:') do |_|
   expect(@response).to be_a(GRPC::Internal)
+end
+
+def request_with_grpc(table)
+  rows = table.rows_hash
+  @request_id = SecureRandom.uuid
+  metadata = { 'request-id' => @request_id, 'ua' => Konfig.server_config(rows['source'])['transport']['grpc']['user_agent'] }
+
+  request = Konfig::V1::GetConfigRequest.new(application: rows['app'], version: rows['ver'], environment: rows['env'],
+                                             cluster: rows['cluster'], command: rows['cmd'])
+  Konfig.server_grpc.get_config(request, { metadata: metadata })
+rescue StandardError => e
+  e
 end
