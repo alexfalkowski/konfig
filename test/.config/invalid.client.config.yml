@@ -9,7 +9,8 @@ transport:
       timeout: 2s
       attempts: 3
 client:
-  host: localhost:9091
+  host: invalid_host
+  timeout: 1s
   application: test
   version: v1.6.0
   environment: staging

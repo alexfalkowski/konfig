@@ -24,10 +24,3 @@ Feature: Client
     And I start the system
     When I download the configuration for "invalid" application
     Then I should not have a configuration for "invalid" application
-
-  Scenario: Download config with invalid host
-    Given I have a "folder" valid setup
-    And I have "folder" as the config file
-    And I start the system
-    When I download the configuration for "invalid_host" application
-    Then I should not have a configuration for "invalid_host" application

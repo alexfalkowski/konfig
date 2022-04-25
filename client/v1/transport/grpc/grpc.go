@@ -27,9 +27,12 @@ type ClientConnParams struct {
 
 // NewClientConn for gRPC.
 func NewClientConn(lc fx.Lifecycle, params ClientConnParams) (*grpc.ClientConn, error) {
-	conn, err := sgrpc.NewClient(context.Background(), params.Client.Host,
+	ctx, cancel := context.WithTimeout(context.Background(), params.Client.Timeout)
+	defer cancel()
+
+	conn, err := sgrpc.NewClient(ctx, params.Client.Host,
 		sgrpc.WithClientConfig(params.Config), sgrpc.WithClientLogger(params.Logger),
-		sgrpc.WithClientTracer(params.Tracer),
+		sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientDialOption(grpc.WithBlock()),
 	)
 	if err != nil {
 		return nil, err
