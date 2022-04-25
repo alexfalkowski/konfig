@@ -3,19 +3,3 @@
 Nonnative.configure do |config|
   config.load_file('nonnative.yml')
 end
-
-Given('I start the system') do
-  Nonnative.start
-end
-
-Before('@startup') do
-  Nonnative.start
-end
-
-After('@startup') do
-  Nonnative.stop
-end
-
-After('@manual') do
-  Nonnative.stop
-end
