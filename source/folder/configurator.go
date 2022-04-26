@@ -25,7 +25,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, cluster, cmd))
 	}
 
-	data, err := os.ReadFile(path)
+	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		meta.WithAttribute(ctx, "folder.file_error", err.Error())
 
