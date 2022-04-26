@@ -3,8 +3,9 @@ package opentracing
 import (
 	"context"
 	"fmt"
+	"time"
 
-	"github.com/alexfalkowski/go-service/time"
+	stime "github.com/alexfalkowski/go-service/time"
 	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/client/task"
 	"github.com/opentracing/opentracing-go"
@@ -43,7 +44,7 @@ func (c *Client) Perform(ctx context.Context) error {
 
 	err := c.Task.Perform(ctx)
 
-	span.SetTag("client.duration", time.ToMilliseconds(time.Since(start)))
+	span.SetTag("client.duration", stime.ToMilliseconds(time.Since(start)))
 
 	if err != nil {
 		ext.Error.Set(span, true)
