@@ -14,8 +14,11 @@ jobs:
       - run: make lint
       - run: make features
       - run: make goveralls
+      - run:
+          name: compress artifacts
+          command: tar -cvzf reports.tar test/reports
       - store_artifacts:
-          path: test/reports
+          path: reports.tar
   release:
     docker:
       - image: alexfalkowski/release:2.0
