@@ -12,6 +12,7 @@ jobs:
       - run: dockerize -wait tcp://localhost:8200 -timeout 1m
       - run: make dep
       - run: make lint
+      - run: make sec
       - run: make features
       - run: make goveralls
       - run:
