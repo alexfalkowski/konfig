@@ -88,8 +88,8 @@ github.com/alecthomas/units v0.0.0-20190717042225-c3de453c63f4/go.mod h1:ybxpYRF
 github.com/alecthomas/units v0.0.0-20190924025748-f65c72e2690d/go.mod h1:rBZYJk541a8SKzHPHnH3zbiI+7dagKZ0cgpgrD7Fyho=
 github.com/alexfalkowski/go-health v1.10.2 h1:6bYzVGDBSdf8m7wf0BGPJ18yhXoBFLskviziX0Nkg9Q=
 github.com/alexfalkowski/go-health v1.10.2/go.mod h1:TkTDC/lpYYNP4VKnNmSgiZexzaOdU4gDRL8j8r4c45w=
-github.com/alexfalkowski/go-service v1.56.2 h1:nSG9vjWlkgNnv0IhJLcxeQLD5z4vlGcv8x/br+ud7IQ=
-github.com/alexfalkowski/go-service v1.56.2/go.mod h1:5/1mrso+7DA1MnBmXjYr55kIIz/lkrvyvPgpLpdUeX0=
+github.com/alexfalkowski/go-service v1.57.0 h1:7SMd8DtZ46HGHP0rNCRnbQumZ8NAEJbZCqwsOxgnEIo=
+github.com/alexfalkowski/go-service v1.57.0/go.mod h1:RWGR5reUvHjSLMknFGroYlWApeo4JZUXj1zEbRUzClk=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/anmitsu/go-shlex v0.0.0-20161002113705-648efa622239 h1:kFOfPq6dUM1hTo4JG6LR5AXSUEsOjtdm0kw0FtQtMJA=
 github.com/anmitsu/go-shlex v0.0.0-20161002113705-648efa622239/go.mod h1:2FmKhYUyUczH0OGQWaF5ceTx0UBShxjsH6f8oGKYe2c=
@@ -853,6 +853,8 @@ github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6L
 github.com/rogpeppe/go-internal v1.1.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
 github.com/rogpeppe/go-internal v1.2.2/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
+github.com/rs/cors v1.8.2 h1:KCooALfAYGs415Cwu5ABvv9n9509fSiG5SQJn/AQo4U=
+github.com/rs/cors v1.8.2/go.mod h1:XyqrcTp5zjWr1wsJ8PIRZssZ8b/WMcMf71DJnit4EMU=
 github.com/rs/xid v1.2.1/go.mod h1:+uKXf+4Djp6Md1KODXJxgGQPKngRmWyn10oCKFzNHOQ=
 github.com/rs/zerolog v1.13.0/go.mod h1:YbFCdg8HfsridGWAh22vktObvhZbQsZXe4/zB0OKkWU=
 github.com/rs/zerolog v1.15.0/go.mod h1:xYTKnLHcpfU2225ny5qZjxnj9NvkumZYjJHlAThCjNc=
