@@ -2,8 +2,9 @@ package zap
 
 import (
 	"context"
+	"time"
 
-	"github.com/alexfalkowski/go-service/time"
+	stime "github.com/alexfalkowski/go-service/time"
 	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/client/task"
 	"go.uber.org/zap"
@@ -27,7 +28,7 @@ func (c *Client) Perform(ctx context.Context) error {
 	start := time.Now().UTC()
 	err := c.Task.Perform(ctx)
 	fields := []zapcore.Field{
-		zap.Int64("client.duration", time.ToMilliseconds(time.Since(start))),
+		zap.Int64("client.duration", stime.ToMilliseconds(time.Since(start))),
 		zap.String("client.start_time", start.Format(time.RFC3339)),
 		zap.String("client.application", c.cfg.Application),
 		zap.String("client.version", c.cfg.Version),
