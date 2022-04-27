@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alexfalkowski/go-health v1.10.2
-	github.com/alexfalkowski/go-service v1.58.0
+	github.com/alexfalkowski/go-service v1.59.0
 	github.com/go-git/go-billy/v5 v5.3.1
 	github.com/go-git/go-git/v5 v5.4.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.0
@@ -12,7 +12,7 @@ require (
 	github.com/opentracing/opentracing-go v1.2.0
 	go.uber.org/fx v1.17.1
 	go.uber.org/zap v1.21.0
-	google.golang.org/genproto v0.0.0-20220422154200-b37d22cd5731
+	google.golang.org/genproto v0.0.0-20220426171045-31bebdecfb46
 	google.golang.org/grpc v1.46.0
 	google.golang.org/protobuf v1.28.0
 )
@@ -77,7 +77,7 @@ require (
 	github.com/jackc/pgx/v4 v4.16.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
-	github.com/klauspost/compress v1.15.1 // indirect
+	github.com/klauspost/compress v1.15.2 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
