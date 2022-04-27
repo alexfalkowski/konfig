@@ -2,8 +2,8 @@ package vault
 
 import (
 	"github.com/alexfalkowski/go-service/transport/http"
+	"github.com/alexfalkowski/go-service/transport/http/trace/opentracing"
 	"github.com/hashicorp/vault/api"
-	"github.com/opentracing/opentracing-go"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )

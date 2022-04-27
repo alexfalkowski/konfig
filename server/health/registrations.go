@@ -5,10 +5,10 @@ import (
 	"github.com/alexfalkowski/go-health/server"
 	"github.com/alexfalkowski/go-service/health"
 	"github.com/alexfalkowski/go-service/transport/http"
+	"github.com/alexfalkowski/go-service/transport/http/trace/opentracing"
 	khealth "github.com/alexfalkowski/konfig/health"
 	"github.com/alexfalkowski/konfig/source"
 	"github.com/hashicorp/vault/api"
-	"github.com/opentracing/opentracing-go"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )

@@ -16,7 +16,9 @@ import (
 // ServerOptions for cmd.
 var ServerOptions = []fx.Option{
 	fx.NopLogger, config.Module, kconfig.Module, health.Module,
-	logger.ZapModule, metrics.PrometheusModule, trace.JaegerOpenTracingModule,
-	transport.HTTPServerModule, transport.GRPCServerModule,
+	logger.ZapModule, metrics.PrometheusModule,
+	transport.GRPCServerModule, transport.GRPCJaegerModule,
+	transport.HTTPServerModule, transport.HTTPJaegerModule,
+	trace.JaegerOpenTracingModule,
 	source.Module, v1.Module,
 }
