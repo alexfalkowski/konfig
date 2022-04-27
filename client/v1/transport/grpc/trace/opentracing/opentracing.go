@@ -6,6 +6,7 @@ import (
 	"time"
 
 	stime "github.com/alexfalkowski/go-service/time"
+	gopentracing "github.com/alexfalkowski/go-service/transport/grpc/trace/opentracing"
 	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/client/task"
 	"github.com/opentracing/opentracing-go"
@@ -15,19 +16,19 @@ import (
 
 // Client for opentracing.
 type Client struct {
-	cfg *client.Config
+	cfg    *client.Config
+	tracer gopentracing.Tracer
 	task.Task
 }
 
 // NewClient for zap.
-func NewClient(cfg *client.Config, task task.Task) *Client {
-	return &Client{cfg: cfg, Task: task}
+func NewClient(cfg *client.Config, tracer gopentracing.Tracer, task task.Task) *Client {
+	return &Client{cfg: cfg, tracer: tracer, Task: task}
 }
 
 // Perform logger for client.
 func (c *Client) Perform(ctx context.Context) error {
 	start := time.Now().UTC()
-	tracer := opentracing.GlobalTracer()
 	operationName := fmt.Sprintf("sync %s/%s/%s/%s", c.cfg.Application, c.cfg.Version, c.cfg.Environment, c.cfg.Command)
 	opts := []opentracing.StartSpanOption{
 		opentracing.Tag{Key: "client.start_time", Value: start.Format(time.RFC3339)},
@@ -39,7 +40,7 @@ func (c *Client) Perform(ctx context.Context) error {
 		ext.SpanKindRPCClient,
 	}
 
-	span, ctx := opentracing.StartSpanFromContextWithTracer(ctx, tracer, operationName, opts...)
+	span, ctx := opentracing.StartSpanFromContextWithTracer(ctx, c.tracer, operationName, opts...)
 	defer span.Finish()
 
 	err := c.Task.Perform(ctx)
