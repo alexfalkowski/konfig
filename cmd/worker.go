@@ -12,7 +12,7 @@ import (
 
 // WorkerOptions for cmd.
 var WorkerOptions = []fx.Option{
-	fx.NopLogger, config.Module, health.Module,
+	fx.NopLogger, fx.Provide(NewVersion), config.Module, health.Module,
 	logger.ZapModule, metrics.PrometheusModule,
 	transport.GRPCServerModule, transport.GRPCJaegerModule,
 	transport.HTTPServerModule, transport.HTTPJaegerModule,

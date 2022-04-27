@@ -16,6 +16,7 @@ func TestFeatures(t *testing.T) {
 	command.AddServer(cmd.ServerOptions)
 	command.AddWorker(cmd.WorkerOptions)
 	command.AddClient(cmd.ClientOptions)
+	command.AddVersion(cmd.Version)
 
 	if err := command.Run(); err != nil {
 		t.Fatal(err.Error())
