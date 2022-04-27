@@ -1,12 +1,14 @@
 FROM golang:1.18.1-bullseye AS build
 
+ARG version=latest
+
 WORKDIR /app
 
 COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . ./
-RUN CGO_ENABLED=0 go build -a -installsuffix cgo -o konfig main.go
+RUN go build -ldflags="-X 'github.com/alexfalkowski/konfig/cmd.Version=${version}'" -a -o konfig main.go
 
 FROM debian:bullseye-slim
 
