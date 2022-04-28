@@ -1,12 +1,15 @@
 package grpc
 
 import (
+	"bytes"
 	"context"
 
 	"github.com/alexfalkowski/go-service/config"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/client"
 )
+
+const configFile = "APP_CONFIG_FILE"
 
 // Client for v1.
 type Client struct {
@@ -29,5 +32,10 @@ func (c *Client) Perform(ctx context.Context) error {
 		return err
 	}
 
-	return config.WriteFileToEnv("APP_CONFIG_FILE", resp.Config.Data)
+	data, err := config.ReadFileFromEnv(configFile)
+	if err != nil || bytes.Compare(data, resp.Config.Data) != 0 {
+		return config.WriteFileToEnv(configFile, resp.Config.Data)
+	}
+
+	return nil
 }
