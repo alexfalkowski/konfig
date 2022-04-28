@@ -75,7 +75,7 @@ def request_with_grpc(table)
 
   request = Konfig::V1::GetConfigRequest.new(application: rows['app'], version: rows['ver'], environment: rows['env'],
                                              cluster: rows['cluster'], command: rows['cmd'])
-  Konfig.server_grpc.get_config(request, { metadata: metadata })
+  Konfig::V1.server_grpc.get_config(request, { metadata: metadata })
 rescue StandardError => e
   e
 end

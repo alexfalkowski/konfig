@@ -63,5 +63,5 @@ def request_with_http(table)
   headers = { request_id: SecureRandom.uuid, user_agent: Konfig.server_config(rows['source'])['transport']['grpc']['user_agent'] }
 
   params = { app: rows['app'], ver: rows['ver'], env: rows['env'], cluster: rows['cluster'], cmd: rows['cmd'] }
-  Konfig.server_http.get_config(params, headers)
+  Konfig::V1.server_http.get_config(params, headers)
 end
