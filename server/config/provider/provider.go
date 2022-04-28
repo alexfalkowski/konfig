@@ -22,7 +22,7 @@ func NewTransformer(et *env.Transformer, vt *vault.Transformer) *Transformer {
 }
 
 // Transform for provider.
-func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
+func (t *Transformer) Transform(ctx context.Context, value string) (any, error) {
 	args := strings.Split(value, ":")
 	if len(args) != argumentsLen {
 		return value, nil
