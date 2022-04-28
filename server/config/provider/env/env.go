@@ -15,6 +15,6 @@ func NewTransformer() *Transformer {
 }
 
 // Transform for env.
-func (e *Transformer) Transform(ctx context.Context, value string) (string, error) {
+func (e *Transformer) Transform(ctx context.Context, value string) (any, error) {
 	return os.Getenv(value), nil
 }

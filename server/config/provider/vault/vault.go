@@ -17,7 +17,7 @@ func NewTransformer(client *api.Client) *Transformer {
 }
 
 // Transform for vault.
-func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
+func (t *Transformer) Transform(ctx context.Context, value string) (any, error) {
 	sec, err := t.client.Logical().ReadWithContext(ctx, value)
 	if err != nil {
 		return value, err
@@ -33,19 +33,9 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 	}
 
 	md, ok := d.(map[string]any)
-	if !ok {
+	if !ok || md["value"] == nil {
 		return value, nil
 	}
 
-	v := md["value"]
-	if v == nil {
-		return value, nil
-	}
-
-	s, ok := v.(string)
-	if !ok {
-		return value, nil
-	}
-
-	return s, nil
+	return md["value"], nil
 }
