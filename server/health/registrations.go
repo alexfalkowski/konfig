@@ -6,6 +6,7 @@ import (
 	"github.com/alexfalkowski/go-service/health"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/alexfalkowski/go-service/transport/http/trace/opentracing"
+	"github.com/alexfalkowski/go-service/version"
 	khealth "github.com/alexfalkowski/konfig/health"
 	"github.com/alexfalkowski/konfig/source"
 	"github.com/hashicorp/vault/api"
@@ -13,21 +14,25 @@ import (
 	"go.uber.org/zap"
 )
 
-// Params for health.
-type Params struct {
+// RegistrationsParams for health.
+type RegistrationsParams struct {
 	fx.In
 
-	HTTP   *http.Config
-	Source *source.Config
-	Vault  *api.Config
-	Logger *zap.Logger
-	Tracer opentracing.Tracer
-	Health *khealth.Config
+	HTTP    *http.Config
+	Source  *source.Config
+	Vault   *api.Config
+	Logger  *zap.Logger
+	Tracer  opentracing.Tracer
+	Health  *khealth.Config
+	Version version.Version
 }
 
 // NewRegistrations for health.
-func NewRegistrations(params Params) health.Registrations {
-	client := http.NewClient(http.WithClientConfig(params.HTTP), http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer))
+func NewRegistrations(params RegistrationsParams) health.Registrations {
+	client := http.NewClient(
+		http.ClientParams{Version: params.Version, Config: params.HTTP},
+		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
+	)
 	registrations := health.Registrations{
 		server.NewRegistration("noop", params.Health.Duration, checker.NewNoopChecker()),
 		server.NewRegistration("vault", params.Health.Duration, checker.NewHTTPChecker(params.Vault.Address, client)),

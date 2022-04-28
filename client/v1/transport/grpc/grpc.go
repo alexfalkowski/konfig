@@ -5,6 +5,7 @@ import (
 
 	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	"github.com/alexfalkowski/go-service/transport/grpc/trace/opentracing"
+	"github.com/alexfalkowski/go-service/version"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/client/task"
@@ -19,10 +20,11 @@ import (
 type ClientConnParams struct {
 	fx.In
 
-	Config *sgrpc.Config
-	Logger *zap.Logger
-	Tracer opentracing.Tracer
-	Client *client.Config
+	Config  *sgrpc.Config
+	Logger  *zap.Logger
+	Tracer  opentracing.Tracer
+	Client  *client.Config
+	Version version.Version
 }
 
 // NewClientConn for gRPC.
@@ -30,9 +32,9 @@ func NewClientConn(lc fx.Lifecycle, params ClientConnParams) (*grpc.ClientConn, 
 	ctx, cancel := context.WithTimeout(context.Background(), params.Client.Timeout)
 	defer cancel()
 
-	conn, err := sgrpc.NewClient(ctx, params.Client.Host,
-		sgrpc.WithClientConfig(params.Config), sgrpc.WithClientLogger(params.Logger),
-		sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientDialOption(grpc.WithBlock()),
+	conn, err := sgrpc.NewClient(
+		sgrpc.ClientParams{Context: ctx, Host: params.Client.Host, Version: params.Version, Config: params.Config},
+		sgrpc.WithClientLogger(params.Logger), sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientDialOption(grpc.WithBlock()),
 	)
 	if err != nil {
 		return nil, err
