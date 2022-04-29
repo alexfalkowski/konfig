@@ -5,13 +5,29 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/alexfalkowski/go-service/cache/redis"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/server/config"
 	"github.com/alexfalkowski/konfig/source"
 	kerrors "github.com/alexfalkowski/konfig/source/errors"
+	"go.uber.org/fx"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
+
+// ServerParams for gRPC.
+type ServerParams struct {
+	fx.In
+
+	RedisConfig  *redis.Config
+	Configurator source.Configurator
+	Transformer  *config.Transformer
+}
+
+// NewServer for gRPC.
+func NewServer(params ServerParams) v1.ServiceServer {
+	return &Server{conf: params.Configurator, trans: params.Transformer}
+}
 
 // Server for gRPC.
 type Server struct {

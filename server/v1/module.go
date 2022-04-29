@@ -7,5 +7,9 @@ import (
 
 var (
 	// Module for fx.
-	Module = fx.Options(fx.Invoke(grpc.Register))
+	Module = fx.Options(
+		fx.Provide(grpc.NewClientConn),
+		fx.Provide(grpc.NewServer),
+		fx.Invoke(grpc.Register),
+	)
 )
