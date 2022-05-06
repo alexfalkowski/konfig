@@ -7,8 +7,8 @@ import (
 
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/server/config"
-	"github.com/alexfalkowski/konfig/source"
-	kerrors "github.com/alexfalkowski/konfig/source/errors"
+	source "github.com/alexfalkowski/konfig/source/configurator"
+	kerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

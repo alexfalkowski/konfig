@@ -9,7 +9,7 @@ import (
 	"sync"
 
 	"github.com/alexfalkowski/go-service/meta"
-	serrors "github.com/alexfalkowski/konfig/source/errors"
+	serrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/go-git/go-billy/v5"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"

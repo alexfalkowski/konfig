@@ -1,8 +1,8 @@
 package source
 
 import (
-	"github.com/alexfalkowski/konfig/source/folder"
-	"github.com/alexfalkowski/konfig/source/git"
+	"github.com/alexfalkowski/konfig/source/configurator/folder"
+	"github.com/alexfalkowski/konfig/source/configurator/git"
 )
 
 // Config for source.

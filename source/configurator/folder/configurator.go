@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/alexfalkowski/go-service/meta"
-	"github.com/alexfalkowski/konfig/source/errors"
+	"github.com/alexfalkowski/konfig/source/configurator/errors"
 )
 
 // Configurator for folder.
