@@ -1,7 +1,7 @@
 trace:
   opentracing:
-    jaeger:
-      host: localhost:6831
+    type: jaeger
+    host: localhost:6831
 transport:
   grpc:
     user_agent: "Konfig-client/1.0 grpc/1.0"

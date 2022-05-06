@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/alexfalkowski/go-service/meta"
-	"github.com/alexfalkowski/konfig/source/errors"
+	"github.com/alexfalkowski/konfig/source/configurator/errors"
 )
 
 // Configurator for folder.
@@ -33,4 +33,9 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 	}
 
 	return data, nil
+}
+
+// String for folder.
+func (c *Configurator) String() string {
+	return "folder"
 }

@@ -1,26 +1,38 @@
 package source
 
 import (
-	"context"
-
-	"github.com/alexfalkowski/konfig/source/folder"
-	"github.com/alexfalkowski/konfig/source/git"
+	"github.com/alexfalkowski/konfig/source/configurator"
+	"github.com/alexfalkowski/konfig/source/configurator/folder"
+	"github.com/alexfalkowski/konfig/source/configurator/git"
+	"github.com/alexfalkowski/konfig/source/configurator/trace/opentracing"
+	"go.uber.org/fx"
 )
 
-// Configurator for source.
-type Configurator interface {
-	GetConfig(ctx context.Context, app, ver, env, cluster, cmd string) ([]byte, error)
+// ConfiguratorParams for source.
+type ConfiguratorParams struct {
+	fx.In
+
+	Config *Config
+	Tracer opentracing.Tracer
 }
 
 // NewConfigurator for source.
-func NewConfigurator(cfg *Config) Configurator {
-	if cfg.IsGit() {
-		return git.NewConfigurator(&cfg.Git)
+func NewConfigurator(params ConfiguratorParams) configurator.Configurator {
+	var configurator configurator.Configurator
+
+	if params.Config.IsGit() {
+		configurator = git.NewConfigurator(&params.Config.Git, params.Tracer)
 	}
 
-	if cfg.IsFolder() {
-		return folder.NewConfigurator(&cfg.Folder)
+	if params.Config.IsFolder() {
+		configurator = folder.NewConfigurator(&params.Config.Folder)
 	}
 
-	return nil
+	if configurator == nil {
+		return nil
+	}
+
+	configurator = opentracing.NewConfigurator(configurator, params.Tracer)
+
+	return configurator
 }

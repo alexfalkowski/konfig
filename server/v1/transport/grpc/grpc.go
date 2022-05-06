@@ -11,7 +11,7 @@ import (
 	"github.com/alexfalkowski/go-service/version"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/server/config"
-	"github.com/alexfalkowski/konfig/source"
+	source "github.com/alexfalkowski/konfig/source/configurator"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
