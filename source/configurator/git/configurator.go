@@ -10,6 +10,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/meta"
 	serrors "github.com/alexfalkowski/konfig/source/configurator/errors"
+	"github.com/alexfalkowski/konfig/source/configurator/trace/opentracing"
 	"github.com/go-git/go-billy/v5"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
@@ -20,9 +21,10 @@ const buffSize = 8192
 
 // Configurator for git.
 type Configurator struct {
-	cfg  *Config
-	repo *git.Repository
-	mux  sync.Mutex
+	cfg    *Config
+	repo   *git.Repository
+	mux    sync.Mutex
+	tracer opentracing.Tracer
 }
 
 // GetConfig for git.
@@ -42,7 +44,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 		return nil, serrors.ErrNotFound
 	}
 
-	file, err := c.file(app, ver, env, cluster, cmd)
+	file, err := c.file(ctx, app, ver, env, cluster, cmd)
 	if err != nil {
 		meta.WithAttribute(ctx, "git.file_error", err.Error())
 
@@ -73,7 +75,10 @@ func (c *Configurator) bytes(reader io.Reader) []byte {
 	return data
 }
 
-func (c *Configurator) file(app, ver, env, cluster, cmd string) (billy.File, error) {
+func (c *Configurator) file(ctx context.Context, app, ver, env, cluster, cmd string) (billy.File, error) {
+	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", "file")
+	defer span.Finish()
+
 	tree, _ := c.repo.Worktree()
 
 	err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(fmt.Sprintf("%s/%s", app, ver))})
@@ -98,6 +103,9 @@ func (c *Configurator) file(app, ver, env, cluster, cmd string) (billy.File, err
 }
 
 func (c *Configurator) pull(ctx context.Context) error {
+	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", "pull")
+	defer span.Finish()
+
 	tree, _ := c.repo.Worktree()
 
 	if err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.Master}); err != nil {
@@ -112,6 +120,9 @@ func (c *Configurator) pull(ctx context.Context) error {
 }
 
 func (c *Configurator) clone(ctx context.Context) error {
+	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", "clone")
+	defer span.Finish()
+
 	if c.repo != nil {
 		return nil
 	}

@@ -21,7 +21,7 @@ func NewConfigurator(params ConfiguratorParams) configurator.Configurator {
 	var configurator configurator.Configurator
 
 	if params.Config.IsGit() {
-		configurator = git.NewConfigurator(&params.Config.Git)
+		configurator = git.NewConfigurator(&params.Config.Git, params.Tracer)
 	}
 
 	if params.Config.IsFolder() {
@@ -32,9 +32,7 @@ func NewConfigurator(params ConfiguratorParams) configurator.Configurator {
 		return nil
 	}
 
-	if params.Tracer != nil {
-		configurator = opentracing.NewConfigurator(configurator, params.Tracer)
-	}
+	configurator = opentracing.NewConfigurator(configurator, params.Tracer)
 
 	return configurator
 }

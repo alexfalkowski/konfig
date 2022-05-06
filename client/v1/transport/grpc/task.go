@@ -31,10 +31,7 @@ type TaskParams struct {
 func NewTask(params TaskParams) task.Task {
 	var clt task.Task = &Task{client: params.Client, cfg: params.Config}
 	clt = kzap.NewClient(params.Logger, params.Config, clt)
-
-	if params.Tracer != nil {
-		clt = gopentracing.NewClient(params.Config, params.Tracer, clt)
-	}
+	clt = gopentracing.NewClient(params.Config, params.Tracer, clt)
 
 	return clt
 }
