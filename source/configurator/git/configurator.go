@@ -52,6 +52,11 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 	return c.bytes(file), nil
 }
 
+// String for git.
+func (c *Configurator) String() string {
+	return "git"
+}
+
 func (c *Configurator) bytes(reader io.Reader) []byte {
 	data := make([]byte, 0)
 	buf := make([]byte, buffSize)

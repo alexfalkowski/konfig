@@ -34,3 +34,8 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 
 	return data, nil
 }
+
+// String for folder.
+func (c *Configurator) String() string {
+	return "folder"
+}
