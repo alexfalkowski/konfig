@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/alexfalkowski/konfig/compare/v1.15.7...v1.16.0) (2022-05-06)
+
+
+### Features
+
+* **trace:** add for source ([#71](https://github.com/alexfalkowski/konfig/issues/71)) ([fcac1d3](https://github.com/alexfalkowski/konfig/commit/fcac1d365b6cc064cfa80731945cf5079ea2b5f4))
+
 ### [1.15.7](https://github.com/alexfalkowski/konfig/compare/v1.15.6...v1.15.7) (2022-04-29)
 
 ### [1.15.6](https://github.com/alexfalkowski/konfig/compare/v1.15.5...v1.15.6) (2022-04-29)
