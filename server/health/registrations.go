@@ -5,6 +5,7 @@ import (
 	"github.com/alexfalkowski/go-health/server"
 	"github.com/alexfalkowski/go-service/health"
 	"github.com/alexfalkowski/go-service/transport/http"
+	"github.com/alexfalkowski/go-service/transport/http/metrics/prometheus"
 	"github.com/alexfalkowski/go-service/transport/http/trace/opentracing"
 	"github.com/alexfalkowski/go-service/version"
 	khealth "github.com/alexfalkowski/konfig/health"
@@ -25,6 +26,7 @@ type RegistrationsParams struct {
 	Tracer  opentracing.Tracer
 	Health  *khealth.Config
 	Version version.Version
+	Metrics *prometheus.ClientMetrics
 }
 
 // NewRegistrations for health.
@@ -32,6 +34,7 @@ func NewRegistrations(params RegistrationsParams) health.Registrations {
 	client := http.NewClient(
 		http.ClientParams{Version: params.Version, Config: params.HTTP},
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
+		http.WithClientMetrics(params.Metrics),
 	)
 	registrations := health.Registrations{
 		server.NewRegistration("noop", params.Health.Duration, checker.NewNoopChecker()),

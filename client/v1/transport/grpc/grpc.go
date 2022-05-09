@@ -11,12 +11,13 @@ import (
 type RegisterParams struct {
 	fx.In
 
-	Task task.Task
+	Lifecycle fx.Lifecycle
+	Task      task.Task
 }
 
 // Register client.
-func Register(lc fx.Lifecycle, params RegisterParams) {
-	lc.Append(fx.Hook{
+func Register(params RegisterParams) {
+	params.Lifecycle.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
 			return params.Task.Perform(ctx)
 		},
