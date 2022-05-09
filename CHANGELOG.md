@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.18.0](https://github.com/alexfalkowski/konfig/compare/v1.17.1...v1.18.0) (2022-05-09)
+
+
+### Features
+
+* **metrics:** add to clients ([#76](https://github.com/alexfalkowski/konfig/issues/76)) ([72cf3af](https://github.com/alexfalkowski/konfig/commit/72cf3af26d2d1cd21ff8292a42d815681789af7f))
+
 ### [1.17.1](https://github.com/alexfalkowski/konfig/compare/v1.17.0...v1.17.1) (2022-05-09)
 
 ## [1.17.0](https://github.com/alexfalkowski/konfig/compare/v1.16.2...v1.17.0) (2022-05-09)
