@@ -13,6 +13,17 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+// ServerParams for gRPC.
+type ServerParams struct {
+	Configurator source.Configurator
+	Transformer  *config.Transformer
+}
+
+// NewServer for gRPC.
+func NewServer(params ServerParams) v1.ServiceServer {
+	return &Server{conf: params.Configurator, trans: params.Transformer}
+}
+
 // Server for gRPC.
 type Server struct {
 	conf  source.Configurator
