@@ -54,11 +54,6 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 	return c.bytes(file), nil
 }
 
-// String for git.
-func (c *Configurator) String() string {
-	return "git"
-}
-
 func (c *Configurator) bytes(reader io.Reader) []byte {
 	data := make([]byte, 0)
 	buf := make([]byte, buffSize)
@@ -76,7 +71,15 @@ func (c *Configurator) bytes(reader io.Reader) []byte {
 }
 
 func (c *Configurator) file(ctx context.Context, app, ver, env, cluster, cmd string) (billy.File, error) {
-	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", "file")
+	var path string
+
+	if cluster == "*" {
+		path = fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd)
+	} else {
+		path = fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, cluster, cmd)
+	}
+
+	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", fmt.Sprintf("get-file %s", path))
 	defer span.Finish()
 
 	tree, _ := c.repo.Worktree()
@@ -84,14 +87,6 @@ func (c *Configurator) file(ctx context.Context, app, ver, env, cluster, cmd str
 	err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(fmt.Sprintf("%s/%s", app, ver))})
 	if err != nil {
 		return nil, err
-	}
-
-	var path string
-
-	if cluster == "*" {
-		path = fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd)
-	} else {
-		path = fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, cluster, cmd)
 	}
 
 	file, err := tree.Filesystem.Open(path)
@@ -103,7 +98,7 @@ func (c *Configurator) file(ctx context.Context, app, ver, env, cluster, cmd str
 }
 
 func (c *Configurator) pull(ctx context.Context) error {
-	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", "pull")
+	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", "pull master")
 	defer span.Finish()
 
 	tree, _ := c.repo.Worktree()
@@ -120,7 +115,7 @@ func (c *Configurator) pull(ctx context.Context) error {
 }
 
 func (c *Configurator) clone(ctx context.Context) error {
-	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", "clone")
+	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", fmt.Sprintf("clone %s", c.cfg.URL))
 	defer span.Finish()
 
 	if c.repo != nil {

@@ -1,12 +1,17 @@
 package source
 
 import (
+	"errors"
+
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
 	"github.com/alexfalkowski/konfig/source/configurator/git"
 	"github.com/alexfalkowski/konfig/source/configurator/trace/opentracing"
 	"go.uber.org/fx"
 )
+
+// ErrNoConfigurator is defined in the config.
+var ErrNoConfigurator = errors.New("no configurator")
 
 // ConfiguratorParams for source.
 type ConfiguratorParams struct {
@@ -17,7 +22,7 @@ type ConfiguratorParams struct {
 }
 
 // NewConfigurator for source.
-func NewConfigurator(params ConfiguratorParams) configurator.Configurator {
+func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
 	var configurator configurator.Configurator
 
 	if params.Config.IsGit() {
@@ -29,10 +34,10 @@ func NewConfigurator(params ConfiguratorParams) configurator.Configurator {
 	}
 
 	if configurator == nil {
-		return nil
+		return nil, ErrNoConfigurator
 	}
 
 	configurator = opentracing.NewConfigurator(configurator, params.Tracer)
 
-	return configurator
+	return configurator, nil
 }

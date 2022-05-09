@@ -2,6 +2,7 @@ package opentracing
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/alexfalkowski/go-service/trace/opentracing"
 	"github.com/alexfalkowski/konfig/source/configurator"
@@ -37,7 +38,7 @@ func NewConfigurator(configurator configurator.Configurator, tracer Tracer) *Con
 
 // GetConfig for opentracing.
 func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cmd string) ([]byte, error) {
-	ctx, span := StartSpanFromContext(ctx, c.tracer, c.configurator.String(), "get-config")
+	ctx, span := StartSpanFromContext(ctx, c.tracer, "get-config", fmt.Sprintf("%s/%s/%s/%s/%s", app, ver, env, cluster, cmd))
 	defer span.Finish()
 
 	span.SetTag("configurator.app", app)
@@ -55,9 +56,4 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 	}
 
 	return bytes, nil
-}
-
-// String for opentracing.
-func (c *Configurator) String() string {
-	return "opentracing"
 }
