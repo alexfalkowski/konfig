@@ -58,7 +58,7 @@ func (t *Task) Perform(ctx context.Context) error {
 	}
 
 	data, err := config.ReadFileFromEnv(configFile)
-	if err != nil || bytes.Compare(data, resp.Config.Data) != 0 {
+	if err != nil || !bytes.Equal(data, resp.Config.Data) {
 		return config.WriteFileToEnv(configFile, resp.Config.Data)
 	}
 
