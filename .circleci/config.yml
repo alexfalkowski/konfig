@@ -15,11 +15,8 @@ jobs:
       - run: make sec
       - run: make features
       - run: make goveralls
-      - run:
-          name: compress artifacts
-          command: tar -cvzf reports.tar test/reports
       - store_artifacts:
-          path: reports.tar
+          path: test/reports
   release:
     docker:
       - image: alexfalkowski/release:2.0
