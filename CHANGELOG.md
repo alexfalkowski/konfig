@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.19.0](https://github.com/alexfalkowski/konfig/compare/v1.18.3...v1.19.0) (2022-05-12)
+
+
+### Features
+
+* **worker:** remove as it is not used ([#80](https://github.com/alexfalkowski/konfig/issues/80)) ([830d8de](https://github.com/alexfalkowski/konfig/commit/830d8de35f8a9ecc5b1d9490a2362089287e49d9))
+
 ### [1.18.3](https://github.com/alexfalkowski/konfig/compare/v1.18.2...v1.18.3) (2022-05-10)
 
 ### [1.18.2](https://github.com/alexfalkowski/konfig/compare/v1.18.1...v1.18.2) (2022-05-10)
