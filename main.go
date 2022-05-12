@@ -11,7 +11,6 @@ func main() {
 	command := scmd.New()
 
 	command.AddServer(cmd.ServerOptions)
-	command.AddWorker(cmd.WorkerOptions)
 	command.AddClient(cmd.ClientOptions)
 	command.AddVersion(cmd.Version)
 
