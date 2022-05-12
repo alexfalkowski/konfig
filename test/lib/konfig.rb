@@ -25,10 +25,6 @@ module Konfig
       YAML.load_file(".config/#{source}.server.config.yml")
     end
 
-    def worker_config
-      @worker_config ||= YAML.load_file('.config/worker.config.yml')
-    end
-
     def health_grpc
       @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:9090', :this_channel_is_insecure)
     end
