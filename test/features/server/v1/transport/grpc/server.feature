@@ -22,6 +22,7 @@ Feature: Server
       | env     | <env>     |
       | cluster | <cluster> |
       | cmd     | <cmd>     |
+    And the process 'server' should consume less than '40mb' of memory
 
     Examples:
       | source | app  | ver    | env     | cluster | cmd    |
@@ -49,6 +50,7 @@ Feature: Server
       | env     | <env>     |
       | cluster | <cluster> |
       | cmd     | <cmd>     |
+    And the process 'server' should consume less than '40mb' of memory
 
     Examples:
       | source | app  | ver    | env     | cluster | cmd    |
@@ -76,6 +78,7 @@ Feature: Server
       | env     | <env>     |
       | cluster | <cluster> |
       | cmd     | <cmd>     |
+    And the process 'server' should consume less than '40mb' of memory
 
     Examples:
       | source | app  | ver    | env     | cluster | cmd    |
@@ -103,6 +106,7 @@ Feature: Server
       | env     | <env>     |
       | cluster | <cluster> |
       | cmd     | <cmd>     |
+    And the process 'server' should consume less than '40mb' of memory
 
     Examples:
       | source | app  | ver    | env     | cluster | cmd    |
@@ -129,6 +133,7 @@ Feature: Server
       | env     | <env>     |
       | cluster | <cluster> |
       | cmd     | <cmd>     |
+    And the process 'server' should consume less than '40mb' of memory
 
     Examples:
       | source | app     | ver    | env     | cluster | cmd     |
@@ -155,6 +160,7 @@ Feature: Server
       | env     | <env>     |
       | cluster | <cluster> |
       | cmd     | <cmd>     |
+    And the process 'server' should consume less than '40mb' of memory
 
     Examples:
       | source | app  | ver    | env     | cluster | cmd    |
@@ -179,6 +185,7 @@ Feature: Server
       | env     | <env>     |
       | cluster | <cluster> |
       | cmd     | <cmd>     |
+    And the process 'server' should consume less than '40mb' of memory
 
     Examples:
       | source | app  | ver    | env     | cluster | cmd    |
@@ -214,6 +221,7 @@ Feature: Server
       | cmd     | <cmd>     |
     And I should reset the proxy for service 'vault'
     And I should see "vault" as healthy
+    And the process 'server' should consume less than '40mb' of memory
 
     Examples:
       | source | app  | ver    | env     | cluster | cmd    |
