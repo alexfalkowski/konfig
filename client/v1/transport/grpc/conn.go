@@ -6,7 +6,6 @@ import (
 	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	"github.com/alexfalkowski/go-service/transport/grpc/metrics/prometheus"
 	"github.com/alexfalkowski/go-service/transport/grpc/trace/opentracing"
-	"github.com/alexfalkowski/go-service/version"
 	"github.com/alexfalkowski/konfig/client"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
@@ -22,7 +21,6 @@ type ClientConnParams struct {
 	Logger    *zap.Logger
 	Tracer    opentracing.Tracer
 	Client    *client.Config
-	Version   version.Version
 	Metrics   *prometheus.ClientMetrics
 }
 
@@ -32,7 +30,7 @@ func NewClientConn(params ClientConnParams) (*grpc.ClientConn, error) {
 	defer cancel()
 
 	conn, err := sgrpc.NewClient(
-		sgrpc.ClientParams{Context: ctx, Host: params.Client.Host, Version: params.Version, Config: params.Config},
+		sgrpc.ClientParams{Context: ctx, Host: params.Client.Host, Config: params.Config},
 		sgrpc.WithClientLogger(params.Logger), sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientDialOption(grpc.WithBlock()),
 		sgrpc.WithClientMetrics(params.Metrics),
 	)
