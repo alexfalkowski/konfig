@@ -18,11 +18,11 @@ vendor:
 
 # Build release binary
 build:
-	go build -race -ldflags="-X 'github.com/alexfalkowski/konfig/cmd.Version=latest'" -mod vendor -o konfig main.go
+	go build -ldflags="-X 'github.com/alexfalkowski/konfig/cmd.Version=latest'" -mod vendor -o konfig main.go
 
 # Build test binary
 build-test:
-	go test -race -ldflags="-X 'github.com/alexfalkowski/konfig/cmd.Version=latest'" -mod vendor -c -tags features -covermode=atomic -o konfig -coverpkg=./... github.com/alexfalkowski/konfig
+	go test -ldflags="-X 'github.com/alexfalkowski/konfig/cmd.Version=latest'" -mod vendor -c -tags features -covermode=count -o konfig -coverpkg=./... github.com/alexfalkowski/konfig
 
 # Lint all the go code
 go-lint:
