@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.6](https://github.com/alexfalkowski/konfig/compare/v1.19.5...v1.19.6) (2022-05-15)
+
+
+### Bug Fixes
+
+* **server:** race in register ([#86](https://github.com/alexfalkowski/konfig/issues/86)) ([c11b3fc](https://github.com/alexfalkowski/konfig/commit/c11b3fc7275ed1bf08b22d24bcbc03f731510875))
+
 ### [1.19.5](https://github.com/alexfalkowski/konfig/compare/v1.19.4...v1.19.5) (2022-05-14)
 
 ### [1.19.4](https://github.com/alexfalkowski/konfig/compare/v1.19.3...v1.19.4) (2022-05-14)
