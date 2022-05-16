@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alexfalkowski/go-health v1.10.3
-	github.com/alexfalkowski/go-service v1.66.1
+	github.com/alexfalkowski/go-service v1.66.7
 	github.com/go-git/go-billy/v5 v5.3.1
 	github.com/go-git/go-git/v5 v5.4.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.0
@@ -79,7 +79,7 @@ require (
 	github.com/klauspost/compress v1.15.4 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
-	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
+	github.com/matttproud/golang_protobuf_extensions v1.0.2-0.20181231171920-c182affec369 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
