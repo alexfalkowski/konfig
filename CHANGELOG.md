@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.10](https://github.com/alexfalkowski/konfig/compare/v1.19.9...v1.19.10) (2022-05-18)
+
+
+### Bug Fixes
+
+* **cmd:** use grpc for client ([#90](https://github.com/alexfalkowski/konfig/issues/90)) ([11d61b9](https://github.com/alexfalkowski/konfig/commit/11d61b9925e5b4aadcb76c772b750ee4b7408203))
+
 ### [1.19.9](https://github.com/alexfalkowski/konfig/compare/v1.19.8...v1.19.9) (2022-05-18)
 
 ### [1.19.8](https://github.com/alexfalkowski/konfig/compare/v1.19.7...v1.19.8) (2022-05-17)
