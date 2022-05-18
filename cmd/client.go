@@ -11,5 +11,5 @@ import (
 // ClientOptions for cmd.
 var ClientOptions = []fx.Option{
 	fx.NopLogger, fx.Provide(NewVersion), config.Module, logger.ZapModule,
-	transport.GRPCModule, v1.Module,
+	transport.Module, v1.Module,
 }
