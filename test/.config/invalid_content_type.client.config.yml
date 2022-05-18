@@ -9,7 +9,7 @@ transport:
       timeout: 2s
       attempts: 3
 client:
-  host: localhost:9090
+  host: localhost:8080
   timeout: 1s
   application: test
   version: v1.6.0

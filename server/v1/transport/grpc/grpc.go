@@ -4,31 +4,32 @@ import (
 	"context"
 	"fmt"
 
-	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
+	"github.com/alexfalkowski/go-service/transport"
+	"github.com/alexfalkowski/go-service/transport/grpc"
 	"github.com/alexfalkowski/go-service/transport/grpc/metrics/prometheus"
 	"github.com/alexfalkowski/go-service/transport/grpc/trace/opentracing"
-	shttp "github.com/alexfalkowski/go-service/transport/http"
+	"github.com/alexfalkowski/go-service/transport/http"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/server/config"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
-	"google.golang.org/grpc"
 )
 
 // RegisterParams for gRPC.
 type RegisterParams struct {
 	fx.In
 
-	Lifecycle    fx.Lifecycle
-	GRPCServer   *grpc.Server
-	HTTPServer   *shttp.Server
-	GRPCConfig   *sgrpc.Config
-	Logger       *zap.Logger
-	Tracer       opentracing.Tracer
-	Configurator source.Configurator
-	Transformer  *config.Transformer
-	Metrics      *prometheus.ClientMetrics
+	Lifecycle       fx.Lifecycle
+	GRPCServer      *grpc.Server
+	HTTPServer      *http.Server
+	GRPCConfig      *grpc.Config
+	TransportConfig *transport.Config
+	Logger          *zap.Logger
+	Tracer          opentracing.Tracer
+	Configurator    source.Configurator
+	Transformer     *config.Transformer
+	Metrics         *prometheus.ClientMetrics
 }
 
 // Register server.
@@ -36,11 +37,11 @@ func Register(params RegisterParams) error {
 	ctx := context.Background()
 	server := NewServer(ServerParams{Configurator: params.Configurator, Transformer: params.Transformer})
 
-	v1.RegisterServiceServer(params.GRPCServer, server)
+	v1.RegisterServiceServer(params.GRPCServer.Server, server)
 
-	conn, err := sgrpc.NewClient(
-		sgrpc.ClientParams{Context: ctx, Host: fmt.Sprintf("127.0.0.1:%s", params.GRPCConfig.Port), Config: params.GRPCConfig},
-		sgrpc.WithClientLogger(params.Logger), sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientMetrics(params.Metrics),
+	conn, err := grpc.NewClient(
+		grpc.ClientParams{Context: ctx, Host: fmt.Sprintf("127.0.0.1:%s", params.TransportConfig.Port), Config: params.GRPCConfig},
+		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Metrics),
 	)
 	if err != nil {
 		return err

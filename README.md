@@ -111,7 +111,7 @@ To configure we just need the have the following configuration:
 
 ```yaml
 client:
-  host: localhost:9090
+  host: localhost:8080
   timeout: 5s
   application: test
   version: v1.5.0
