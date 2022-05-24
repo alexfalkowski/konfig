@@ -4,15 +4,15 @@ go 1.18
 
 require (
 	github.com/alexfalkowski/go-health v1.10.3
-	github.com/alexfalkowski/go-service v1.71.0
+	github.com/alexfalkowski/go-service v1.71.3
 	github.com/go-git/go-billy/v5 v5.3.1
 	github.com/go-git/go-git/v5 v5.4.2
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.0
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.2
 	github.com/hashicorp/vault/api v1.5.0
 	github.com/opentracing/opentracing-go v1.2.0
 	go.uber.org/fx v1.17.1
 	go.uber.org/zap v1.21.0
-	google.golang.org/genproto v0.0.0-20220505152158-f39f71e6c8f3
+	google.golang.org/genproto v0.0.0-20220519153652-3a47de7e79bd
 	google.golang.org/grpc v1.46.2
 	google.golang.org/protobuf v1.28.0
 )
