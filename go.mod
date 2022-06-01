@@ -7,7 +7,7 @@ require (
 	github.com/alexfalkowski/go-service v1.71.6
 	github.com/go-git/go-billy/v5 v5.3.1
 	github.com/go-git/go-git/v5 v5.4.2
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.2
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.3
 	github.com/hashicorp/vault/api v1.6.0
 	github.com/opentracing/opentracing-go v1.2.0
 	go.uber.org/fx v1.17.1
