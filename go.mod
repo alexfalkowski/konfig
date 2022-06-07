@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alexfalkowski/go-health v1.10.3
-	github.com/alexfalkowski/go-service v1.71.8
+	github.com/alexfalkowski/go-service v1.71.9
 	github.com/go-git/go-billy/v5 v5.3.1
 	github.com/go-git/go-git/v5 v5.4.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.3
@@ -78,7 +78,7 @@ require (
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
-	github.com/klauspost/compress v1.15.5 // indirect
+	github.com/klauspost/compress v1.15.6 // indirect
 	github.com/lib/pq v1.10.6 // indirect
 	github.com/linxGnu/mssqlx v1.1.6 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
