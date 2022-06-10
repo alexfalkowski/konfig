@@ -3,7 +3,7 @@ module github.com/alexfalkowski/konfig
 go 1.18
 
 require (
-	github.com/alexfalkowski/go-health v1.10.3
+	github.com/alexfalkowski/go-health v1.10.4
 	github.com/alexfalkowski/go-service v1.71.9
 	github.com/go-git/go-billy/v5 v5.3.1
 	github.com/go-git/go-git/v5 v5.4.2
