@@ -4,27 +4,20 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"io"
 	"os"
+	"path/filepath"
 	"sync"
 
 	"github.com/alexfalkowski/go-service/meta"
 	serrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/alexfalkowski/konfig/source/configurator/trace/opentracing"
-	"github.com/go-git/go-billy/v5"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
 )
 
-const buffSize = 8192
-
 // NewConfigurator for git.
 func NewConfigurator(cfg *Config, tracer opentracing.Tracer) *Configurator {
-	if cfg.Token == "" {
-		cfg.Token = os.Getenv("KONFIG_GIT_TOKEN")
-	}
-
 	return &Configurator{cfg: cfg, tracer: tracer}
 }
 
@@ -53,57 +46,39 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 		return nil, serrors.ErrNotFound
 	}
 
-	file, err := c.file(ctx, app, ver, env, cluster, cmd)
+	if err := c.checkout(ctx, app, ver); err != nil {
+		meta.WithAttribute(ctx, "git.checkout_error", err.Error())
+
+		return nil, serrors.ErrNotFound
+	}
+
+	var path string
+
+	if cluster == "*" {
+		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd))
+	} else {
+		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, cluster, cmd))
+	}
+
+	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		meta.WithAttribute(ctx, "git.file_error", err.Error())
 
 		return nil, serrors.ErrNotFound
 	}
 
-	return c.bytes(file), nil
+	return data, nil
 }
 
-func (c *Configurator) bytes(reader io.Reader) []byte {
-	data := make([]byte, 0)
-	buf := make([]byte, buffSize)
+func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
+	tag := fmt.Sprintf("%s/%s", app, ver)
 
-	for {
-		n, err := reader.Read(buf)
-		if err == io.EOF {
-			break
-		}
-
-		data = append(data, buf[:n]...)
-	}
-
-	return data
-}
-
-func (c *Configurator) file(ctx context.Context, app, ver, env, cluster, cmd string) (billy.File, error) {
-	var path string
-
-	if cluster == "*" {
-		path = fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd)
-	} else {
-		path = fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, cluster, cmd)
-	}
-
-	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", fmt.Sprintf("get-file %s", path))
+	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", fmt.Sprintf("checkout %s", tag))
 	defer span.Finish()
 
 	tree, _ := c.repo.Worktree()
 
-	err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(fmt.Sprintf("%s/%s", app, ver))})
-	if err != nil {
-		return nil, err
-	}
-
-	file, err := tree.Filesystem.Open(path)
-	if err != nil {
-		return nil, err
-	}
-
-	return file, nil
+	return tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(tag)})
 }
 
 func (c *Configurator) pull(ctx context.Context) error {
@@ -135,7 +110,7 @@ func (c *Configurator) clone(ctx context.Context) error {
 		return err
 	}
 
-	opts := &git.CloneOptions{Auth: &http.BasicAuth{Username: "a", Password: c.cfg.Token}, URL: c.cfg.URL}
+	opts := &git.CloneOptions{Auth: &http.BasicAuth{Username: "a", Password: c.cfg.GetToken()}, URL: c.cfg.URL}
 
 	r, err := git.PlainCloneContext(ctx, c.cfg.Dir, false, opts)
 	if err != nil {
