@@ -54,7 +54,7 @@ To configure we just need the have the following configuration:
 server:
   v1:
     source:
-      type: git or folder (see below)
+      kind: git or folder (see below)
 ```
 
 ### Source
@@ -69,7 +69,7 @@ To configure we just need the have the following configuration:
 
 ```yaml
 source:
-    type: git
+    kind: git
     git:
         url: https://github.com/alexfalkowski/app-config (the configuration repo)
         dir: tmp/app-config (where to clone the repo to)
@@ -92,7 +92,7 @@ To configure we just need the have the following configuration:
 
 ```yaml
 source:
-    type: folder
+    kind: folder
     folder:
         dir: .config (the folder where the configurations can be found)
 ```

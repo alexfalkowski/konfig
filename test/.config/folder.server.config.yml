@@ -20,6 +20,6 @@ health:
 server:
   v1:
     source:
-      type: folder
+      kind: folder
       folder:
         dir: .config
