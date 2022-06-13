@@ -6,6 +6,7 @@ import (
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
 	"github.com/alexfalkowski/konfig/source/configurator/git"
+	"github.com/alexfalkowski/konfig/source/configurator/s3"
 	"github.com/alexfalkowski/konfig/source/configurator/trace/opentracing"
 	"go.uber.org/fx"
 )
@@ -31,6 +32,10 @@ func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, erro
 
 	if params.Config.IsFolder() {
 		configurator = folder.NewConfigurator(&params.Config.Folder)
+	}
+
+	if params.Config.IsS3() {
+		configurator = s3.NewConfigurator(&params.Config.S3)
 	}
 
 	if configurator == nil {

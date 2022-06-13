@@ -1,23 +1,5 @@
 # frozen_string_literal: true
 
-Given('I have a {string} valid setup') do |source|
-  Nonnative.configuration.processes[0].environment['KONFIG_GIT_TOKEN'] = ENV.fetch('GITHUB_TOKEN', nil) if source == 'git'
-end
-
-Given('I have a {string} invalid setup') do |source|
-  case source
-  when 'git'
-    Nonnative.configuration.processes[0].environment['KONFIG_GIT_TOKEN'] = 'not_a_valid_token'
-  when 'folder'
-    Nonnative.configuration.processes[0].environment['CONFIG_FILE'] = ".config/invalid.#{source}.server.config.yml"
-    @config_set = true
-  end
-end
-
-Given('I have {string} as the config file') do |source|
-  Nonnative.configuration.processes[0].environment['CONFIG_FILE'] = ".config/#{source}.server.config.yml" unless @config_set
-end
-
 When('I request a config with gRPC:') do |table|
   @response = request_with_grpc(table)
 end

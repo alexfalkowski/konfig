@@ -1,0 +1,29 @@
+trace:
+  opentracing:
+    kind: jaeger
+    host: localhost:6831
+transport:
+  port: 8080
+  http:
+    user_agent: "Konfig-server/1.0 http/1.0"
+    retry:
+      timeout: 2s
+      attempts: 3
+  grpc:
+    user_agent: "Konfig-server/1.0 grpc/1.0"
+    retry:
+      timeout: 2s
+      attempts: 3
+health:
+  duration: 1s
+  timeout: 1s
+server:
+  v1:
+    source:
+      kind: s3
+      s3:
+        access: access
+        secret: secret
+        region: eu-west-1
+        bucket: bucket
+        url: http://localhost:4566
