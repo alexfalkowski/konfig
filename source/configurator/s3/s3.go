@@ -13,13 +13,13 @@ import (
 )
 
 // NewConfigurator for s3.
-func NewConfigurator(cfg *Config) *Configurator {
+func NewConfigurator(cfg Config) *Configurator {
 	return &Configurator{cfg: cfg}
 }
 
 // Configurator for s3.
 type Configurator struct {
-	cfg *Config
+	cfg Config
 }
 
 // GetConfig for s3.

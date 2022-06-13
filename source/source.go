@@ -26,19 +26,14 @@ type ConfiguratorParams struct {
 func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
 	var configurator configurator.Configurator
 
-	if params.Config.IsGit() {
-		configurator = git.NewConfigurator(&params.Config.Git, params.Tracer)
-	}
-
-	if params.Config.IsFolder() {
-		configurator = folder.NewConfigurator(&params.Config.Folder)
-	}
-
-	if params.Config.IsS3() {
-		configurator = s3.NewConfigurator(&params.Config.S3)
-	}
-
-	if configurator == nil {
+	switch {
+	case params.Config.IsGit():
+		configurator = git.NewConfigurator(params.Config.Git, params.Tracer)
+	case params.Config.IsFolder():
+		configurator = folder.NewConfigurator(params.Config.Folder)
+	case params.Config.IsS3():
+		configurator = s3.NewConfigurator(params.Config.S3)
+	default:
 		return nil, ErrNoConfigurator
 	}
 

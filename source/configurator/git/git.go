@@ -17,13 +17,13 @@ import (
 )
 
 // NewConfigurator for git.
-func NewConfigurator(cfg *Config, tracer opentracing.Tracer) *Configurator {
+func NewConfigurator(cfg Config, tracer opentracing.Tracer) *Configurator {
 	return &Configurator{cfg: cfg, tracer: tracer}
 }
 
 // Configurator for git.
 type Configurator struct {
-	cfg    *Config
+	cfg    Config
 	repo   *git.Repository
 	mux    sync.Mutex
 	tracer opentracing.Tracer
