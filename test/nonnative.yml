@@ -16,7 +16,7 @@ services:
     name: vault
     port: 8300
     proxy:
-      type: fault_injection
+      kind: fault_injection
       port: 8200
       log: reports/proxy_vault.log
       options:
