@@ -32,7 +32,7 @@ func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, erro
 	case params.Config.IsFolder():
 		configurator = folder.NewConfigurator(params.Config.Folder)
 	case params.Config.IsS3():
-		configurator = s3.NewConfigurator(params.Config.S3)
+		configurator = s3.NewConfigurator(params.Config.S3, params.Tracer)
 	default:
 		return nil, ErrNoConfigurator
 	}
