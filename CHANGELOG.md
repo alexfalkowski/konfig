@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.20.0](https://github.com/alexfalkowski/konfig/compare/v1.19.25...v1.20.0) (2022-06-13)
+
+
+### Features
+
+* rename from kind ([#112](https://github.com/alexfalkowski/konfig/issues/112)) ([d220687](https://github.com/alexfalkowski/konfig/commit/d220687b8f08d9b41c10b5de27e0c6a3efad27f4))
+
 ### [1.19.25](https://github.com/alexfalkowski/konfig/compare/v1.19.24...v1.19.25) (2022-06-11)
 
 ### [1.19.24](https://github.com/alexfalkowski/konfig/compare/v1.19.23...v1.19.24) (2022-06-10)
