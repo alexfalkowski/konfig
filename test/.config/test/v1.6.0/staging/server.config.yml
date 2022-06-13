@@ -21,7 +21,7 @@ health:
 server:
   v1:
     source:
-      type: git
+      kind: git
       git:
         url: env:GITHUB_URL
         dir: tmp/app-config

@@ -20,7 +20,7 @@ health:
 server:
   v1:
     source:
-      type: git
+      kind: git
       git:
         url: https://github.com/alexfalkowski/app-config
         dir: tmp/app-config
