@@ -7,7 +7,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/konfig/source/configurator/errors"
-	"github.com/alexfalkowski/konfig/source/configurator/trace/opentracing"
+	"github.com/alexfalkowski/konfig/source/configurator/s3/opentracing"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
@@ -34,7 +34,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 		path = fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, cluster, cmd)
 	}
 
-	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "s3", fmt.Sprintf("get-object %s:%s", c.cfg.Bucket, path))
+	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "get-object", fmt.Sprintf("%s:%s", c.cfg.Bucket, path))
 	defer span.Finish()
 
 	// nolint:staticcheck
@@ -48,9 +48,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 
 	cfg, err := config.LoadDefaultConfig(ctx, config.WithRegion(c.cfg.Region), config.WithEndpointResolver(resolver))
 	if err != nil {
-		meta.WithAttribute(ctx, "s3.config_error", err.Error())
-
-		return nil, errors.ErrNotFound
+		return nil, err
 	}
 
 	client := s3.NewFromConfig(cfg, func(o *s3.Options) {
