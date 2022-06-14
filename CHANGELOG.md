@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.22.0](https://github.com/alexfalkowski/konfig/compare/v1.21.2...v1.22.0) (2022-06-14)
+
+
+### Features
+
+* **source:** add http client ([#118](https://github.com/alexfalkowski/konfig/issues/118)) ([1add5f8](https://github.com/alexfalkowski/konfig/commit/1add5f8ba1266d52e73287b32e75a0d5af893ee6))
+
 ### [1.21.2](https://github.com/alexfalkowski/konfig/compare/v1.21.1...v1.21.2) (2022-06-14)
 
 ### [1.21.1](https://github.com/alexfalkowski/konfig/compare/v1.21.0...v1.21.1) (2022-06-14)
