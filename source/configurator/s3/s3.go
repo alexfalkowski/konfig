@@ -39,8 +39,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "get-object", fmt.Sprintf("%s:%s", c.cfg.Bucket, path))
 	defer span.Finish()
 
-	// nolint:staticcheck
-	resolver := aws.EndpointResolverFunc(func(service, region string) (aws.Endpoint, error) {
+	resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
 		if c.cfg.URL != "" {
 			return aws.Endpoint{PartitionID: "aws", URL: c.cfg.URL, SigningRegion: c.cfg.Region}, nil
 		}
@@ -48,7 +47,8 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 		return aws.Endpoint{}, &aws.EndpointNotFoundError{}
 	})
 
-	cfg, err := config.LoadDefaultConfig(ctx, config.WithRegion(c.cfg.Region), config.WithEndpointResolver(resolver), config.WithHTTPClient(c.client))
+	cfg, err := config.LoadDefaultConfig(ctx,
+		config.WithRegion(c.cfg.Region), config.WithEndpointResolverWithOptions(resolver), config.WithHTTPClient(c.client))
 	if err != nil {
 		return nil, err
 	}
