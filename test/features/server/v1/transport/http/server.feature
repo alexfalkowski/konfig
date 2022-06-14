@@ -7,7 +7,9 @@ Feature: Server
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have key "secret/data/transport/http/user_agent" with '{"data": { "value": "Konfig-server/1.0 http/1.0" }}' value in vault
+    And I have the following provider information:
+      | provider | key                                   | value                                               |
+      | vault    | secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
     When I request a config with HTTP:
       | source  | <source>  |
       | app     | <app>     |
@@ -36,7 +38,9 @@ Feature: Server
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have key "secret/data/transport/http/user_agent" with '{"data": { "value": "Konfig-server/1.0 http/1.0" }}' value in vault
+    And I have the following provider information:
+      | provider | key                                   | value                                               |
+      | vault    | secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
     When I request a config with HTTP 2 times:
       | source  | <source>  |
       | app     | <app>     |
@@ -65,7 +69,9 @@ Feature: Server
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have no key "secret/data/transport/http/user_agent" in vault
+    And I do not have the following provider information:
+      | provider | key                                   |
+      | vault    | secret/data/transport/http/user_agent |
     When I request a config with HTTP:
       | source  | <source>  |
       | app     | <app>     |
@@ -94,7 +100,9 @@ Feature: Server
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have key "secret/data/transport/http/user_agent" with '{"data": {}}' value in vault
+    And I have the following provider information:
+      | provider | key                                   | value        |
+      | vault    | secret/data/transport/http/user_agent | {"data": {}} |
     When I request a config with HTTP:
       | source  | <source>  |
       | app     | <app>     |
@@ -211,7 +219,9 @@ Feature: Server
     Given I have a "<source>" valid setup
     And I have "<source>" as the config file
     And I start the system
-    And I have key "secret/data/transport/http/user_agent" with '{"data": { "value": "Konfig-server/1.0 http/1.0" }}' value in vault
+    And I have the following provider information:
+      | provider | key                                   | value                                               |
+      | vault    | secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
     And I set the proxy for service 'vault' to 'close_all'
     And I should see "vault" as unhealthy
     When I request a config with HTTP:
