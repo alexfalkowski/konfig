@@ -11,6 +11,7 @@ import (
 	"github.com/alexfalkowski/konfig/source/configurator/s3/opentracing"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
 
@@ -39,7 +40,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "get-object", fmt.Sprintf("%s:%s", c.cfg.Bucket, path))
 	defer span.Finish()
 
-	resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
+	resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...any) (aws.Endpoint, error) {
 		if c.cfg.URL != "" {
 			return aws.Endpoint{PartitionID: "aws", URL: c.cfg.URL, SigningRegion: c.cfg.Region}, nil
 		}
@@ -47,8 +48,14 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 		return aws.Endpoint{}, &aws.EndpointNotFoundError{}
 	})
 
-	cfg, err := config.LoadDefaultConfig(ctx,
-		config.WithRegion(c.cfg.Region), config.WithEndpointResolverWithOptions(resolver), config.WithHTTPClient(c.client))
+	opts := []func(*config.LoadOptions) error{
+		config.WithRegion(c.cfg.Region),
+		config.WithEndpointResolverWithOptions(resolver),
+		config.WithHTTPClient(c.client),
+		config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(c.cfg.Access, c.cfg.Secret, "")),
+	}
+
+	cfg, err := config.LoadDefaultConfig(ctx, opts...)
 	if err != nil {
 		return nil, err
 	}

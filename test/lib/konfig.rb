@@ -5,10 +5,12 @@ require 'yaml'
 require 'base64'
 
 require 'aws-sdk-s3'
+require 'aws-sdk-ssm'
 require 'vault'
 require 'grpc/health/v1/health_services_pb'
 
 require 'konfig/s3'
+require 'konfig/ssm'
 require 'konfig/vault'
 require 'konfig/v1/http'
 require 'konfig/v1/service_services_pb'
@@ -25,6 +27,10 @@ module Konfig
 
     def s3
       @s3 ||= Konfig::S3.new
+    end
+
+    def ssm
+      @ssm ||= Konfig::SSM.new
     end
 
     def server_config(source)

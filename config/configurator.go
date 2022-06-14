@@ -4,6 +4,7 @@ import (
 	"github.com/alexfalkowski/go-service/config"
 	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/health"
+	"github.com/alexfalkowski/konfig/server/config/provider/ssm"
 	"github.com/alexfalkowski/konfig/source"
 )
 
@@ -16,6 +17,10 @@ func NewConfigurator() config.Configurator {
 
 func v1SourceConfig(cfg config.Configurator) *source.Config {
 	return &cfg.(*Config).Server.V1.Source
+}
+
+func v1SSMConfig(cfg config.Configurator) *ssm.Config {
+	return &cfg.(*Config).Server.V1.Provider.SSM
 }
 
 func clientConfig(cfg config.Configurator) *client.Config {

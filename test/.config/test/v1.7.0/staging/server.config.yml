@@ -5,12 +5,12 @@ trace:
 transport:
   port: 8080
   http:
-    user_agent: vault:secret/data/transport/http/user_agent
+    user_agent: vault:/secret/data/transport/http/user_agent
     retry:
       timeout: 2s
       attempts: 3
   grpc:
-    user_agent: ssm:secret/data/transport/grpc/user_agent
+    user_agent: ssm:/secret/data/transport/grpc/user_agent
     retry:
       timeout: 2s
       attempts: 3
