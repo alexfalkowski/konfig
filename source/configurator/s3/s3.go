@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"net/http"
 
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/konfig/source/configurator/errors"
@@ -14,14 +15,15 @@ import (
 )
 
 // NewConfigurator for s3.
-func NewConfigurator(cfg Config, tracer opentracing.Tracer) *Configurator {
-	return &Configurator{cfg: cfg, tracer: tracer}
+func NewConfigurator(cfg Config, tracer opentracing.Tracer, client *http.Client) *Configurator {
+	return &Configurator{cfg: cfg, tracer: tracer, client: client}
 }
 
 // Configurator for s3.
 type Configurator struct {
 	cfg    Config
 	tracer opentracing.Tracer
+	client *http.Client
 }
 
 // GetConfig for s3.
@@ -34,7 +36,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 		path = fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, cluster, cmd)
 	}
 
-	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "get-object", fmt.Sprintf("%s:%s", c.cfg.Bucket, path))
+	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "get-object", fmt.Sprintf("%s:%s", c.cfg.Bucket, path))
 	defer span.Finish()
 
 	// nolint:staticcheck
@@ -46,7 +48,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 		return aws.Endpoint{}, &aws.EndpointNotFoundError{}
 	})
 
-	cfg, err := config.LoadDefaultConfig(ctx, config.WithRegion(c.cfg.Region), config.WithEndpointResolver(resolver))
+	cfg, err := config.LoadDefaultConfig(ctx, config.WithRegion(c.cfg.Region), config.WithEndpointResolver(resolver), config.WithHTTPClient(c.client))
 	if err != nil {
 		return nil, err
 	}

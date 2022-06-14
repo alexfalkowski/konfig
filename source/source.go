@@ -3,6 +3,9 @@ package source
 import (
 	"errors"
 
+	"github.com/alexfalkowski/go-service/transport/http"
+	"github.com/alexfalkowski/go-service/transport/http/metrics/prometheus"
+	hopentracing "github.com/alexfalkowski/go-service/transport/http/trace/opentracing"
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
 	fopentracing "github.com/alexfalkowski/konfig/source/configurator/folder/opentracing"
@@ -11,6 +14,7 @@ import (
 	"github.com/alexfalkowski/konfig/source/configurator/s3"
 	sopentracing "github.com/alexfalkowski/konfig/source/configurator/s3/opentracing"
 	"go.uber.org/fx"
+	"go.uber.org/zap"
 )
 
 // ErrNoConfigurator is defined in the config.
@@ -21,6 +25,10 @@ type ConfiguratorParams struct {
 	fx.In
 
 	Config       *Config
+	HTTPConfig   *http.Config
+	Logger       *zap.Logger
+	HTTPTracer   hopentracing.Tracer
+	Metrics      *prometheus.ClientMetrics
 	FolderTracer fopentracing.Tracer
 	GitTracer    gopentracing.Tracer
 	S3Tracer     sopentracing.Tracer
@@ -36,7 +44,13 @@ func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, erro
 	case params.Config.IsGit():
 		configurator = git.NewConfigurator(params.Config.Git, params.GitTracer)
 	case params.Config.IsS3():
-		configurator = s3.NewConfigurator(params.Config.S3, params.S3Tracer)
+		client := http.NewClient(
+			http.ClientParams{Config: params.HTTPConfig},
+			http.WithClientLogger(params.Logger), http.WithClientTracer(params.HTTPTracer),
+			http.WithClientMetrics(params.Metrics),
+		)
+
+		configurator = s3.NewConfigurator(params.Config.S3, params.S3Tracer, client)
 	default:
 		return nil, ErrNoConfigurator
 	}
