@@ -54,7 +54,7 @@ To configure we just need the have the following configuration:
 server:
   v1:
     source:
-      kind: git or folder (see below)
+      kind: git, s3, or folder (see below)
 ```
 
 ### Source
@@ -69,20 +69,51 @@ To configure we just need the have the following configuration:
 
 ```yaml
 source:
-    kind: git
-    git:
-        url: https://github.com/alexfalkowski/app-config (the configuration repo)
-        dir: tmp/app-config (where to clone the repo to)
-        token: a GitHub token or can be set in KONFIG_GIT_TOKEN env variable
+  kind: git
+  git:
+    url: https://github.com/alexfalkowski/app-config (the configuration repo)
+    dir: tmp/app-config (where to clone the repo to)
+    token: a GitHub token or can be set in KONFIG_GIT_TOKEN env variable
 ```
 
 We expect the repo to have the following conventions:
 - Each application name is at the root of the repository.
 - Under the application we have the environments (staging, production, etc).
-- Under each environment we have the configuration that follows `command.config.yml` for all clusters or a file under a specific cluster. Where command should follow the commands that your service has. Like server, worker, etc.
+- Optionally under environments, we can have cluster (eu, asia, etc).
+- Under each environment or cluster we have the configuration that follows `command.config.yml`.  Where command should follow the commands that your service has. Like server, worker, etc.
 - Versions are tracked by having the name of the service and the version. So a tag would would look like `test/v1.5.0`.
 
 Take a look at [app-config)](https://github.com/alexfalkowski/app-config) as an example.
+
+#### S3
+
+[S3](https://aws.amazon.com/s3/) is another way to store your configurations.
+
+To configure we just need the have the following configuration:
+
+```yaml
+source:
+  kind: s3
+  s3:
+    access: Specifies an AWS access key associated with an IAM user or role.
+    secret: Specifies the secret key associated with the access key. This is essentially the "password" for the access key.
+    region: AWS Region to send the request to.
+    bucket: The bucket that contains all the configs.
+```
+
+We expect that the folders to have the following conventions:
+- Each application name is at the root of the folder.
+- Each version is under the application and is in the format of `v1.5.0`
+- Under the version we have the environments (staging, production, etc).
+- Optionally under environments, we can have cluster (eu, asia, etc).
+- Under each environment or cluster we have the configuration that follows `command.config.yml`.  Where command should follow the commands that your service has. Like server, worker, etc.
+
+As an examples:
+
+```yaml
+s3://bucket/test/v1.5.0/production/server.config.yml
+s3://bucket/test/v1.5.0/production/eu/server.config.yml
+```
 
 #### Folder
 
@@ -92,16 +123,17 @@ To configure we just need the have the following configuration:
 
 ```yaml
 source:
-    kind: folder
-    folder:
-        dir: .config (the folder where the configurations can be found)
+  kind: folder
+  folder:
+    dir: .config (the folder where the configurations can be found)
 ```
 
 We expect that the folders to have the following conventions:
 - Each application name is at the root of the folder.
 - Each version is under the application and is in the format of `v1.5.0`
 - Under the version we have the environments (staging, production, etc).
-- Under each environment we have the configuration that follows `command.config.yml` for all clusters or a file under a specific cluster. Where command should follow the commands that your service has. Like server, worker, etc.
+- Optionally under environments, we can have cluster (eu, asia, etc).
+- Under each environment or cluster we have the configuration that follows `command.config.yml`.  Where command should follow the commands that your service has. Like server, worker, etc.
 
 ## Client
 
