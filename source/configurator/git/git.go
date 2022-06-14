@@ -10,7 +10,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/meta"
 	serrors "github.com/alexfalkowski/konfig/source/configurator/errors"
-	"github.com/alexfalkowski/konfig/source/configurator/trace/opentracing"
+	"github.com/alexfalkowski/konfig/source/configurator/git/opentracing"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
@@ -60,6 +60,9 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, cluster, cmd))
 	}
 
+	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "read-file", path)
+	defer span.Finish()
+
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		meta.WithAttribute(ctx, "git.file_error", err.Error())
@@ -73,7 +76,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
 	tag := fmt.Sprintf("%s/%s", app, ver)
 
-	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", fmt.Sprintf("checkout %s", tag))
+	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "checkout", tag)
 	defer span.Finish()
 
 	tree, _ := c.repo.Worktree()
@@ -82,7 +85,7 @@ func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
 }
 
 func (c *Configurator) pull(ctx context.Context) error {
-	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", "pull master")
+	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "pull", plumbing.Master.String())
 	defer span.Finish()
 
 	tree, _ := c.repo.Worktree()
@@ -99,7 +102,7 @@ func (c *Configurator) pull(ctx context.Context) error {
 }
 
 func (c *Configurator) clone(ctx context.Context) error {
-	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "git", fmt.Sprintf("clone %s", c.cfg.URL))
+	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "clone", c.cfg.URL)
 	defer span.Finish()
 
 	if c.repo != nil {

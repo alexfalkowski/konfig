@@ -5,9 +5,11 @@ import (
 
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
+	fopentracing "github.com/alexfalkowski/konfig/source/configurator/folder/opentracing"
 	"github.com/alexfalkowski/konfig/source/configurator/git"
+	gopentracing "github.com/alexfalkowski/konfig/source/configurator/git/opentracing"
 	"github.com/alexfalkowski/konfig/source/configurator/s3"
-	"github.com/alexfalkowski/konfig/source/configurator/trace/opentracing"
+	sopentracing "github.com/alexfalkowski/konfig/source/configurator/s3/opentracing"
 	"go.uber.org/fx"
 )
 
@@ -18,8 +20,10 @@ var ErrNoConfigurator = errors.New("no configurator")
 type ConfiguratorParams struct {
 	fx.In
 
-	Config *Config
-	Tracer opentracing.Tracer
+	Config       *Config
+	FolderTracer fopentracing.Tracer
+	GitTracer    gopentracing.Tracer
+	S3Tracer     sopentracing.Tracer
 }
 
 // NewConfigurator for source.
@@ -27,17 +31,15 @@ func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, erro
 	var configurator configurator.Configurator
 
 	switch {
-	case params.Config.IsGit():
-		configurator = git.NewConfigurator(params.Config.Git, params.Tracer)
 	case params.Config.IsFolder():
-		configurator = folder.NewConfigurator(params.Config.Folder)
+		configurator = folder.NewConfigurator(params.Config.Folder, params.FolderTracer)
+	case params.Config.IsGit():
+		configurator = git.NewConfigurator(params.Config.Git, params.GitTracer)
 	case params.Config.IsS3():
-		configurator = s3.NewConfigurator(params.Config.S3, params.Tracer)
+		configurator = s3.NewConfigurator(params.Config.S3, params.S3Tracer)
 	default:
 		return nil, ErrNoConfigurator
 	}
-
-	configurator = opentracing.NewConfigurator(configurator, params.Tracer)
 
 	return configurator, nil
 }
