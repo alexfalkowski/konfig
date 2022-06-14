@@ -69,11 +69,11 @@ To configure we just need the have the following configuration:
 
 ```yaml
 source:
-    kind: git
-    git:
-        url: https://github.com/alexfalkowski/app-config (the configuration repo)
-        dir: tmp/app-config (where to clone the repo to)
-        token: a GitHub token or can be set in KONFIG_GIT_TOKEN env variable
+  kind: git
+  git:
+    url: https://github.com/alexfalkowski/app-config (the configuration repo)
+    dir: tmp/app-config (where to clone the repo to)
+    token: a GitHub token or can be set in KONFIG_GIT_TOKEN env variable
 ```
 
 We expect the repo to have the following conventions:
@@ -93,12 +93,12 @@ To configure we just need the have the following configuration:
 
 ```yaml
 source:
-    kind: s3
-    s3:
-        access: Specifies an AWS access key associated with an IAM user or role.
-        secret: Specifies the secret key associated with the access key. This is essentially the "password" for the access key.
-        region: AWS Region to send the request to.
-        bucket: The bucket that contains all the configs.
+  kind: s3
+  s3:
+    access: Specifies an AWS access key associated with an IAM user or role.
+    secret: Specifies the secret key associated with the access key. This is essentially the "password" for the access key.
+    region: AWS Region to send the request to.
+    bucket: The bucket that contains all the configs.
 ```
 
 We expect that the folders to have the following conventions:
@@ -123,9 +123,9 @@ To configure we just need the have the following configuration:
 
 ```yaml
 source:
-    kind: folder
-    folder:
-        dir: .config (the folder where the configurations can be found)
+  kind: folder
+  folder:
+    dir: .config (the folder where the configurations can be found)
 ```
 
 We expect that the folders to have the following conventions:
