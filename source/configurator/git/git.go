@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"net/http"
 	"os"
 	"path/filepath"
 	"sync"
@@ -13,11 +14,17 @@ import (
 	"github.com/alexfalkowski/konfig/source/configurator/git/opentracing"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
-	"github.com/go-git/go-git/v5/plumbing/transport/http"
+	gclient "github.com/go-git/go-git/v5/plumbing/transport/client"
+	ghttp "github.com/go-git/go-git/v5/plumbing/transport/http"
 )
 
 // NewConfigurator for git.
-func NewConfigurator(cfg Config, tracer opentracing.Tracer) *Configurator {
+func NewConfigurator(cfg Config, tracer opentracing.Tracer, client *http.Client) *Configurator {
+	c := ghttp.NewClient(client)
+
+	gclient.InstallProtocol("http", c)
+	gclient.InstallProtocol("https", c)
+
 	return &Configurator{cfg: cfg, tracer: tracer}
 }
 
@@ -113,7 +120,7 @@ func (c *Configurator) clone(ctx context.Context) error {
 		return err
 	}
 
-	opts := &git.CloneOptions{Auth: &http.BasicAuth{Username: "a", Password: c.cfg.GetToken()}, URL: c.cfg.URL}
+	opts := &git.CloneOptions{Auth: &ghttp.BasicAuth{Username: "a", Password: c.cfg.GetToken()}, URL: c.cfg.URL}
 
 	r, err := git.PlainCloneContext(ctx, c.cfg.Dir, false, opts)
 	if err != nil {

@@ -36,20 +36,20 @@ type ConfiguratorParams struct {
 
 // NewConfigurator for source.
 func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
+	client := http.NewClient(
+		http.ClientParams{Config: params.HTTPConfig},
+		http.WithClientLogger(params.Logger), http.WithClientTracer(params.HTTPTracer),
+		http.WithClientMetrics(params.Metrics),
+	)
+
 	var configurator configurator.Configurator
 
 	switch {
 	case params.Config.IsFolder():
 		configurator = folder.NewConfigurator(params.Config.Folder, params.FolderTracer)
 	case params.Config.IsGit():
-		configurator = git.NewConfigurator(params.Config.Git, params.GitTracer)
+		configurator = git.NewConfigurator(params.Config.Git, params.GitTracer, client)
 	case params.Config.IsS3():
-		client := http.NewClient(
-			http.ClientParams{Config: params.HTTPConfig},
-			http.WithClientLogger(params.Logger), http.WithClientTracer(params.HTTPTracer),
-			http.WithClientMetrics(params.Metrics),
-		)
-
 		configurator = s3.NewConfigurator(params.Config.S3, params.S3Tracer, client)
 	default:
 		return nil, ErrNoConfigurator
