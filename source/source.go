@@ -8,7 +8,6 @@ import (
 	hopentracing "github.com/alexfalkowski/go-service/transport/http/trace/opentracing"
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
-	fopentracing "github.com/alexfalkowski/konfig/source/configurator/folder/opentracing"
 	"github.com/alexfalkowski/konfig/source/configurator/git"
 	gopentracing "github.com/alexfalkowski/konfig/source/configurator/git/opentracing"
 	"github.com/alexfalkowski/konfig/source/configurator/s3"
@@ -24,14 +23,13 @@ var ErrNoConfigurator = errors.New("no configurator")
 type ConfiguratorParams struct {
 	fx.In
 
-	Config       *Config
-	HTTPConfig   *http.Config
-	Logger       *zap.Logger
-	HTTPTracer   hopentracing.Tracer
-	Metrics      *prometheus.ClientMetrics
-	FolderTracer fopentracing.Tracer
-	GitTracer    gopentracing.Tracer
-	S3Tracer     sopentracing.Tracer
+	Config     *Config
+	HTTPConfig *http.Config
+	Logger     *zap.Logger
+	HTTPTracer hopentracing.Tracer
+	Metrics    *prometheus.ClientMetrics
+	GitTracer  gopentracing.Tracer
+	S3Tracer   sopentracing.Tracer
 }
 
 // NewConfigurator for source.
@@ -46,7 +44,7 @@ func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, erro
 
 	switch {
 	case params.Config.IsFolder():
-		configurator = folder.NewConfigurator(params.Config.Folder, params.FolderTracer)
+		configurator = folder.NewConfigurator(params.Config.Folder)
 	case params.Config.IsGit():
 		configurator = git.NewConfigurator(params.Config.Git, params.GitTracer, client)
 	case params.Config.IsS3():

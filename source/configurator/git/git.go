@@ -67,9 +67,6 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, cluster, cmd))
 	}
 
-	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "read-file", path)
-	defer span.Finish()
-
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		meta.WithAttribute(ctx, "git.file_error", err.Error())
