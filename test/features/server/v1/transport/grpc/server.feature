@@ -27,8 +27,10 @@ Feature: Server
       | source | app  | ver    | env     | cluster | cmd    |
       | git    | test | v1.6.0 | staging | *       | server |
       | folder | test | v1.6.0 | staging | *       | server |
+      | s3     | test | v1.6.0 | staging | *       | server |
       | git    | test | v1.6.0 | staging | eu      | server |
       | folder | test | v1.6.0 | staging | eu      | server |
+      | s3     | test | v1.6.0 | staging | eu      | server |
 
   Scenario Outline: Existing config with gRPC multiple times
     Given I have a "<source>" valid setup
@@ -54,8 +56,10 @@ Feature: Server
       | source | app  | ver    | env     | cluster | cmd    |
       | git    | test | v1.6.0 | staging | *       | server |
       | folder | test | v1.6.0 | staging | *       | server |
+      | s3     | test | v1.6.0 | staging | *       | server |
       | git    | test | v1.6.0 | staging | eu      | server |
       | folder | test | v1.6.0 | staging | eu      | server |
+      | s3     | test | v1.6.0 | staging | eu      | server |
 
   Scenario Outline: Existing config with missing vault value with gRPC
     Given I have a "<source>" valid setup
@@ -81,8 +85,10 @@ Feature: Server
       | source | app  | ver    | env     | cluster | cmd    |
       | git    | test | v1.6.0 | staging | *       | server |
       | folder | test | v1.6.0 | staging | *       | server |
+      | s3     | test | v1.6.0 | staging | *       | server |
       | git    | test | v1.6.0 | staging | eu      | server |
       | folder | test | v1.6.0 | staging | eu      | server |
+      | s3     | test | v1.6.0 | staging | eu      | server |
 
   Scenario Outline: Existing config with missing vault data with gRPC
     Given I have a "<source>" valid setup
@@ -108,8 +114,10 @@ Feature: Server
       | source | app  | ver    | env     | cluster | cmd    |
       | git    | test | v1.6.0 | staging | *       | server |
       | folder | test | v1.6.0 | staging | *       | server |
+      | s3     | test | v1.6.0 | staging | *       | server |
       | git    | test | v1.6.0 | staging | eu      | server |
       | folder | test | v1.6.0 | staging | eu      | server |
+      | s3     | test | v1.6.0 | staging | eu      | server |
 
   Scenario Outline: Missing config with gRPC
     Given I have a "<source>" valid setup
@@ -136,6 +144,8 @@ Feature: Server
       | git    | test    | v1.6.0 | staging | *       | missing |
       | folder | missing | v1.6.0 | staging | *       | server  |
       | folder | test    | v1.6.0 | staging | *       | missing |
+      | s3     | missing | v1.6.0 | staging | *       | server  |
+      | s3     | test    | v1.6.0 | staging | *       | missing |
 
   Scenario: Misconfigured config with gRPC
     Given I have a "<source>" invalid setup
@@ -160,6 +170,7 @@ Feature: Server
       | source | app  | ver    | env     | cluster | cmd    |
       | git    | test | v1.6.0 | staging | *       | server |
       | folder | test | v1.6.0 | staging | *       | server |
+      | s3     | test | v1.6.0 | staging | *       | server |
 
   Scenario Outline: Invalid config with gRPC
     Given I have a "<source>" valid setup
@@ -190,6 +201,10 @@ Feature: Server
       | folder | test |        | staging | *       | server |
       | folder | test | v1.6.0 |         | *       | server |
       | folder | test | v1.6.0 | staging |         |        |
+      | s3     |      | v1.6.0 | staging | *       | server |
+      | s3     | test |        | staging | *       | server |
+      | s3     | test | v1.6.0 |         | *       | server |
+      | s3     | test | v1.6.0 | staging |         |        |
 
   Scenario Outline: Existing config with gRPC and broken vault
     Given I have a "<source>" valid setup
@@ -219,3 +234,4 @@ Feature: Server
       | source | app  | ver    | env     | cluster | cmd    |
       | git    | test | v1.6.0 | staging | *       | server |
       | folder | test | v1.6.0 | staging | *       | server |
+      | s3     | test | v1.6.0 | staging | *       | server |

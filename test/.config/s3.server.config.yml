@@ -20,7 +20,10 @@ health:
 server:
   v1:
     source:
-      kind: git
-      git:
-        url: https://github.com/alexfalkowski/app-config
-        dir: tmp/app-config
+      kind: s3
+      s3:
+        access: access
+        secret: secret
+        region: eu-west-1
+        bucket: bucket
+        url: http://localhost:4566
