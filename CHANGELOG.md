@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.0](https://github.com/alexfalkowski/konfig/compare/v1.20.0...v1.21.0) (2022-06-14)
+
+
+### Features
+
+* **source:** add s3 support ([#113](https://github.com/alexfalkowski/konfig/issues/113)) ([bcfa960](https://github.com/alexfalkowski/konfig/commit/bcfa960b286c77396b577f5d6572f88e9068c7ea))
+
 ## [1.20.0](https://github.com/alexfalkowski/konfig/compare/v1.19.25...v1.20.0) (2022-06-13)
 
 
