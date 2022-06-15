@@ -13,6 +13,7 @@ var (
 		config.ConfigModule,
 		config.WatchModule,
 		fx.Provide(v1SourceConfig),
+		fx.Provide(v1SSMConfig),
 		fx.Provide(clientConfig),
 		fx.Provide(healthConfig),
 	)

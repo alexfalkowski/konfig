@@ -42,8 +42,67 @@ To retrieve an environment variables the value of the key in the config should b
 
 #### Vault
 
-You can also store values in [vault](https://learn.hashicorp.com/vault) for safe keeping. To retrieve the value of the key in the config should be `vault:secret/data/key`, ex: `vault:secret/data/transport/http/user_agent`.
+You can store values in [vault](https://learn.hashicorp.com/vault) for safe keeping.
 
+##### Key
+
+The key format is as follows:
+
+```url
+vault:/secret/data/key
+```
+
+An example:
+
+```url
+vault:/secret/data/transport/http/user_agent
+```
+
+##### Value
+
+The value format is as follows:
+
+```json
+{"data": { "value": {} }}
+```
+
+An example:
+
+```json
+{"data": { "value": "Konfig-server/1.0 http/1.0" }}
+```
+
+#### SSM
+
+You can store values in [ssm](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) for safe keeping.
+
+##### Key
+
+The key format is as follows:
+
+```url
+ssm:/secret/data/key
+```
+
+An example:
+
+```url
+ssm:/secret/data/transport/http/user_agent
+```
+
+##### Value
+
+The value format is as follows:
+
+```json
+{"data": { "value": {} }}
+```
+
+An example:
+
+```json
+{"data": { "value": "Konfig-server/1.0 http/1.0" }}
+```
 ## Server
 
 The server is defined by the following [proto contract](api/konfig/v1/service.proto). So each version of the service will have a new contract.
@@ -110,7 +169,7 @@ We expect that the folders to have the following conventions:
 
 As an examples:
 
-```yaml
+```url
 s3://bucket/test/v1.5.0/production/server.config.yml
 s3://bucket/test/v1.5.0/production/eu/server.config.yml
 ```

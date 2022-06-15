@@ -10,7 +10,7 @@ processes:
     port: 8080
     log: reports/server.log
     environment:
-      CONFIG_FILE: .config/server.config.yml
+      CONFIG_FILE: .config/folder.server.config.yml
 services:
   -
     name: vault

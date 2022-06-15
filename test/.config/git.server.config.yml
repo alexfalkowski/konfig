@@ -19,6 +19,12 @@ health:
   timeout: 1s
 server:
   v1:
+    provider:
+      ssm:
+        access: access
+        secret: secret
+        region: eu-west-1
+        url: http://localhost:4566
     source:
       kind: git
       git:

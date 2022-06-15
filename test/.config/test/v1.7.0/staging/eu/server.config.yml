@@ -1,17 +1,17 @@
 trace:
   opentracing:
-    jaeger:
-      host: localhost:6831
+    kind: jaeger
+    host: localhost:6831
 transport:
+  port: 8080
   http:
-    port: 8080
-    user_agent: vault:secret/data/transport/http/user_agent
+    user_agent: vault:/secret/data/transport/http/user_agent
     retry:
       timeout: 2s
       attempts: 3
   grpc:
     port: 9090
-    user_agent: "Konfig-server/1.0 grpc/1.0"
+    user_agent: ssm:/secret/data/transport/grpc/user_agent
     retry:
       timeout: 2s
       attempts: 3

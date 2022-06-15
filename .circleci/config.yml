@@ -6,7 +6,7 @@ jobs:
       - image: alexfalkowski/go:1.18
       - image: localstack/localstack
         environment:
-          SERVICES: s3
+          SERVICES: s3,ssm
       - image: vault
         environment:
           VAULT_DEV_ROOT_TOKEN_ID: vault-plaintext-root-token
