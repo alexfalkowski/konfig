@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.23.0](https://github.com/alexfalkowski/konfig/compare/v1.22.0...v1.23.0) (2022-06-15)
+
+
+### Features
+
+* **provider:** add ssm ([#119](https://github.com/alexfalkowski/konfig/issues/119)) ([93c2d6b](https://github.com/alexfalkowski/konfig/commit/93c2d6b93e94f526fca7cbbee9c4a139d0d2cb1a))
+
 ## [1.22.0](https://github.com/alexfalkowski/konfig/compare/v1.21.2...v1.22.0) (2022-06-14)
 
 
