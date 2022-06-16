@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.24.0](https://github.com/alexfalkowski/konfig/compare/v1.23.0...v1.24.0) (2022-06-16)
+
+
+### Features
+
+* rename to continent ([#121](https://github.com/alexfalkowski/konfig/issues/121)) ([f866fd2](https://github.com/alexfalkowski/konfig/commit/f866fd2858c9c236b6809be8cb83e74982c6b924))
+
 ## [1.23.0](https://github.com/alexfalkowski/konfig/compare/v1.22.0...v1.23.0) (2022-06-15)
 
 
