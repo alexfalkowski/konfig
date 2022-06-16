@@ -37,7 +37,7 @@ type Configurator struct {
 }
 
 // GetConfig for git.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cmd string) ([]byte, error) {
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, cmd string) ([]byte, error) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
@@ -61,10 +61,10 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cm
 
 	var path string
 
-	if cluster == "*" {
+	if continent == "*" {
 		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd))
 	} else {
-		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, cluster, cmd))
+		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, continent, cmd))
 	}
 
 	data, err := os.ReadFile(filepath.Clean(path))

@@ -14,5 +14,5 @@ client:
   application: test
   version: v1.7.0
   environment: staging
-  cluster: '*'
+  continent: '*'
   command: invalid

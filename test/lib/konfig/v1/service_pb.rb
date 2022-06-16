@@ -11,7 +11,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :application, :string, 1, json_name: "application"
       optional :version, :string, 2, json_name: "version"
       optional :environment, :string, 3, json_name: "environment"
-      optional :cluster, :string, 4, json_name: "cluster"
+      optional :continent, :string, 4, json_name: "continent"
       optional :command, :string, 5, json_name: "command"
       optional :content_type, :string, 6, json_name: "contentType"
       optional :data, :bytes, 7, json_name: "data"
@@ -20,7 +20,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :application, :string, 1, json_name: "application"
       optional :version, :string, 2, json_name: "version"
       optional :environment, :string, 3, json_name: "environment"
-      optional :cluster, :string, 4, json_name: "cluster"
+      optional :continent, :string, 4, json_name: "continent"
       optional :command, :string, 5, json_name: "command"
     end
     add_message "konfig.v1.GetConfigResponse" do

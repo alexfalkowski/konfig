@@ -21,13 +21,13 @@ type Configurator struct {
 }
 
 // GetConfig for folder.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cmd string) ([]byte, error) {
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, cmd string) ([]byte, error) {
 	var path string
 
-	if cluster == "*" {
+	if continent == "*" {
 		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s.config.yml", app, ver, env, cmd))
 	} else {
-		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, cluster, cmd))
+		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, continent, cmd))
 	}
 
 	data, err := os.ReadFile(filepath.Clean(path))
