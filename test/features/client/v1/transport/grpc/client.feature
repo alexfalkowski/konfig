@@ -5,7 +5,6 @@ Feature: Client
 
   Scenario: Download existing config
     Given I have a "folder" valid setup
-    And I have "folder" as the config file
     And I start the system
     And I have the following provider information:
       | provider | key                                   | value                                               |
@@ -16,7 +15,6 @@ Feature: Client
 
   Scenario: Download already present config
     Given I have a "folder" valid setup
-    And I have "folder" as the config file
     And I start the system
     And I have the following provider information:
       | provider | key                                   | value                                               |
@@ -28,7 +26,6 @@ Feature: Client
 
   Scenario: Download missing config
     Given I have a "folder" valid setup
-    And I have "folder" as the config file
     And I start the system
     When I download the configuration for "missing" application
     Then I should not have a configuration for "missing" application
@@ -36,7 +33,6 @@ Feature: Client
 
   Scenario: Download invalid host in config
     Given I have a "folder" valid setup
-    And I have "folder" as the config file
     And I start the system
     When I download the configuration for "invalid_host" application
     Then I should not have a configuration for "invalid_host" application
@@ -44,7 +40,6 @@ Feature: Client
 
   Scenario: Download invalid content type in config
     Given I have a "folder" valid setup
-    And I have "folder" as the config file
     And I start the system
     When I download the configuration for "invalid_content_type" application
     Then I should not have a configuration for "invalid_content_type" application

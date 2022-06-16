@@ -5,7 +5,6 @@ Feature: Server
 
   Scenario Outline: Existing config with HTTP
     Given I have a "<source>" valid setup
-    And I have "<source>" as the config file
     And I start the system
     And I have the following provider information:
       | provider | key                                    | value                                               |
@@ -42,7 +41,6 @@ Feature: Server
 
   Scenario Outline: Existing config with HTTP multiple times
     Given I have a "<source>" valid setup
-    And I have "<source>" as the config file
     And I start the system
     And I have the following provider information:
       | provider | key                                    | value                                               |
@@ -79,7 +77,6 @@ Feature: Server
 
   Scenario Outline: Existing config with non existent provider data with HTTP
     Given I have a "<source>" valid setup
-    And I have "<source>" as the config file
     And I start the system
     And I do not have the following provider information:
       | provider | key                                    |
@@ -113,7 +110,6 @@ Feature: Server
 
   Scenario Outline: Existing config with missing provider data with HTTP
     Given I have a "<source>" valid setup
-    And I have "<source>" as the config file
     And I start the system
     And I have the following provider information:
       | provider | key                                    | value        |
@@ -147,7 +143,6 @@ Feature: Server
 
   Scenario Outline: Missing config with HTTP
     Given I have a "<source>" valid setup
-    And I have "<source>" as the config file
     And I start the system
     When I request a config with HTTP:
       | source    | <source>    |
@@ -161,16 +156,15 @@ Feature: Server
 
     Examples:
       | source | app     | ver    | env     | continent | country | cmd     |
-      | git    | missing | v1.7.0 | staging | *         | *       | server  |
-      | git    | test    | v1.7.0 | staging | *         | *       | missing |
-      | folder | missing | v1.7.0 | staging | *         | *       | server  |
-      | folder | test    | v1.7.0 | staging | *         | *       | missing |
-      | s3     | missing | v1.7.0 | staging | *         | *       | server  |
-      | s3     | test    | v1.7.0 | staging | *         | *       | missing |
+      | git    | missing | v1.8.0 | staging | *         | *       | server  |
+      | git    | test    | v1.8.0 | staging | *         | *       | missing |
+      | folder | missing | v1.8.0 | staging | *         | *       | server  |
+      | folder | test    | v1.8.0 | staging | *         | *       | missing |
+      | s3     | missing | v1.8.0 | staging | *         | *       | server  |
+      | s3     | test    | v1.8.0 | staging | *         | *       | missing |
 
   Scenario: Misconfigured config with HTTP
     Given I have a "<source>" invalid setup
-    And I have "<source>" as the config file
     And I start the system
     When I request a config with HTTP:
       | source    | <source>    |
@@ -180,7 +174,7 @@ Feature: Server
       | continent | <continent> |
       | country   | <country>   |
       | cmd       | <cmd>       |
-    Then I should receive a missing config from HTTP
+    Then I should receive an internal error from HTTP
 
     Examples:
       | source | app  | ver    | env     | continent | country | cmd    |
@@ -190,7 +184,6 @@ Feature: Server
 
   Scenario Outline: Invalid config with HTTP
     Given I have a "<source>" valid setup
-    And I have "<source>" as the config file
     And I start the system
     When I request a config with HTTP:
       | source | <source> |
@@ -217,7 +210,6 @@ Feature: Server
 
   Scenario Outline: Existing config with HTTP and broken vault
     Given I have a "<source>" valid setup
-    And I have "<source>" as the config file
     And I start the system
     And I have the following provider information:
       | provider | key                                    | value                                               |
