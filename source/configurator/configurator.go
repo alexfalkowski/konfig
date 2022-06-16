@@ -4,7 +4,7 @@ import (
 	"context"
 )
 
-// Configurator for source.
+// Configurator for configurator.
 type Configurator interface {
-	GetConfig(ctx context.Context, app, ver, env, continent, cmd string) ([]byte, error)
+	GetConfig(ctx context.Context, app, ver, env, continent, country, cmd string) ([]byte, error)
 }

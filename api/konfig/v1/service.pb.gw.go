@@ -82,6 +82,16 @@ func request_Service_GetConfig_0(ctx context.Context, marshaler runtime.Marshale
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "continent", err)
 	}
 
+	val, ok = pathParams["country"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "country")
+	}
+
+	protoReq.Country, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "country", err)
+	}
+
 	val, ok = pathParams["command"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "command")
@@ -148,6 +158,16 @@ func local_request_Service_GetConfig_0(ctx context.Context, marshaler runtime.Ma
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "continent", err)
 	}
 
+	val, ok = pathParams["country"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "country")
+	}
+
+	protoReq.Country, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "country", err)
+	}
+
 	val, ok = pathParams["command"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "command")
@@ -176,7 +196,7 @@ func RegisterServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/konfig.v1.Service/GetConfig", runtime.WithHTTPPathPattern("/v1/config/{application}/{version}/{environment}/{continent}/{command}"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/konfig.v1.Service/GetConfig", runtime.WithHTTPPathPattern("/v1/config/{application}/{version}/{environment}/{continent}/{country}/{command}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -239,7 +259,7 @@ func RegisterServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/konfig.v1.Service/GetConfig", runtime.WithHTTPPathPattern("/v1/config/{application}/{version}/{environment}/{continent}/{command}"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/konfig.v1.Service/GetConfig", runtime.WithHTTPPathPattern("/v1/config/{application}/{version}/{environment}/{continent}/{country}/{command}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -259,7 +279,7 @@ func RegisterServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 }
 
 var (
-	pattern_Service_GetConfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6}, []string{"v1", "config", "application", "version", "environment", "continent", "command"}, ""))
+	pattern_Service_GetConfig_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6, 1, 0, 4, 1, 5, 7}, []string{"v1", "config", "application", "version", "environment", "continent", "country", "command"}, ""))
 )
 
 var (

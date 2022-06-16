@@ -37,12 +37,17 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		req.Continent = "*"
 	}
 
+	if req.Country == "" {
+		req.Country = "*"
+	}
+
 	resp := &v1.GetConfigResponse{
 		Config: &v1.Config{
 			Application: req.Application,
 			Version:     req.Version,
 			Environment: req.Environment,
 			Continent:   req.Continent,
+			Country:     req.Country,
 			Command:     req.Command,
 			ContentType: "application/yaml",
 		},
@@ -52,9 +57,9 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		return resp, err
 	}
 
-	data, err := s.conf.GetConfig(ctx, req.Application, req.Version, req.Environment, req.Continent, req.Command)
+	data, err := s.conf.GetConfig(ctx, req.Application, req.Version, req.Environment, req.Continent, req.Country, req.Command)
 	if err != nil && errors.Is(err, kerrors.ErrNotFound) {
-		msg := fmt.Sprintf("%s/%s/%s/%s/%s was not found", req.Application, req.Version, req.Environment, req.Continent, req.Command)
+		msg := fmt.Sprintf("%s/%s/%s/%s/%s/%s was not found", req.Application, req.Version, req.Environment, req.Continent, req.Country, req.Command)
 
 		return resp, status.Error(codes.NotFound, msg)
 	}

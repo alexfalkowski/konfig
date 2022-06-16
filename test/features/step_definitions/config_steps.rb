@@ -7,7 +7,8 @@ Given('I have a {string} valid setup') do |source|
   when 's3'
     files = [
       ['test/v1.8.0/staging/server.config.yml', '.config/test/v1.8.0/staging/server.config.yml'],
-      ['test/v1.8.0/staging/eu/server.config.yml', '.config/test/v1.8.0/staging/eu/server.config.yml']
+      ['test/v1.8.0/staging/eu/server.config.yml', '.config/test/v1.8.0/staging/eu/server.config.yml'],
+      ['test/v1.8.0/staging/eu/de/server.config.yml', '.config/test/v1.8.0/staging/eu/de/server.config.yml']
     ]
     files.each { |f| Konfig.s3.write(f[0], File.read(f[1])) }
   end
@@ -23,7 +24,8 @@ Given('I have a {string} invalid setup') do |source|
   when 's3'
     files = [
       'test/v1.8.0/staging/server.config.yml',
-      'test/v1.8.0/staging/eu/server.config.yml'
+      'test/v1.8.0/staging/eu/server.config.yml',
+      'test/v1.8.0/staging/eu/de/server.config.yml'
     ]
     files.each { |f| Konfig.s3.delete(f) }
   end

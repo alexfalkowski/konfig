@@ -15,4 +15,5 @@ client:
   version: v1.8.0
   environment: staging
   continent: '*'
+  country: '*'
   command: invalid
