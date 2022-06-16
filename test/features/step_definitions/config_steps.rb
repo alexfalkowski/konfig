@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Given('I have a {string} valid setup') do |source|
+  Nonnative.configuration.processes[0].environment['CONFIG_FILE'] = ".config/#{source}.server.config.yml"
+
   case source
   when 'git'
     Nonnative.configuration.processes[0].environment['KONFIG_GIT_TOKEN'] = ENV.fetch('GITHUB_TOKEN', nil)
@@ -15,12 +17,9 @@ Given('I have a {string} valid setup') do |source|
 end
 
 Given('I have a {string} invalid setup') do |source|
+  Nonnative.configuration.processes[0].environment['CONFIG_FILE'] = ".config/invalid.#{source}.server.config.yml"
+
   case source
-  when 'git'
-    Nonnative.configuration.processes[0].environment['KONFIG_GIT_TOKEN'] = 'not_a_valid_token'
-  when 'folder'
-    Nonnative.configuration.processes[0].environment['CONFIG_FILE'] = ".config/invalid.#{source}.server.config.yml"
-    @config_set = true
   when 's3'
     files = [
       'test/v1.8.0/staging/server.config.yml',
@@ -29,8 +28,4 @@ Given('I have a {string} invalid setup') do |source|
     ]
     files.each { |f| Konfig.s3.delete(f) }
   end
-end
-
-Given('I have {string} as the config file') do |source|
-  Nonnative.configuration.processes[0].environment['CONFIG_FILE'] = ".config/#{source}.server.config.yml" unless @config_set
 end

@@ -2,17 +2,19 @@ package s3
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
 
 	"github.com/alexfalkowski/go-service/meta"
-	"github.com/alexfalkowski/konfig/source/configurator/errors"
+	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/alexfalkowski/konfig/source/configurator/s3/opentracing"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/aws/aws-sdk-go-v2/service/s3/types"
 )
 
 // NewConfigurator for s3.
@@ -62,14 +64,19 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	if err != nil {
 		meta.WithAttribute(ctx, "s3.get_object_error", err.Error())
 
-		return nil, errors.ErrNotFound
+		var nerr *types.NoSuchKey
+		if errors.As(err, &nerr) {
+			return nil, cerrors.ErrNotFound
+		}
+
+		return nil, err
 	}
 
 	data, err := io.ReadAll(out.Body)
 	if err != nil {
 		meta.WithAttribute(ctx, "s3.read_all_error", err.Error())
 
-		return nil, errors.ErrNotFound
+		return nil, err
 	}
 
 	return data, nil

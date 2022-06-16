@@ -58,10 +58,14 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 	}
 
 	data, err := s.conf.GetConfig(ctx, req.Application, req.Version, req.Environment, req.Continent, req.Country, req.Command)
-	if err != nil && errors.Is(err, kerrors.ErrNotFound) {
-		msg := fmt.Sprintf("%s/%s/%s/%s/%s/%s was not found", req.Application, req.Version, req.Environment, req.Continent, req.Country, req.Command)
+	if err != nil {
+		if errors.Is(err, kerrors.ErrNotFound) {
+			msg := fmt.Sprintf("%s/%s/%s/%s/%s/%s was not found", req.Application, req.Version, req.Environment, req.Continent, req.Country, req.Command)
 
-		return resp, status.Error(codes.NotFound, msg)
+			return resp, status.Error(codes.NotFound, msg)
+		}
+
+		return resp, status.Error(codes.Internal, "could get config")
 	}
 
 	data, err = s.trans.Transform(ctx, data)

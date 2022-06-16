@@ -22,13 +22,23 @@ type Configurator struct {
 
 // GetConfig for folder.
 func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd string) ([]byte, error) {
+	if _, err := os.Stat(c.cfg.Dir); os.IsNotExist(err) {
+		meta.WithAttribute(ctx, "folder.dir_error", err.Error())
+
+		return nil, err
+	}
+
 	path := filepath.Join(c.cfg.Dir, c.path(app, ver, env, continent, country, cmd))
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		meta.WithAttribute(ctx, "folder.file_error", err.Error())
 
-		return nil, errors.ErrNotFound
+		if os.IsNotExist(err) {
+			return nil, errors.ErrNotFound
+		}
+
+		return nil, err
 	}
 
 	return data, nil

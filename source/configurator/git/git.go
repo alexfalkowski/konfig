@@ -10,7 +10,7 @@ import (
 	"sync"
 
 	"github.com/alexfalkowski/go-service/meta"
-	serrors "github.com/alexfalkowski/konfig/source/configurator/errors"
+	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/alexfalkowski/konfig/source/configurator/git/opentracing"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
@@ -44,19 +44,23 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	if err := c.clone(ctx); err != nil {
 		meta.WithAttribute(ctx, "git.clone_error", err.Error())
 
-		return nil, serrors.ErrNotFound
+		return nil, err
 	}
 
 	if err := c.pull(ctx); err != nil {
 		meta.WithAttribute(ctx, "git.pull_error", err.Error())
 
-		return nil, serrors.ErrNotFound
+		return nil, err
 	}
 
 	if err := c.checkout(ctx, app, ver); err != nil {
 		meta.WithAttribute(ctx, "git.checkout_error", err.Error())
 
-		return nil, serrors.ErrNotFound
+		if errors.Is(err, plumbing.ErrReferenceNotFound) {
+			return nil, cerrors.ErrNotFound
+		}
+
+		return nil, err
 	}
 
 	path := filepath.Join(c.cfg.Dir, c.path(app, env, continent, country, cmd))
@@ -65,7 +69,11 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	if err != nil {
 		meta.WithAttribute(ctx, "git.file_error", err.Error())
 
-		return nil, serrors.ErrNotFound
+		if os.IsNotExist(err) {
+			return nil, cerrors.ErrNotFound
+		}
+
+		return nil, err
 	}
 
 	return data, nil
