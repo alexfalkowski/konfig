@@ -135,14 +135,22 @@ source:
     token: a GitHub token or can be set in KONFIG_GIT_TOKEN env variable
 ```
 
-We expect the repo to have the following conventions:
-- Each application name is at the root of the repository.
-- Under the application we have the environments (staging, production, etc).
-- Optionally under environments, we can have continent (eu, asia, etc).
-- Under each environment or continent we have the configuration that follows `command.config.yml`.  Where command should follow the commands that your service has. Like server, worker, etc.
-- Versions are tracked by having the name of the service and the version. So a tag would would look like `test/v1.5.0`.
+We expect that the folders to have the following conventions:
 
-Take a look at [app-config)](https://github.com/alexfalkowski/app-config) as an example.
+```tree
+application
+└── environment
+    ├── continent
+    │   ├── country
+    │   │   └── app.config.yml
+    │   └── app.config.yml
+    └── app.config.yml
+```
+
+The tag name should be `application/version`
+
+Some examples:
+- [app-config](https://github.com/alexfalkowski/app-config)
 
 #### S3
 
@@ -161,17 +169,24 @@ source:
 ```
 
 We expect that the folders to have the following conventions:
-- Each application name is at the root of the folder.
-- Each version is under the application and is in the format of `v1.5.0`
-- Under the version we have the environments (staging, production, etc).
-- Optionally under environments, we can have continent (eu, asia, etc).
-- Under each environment or continent we have the configuration that follows `command.config.yml`.  Where command should follow the commands that your service has. Like server, worker, etc.
 
-As an examples:
+```tree
+application
+└── version
+    └── environment
+        ├── continent
+        │   ├── country
+        │   │   └── app.config.yml
+        │   └── app.config.yml
+        └── app.config.yml
+```
+
+Some examples:
 
 ```url
 s3://bucket/test/v1.5.0/production/server.config.yml
 s3://bucket/test/v1.5.0/production/eu/server.config.yml
+s3://bucket/test/v1.5.0/production/eu/de/server.config.yml
 ```
 
 #### Folder
@@ -188,11 +203,17 @@ source:
 ```
 
 We expect that the folders to have the following conventions:
-- Each application name is at the root of the folder.
-- Each version is under the application and is in the format of `v1.5.0`
-- Under the version we have the environments (staging, production, etc).
-- Optionally under environments, we can have continent (eu, asia, etc).
-- Under each environment or continent we have the configuration that follows `command.config.yml`.  Where command should follow the commands that your service has. Like server, worker, etc.
+
+```tree
+application
+└── version
+    └── environment
+        ├── continent
+        │   ├── country
+        │   │   └── app.config.yml
+        │   └── app.config.yml
+        └── app.config.yml
+```
 
 ## Client
 
@@ -208,6 +229,7 @@ client:
   version: v1.5.0
   environment: staging
   continent: '*'
+  country: '*'
   command: server
 ```
 

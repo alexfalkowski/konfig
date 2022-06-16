@@ -37,7 +37,7 @@ type Configurator struct {
 }
 
 // GetConfig for git.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, cmd string) ([]byte, error) {
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd string) ([]byte, error) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
@@ -59,13 +59,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		return nil, serrors.ErrNotFound
 	}
 
-	var path string
-
-	if continent == "*" {
-		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd))
-	} else {
-		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, continent, cmd))
-	}
+	path := filepath.Join(c.cfg.Dir, c.path(app, env, continent, country, cmd))
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
@@ -127,4 +121,16 @@ func (c *Configurator) clone(ctx context.Context) error {
 	c.repo = r
 
 	return nil
+}
+
+func (c *Configurator) path(app, env, continent, country, cmd string) string {
+	if continent == "*" && country == "*" {
+		return fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd)
+	}
+
+	if continent != "*" && country == "*" {
+		return fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, continent, cmd)
+	}
+
+	return fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, env, continent, country, cmd)
 }

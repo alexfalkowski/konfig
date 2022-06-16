@@ -11,7 +11,7 @@ module Konfig
 
         default_headers.merge!(headers)
 
-        get("v1/config/#{params[:app]}/#{params[:ver]}/#{params[:env]}/#{params[:continent]}/#{params[:cmd]}", headers, 10)
+        get("v1/config/#{params[:app]}/#{params[:ver]}/#{params[:env]}/#{params[:continent]}/#{params[:country]}/#{params[:cmd]}", headers, 10)
       end
     end
   end

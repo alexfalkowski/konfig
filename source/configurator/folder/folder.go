@@ -21,14 +21,8 @@ type Configurator struct {
 }
 
 // GetConfig for folder.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, cmd string) ([]byte, error) {
-	var path string
-
-	if continent == "*" {
-		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s.config.yml", app, ver, env, cmd))
-	} else {
-		path = filepath.Join(c.cfg.Dir, fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, continent, cmd))
-	}
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd string) ([]byte, error) {
+	path := filepath.Join(c.cfg.Dir, c.path(app, ver, env, continent, country, cmd))
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
@@ -38,4 +32,16 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	}
 
 	return data, nil
+}
+
+func (c *Configurator) path(app, ver, env, continent, country, cmd string) string {
+	if continent == "*" && country == "*" {
+		return fmt.Sprintf("%s/%s/%s/%s.config.yml", app, ver, env, cmd)
+	}
+
+	if continent != "*" && country == "*" {
+		return fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, continent, cmd)
+	}
+
+	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.config.yml", app, ver, env, continent, country, cmd)
 }
