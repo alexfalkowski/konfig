@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.25.0](https://github.com/alexfalkowski/konfig/compare/v1.24.1...v1.25.0) (2022-06-16)
+
+
+### Features
+
+* add country ([#123](https://github.com/alexfalkowski/konfig/issues/123)) ([c85f135](https://github.com/alexfalkowski/konfig/commit/c85f13538cd597071807c6aef2b55d14b1d76112))
+
 ### [1.24.1](https://github.com/alexfalkowski/konfig/compare/v1.24.0...v1.24.1) (2022-06-16)
 
 ## [1.24.0](https://github.com/alexfalkowski/konfig/compare/v1.23.0...v1.24.0) (2022-06-16)
