@@ -12,6 +12,6 @@ client:
   host: invalid_host
   timeout: 1s
   application: test
-  version: v1.7.0
+  version: v1.8.0
   environment: staging
   command: server
