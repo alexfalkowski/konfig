@@ -11,6 +11,6 @@ type Config struct {
 	Application string        `yaml:"application"`
 	Version     string        `yaml:"version"`
 	Environment string        `yaml:"environment"`
-	Cluster     string        `yaml:"cluster"`
+	Continent   string        `yaml:"continent"`
 	Command     string        `yaml:"command"`
 }

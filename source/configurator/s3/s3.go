@@ -28,13 +28,13 @@ type Configurator struct {
 }
 
 // GetConfig for s3.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, cluster, cmd string) ([]byte, error) {
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, cmd string) ([]byte, error) {
 	var path string
 
-	if cluster == "*" {
+	if continent == "*" {
 		path = fmt.Sprintf("%s/%s/%s/%s.config.yml", app, ver, env, cmd)
 	} else {
-		path = fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, cluster, cmd)
+		path = fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, continent, cmd)
 	}
 
 	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "get-object", fmt.Sprintf("%s:%s", c.cfg.Bucket, path))

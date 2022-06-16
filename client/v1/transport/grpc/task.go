@@ -48,7 +48,7 @@ func (t *Task) Perform(ctx context.Context) error {
 		Application: t.cfg.Application,
 		Version:     t.cfg.Version,
 		Environment: t.cfg.Environment,
-		Cluster:     t.cfg.Cluster,
+		Continent:   t.cfg.Continent,
 		Command:     t.cfg.Command,
 	}
 

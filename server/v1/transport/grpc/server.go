@@ -33,8 +33,8 @@ type Server struct {
 
 // GetConfig for gRPC.
 func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.GetConfigResponse, error) {
-	if req.Cluster == "" {
-		req.Cluster = "*"
+	if req.Continent == "" {
+		req.Continent = "*"
 	}
 
 	resp := &v1.GetConfigResponse{
@@ -42,7 +42,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 			Application: req.Application,
 			Version:     req.Version,
 			Environment: req.Environment,
-			Cluster:     req.Cluster,
+			Continent:   req.Continent,
 			Command:     req.Command,
 			ContentType: "application/yaml",
 		},
@@ -52,9 +52,9 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		return resp, err
 	}
 
-	data, err := s.conf.GetConfig(ctx, req.Application, req.Version, req.Environment, req.Cluster, req.Command)
+	data, err := s.conf.GetConfig(ctx, req.Application, req.Version, req.Environment, req.Continent, req.Command)
 	if err != nil && errors.Is(err, kerrors.ErrNotFound) {
-		msg := fmt.Sprintf("%s/%s/%s/%s/%s was not found", req.Application, req.Version, req.Environment, req.Cluster, req.Command)
+		msg := fmt.Sprintf("%s/%s/%s/%s/%s was not found", req.Application, req.Version, req.Environment, req.Continent, req.Command)
 
 		return resp, status.Error(codes.NotFound, msg)
 	}

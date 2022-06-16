@@ -17,7 +17,7 @@ Then('I should receive a valid config from gRPC:') do |table|
   expect(@response.config.application).to eq(rows['app'])
   expect(@response.config.version).to eq(rows['ver'])
   expect(@response.config.environment).to eq(rows['env'])
-  expect(@response.config.cluster).to eq(rows['cluster'])
+  expect(@response.config.continent).to eq(rows['continent'])
   expect(@response.config.command).to eq(rows['cmd'])
   expect(@response.config.content_type).to eq('application/yaml')
   expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
@@ -32,7 +32,7 @@ Then('I should receive a valid config with missing provider data from gRPC:') do
   expect(@response.config.application).to eq(rows['app'])
   expect(@response.config.version).to eq(rows['ver'])
   expect(@response.config.environment).to eq(rows['env'])
-  expect(@response.config.cluster).to eq(rows['cluster'])
+  expect(@response.config.continent).to eq(rows['continent'])
   expect(@response.config.command).to eq(rows['cmd'])
   expect(@response.config.content_type).to eq('application/yaml')
   expect(data['transport']['http']['user_agent']).to eq('/secret/data/transport/http/user_agent')
@@ -58,7 +58,7 @@ def request_with_grpc(table)
   metadata = { 'request-id' => @request_id, 'ua' => Konfig.server_config(rows['source'])['transport']['grpc']['user_agent'] }
 
   request = Konfig::V1::GetConfigRequest.new(application: rows['app'], version: rows['ver'], environment: rows['env'],
-                                             cluster: rows['cluster'], command: rows['cmd'])
+                                             continent: rows['continent'], command: rows['cmd'])
   Konfig::V1.server_grpc.get_config(request, { metadata: metadata })
 rescue StandardError => e
   e
