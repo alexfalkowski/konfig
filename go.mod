@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alexfalkowski/go-health v1.10.4
-	github.com/alexfalkowski/go-service v1.73.1
+	github.com/alexfalkowski/go-service v1.73.2
 	github.com/aws/aws-sdk-go-v2 v1.16.5
 	github.com/aws/aws-sdk-go-v2/config v1.15.11
 	github.com/aws/aws-sdk-go-v2/credentials v1.12.6
@@ -96,7 +96,7 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
-	github.com/klauspost/compress v1.15.6 // indirect
+	github.com/klauspost/compress v1.15.7 // indirect
 	github.com/lib/pq v1.10.6 // indirect
 	github.com/linxGnu/mssqlx v1.1.6 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
