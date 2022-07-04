@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alexfalkowski/go-health v1.10.4
-	github.com/alexfalkowski/go-service v1.73.2
+	github.com/alexfalkowski/go-service v1.73.3
 	github.com/aws/aws-sdk-go-v2 v1.16.6
 	github.com/aws/aws-sdk-go-v2/config v1.15.12
 	github.com/aws/aws-sdk-go-v2/credentials v1.12.7
@@ -143,7 +143,7 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20220411224347-583f2d630306 // indirect
 	golang.org/x/xerrors v0.0.0-20220411194840-2f41105eb62f // indirect
-	gopkg.in/DataDog/dd-trace-go.v1 v1.38.1 // indirect
+	gopkg.in/DataDog/dd-trace-go.v1 v1.39.0 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
