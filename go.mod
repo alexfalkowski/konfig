@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/alexfalkowski/go-health v1.10.4
-	github.com/alexfalkowski/go-service v1.73.5
+	github.com/alexfalkowski/go-service v1.73.6
 	github.com/aws/aws-sdk-go-v2 v1.16.7
 	github.com/aws/aws-sdk-go-v2/config v1.15.14
 	github.com/aws/aws-sdk-go-v2/credentials v1.12.9
@@ -17,7 +17,7 @@ require (
 	go.uber.org/fx v1.17.1
 	go.uber.org/zap v1.21.0
 	google.golang.org/genproto v0.0.0-20220524023933-508584e28198
-	google.golang.org/grpc v1.47.0
+	google.golang.org/grpc v1.48.0
 	google.golang.org/protobuf v1.28.0
 )
 
