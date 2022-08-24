@@ -11,12 +11,12 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.27.5
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.27.9
 	github.com/go-git/go-git/v5 v5.4.2
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.2
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
 	github.com/hashicorp/vault/api v1.7.2
 	github.com/opentracing/opentracing-go v1.2.0
 	go.uber.org/fx v1.18.1
 	go.uber.org/zap v1.22.0
-	google.golang.org/genproto v0.0.0-20220817144833-d7fd3f11b9b1
+	google.golang.org/genproto v0.0.0-20220822174746-9e6da59bd2fc
 	google.golang.org/grpc v1.48.0
 	google.golang.org/protobuf v1.28.1
 )
