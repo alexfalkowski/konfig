@@ -17,7 +17,7 @@ require (
 	go.uber.org/fx v1.18.1
 	go.uber.org/zap v1.22.0
 	google.golang.org/genproto v0.0.0-20220817144833-d7fd3f11b9b1
-	google.golang.org/grpc v1.48.0
+	google.golang.org/grpc v1.49.0
 	google.golang.org/protobuf v1.28.1
 )
 
