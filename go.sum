@@ -91,8 +91,8 @@ github.com/alecthomas/units v0.0.0-20190717042225-c3de453c63f4/go.mod h1:ybxpYRF
 github.com/alecthomas/units v0.0.0-20190924025748-f65c72e2690d/go.mod h1:rBZYJk541a8SKzHPHnH3zbiI+7dagKZ0cgpgrD7Fyho=
 github.com/alexfalkowski/go-health v1.10.4 h1:Rwc0919E/onEIvGIJsicvbuTEGVU1YxDWqir0WdHBM4=
 github.com/alexfalkowski/go-health v1.10.4/go.mod h1:TkTDC/lpYYNP4VKnNmSgiZexzaOdU4gDRL8j8r4c45w=
-github.com/alexfalkowski/go-service v1.74.11 h1:M/jzb+fNQtBTHKL7ebxDBMLW472VKOMjMDthECPVgV4=
-github.com/alexfalkowski/go-service v1.74.11/go.mod h1:BhZtvgvAx8i4qZ9Amd4W/Gdk97UCcKW2fOHqR9c0Uck=
+github.com/alexfalkowski/go-service v1.74.12 h1:5NCJquz4s0Pa48AXwi5nS40auDAG6C874GkXiarS340=
+github.com/alexfalkowski/go-service v1.74.12/go.mod h1:omZnYNroSf1XQu5xfMwaKYOLAOC+2sFCTvIR1XilMI8=
 github.com/andreyvit/diff v0.0.0-20170406064948-c7f18ee00883/go.mod h1:rCTlJbsFo29Kk6CurOXKm700vrz8f0KW0JNfpkRJY/8=
 github.com/andybalholm/brotli v1.0.2/go.mod h1:loMXtMfwqflxFJPmdbJO0a3KNoPuLBgiu3qAvBg8x/Y=
 github.com/andybalholm/brotli v1.0.4/go.mod h1:fO7iG3H7G2nSZ7m0zPUDn85XEX2GTukHGRSepvi9Eig=
@@ -589,8 +589,8 @@ github.com/jackc/pgx/v4 v4.6.1-0.20200606145419-4e5062306904/go.mod h1:ZDaNWkt9s
 github.com/jackc/pgx/v4 v4.8.1/go.mod h1:4HOLxrl8wToZJReD04/yB20GDwf4KBYETvlHciCnwW0=
 github.com/jackc/pgx/v4 v4.12.1-0.20210724153913-640aa07df17c/go.mod h1:1QD0+tgSXP7iUjYm9C1NxKhny7lq6ee99u/z+IHFcgs=
 github.com/jackc/pgx/v4 v4.14.0/go.mod h1:jT3ibf/A0ZVCp89rtCIN0zCJxcE74ypROmHEZYsG/j8=
-github.com/jackc/pgx/v4 v4.17.1 h1:tASdE79tX9LOQu3MMvioWT6YaZkf58ZhmLHhV4sv5WM=
-github.com/jackc/pgx/v4 v4.17.1/go.mod h1:lcxIZN44yMIrWI78a5CpucdD14hX0SBDbNRvjDBItsw=
+github.com/jackc/pgx/v4 v4.17.2 h1:0Ut0rpeKwvIVbMQ1KbMBU4h6wxehBI535LK6Flheh8E=
+github.com/jackc/pgx/v4 v4.17.2/go.mod h1:lcxIZN44yMIrWI78a5CpucdD14hX0SBDbNRvjDBItsw=
 github.com/jackc/puddle v0.0.0-20190413234325-e4ced69a3a2b/go.mod h1:m4B5Dj62Y0fbyuIc15OsIqK0+JU8nkqQjsgx7dvjSWk=
 github.com/jackc/puddle v0.0.0-20190608224051-11cab39313c9/go.mod h1:m4B5Dj62Y0fbyuIc15OsIqK0+JU8nkqQjsgx7dvjSWk=
 github.com/jackc/puddle v1.1.0/go.mod h1:m4B5Dj62Y0fbyuIc15OsIqK0+JU8nkqQjsgx7dvjSWk=
