@@ -118,7 +118,7 @@ ruby-update-dep:
 ruby-dep:
 	make -C test dep
 
- # Update all ruby deps
+# Update all ruby deps
 ruby-dep-update-all:
 	make -C test update-all
 
