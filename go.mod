@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/alexfalkowski/go-health v1.10.4
 	github.com/alexfalkowski/go-service v1.76.5
-	github.com/aws/aws-sdk-go-v2 v1.17.0
+	github.com/aws/aws-sdk-go-v2 v1.17.1
 	github.com/aws/aws-sdk-go-v2/config v1.17.9
 	github.com/aws/aws-sdk-go-v2/credentials v1.12.22
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.29.0
@@ -44,7 +44,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sso v1.11.24 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.13.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.17.0 // indirect
-	github.com/aws/smithy-go v1.13.3 // indirect
+	github.com/aws/smithy-go v1.13.4 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cenkalti/backoff/v3 v3.2.2 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
