@@ -7,7 +7,7 @@ require (
 	github.com/alexfalkowski/go-service v1.76.13
 	github.com/aws/aws-sdk-go-v2 v1.17.1
 	github.com/aws/aws-sdk-go-v2/config v1.17.11
-	github.com/aws/aws-sdk-go-v2/credentials v1.12.24
+	github.com/aws/aws-sdk-go-v2/credentials v1.13.0
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.29.1
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.32.1
 	github.com/go-git/go-git/v5 v5.4.2
