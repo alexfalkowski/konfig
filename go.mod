@@ -4,19 +4,19 @@ go 1.19
 
 require (
 	github.com/alexfalkowski/go-health v1.11.0
-	github.com/alexfalkowski/go-service v1.76.14
+	github.com/alexfalkowski/go-service v1.76.15
 	github.com/aws/aws-sdk-go-v2 v1.17.1
 	github.com/aws/aws-sdk-go-v2/config v1.18.1
 	github.com/aws/aws-sdk-go-v2/credentials v1.13.1
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.29.3
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.32.1
 	github.com/go-git/go-git/v5 v5.4.2
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.13.0
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.14.0
 	github.com/hashicorp/vault/api v1.8.2
 	github.com/opentracing/opentracing-go v1.2.0
 	go.uber.org/fx v1.18.2
 	go.uber.org/zap v1.23.0
-	google.golang.org/genproto v0.0.0-20221027153422-115e99e71e1c
+	google.golang.org/genproto v0.0.0-20221114212237-e4508ebdbee1
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
 )
