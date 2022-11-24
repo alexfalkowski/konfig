@@ -9,7 +9,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.18.2
 	github.com/aws/aws-sdk-go-v2/credentials v1.13.2
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.29.4
-	github.com/aws/aws-sdk-go-v2/service/ssm v1.33.0
+	github.com/aws/aws-sdk-go-v2/service/ssm v1.33.1
 	github.com/go-git/go-git/v5 v5.4.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.14.0
 	github.com/hashicorp/vault/api v1.8.2
