@@ -4,10 +4,10 @@ jobs:
   build:
     docker:
       - image: alexfalkowski/go:1.19
-      - image: localstack/localstack
+      - image: localstack/localstack:latest
         environment:
           SERVICES: s3,ssm
-      - image: vault
+      - image: vault:latest
         environment:
           VAULT_DEV_ROOT_TOKEN_ID: vault-plaintext-root-token
     steps:
@@ -55,3 +55,4 @@ workflows:
           filters:
             branches:
               only: master
+# VS Code Extension Version: 1.4.0
