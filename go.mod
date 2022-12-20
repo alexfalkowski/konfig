@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/alexfalkowski/go-health v1.11.0
-	github.com/alexfalkowski/go-service v1.76.25
+	github.com/alexfalkowski/go-service v1.76.26
 	github.com/aws/aws-sdk-go-v2 v1.17.3
 	github.com/aws/aws-sdk-go-v2/config v1.18.6
 	github.com/aws/aws-sdk-go-v2/credentials v1.13.6
@@ -23,7 +23,7 @@ require (
 
 require (
 	github.com/DataDog/datadog-agent/pkg/obfuscate v0.38.2 // indirect
-	github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.41.0-rc.3.0.20221208094921-9e0b0bfca62a // indirect
+	github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.42.0-rc.1 // indirect
 	github.com/DataDog/datadog-go/v5 v5.1.1 // indirect
 	github.com/DataDog/go-tuf v0.3.0--fix-localmeta-fork // indirect
 	github.com/DataDog/sketches-go v1.4.1 // indirect
@@ -150,7 +150,7 @@ require (
 	golang.org/x/text v0.5.0 // indirect
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
-	gopkg.in/DataDog/dd-trace-go.v1 v1.44.1 // indirect
+	gopkg.in/DataDog/dd-trace-go.v1 v1.45.1 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
