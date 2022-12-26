@@ -59,6 +59,10 @@ proto-format:
 proto-breaking:
 	make -C api breaking
 
+# Generate proto.
+proto-generate:
+	make -C api generate
+
 # Fix the lint issues in the code (if possible)
 fix-lint: go-fix-lint ruby-fix-lint proto-format
 
@@ -80,10 +84,6 @@ func-coverage: sanitize-coverage
 # Send coveralls data
 goveralls: sanitize-coverage
 	goveralls -coverprofile=test/reports/final.cov -service=circle-ci -repotoken=1r7TP3L2xhnSiOOutstLIB306z67K120W
-
-# Generate proto
-generate-proto:
-	make -C api generate
 
 # Check outdated ruby deps
 ruby-outdated:

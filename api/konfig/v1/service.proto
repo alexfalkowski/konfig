@@ -38,8 +38,6 @@ message GetConfigResponse {
 service Service {
   // GetConfig for a specific application.
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {
-    option (google.api.http) = {
-      get: "/v1/config/{application}/{version}/{environment}/{continent}/{country}/{command}"
-    };
+    option (google.api.http) = {get: "/v1/config/{application}/{version}/{environment}/{continent}/{country}/{command}"};
   }
 }
