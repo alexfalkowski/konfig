@@ -9,12 +9,15 @@ import (
 	"github.com/alexfalkowski/konfig/server/config"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	kerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
+	"go.uber.org/fx"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
 // ServerParams for gRPC.
 type ServerParams struct {
+	fx.In
+
 	Configurator source.Configurator
 	Transformer  *config.Transformer
 }
