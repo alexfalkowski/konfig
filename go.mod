@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/alexfalkowski/go-health v1.11.0
-	github.com/alexfalkowski/go-service v1.77.1
+	github.com/alexfalkowski/go-service v1.77.3
 	github.com/aws/aws-sdk-go-v2 v1.17.3
 	github.com/aws/aws-sdk-go-v2/config v1.18.7
 	github.com/aws/aws-sdk-go-v2/credentials v1.13.7
@@ -73,7 +73,7 @@ require (
 	github.com/hashicorp/go-immutable-radix v1.3.1 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/go-plugin v1.4.5 // indirect
-	github.com/hashicorp/go-retryablehttp v0.7.1 // indirect
+	github.com/hashicorp/go-retryablehttp v0.7.2 // indirect
 	github.com/hashicorp/go-rootcerts v1.0.2 // indirect
 	github.com/hashicorp/go-secure-stdlib/mlock v0.1.2 // indirect
 	github.com/hashicorp/go-secure-stdlib/parseutil v0.1.7 // indirect
@@ -99,7 +99,7 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
-	github.com/klauspost/compress v1.15.13 // indirect
+	github.com/klauspost/compress v1.15.14 // indirect
 	github.com/lib/pq v1.10.7 // indirect
 	github.com/linxGnu/mssqlx v1.1.8 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
