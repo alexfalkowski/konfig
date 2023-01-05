@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.26.147](https://github.com/alexfalkowski/konfig/compare/v1.26.146...v1.26.147) (2023-01-05)
+
+
+### Bug Fixes
+
+* downgrade go.uber.org/fx to v1.18.2 ([#386](https://github.com/alexfalkowski/konfig/issues/386)) ([577ea54](https://github.com/alexfalkowski/konfig/commit/577ea54b434da2a355400d997a709bf84711eb14))
+
 ### [1.26.146](https://github.com/alexfalkowski/konfig/compare/v1.26.145...v1.26.146) (2023-01-05)
 
 ### [1.26.145](https://github.com/alexfalkowski/konfig/compare/v1.26.144...v1.26.145) (2023-01-05)
