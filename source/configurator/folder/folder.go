@@ -6,7 +6,9 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
+	source "github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/errors"
 )
 
@@ -21,14 +23,15 @@ type Configurator struct {
 }
 
 // GetConfig for folder.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd string) ([]byte, error) {
+func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
 	if _, err := os.Stat(c.cfg.Dir); os.IsNotExist(err) {
 		meta.WithAttribute(ctx, "folder.dir_error", err.Error())
 
 		return nil, err
 	}
 
-	path := filepath.Join(c.cfg.Dir, c.path(app, ver, env, continent, country, cmd))
+	p := c.path(params.Application, params.Version, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
+	path := filepath.Join(c.cfg.Dir, p)
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
@@ -41,17 +44,17 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		return nil, err
 	}
 
-	return data, nil
+	return &source.Config{Kind: file.Extension(path), Data: data}, nil
 }
 
-func (c *Configurator) path(app, ver, env, continent, country, cmd string) string {
+func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string) string {
 	if continent == "*" && country == "*" {
-		return fmt.Sprintf("%s/%s/%s/%s.config.yml", app, ver, env, cmd)
+		return fmt.Sprintf("%s/%s/%s/%s.config.%s", app, ver, env, cmd, kind)
 	}
 
 	if continent != "*" && country == "*" {
-		return fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, continent, cmd)
+		return fmt.Sprintf("%s/%s/%s/%s/%s.config.%s", app, ver, env, continent, cmd, kind)
 	}
 
-	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.config.yml", app, ver, env, continent, country, cmd)
+	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.config.%s", app, ver, env, continent, country, cmd, kind)
 }

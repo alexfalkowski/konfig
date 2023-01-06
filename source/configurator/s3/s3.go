@@ -7,7 +7,9 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
+	source "github.com/alexfalkowski/konfig/source/configurator"
 	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/alexfalkowski/konfig/source/configurator/s3/opentracing"
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -30,8 +32,8 @@ type Configurator struct {
 }
 
 // GetConfig for s3.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd string) ([]byte, error) {
-	path := c.path(app, ver, env, continent, country, cmd)
+func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
+	path := c.path(params.Application, params.Version, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
 
 	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "get-object", fmt.Sprintf("%s:%s", c.cfg.Bucket, path))
 	defer span.Finish()
@@ -79,17 +81,17 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		return nil, err
 	}
 
-	return data, nil
+	return &source.Config{Kind: file.Extension(path), Data: data}, nil
 }
 
-func (c *Configurator) path(app, ver, env, continent, country, cmd string) string {
+func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string) string {
 	if continent == "*" && country == "*" {
-		return fmt.Sprintf("%s/%s/%s/%s.config.yml", app, ver, env, cmd)
+		return fmt.Sprintf("%s/%s/%s/%s.config.%s", app, ver, env, cmd, kind)
 	}
 
 	if continent != "*" && country == "*" {
-		return fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, ver, env, continent, cmd)
+		return fmt.Sprintf("%s/%s/%s/%s/%s.config.%s", app, ver, env, continent, cmd, kind)
 	}
 
-	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.config.yml", app, ver, env, continent, country, cmd)
+	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.config.%s", app, ver, env, continent, country, cmd, kind)
 }

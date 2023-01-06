@@ -14,7 +14,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :continent, :string, 4, json_name: "continent"
       optional :country, :string, 5, json_name: "country"
       optional :command, :string, 6, json_name: "command"
-      optional :content_type, :string, 7, json_name: "contentType"
+      optional :kind, :string, 7, json_name: "kind"
       optional :data, :bytes, 8, json_name: "data"
     end
     add_message "konfig.v1.GetConfigRequest" do
@@ -24,6 +24,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :continent, :string, 4, json_name: "continent"
       optional :country, :string, 5, json_name: "country"
       optional :command, :string, 6, json_name: "command"
+      optional :kind, :string, 7, json_name: "kind"
     end
     add_message "konfig.v1.GetConfigResponse" do
       optional :config, :message, 1, "konfig.v1.Config", json_name: "config"

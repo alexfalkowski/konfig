@@ -15,7 +15,7 @@ message Config {
   string continent = 4;
   string country = 5;
   string command = 6;
-  string content_type = 7;
+  string kind = 7;
   bytes data = 8;
 }
 
@@ -27,6 +27,7 @@ message GetConfigRequest {
   string continent = 4;
   string country = 5;
   string command = 6;
+  string kind = 7;
 }
 
 // GetConfigResponse for a specific application.
@@ -38,6 +39,6 @@ message GetConfigResponse {
 service Service {
   // GetConfig for a specific application.
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {
-    option (google.api.http) = {get: "/v1/config/{application}/{version}/{environment}/{continent}/{country}/{command}"};
+    option (google.api.http) = {get: "/v1/config/{application}/{version}/{environment}/{continent}/{country}/{command}/{kind}"};
   }
 }

@@ -41,6 +41,6 @@ Feature: Client
   Scenario: Download invalid content type in config
     Given I have a "folder" valid setup
     And I start the system
-    When I download the configuration for "invalid_content_type" application
-    Then I should not have a configuration for "invalid_content_type" application
-    And I should see a log entry of "could not transform" in the file "reports/invalid_content_type.client.log"
+    When I download the configuration for "invalid_kind" application
+    Then I should not have a configuration for "invalid_kind" application
+    And I should see a log entry of "could not transform" in the file "reports/invalid_kind.client.log"
