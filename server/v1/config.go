@@ -7,6 +7,6 @@ import (
 
 // Config for v1.
 type Config struct {
-	Provider provider.Config `yaml:"provider"`
-	Source   source.Config   `yaml:"source"`
+	Provider provider.Config `yaml:"provider" json:"provider"`
+	Source   source.Config   `yaml:"source" json:"source"`
 }

@@ -3,8 +3,9 @@ package grpc
 import (
 	"bytes"
 	"context"
+	"os"
+	"path/filepath"
 
-	"github.com/alexfalkowski/go-service/config"
 	"github.com/alexfalkowski/go-service/transport/grpc/trace/opentracing"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/client"
@@ -58,9 +59,9 @@ func (t *Task) Perform(ctx context.Context) error {
 		return err
 	}
 
-	data, err := config.ReadFileFromEnv(configFile)
+	data, err := os.ReadFile(filepath.Clean(os.Getenv(configFile)))
 	if err != nil || !bytes.Equal(data, resp.Config.Data) {
-		return config.WriteFileToEnv(configFile, resp.Config.Data)
+		return os.WriteFile(filepath.Clean(os.Getenv(configFile)), resp.Config.Data, 0o600)
 	}
 
 	return nil
