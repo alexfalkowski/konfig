@@ -6,12 +6,12 @@ import (
 
 // Config for client.
 type Config struct {
-	Host        string        `yaml:"host"`
-	Timeout     time.Duration `yaml:"timeout"`
-	Application string        `yaml:"application"`
-	Version     string        `yaml:"version"`
-	Environment string        `yaml:"environment"`
-	Continent   string        `yaml:"continent"`
-	Country     string        `yaml:"country"`
-	Command     string        `yaml:"command"`
+	Host        string        `yaml:"host" json:"host"`
+	Timeout     time.Duration `yaml:"timeout" json:"timeout"`
+	Application string        `yaml:"application" json:"application"`
+	Version     string        `yaml:"version" json:"version"`
+	Environment string        `yaml:"environment" json:"environment"`
+	Continent   string        `yaml:"continent" json:"continent"`
+	Country     string        `yaml:"country" json:"country"`
+	Command     string        `yaml:"command" json:"command"`
 }

@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/alexfalkowski/go-service/config"
+	"github.com/alexfalkowski/go-service/marshaller"
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/konfig/server/config/errors"
 	"github.com/alexfalkowski/konfig/server/config/provider"
@@ -12,17 +13,18 @@ import (
 // Transformer for config.
 type Transformer struct {
 	pt *provider.Transformer
+	m  *marshaller.YAML
 }
 
 // NewTransformer for config.
-func NewTransformer(pt *provider.Transformer) *Transformer {
-	return &Transformer{pt: pt}
+func NewTransformer(pt *provider.Transformer, m *marshaller.YAML) *Transformer {
+	return &Transformer{pt: pt, m: m}
 }
 
 // Transform config.
 func (t *Transformer) Transform(ctx context.Context, bytes []byte) ([]byte, error) {
 	cfg := config.Map{}
-	if err := config.UnmarshalFromBytes(bytes, cfg); err != nil {
+	if err := t.m.Unmarshal(bytes, cfg); err != nil {
 		meta.WithAttribute(ctx, "config.unmarshal_error", err.Error())
 
 		return nil, errors.ErrUnmarshalError
@@ -34,7 +36,7 @@ func (t *Transformer) Transform(ctx context.Context, bytes []byte) ([]byte, erro
 		return nil, errors.ErrTraverseError
 	}
 
-	data, err := config.MarshalToBytes(cfg)
+	data, err := t.m.Marshal(cfg)
 	if err != nil {
 		meta.WithAttribute(ctx, "config.marshal_error", err.Error())
 

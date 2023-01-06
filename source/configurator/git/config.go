@@ -6,9 +6,9 @@ import (
 
 // Config for git.
 type Config struct {
-	URL   string `yaml:"url"`
-	Dir   string `yaml:"dir"`
-	Token string `yaml:"token"`
+	URL   string `yaml:"url" json:"url"`
+	Dir   string `yaml:"dir" json:"dir"`
+	Token string `yaml:"token" json:"token"`
 }
 
 // GetToken that is specified in config or from KONFIG_GIT_TOKEN env variable.

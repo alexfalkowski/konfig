@@ -6,5 +6,5 @@ import (
 
 // Config for server.
 type Config struct {
-	V1 v1.Config `yaml:"v1"`
+	V1 v1.Config `yaml:"v1" json:"v1"`
 }

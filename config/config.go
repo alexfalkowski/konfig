@@ -9,8 +9,8 @@ import (
 
 // Config for the service.
 type Config struct {
-	Server        server.Config `yaml:"server"`
-	Client        client.Config `yaml:"client"`
-	Health        health.Config `yaml:"health"`
-	config.Config `yaml:",inline"`
+	Server        server.Config `yaml:"server" json:"server"`
+	Client        client.Config `yaml:"client" json:"client"`
+	Health        health.Config `yaml:"health" json:"health"`
+	config.Config `yaml:",inline" json:",inline"`
 }
