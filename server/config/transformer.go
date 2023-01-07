@@ -3,28 +3,33 @@ package config
 import (
 	"context"
 
-	"github.com/alexfalkowski/go-service/config"
 	"github.com/alexfalkowski/go-service/marshaller"
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/konfig/server/config/errors"
 	"github.com/alexfalkowski/konfig/server/config/provider"
+	source "github.com/alexfalkowski/konfig/source/configurator"
 )
 
 // Transformer for config.
 type Transformer struct {
 	pt *provider.Transformer
-	m  *marshaller.YAML
+	f  *marshaller.Factory
 }
 
 // NewTransformer for config.
-func NewTransformer(pt *provider.Transformer, m *marshaller.YAML) *Transformer {
-	return &Transformer{pt: pt, m: m}
+func NewTransformer(pt *provider.Transformer, f *marshaller.Factory) *Transformer {
+	return &Transformer{pt: pt, f: f}
 }
 
 // Transform config.
-func (t *Transformer) Transform(ctx context.Context, bytes []byte) ([]byte, error) {
-	cfg := config.Map{}
-	if err := t.m.Unmarshal(bytes, cfg); err != nil {
+func (t *Transformer) Transform(ctx context.Context, c *source.Config) ([]byte, error) {
+	m, err := t.f.Create(c.Kind)
+	if err != nil {
+		return nil, err
+	}
+
+	cfg := map[string]any{}
+	if err := m.Unmarshal(c.Data, cfg); err != nil {
 		meta.WithAttribute(ctx, "config.unmarshal_error", err.Error())
 
 		return nil, errors.ErrUnmarshalError
@@ -36,7 +41,7 @@ func (t *Transformer) Transform(ctx context.Context, bytes []byte) ([]byte, erro
 		return nil, errors.ErrTraverseError
 	}
 
-	data, err := t.m.Marshal(cfg)
+	data, err := m.Marshal(cfg)
 	if err != nil {
 		meta.WithAttribute(ctx, "config.marshal_error", err.Error())
 
@@ -46,7 +51,7 @@ func (t *Transformer) Transform(ctx context.Context, bytes []byte) ([]byte, erro
 	return data, nil
 }
 
-func (t *Transformer) traverse(ctx context.Context, cfg config.Map) error {
+func (t *Transformer) traverse(ctx context.Context, cfg map[string]any) error {
 	for key, val := range cfg {
 		switch v := val.(type) {
 		case string:
@@ -56,7 +61,7 @@ func (t *Transformer) traverse(ctx context.Context, cfg config.Map) error {
 			}
 
 			cfg[key] = vt
-		case config.Map:
+		case map[string]any:
 			if err := t.traverse(ctx, v); err != nil {
 				return err
 			}

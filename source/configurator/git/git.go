@@ -9,7 +9,9 @@ import (
 	"path/filepath"
 	"sync"
 
+	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
+	source "github.com/alexfalkowski/konfig/source/configurator"
 	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/alexfalkowski/konfig/source/configurator/git/opentracing"
 	"github.com/go-git/go-git/v5"
@@ -37,7 +39,7 @@ type Configurator struct {
 }
 
 // GetConfig for git.
-func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd string) ([]byte, error) {
+func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
@@ -53,7 +55,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		return nil, err
 	}
 
-	if err := c.checkout(ctx, app, ver); err != nil {
+	if err := c.checkout(ctx, params.Application, params.Version); err != nil {
 		meta.WithAttribute(ctx, "git.checkout_error", err.Error())
 
 		if errors.Is(err, plumbing.ErrReferenceNotFound) {
@@ -63,7 +65,8 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		return nil, err
 	}
 
-	path := filepath.Join(c.cfg.Dir, c.path(app, env, continent, country, cmd))
+	p := c.path(params.Application, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
+	path := filepath.Join(c.cfg.Dir, p)
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
@@ -76,7 +79,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		return nil, err
 	}
 
-	return data, nil
+	return &source.Config{Kind: file.Extension(path), Data: data}, nil
 }
 
 func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
@@ -131,14 +134,14 @@ func (c *Configurator) clone(ctx context.Context) error {
 	return nil
 }
 
-func (c *Configurator) path(app, env, continent, country, cmd string) string {
+func (c *Configurator) path(app, env, continent, country, cmd, kind string) string {
 	if continent == "*" && country == "*" {
-		return fmt.Sprintf("%s/%s/%s.config.yml", app, env, cmd)
+		return fmt.Sprintf("%s/%s/%s.config.%s", app, env, cmd, kind)
 	}
 
 	if continent != "*" && country == "*" {
-		return fmt.Sprintf("%s/%s/%s/%s.config.yml", app, env, continent, cmd)
+		return fmt.Sprintf("%s/%s/%s/%s.config.%s", app, env, continent, cmd, kind)
 	}
 
-	return fmt.Sprintf("%s/%s/%s/%s/%s.config.yml", app, env, continent, country, cmd)
+	return fmt.Sprintf("%s/%s/%s/%s/%s.config.%s", app, env, continent, country, cmd, kind)
 }

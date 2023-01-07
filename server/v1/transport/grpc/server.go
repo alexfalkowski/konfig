@@ -44,6 +44,10 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		req.Country = "*"
 	}
 
+	if req.Kind == "" {
+		req.Kind = "yml"
+	}
+
 	resp := &v1.GetConfigResponse{
 		Config: &v1.Config{
 			Application: req.Application,
@@ -52,7 +56,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 			Continent:   req.Continent,
 			Country:     req.Country,
 			Command:     req.Command,
-			ContentType: "application/yaml",
+			Kind:        req.Kind,
 		},
 	}
 
@@ -60,10 +64,20 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		return resp, err
 	}
 
-	data, err := s.conf.GetConfig(ctx, req.Application, req.Version, req.Environment, req.Continent, req.Country, req.Command)
+	p := source.ConfigParams{
+		Application: req.Application,
+		Version:     req.Version,
+		Environment: req.Environment,
+		Continent:   req.Continent,
+		Country:     req.Country,
+		Command:     req.Command,
+		Kind:        req.Kind,
+	}
+
+	c, err := s.conf.GetConfig(ctx, p)
 	if err != nil {
 		if errors.Is(err, kerrors.ErrNotFound) {
-			msg := fmt.Sprintf("%s/%s/%s/%s/%s/%s was not found", req.Application, req.Version, req.Environment, req.Continent, req.Country, req.Command)
+			msg := fmt.Sprintf("%s was not found", p)
 
 			return resp, status.Error(codes.NotFound, msg)
 		}
@@ -71,11 +85,12 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		return resp, status.Error(codes.Internal, "could get config")
 	}
 
-	data, err = s.trans.Transform(ctx, data)
+	data, err := s.trans.Transform(ctx, c)
 	if err != nil {
 		return resp, status.Error(codes.Internal, "could not transform")
 	}
 
+	resp.Config.Kind = c.Kind
 	resp.Config.Data = data
 
 	return resp, nil
