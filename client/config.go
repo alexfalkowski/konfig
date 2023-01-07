@@ -14,4 +14,5 @@ type Config struct {
 	Continent   string        `yaml:"continent" json:"continent"`
 	Country     string        `yaml:"country" json:"country"`
 	Command     string        `yaml:"command" json:"command"`
+	Kind        string        `yaml:"kind" json:"kind"`
 }
