@@ -52,6 +52,7 @@ func (t *Task) Perform(ctx context.Context) error {
 		Continent:   t.cfg.Continent,
 		Country:     t.cfg.Country,
 		Command:     t.cfg.Command,
+		Kind:        t.cfg.Kind,
 	}
 
 	resp, err := t.client.GetConfig(ctx, req)
