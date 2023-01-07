@@ -49,12 +49,12 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string) string {
 	if continent == "*" && country == "*" {
-		return fmt.Sprintf("%s/%s/%s/%s.config.%s", app, ver, env, cmd, kind)
+		return fmt.Sprintf("%s/%s/%s/%s.%s", app, ver, env, cmd, kind)
 	}
 
 	if continent != "*" && country == "*" {
-		return fmt.Sprintf("%s/%s/%s/%s/%s.config.%s", app, ver, env, continent, cmd, kind)
+		return fmt.Sprintf("%s/%s/%s/%s/%s.%s", app, ver, env, continent, cmd, kind)
 	}
 
-	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.config.%s", app, ver, env, continent, country, cmd, kind)
+	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.%s", app, ver, env, continent, country, cmd, kind)
 }

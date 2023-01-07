@@ -34,7 +34,7 @@ module Konfig
     end
 
     def server_config(source)
-      YAML.load_file(".config/#{source}.server.config.yml")
+      YAML.load_file(".config/#{source}.server.yaml")
     end
 
     def health_grpc

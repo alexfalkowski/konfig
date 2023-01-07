@@ -12,8 +12,6 @@ client:
   host: localhost:8080
   timeout: 1s
   application: test
-  version: v1.8.0
+  version: v1.9.0
   environment: staging
-  continent: '*'
-  country: '*'
-  command: invalid
+  command: bob

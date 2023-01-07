@@ -136,12 +136,12 @@ func (c *Configurator) clone(ctx context.Context) error {
 
 func (c *Configurator) path(app, env, continent, country, cmd, kind string) string {
 	if continent == "*" && country == "*" {
-		return fmt.Sprintf("%s/%s/%s.config.%s", app, env, cmd, kind)
+		return fmt.Sprintf("%s/%s/%s.%s", app, env, cmd, kind)
 	}
 
 	if continent != "*" && country == "*" {
-		return fmt.Sprintf("%s/%s/%s/%s.config.%s", app, env, continent, cmd, kind)
+		return fmt.Sprintf("%s/%s/%s/%s.%s", app, env, continent, cmd, kind)
 	}
 
-	return fmt.Sprintf("%s/%s/%s/%s/%s.config.%s", app, env, continent, country, cmd, kind)
+	return fmt.Sprintf("%s/%s/%s/%s/%s.%s", app, env, continent, country, cmd, kind)
 }

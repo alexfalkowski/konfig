@@ -24,7 +24,7 @@ Then('I should receive a valid config from HTTP:') do |table|
   expect(config['continent']).to eq(rows['continent'])
   expect(config['country']).to eq(rows['country'])
   expect(config['command']).to eq(rows['cmd'])
-  expect(config['kind']).to eq('yml')
+  expect(config['kind']).to eq('yaml')
   expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
   expect(data['transport']['grpc']['user_agent']).to eq('Konfig-server/1.0 grpc/1.0')
   expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
@@ -44,7 +44,7 @@ Then('I should receive a valid config with missing provider data from HTTP:') do
   expect(config['continent']).to eq(rows['continent'])
   expect(config['continent']).to eq(rows['continent'])
   expect(config['country']).to eq(rows['country'])
-  expect(config['kind']).to eq('yml')
+  expect(config['kind']).to eq('yaml')
   expect(data['transport']['http']['user_agent']).to eq('/secret/data/transport/http/user_agent')
   expect(data['transport']['grpc']['user_agent']).to eq('/secret/data/transport/grpc/user_agent')
   expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
@@ -68,7 +68,7 @@ def request_with_http(table)
 
   params = {
     app: rows['app'], ver: rows['ver'], env: rows['env'], continent: rows['continent'],
-    country: rows['country'], cmd: rows['cmd'], kind: 'yml'
+    country: rows['country'], cmd: rows['cmd'], kind: 'yaml'
   }
   Konfig::V1.server_http.get_config(params, headers)
 end
