@@ -27,6 +27,7 @@ GEM
     benchmark-perf (0.6.0)
     benchmark-trend (0.4.0)
     builder (3.2.4)
+    citrus (3.0.2)
     concurrent-ruby (1.1.10)
     cucumber (8.0.0)
       builder (~> 3.2, >= 3.2.4)
@@ -178,6 +179,8 @@ GEM
       ffi (~> 1.1)
     thor (1.2.1)
     tilt (2.0.11)
+    toml-rb (2.2.0)
+      citrus (~> 3.0, > 3.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
@@ -201,6 +204,7 @@ DEPENDENCIES
   rspec-wait
   rubocop
   solargraph
+  toml-rb
   vault
 
 BUNDLED WITH

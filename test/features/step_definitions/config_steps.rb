@@ -10,7 +10,10 @@ Given('I have a {string} valid setup') do |source|
     files = [
       ['test/v1.9.0/staging/server.yaml', '.config/test/v1.9.0/staging/server.yaml'],
       ['test/v1.9.0/staging/eu/server.yaml', '.config/test/v1.9.0/staging/eu/server.yaml'],
-      ['test/v1.9.0/staging/eu/de/server.yaml', '.config/test/v1.9.0/staging/eu/de/server.yaml']
+      ['test/v1.9.0/staging/eu/de/server.yaml', '.config/test/v1.9.0/staging/eu/de/server.yaml'],
+      ['test/v1.9.0/staging/server.toml', '.config/test/v1.9.0/staging/server.toml'],
+      ['test/v1.9.0/staging/eu/server.toml', '.config/test/v1.9.0/staging/eu/server.toml'],
+      ['test/v1.9.0/staging/eu/de/server.toml', '.config/test/v1.9.0/staging/eu/de/server.toml']
     ]
     files.each { |f| Konfig.s3.write(f[0], File.read(f[1])) }
   end
@@ -22,9 +25,8 @@ Given('I have a {string} invalid setup') do |source|
   case source
   when 's3'
     files = [
-      'test/v1.9.0/staging/server.yaml',
-      'test/v1.9.0/staging/eu/server.yaml',
-      'test/v1.9.0/staging/eu/de/server.yaml'
+      'test/v1.9.0/staging/server.yaml', 'test/v1.9.0/staging/eu/server.yaml', 'test/v1.9.0/staging/eu/de/server.yaml',
+      'test/v1.9.0/staging/server.toml', 'test/v1.9.0/staging/eu/server.toml', 'test/v1.9.0/staging/eu/de/server.toml'
     ]
     files.each { |f| Konfig.s3.delete(f) }
   end
