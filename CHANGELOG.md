@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.28.0](https://github.com/alexfalkowski/konfig/compare/v1.27.1...v1.28.0) (2023-01-07)
+
+
+### Features
+
+* **config:** use kind with config ([#389](https://github.com/alexfalkowski/konfig/issues/389)) ([a070f5c](https://github.com/alexfalkowski/konfig/commit/a070f5cb9f8ad3974aeb5a4cf8393d2c42e484fa))
+
 ### [1.27.1](https://github.com/alexfalkowski/konfig/compare/v1.27.0...v1.27.1) (2023-01-06)
 
 ## [1.27.0](https://github.com/alexfalkowski/konfig/compare/v1.26.150...v1.27.0) (2023-01-06)
