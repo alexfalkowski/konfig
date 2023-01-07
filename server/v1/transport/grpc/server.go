@@ -45,7 +45,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 	}
 
 	if req.Kind == "" {
-		req.Kind = "yml"
+		req.Kind = "yaml"
 	}
 
 	resp := &v1.GetConfigResponse{

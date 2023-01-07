@@ -22,26 +22,26 @@ func NewTransformer(pt *provider.Transformer, f *marshaller.Factory) *Transforme
 }
 
 // Transform config.
-func (t *Transformer) Transform(ctx context.Context, c *source.Config) ([]byte, error) {
-	m, err := t.f.Create(c.Kind)
+func (t *Transformer) Transform(ctx context.Context, cfg *source.Config) ([]byte, error) {
+	m, err := t.f.Create(cfg.Kind)
 	if err != nil {
 		return nil, err
 	}
 
-	cfg := map[string]any{}
-	if err := m.Unmarshal(c.Data, cfg); err != nil {
+	c := map[string]any{}
+	if err := m.Unmarshal(cfg.Data, &c); err != nil {
 		meta.WithAttribute(ctx, "config.unmarshal_error", err.Error())
 
 		return nil, errors.ErrUnmarshalError
 	}
 
-	if err := t.traverse(ctx, cfg); err != nil {
+	if err := t.traverse(ctx, c); err != nil {
 		meta.WithAttribute(ctx, "config.traverse_error", err.Error())
 
 		return nil, errors.ErrTraverseError
 	}
 
-	data, err := m.Marshal(cfg)
+	data, err := m.Marshal(c)
 	if err != nil {
 		meta.WithAttribute(ctx, "config.marshal_error", err.Error())
 

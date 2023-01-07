@@ -1,0 +1,31 @@
+[trace.opentracing]
+kind = "jaeger"
+host = "localhost:6831"
+
+[transport]
+port = "8080"
+
+[transport.http]
+user_agent = "vault:/secret/data/transport/http/user_agent"
+
+[transport.http.retry]
+timeout = "2s"
+attempts = 3
+
+[transport.grpc]
+user_agent = "ssm:/secret/data/transport/grpc/user_agent"
+
+[transport.grpc.retry]
+timeout = "2s"
+attempts = 3
+
+[health]
+duration = "1s"
+timeout = "1s"
+
+[server.v1.source]
+kind = "git"
+
+[server.v1.source.git]
+url = "env:GITHUB_URL"
+dir = "tmp/app-config"

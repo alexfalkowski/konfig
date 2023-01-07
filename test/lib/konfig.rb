@@ -7,6 +7,7 @@ require 'base64'
 require 'aws-sdk-s3'
 require 'aws-sdk-ssm'
 require 'vault'
+require 'toml-rb'
 require 'grpc/health/v1/health_services_pb'
 
 require 'konfig/s3'
@@ -34,11 +35,20 @@ module Konfig
     end
 
     def server_config(source)
-      YAML.load_file(".config/#{source}.server.config.yml")
+      YAML.load_file(".config/#{source}.server.yaml")
     end
 
     def health_grpc
       @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:8080', :this_channel_is_insecure)
+    end
+
+    def load_config(kind, data)
+      case kind
+      when 'yaml'
+        YAML.safe_load(data)
+      when 'toml'
+        TomlRB.parse(data)
+      end
     end
   end
 

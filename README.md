@@ -26,7 +26,11 @@ We want to standardize configuration and check it into version control. We are f
 
 ## Format
 
-This system is geared around a very specific system that we use to build [services](https://github.com/alexfalkowski/go-service). The content type of this config is [YAML](https://en.wikipedia.org/wiki/YAML).
+This system is geared around a very specific system that we use to build [services](https://github.com/alexfalkowski/go-service).
+
+The kinds of this config that are supported are:
+- [YAML](https://en.wikipedia.org/wiki/YAML)
+- [TOML](https://en.wikipedia.org/wiki/TOML)
 
 We recommend that you find a way to validate your configurations. We recommend looking at the following:
 - [CUE](https://cuelang.org/)
@@ -142,9 +146,9 @@ application
 └── environment
     ├── continent
     │   ├── country
-    │   │   └── app.config.kind
-    │   └── app.config.kind
-    └── app.config.kind
+    │   │   └── app.kind
+    │   └── app.kind
+    └── app.kind
 ```
 
 The tag name should be `application/version` and kind is `yml`.
@@ -176,20 +180,20 @@ application
     └── environment
         ├── continent
         │   ├── country
-        │   │   └── app.config.kind
-        │   └── app.config.kind
-        └── app.config.kind
+        │   │   └── app.kind
+        │   └── app.kind
+        └── app.kind
 ```
 
 Some examples:
 
 ```url
-s3://bucket/test/v1.5.0/production/server.config.kind
-s3://bucket/test/v1.5.0/production/eu/server.config.kind
-s3://bucket/test/v1.5.0/production/eu/de/server.config.kind
+s3://bucket/test/v1.5.0/production/server.kind
+s3://bucket/test/v1.5.0/production/eu/server.kind
+s3://bucket/test/v1.5.0/production/eu/de/server.kind
 ```
 
-Kind is `yml`.
+Kind is `yaml`, `toml`.
 
 #### Folder
 
@@ -212,12 +216,12 @@ application
     └── environment
         ├── continent
         │   ├── country
-        │   │   └── app.config.kind
-        │   └── app.config.kind
-        └── app.config.kind
+        │   │   └── app.kind
+        │   └── app.kind
+        └── app.kind
 ```
 
-Kind is `yml`.
+Kind is `yaml`, `toml`.
 
 ## Client
 

@@ -18,7 +18,7 @@ type ConfigParams struct {
 
 // String of params.
 func (p ConfigParams) String() string {
-	return fmt.Sprintf("%s/%s/%s/%s/%s/%s%s", p.Application, p.Version, p.Environment, p.Continent, p.Country, p.Command, p.Kind)
+	return fmt.Sprintf("%s/%s/%s/%s/%s/%s/%s", p.Application, p.Version, p.Environment, p.Continent, p.Country, p.Command, p.Kind)
 }
 
 // Config for configurator.
