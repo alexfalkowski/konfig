@@ -142,12 +142,12 @@ application
 └── environment
     ├── continent
     │   ├── country
-    │   │   └── app.config.yml
-    │   └── app.config.yml
-    └── app.config.yml
+    │   │   └── app.config.kind
+    │   └── app.config.kind
+    └── app.config.kind
 ```
 
-The tag name should be `application/version`
+The tag name should be `application/version` and kind is `yml`.
 
 Some examples:
 - [app-config](https://github.com/alexfalkowski/app-config)
@@ -176,18 +176,20 @@ application
     └── environment
         ├── continent
         │   ├── country
-        │   │   └── app.config.yml
-        │   └── app.config.yml
-        └── app.config.yml
+        │   │   └── app.config.kind
+        │   └── app.config.kind
+        └── app.config.kind
 ```
 
 Some examples:
 
 ```url
-s3://bucket/test/v1.5.0/production/server.config.yml
-s3://bucket/test/v1.5.0/production/eu/server.config.yml
-s3://bucket/test/v1.5.0/production/eu/de/server.config.yml
+s3://bucket/test/v1.5.0/production/server.config.kind
+s3://bucket/test/v1.5.0/production/eu/server.config.kind
+s3://bucket/test/v1.5.0/production/eu/de/server.config.kind
 ```
+
+Kind is `yml`.
 
 #### Folder
 
@@ -210,10 +212,12 @@ application
     └── environment
         ├── continent
         │   ├── country
-        │   │   └── app.config.yml
-        │   └── app.config.yml
-        └── app.config.yml
+        │   │   └── app.config.kind
+        │   └── app.config.kind
+        └── app.config.kind
 ```
+
+Kind is `yml`.
 
 ## Client
 
@@ -231,6 +235,7 @@ client:
   continent: '*'
   country: '*'
   command: server
+  kind: yml
 ```
 
 The client writes the config to the location specified by `APP_CONFIG_FILE` environment variable.
