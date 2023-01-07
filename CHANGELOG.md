@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.28.1](https://github.com/alexfalkowski/konfig/compare/v1.28.0...v1.28.1) (2023-01-07)
+
+
+### Bug Fixes
+
+* **api:** enable breaking changes ([#390](https://github.com/alexfalkowski/konfig/issues/390)) ([507476c](https://github.com/alexfalkowski/konfig/commit/507476cda8c0f74726c9fb863de47bf42cd2dbcf))
+
 ## [1.28.0](https://github.com/alexfalkowski/konfig/compare/v1.27.1...v1.28.0) (2023-01-07)
 
 
