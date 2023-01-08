@@ -18,3 +18,4 @@ client:
   country: '*'
   command: server
   kind: yaml
+  mode: 0o600

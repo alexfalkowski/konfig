@@ -15,4 +15,5 @@ type Config struct {
 	Country     string        `yaml:"country" json:"country"`
 	Command     string        `yaml:"command" json:"command"`
 	Kind        string        `yaml:"kind" json:"kind"`
+	Mode        uint32        `yaml:"mode" json:"mode"`
 }
