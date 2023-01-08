@@ -8,10 +8,10 @@ import (
 
 // Config for source.
 type Config struct {
-	Kind   string        `yaml:"kind" json:"kind"`
-	Git    git.Config    `yaml:"git" json:"git"`
-	Folder folder.Config `yaml:"folder" json:"folder"`
-	S3     s3.Config     `yaml:"s3" json:"s3"`
+	Kind   string        `yaml:"kind" json:"kind" toml:"kind"`
+	Git    git.Config    `yaml:"git" json:"git" toml:"git"`
+	Folder folder.Config `yaml:"folder" json:"folder" toml:"folder"`
+	S3     s3.Config     `yaml:"s3" json:"s3" toml:"s3"`
 }
 
 // IsGit configured.
