@@ -120,6 +120,11 @@ server:
       kind: git, s3, or folder (see below)
 ```
 
+```toml
+[server.v1.source]
+kind = "git, s3, or folder (see below)"
+```
+
 ### Source
 
 This system allows you to store your configuration from various sources. Though we highly recommend that you follow configuration as code.
@@ -137,6 +142,16 @@ source:
     url: https://github.com/alexfalkowski/app-config (the configuration repo)
     dir: tmp/app-config (where to clone the repo to)
     token: a GitHub token or can be set in KONFIG_GIT_TOKEN env variable
+```
+
+```toml
+[source]
+kind = "git"
+
+[source.git]
+url = "https://github.com/alexfalkowski/app-config (the configuration repo)"
+dir = "tmp/app-config (where to clone the repo to)"
+token = "a GitHub token or can be set in KONFIG_GIT_TOKEN env variable"
 ```
 
 We expect that the folders to have the following conventions:
@@ -170,6 +185,17 @@ source:
     secret: Specifies the secret key associated with the access key. This is essentially the "password" for the access key.
     region: AWS Region to send the request to.
     bucket: The bucket that contains all the configs.
+```
+
+```toml
+[source]
+kind = "s3"
+
+[source.s3]
+access = "Specifies an AWS access key associated with an IAM user or role."
+secret = 'Specifies the secret key associated with the access key. This is essentially the "password" for the access key.'
+region = "AWS Region to send the request to."
+bucket = "The bucket that contains all the configs."
 ```
 
 We expect that the folders to have the following conventions:
@@ -208,6 +234,14 @@ source:
     dir: .config (the folder where the configurations can be found)
 ```
 
+```toml
+[source]
+kind = "folder"
+
+[source.folder]
+dir = ".config (the folder where the configurations can be found)"
+```
+
 We expect that the folders to have the following conventions:
 
 ```tree
@@ -240,6 +274,21 @@ client:
   country: '*'
   command: server
   kind: yml
+  mode: 0o600
+```
+
+```toml
+[client]
+host = "localhost:8080"
+timeout = "5s"
+application = "test"
+version = "v1.5.0"
+environment = "staging"
+continent = "*"
+country = "*"
+command = "server"
+kind = "yml"
+mode = 0o600
 ```
 
 The client writes the config to the location specified by `APP_CONFIG_FILE` environment variable.
@@ -254,6 +303,12 @@ To configure we just need the have the following configuration:
 health:
   duration: 1s (how often to check)
   timeout: 1s (when we should timeout the check)
+```
+
+```toml
+[health]
+duration = "1s (how often to check)"
+timeout = "1s (when we should timeout the check)"
 ```
 
 ## Deployment

@@ -13,17 +13,6 @@ Feature: Client
     When I download the configuration for "existing" application
     Then I should have a configuration for "existing" application
 
-  Scenario: Download already present config
-    Given I have a "folder" valid setup
-    And I start the system
-    And I have the following provider information:
-      | provider | key                                   | value                                               |
-      | vault    | secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
-      | ssm      | secret/data/transport/grpc/user_agent | {"data": { "value": "Konfig-server/1.0 grpc/1.0" }} |
-    And I have already downloaded the configuration for "existing" application
-    When I download the configuration for "existing" application
-    Then I should not have written a config for "existing" application
-
   Scenario: Download missing config
     Given I have a "folder" valid setup
     And I start the system

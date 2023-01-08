@@ -1,8 +1,8 @@
 package grpc
 
 import (
-	"bytes"
 	"context"
+	"io/fs"
 	"os"
 	"path/filepath"
 
@@ -60,10 +60,7 @@ func (t *Task) Perform(ctx context.Context) error {
 		return err
 	}
 
-	data, err := os.ReadFile(filepath.Clean(os.Getenv(configFile)))
-	if err != nil || !bytes.Equal(data, resp.Config.Data) {
-		return os.WriteFile(filepath.Clean(os.Getenv(configFile)), resp.Config.Data, 0o600)
-	}
+	name := filepath.Clean(os.Getenv(configFile))
 
-	return nil
+	return os.WriteFile(name, resp.Config.Data, fs.FileMode(t.cfg.Mode))
 }

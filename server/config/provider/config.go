@@ -6,5 +6,5 @@ import (
 
 // Config for provider.
 type Config struct {
-	SSM ssm.Config `yaml:"ssm"`
+	SSM ssm.Config `yaml:"ssm" json:"ssm" toml:"ssm"`
 }
