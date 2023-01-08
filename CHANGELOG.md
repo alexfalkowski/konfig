@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.30.0](https://github.com/alexfalkowski/konfig/compare/v1.29.1...v1.30.0) (2023-01-08)
+
+
+### Features
+
+* **client:** write regardless as we do not watch files ([#394](https://github.com/alexfalkowski/konfig/issues/394)) ([9896036](https://github.com/alexfalkowski/konfig/commit/9896036df8ea13304c556b07a2720ec32d0ec6ae))
+
 ### [1.29.1](https://github.com/alexfalkowski/konfig/compare/v1.29.0...v1.29.1) (2023-01-07)
 
 ## [1.29.0](https://github.com/alexfalkowski/konfig/compare/v1.28.2...v1.29.0) (2023-01-07)
