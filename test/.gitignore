@@ -8,4 +8,4 @@
 *.html
 *.log
 *.xml
-reports/*.yml
+reports/*.yaml

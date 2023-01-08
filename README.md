@@ -291,7 +291,9 @@ kind = "yml"
 mode = 0o600
 ```
 
-The client writes the config to the location specified by `APP_CONFIG_FILE` environment variable.
+The client writes the config to the location specified by the flag called `--output`. As per the following:
+- `env:APP_CONFIG_FILE` - Write to an env variable called `APP_CONFIG_FILE`. This is the default if nothing is passed.
+- `file:path` - Write to the path.
 
 ## Health
 
