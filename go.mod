@@ -14,7 +14,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.0
 	github.com/hashicorp/vault/api v1.8.2
 	github.com/opentracing/opentracing-go v1.2.0
-	go.uber.org/fx v1.18.2
+	go.uber.org/fx v1.19.1
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto v0.0.0-20221207170731-23e4bf6bdc37
 	google.golang.org/grpc v1.52.0
