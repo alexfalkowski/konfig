@@ -22,7 +22,7 @@ jobs:
           path: test/reports
   release:
     docker:
-      - image: alexfalkowski/release:3.0
+      - image: alexfalkowski/release:3.1
     steps:
       - checkout
       - run: release
