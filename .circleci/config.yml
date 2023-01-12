@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: alexfalkowski/go:1.19-3.1.3
+      - image: alexfalkowski/go:1.19-3.1
       - image: localstack/localstack:latest
         environment:
           SERVICES: s3,ssm
@@ -22,13 +22,13 @@ jobs:
           path: test/reports
   release:
     docker:
-      - image: alexfalkowski/release:2.0
+      - image: alexfalkowski/release:3.0
     steps:
       - checkout
       - run: release
   docker:
     docker:
-      - image: alexfalkowski/go:1.19-3.1.3
+      - image: alexfalkowski/go:1.19-3.1
     steps:
       - checkout
       - setup_remote_docker
