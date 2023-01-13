@@ -22,12 +22,14 @@ jobs:
       - run: make goveralls
       - store_artifacts:
           path: test/reports
+    resource_class: large
   release:
     docker:
       - image: alexfalkowski/release:3.1
     steps:
       - checkout
       - run: release
+    resource_class: large
   docker:
     docker:
       - image: alexfalkowski/go:1.19-3.1
@@ -40,6 +42,7 @@ jobs:
           name: make login
           command: echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
       - run: make docker
+    resource_class: large
 
 workflows:
   konfig:
