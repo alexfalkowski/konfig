@@ -12,6 +12,8 @@ jobs:
           VAULT_DEV_ROOT_TOKEN_ID: vault-plaintext-root-token
     steps:
       - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
       - run: dockerize -wait tcp://localhost:8200 -wait tcp://localhost:4566 -timeout 1m
       - run: make dep
       - run: make lint
@@ -31,6 +33,8 @@ jobs:
       - image: alexfalkowski/go:1.19-3.1
     steps:
       - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
       - setup_remote_docker
       - run:
           name: make login

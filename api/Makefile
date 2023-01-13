@@ -1,14 +1,5 @@
-lint:
-	buf lint
+include ../bin/build/make/buf.mak
 
-format:
-	buf format -w
-
-generate:
-	buf generate
-
-update-all:
-	buf mod update
-
+# Buf breaking changes.
 breaking:
 	buf breaking --against 'https://github.com/alexfalkowski/konfig.git#branch=master,subdir=api'
