@@ -34,7 +34,7 @@ sec: go-sec
 
 # Release to docker hub.
 docker:
-	bin/build/docker/push go-service-template
+	bin/build/docker/push konfig
 
 # Start the environment.
 start:
