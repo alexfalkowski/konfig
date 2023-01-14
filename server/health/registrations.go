@@ -6,7 +6,7 @@ import (
 	"github.com/alexfalkowski/go-service/health"
 	"github.com/alexfalkowski/go-service/transport/http"
 	khealth "github.com/alexfalkowski/konfig/health"
-	"github.com/alexfalkowski/konfig/source"
+	v1 "github.com/alexfalkowski/konfig/server/v1/config"
 	"github.com/hashicorp/vault/api"
 	"go.uber.org/fx"
 )
@@ -15,10 +15,10 @@ import (
 type RegistrationsParams struct {
 	fx.In
 
-	HTTP   *http.Config
-	Source *source.Config
-	Vault  *api.Config
-	Health *khealth.Config
+	HTTP     *http.Config
+	V1Config *v1.Config
+	Vault    *api.Config
+	Health   *khealth.Config
 }
 
 // NewRegistrations for health.
@@ -28,9 +28,10 @@ func NewRegistrations(params RegistrationsParams) health.Registrations {
 		server.NewRegistration("noop", params.Health.Duration, checker.NewNoopChecker()),
 		server.NewRegistration("vault", params.Health.Duration, checker.NewHTTPChecker(params.Vault.Address, client)),
 	}
+	v1s := params.V1Config.Source
 
-	if params.Source.IsGit() {
-		registrations = append(registrations, server.NewRegistration("git", params.Health.Duration, checker.NewHTTPChecker(params.Source.Git.URL, client)))
+	if v1s.IsGit() {
+		registrations = append(registrations, server.NewRegistration("v1-git", params.Health.Duration, checker.NewHTTPChecker(v1s.Git.URL, client)))
 	}
 
 	return registrations

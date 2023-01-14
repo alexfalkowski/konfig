@@ -7,8 +7,8 @@ import (
 
 	stime "github.com/alexfalkowski/go-service/time"
 	gopentracing "github.com/alexfalkowski/go-service/transport/grpc/trace/opentracing"
-	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/client/task"
+	"github.com/alexfalkowski/konfig/client/v1/config"
 	"github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/ext"
 	"github.com/opentracing/opentracing-go/log"
@@ -16,13 +16,13 @@ import (
 
 // Client for opentracing.
 type Client struct {
-	cfg    *client.Config
+	cfg    *config.Config
 	tracer gopentracing.Tracer
 	task.Task
 }
 
 // NewClient for zap.
-func NewClient(cfg *client.Config, tracer gopentracing.Tracer, task task.Task) *Client {
+func NewClient(cfg *config.Config, tracer gopentracing.Tracer, task task.Task) *Client {
 	return &Client{cfg: cfg, tracer: tracer, Task: task}
 }
 

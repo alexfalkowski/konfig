@@ -9,13 +9,14 @@ transport:
       timeout: 2s
       attempts: 3
 client:
-  host: localhost:8080
-  timeout: 1s
-  application: test
-  version: v1.9.0
-  environment: staging
-  continent: '*'
-  country: '*'
-  command: server
-  kind: yaml
-  mode: 0o600
+  v1:
+    host: localhost:8080
+    timeout: 1s
+    application: test
+    version: v1.9.0
+    environment: staging
+    continent: '*'
+    country: '*'
+    command: server
+    kind: yaml
+    mode: 0o600

@@ -2,10 +2,9 @@ package config
 
 import (
 	"github.com/alexfalkowski/go-service/config"
-	"github.com/alexfalkowski/konfig/client"
+	cv1 "github.com/alexfalkowski/konfig/client/v1/config"
 	"github.com/alexfalkowski/konfig/health"
-	"github.com/alexfalkowski/konfig/server/config/provider/ssm"
-	"github.com/alexfalkowski/konfig/source"
+	sv1 "github.com/alexfalkowski/konfig/server/v1/config"
 )
 
 // NewConfigurator for config.
@@ -15,16 +14,12 @@ func NewConfigurator() config.Configurator {
 	return cfg
 }
 
-func v1SourceConfig(cfg config.Configurator) *source.Config {
-	return &cfg.(*Config).Server.V1.Source
+func v1Server(cfg config.Configurator) *sv1.Config {
+	return &cfg.(*Config).Server.V1
 }
 
-func v1SSMConfig(cfg config.Configurator) *ssm.Config {
-	return &cfg.(*Config).Server.V1.Provider.SSM
-}
-
-func clientConfig(cfg config.Configurator) *client.Config {
-	return &cfg.(*Config).Client
+func v1Client(cfg config.Configurator) *cv1.Config {
+	return &cfg.(*Config).Client.V1
 }
 
 func healthConfig(cfg config.Configurator) *health.Config {
