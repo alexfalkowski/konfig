@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.32.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.32.0) - 2023-01-14
+
+- [`910597d`](https://github.com/alexfalkowski/konfig/commit/910597de1c9b7b35858967026c933915d3afccf8) feat(server): use v1 so it is extensible for other versions (#410)
+- [`45acba6`](https://github.com/alexfalkowski/konfig/commit/45acba6ac1667d80690dde6271e88761d8743e3f) ci: resource_class: large (#409)
+- [`6b188cd`](https://github.com/alexfalkowski/konfig/commit/6b188cd992191f08012ce3e860e820873cdaa7f6) build: fix docker (#408)
+- [`921aaca`](https://github.com/alexfalkowski/konfig/commit/921aacaaae1f4988e10b2ef3d4d73f8f403f2721) build: add bin (#407)
+- [`87c183c`](https://github.com/alexfalkowski/konfig/commit/87c183cda13534ff73d053d0665bbb70d6ece29c) ci(dependabot): change commit message (#406)
+- [`715c753`](https://github.com/alexfalkowski/konfig/commit/715c753fbca5d574d17bf2f32e2f82aca3a24b05) ci: use release 3.1 (#405)
+- [`0043a63`](https://github.com/alexfalkowski/konfig/commit/0043a6340b46ada88dde523fef05582d28cf435d) ci: use release 3.0 (#404)
+- [`bf581a7`](https://github.com/alexfalkowski/konfig/commit/bf581a7030c3e840fa7ae3a1759beaf4ded4310b) build(deps): update github.com/alexfalkowski/go-service v1.81.3 (#403)
+
 ## [v1.31.4](https://github.com/alexfalkowski/konfig/releases/tag/v1.31.4) - 2023-01-11
 
 - [`93e827f`](https://github.com/alexfalkowski/konfig/commit/93e827f049e0809df1448ab812976962909f7699) build(deps): bump github.com/alexfalkowski/go-service (#401)
