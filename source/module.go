@@ -11,6 +11,5 @@ var (
 	Module = fx.Options(
 		fx.Provide(gopentracing.NewTracer),
 		fx.Provide(sopentracing.NewTracer),
-		fx.Provide(NewConfigurator),
 	)
 )

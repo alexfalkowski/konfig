@@ -11,6 +11,11 @@ processes:
     log: reports/server.log
     environment:
       CONFIG_FILE: .config/folder.server.yaml
+      AWS_URL: http://localhost:4566
+      AWS_REGION: eu-west-1
+      AWS_ACCESS_KEY: access
+      AWS_SECRET_KEY: secret
+
 services:
   -
     name: vault

@@ -9,9 +9,10 @@ transport:
       timeout: 2s
       attempts: 3
 client:
-  host: localhost:8080
-  timeout: 1s
-  application: test
-  version: v1.9.0
-  environment: staging
-  command: bob
+  v1:
+    host: localhost:8080
+    timeout: 1s
+    application: test
+    version: v1.9.0
+    environment: staging
+    command: bob

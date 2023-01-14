@@ -265,20 +265,21 @@ To configure we just need the have the following configuration:
 
 ```yaml
 client:
-  host: localhost:8080
-  timeout: 5s
-  application: test
-  version: v1.5.0
-  environment: staging
-  continent: '*'
-  country: '*'
-  command: server
-  kind: yml
-  mode: 0o600
+  v1:
+    host: localhost:8080
+    timeout: 5s
+    application: test
+    version: v1.5.0
+    environment: staging
+    continent: '*'
+    country: '*'
+    command: server
+    kind: yml
+    mode: 0o600
 ```
 
 ```toml
-[client]
+[client.v1]
 host = "localhost:8080"
 timeout = "5s"
 application = "test"

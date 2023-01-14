@@ -6,7 +6,7 @@ import (
 	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
 	"github.com/alexfalkowski/go-service/transport/grpc/metrics/prometheus"
 	"github.com/alexfalkowski/go-service/transport/grpc/trace/opentracing"
-	"github.com/alexfalkowski/konfig/client"
+	"github.com/alexfalkowski/konfig/client/v1/config"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -20,7 +20,7 @@ type ClientConnParams struct {
 	Config    *sgrpc.Config
 	Logger    *zap.Logger
 	Tracer    opentracing.Tracer
-	Client    *client.Config
+	Client    *config.Config
 	Metrics   *prometheus.ClientMetrics
 }
 

@@ -6,9 +6,9 @@ import (
 
 	"github.com/alexfalkowski/go-service/transport/grpc/trace/opentracing"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
-	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/client/cmd"
 	"github.com/alexfalkowski/konfig/client/task"
+	"github.com/alexfalkowski/konfig/client/v1/config"
 	kzap "github.com/alexfalkowski/konfig/client/v1/transport/grpc/logger/zap"
 	gopentracing "github.com/alexfalkowski/konfig/client/v1/transport/grpc/trace/opentracing"
 	"go.uber.org/fx"
@@ -20,7 +20,7 @@ type TaskParams struct {
 	fx.In
 
 	Client       v1.ServiceClient
-	Config       *client.Config
+	Config       *config.Config
 	Tracer       opentracing.Tracer
 	Logger       *zap.Logger
 	OutputConfig *cmd.OutputConfig
@@ -38,7 +38,7 @@ func NewTask(params TaskParams) task.Task {
 // Task for gRPC.
 type Task struct {
 	client v1.ServiceClient
-	cfg    *client.Config
+	cfg    *config.Config
 	out    *cmd.OutputConfig
 }
 
