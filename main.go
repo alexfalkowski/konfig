@@ -4,7 +4,7 @@ import (
 	"os"
 
 	scmd "github.com/alexfalkowski/go-service/cmd"
-	ccmd "github.com/alexfalkowski/konfig/client/cmd"
+	"github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/cmd"
 )
 
@@ -21,7 +21,7 @@ func command() *scmd.Command {
 
 	c := command.AddClient(cmd.ClientOptions)
 	c.PersistentFlags().StringVar(
-		&ccmd.OutputFlag,
+		&client.OutputFlag,
 		"output", "env:APP_CONFIG_FILE", "output config location (format kind:location, default env:APP_CONFIG_FILE)",
 	)
 

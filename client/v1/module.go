@@ -8,9 +8,6 @@ import (
 var (
 	// Module for fx.
 	Module = fx.Options(
-		fx.Provide(grpc.NewClientConn),
-		fx.Provide(grpc.NewTask),
 		fx.Provide(grpc.NewServiceClient),
-		fx.Invoke(grpc.Register),
 	)
 )
