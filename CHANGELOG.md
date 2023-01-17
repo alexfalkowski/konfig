@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.34.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.34.0) - 2023-01-17
+
+- [`73b9baa`](https://github.com/alexfalkowski/konfig/commit/73b9baa7750705dc4c5983bb854fdd7e036ce13a) feat(client): separate fx modules (#412)
+
 ## [v1.33.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.33.0) - 2023-01-16
 
 - [`6178e36`](https://github.com/alexfalkowski/konfig/commit/6178e3686594fb763e73d8db09109749d1f63602) feat(client): create sdk (#411)
