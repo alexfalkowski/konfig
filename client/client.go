@@ -4,28 +4,30 @@ import (
 	"context"
 
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
+	v1c "github.com/alexfalkowski/konfig/client/v1/config"
 )
 
 // Client for konfig.
 type Client struct {
 	client v1.ServiceClient
+	config *v1c.Config
 }
 
 // NewClient for konfig.
-func NewClient(client v1.ServiceClient) *Client {
-	return &Client{client: client}
+func NewClient(client v1.ServiceClient, config *v1c.Config) *Client {
+	return &Client{client: client, config: config}
 }
 
 // Config from client.
-func (c *Client) Config(ctx context.Context, app, ver, env, continent, country, cmd, kind string) ([]byte, error) {
+func (c *Client) Config(ctx context.Context) ([]byte, error) {
 	req := &v1.GetConfigRequest{
-		Application: app,
-		Version:     ver,
-		Environment: env,
-		Continent:   continent,
-		Country:     country,
-		Command:     cmd,
-		Kind:        kind,
+		Application: c.config.Application,
+		Version:     c.config.Version,
+		Environment: c.config.Environment,
+		Continent:   c.config.Continent,
+		Country:     c.config.Country,
+		Command:     c.config.Command,
+		Kind:        c.config.Kind,
 	}
 
 	resp, err := c.client.GetConfig(ctx, req)
