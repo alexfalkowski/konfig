@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.35.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.35.0) - 2023-01-18
+
+- [`dbd6a62`](https://github.com/alexfalkowski/konfig/commit/dbd6a62adbed3ab7710d66566a9c9ab1bbae1ee6) feat(cmd): add fx module (#415)
+
 ## [v1.34.2](https://github.com/alexfalkowski/konfig/releases/tag/v1.34.2) - 2023-01-18
 
 - [`4a910f3`](https://github.com/alexfalkowski/konfig/commit/4a910f30b057027e3e57bc7401ab1095c81d3d14) fix(client): pass config (#414)
