@@ -33,22 +33,21 @@ type RunCommandParams struct {
 	fx.In
 
 	Lifecycle    fx.Lifecycle
-	Config       *v1.Config
 	Client       *Client
 	OutputConfig *OutputConfig
+	Config       *v1.Config
 }
 
 // RunCommand for client.
 func RunCommand(params RunCommandParams) {
 	params.Lifecycle.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
-			c := params.Config
-			d, err := params.Client.Config(ctx, c.Application, c.Version, c.Environment, c.Continent, c.Country, c.Command, c.Kind)
+			d, err := params.Client.Config(ctx)
 			if err != nil {
 				return err
 			}
 
-			return params.OutputConfig.Write(d, fs.FileMode(c.Mode))
+			return params.OutputConfig.Write(d, fs.FileMode(params.Config.Mode))
 		},
 	})
 }
