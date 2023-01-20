@@ -122,7 +122,7 @@ func (c *Configurator) clone(ctx context.Context) error {
 		return err
 	}
 
-	opts := &git.CloneOptions{Auth: &ghttp.BasicAuth{Username: "a", Password: c.cfg.GetToken()}, URL: c.cfg.URL}
+	opts := &git.CloneOptions{Auth: &ghttp.BasicAuth{Username: "a", Password: c.cfg.Token()}, URL: c.cfg.URL}
 
 	r, err := git.PlainCloneContext(ctx, c.cfg.Dir, false, opts)
 	if err != nil {
