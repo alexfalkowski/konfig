@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.36.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.36.1) - 2023-01-20
+
+- [`0305569`](https://github.com/alexfalkowski/konfig/commit/03055699a2e4e2cd8cce9d6c539ec686a5442845) fix(deps): bump github.com/hashicorp/vault/api from 1.8.2 to 1.8.3 (#418)
+
 ## [v1.36.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.36.0) - 2023-01-20
 
 - [`4a887cb`](https://github.com/alexfalkowski/konfig/commit/4a887cbc92aad6853321c9dd925a2c9989ee4019) feat(git): only read from token (#417)
