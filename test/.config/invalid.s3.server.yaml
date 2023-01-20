@@ -22,8 +22,4 @@ server:
     source:
       kind: s3
       s3:
-        access: access
-        secret: secret
-        region: eu-west-1
         bucket: bucket
-        url: does_not_exist

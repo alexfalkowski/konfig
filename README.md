@@ -76,6 +76,10 @@ An example:
 {"data": { "value": "Konfig-server/1.0 http/1.0" }}
 ```
 
+##### Configuration
+
+[Environment Variables](https://developer.hashicorp.com/vault/docs/commands#environment-variables)
+
 #### SSM
 
 You can store values in [ssm](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) for safe keeping.
@@ -107,6 +111,11 @@ An example:
 ```json
 {"data": { "value": "Konfig-server/1.0 http/1.0" }}
 ```
+
+##### Configuration
+
+[Environment Variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
 ## Server
 
 The server is defined by the following [proto contract](api/konfig/v1/service.proto). So each version of the service will have a new contract.
@@ -135,13 +144,16 @@ This system allows you to store your configuration from various sources. Though 
 
 To configure we just need the have the following configuration:
 
+```bash
+KONFIG_GIT_TOKEN=GitHub token
+```
+
 ```yaml
 source:
   kind: git
   git:
     url: https://github.com/alexfalkowski/app-config (the configuration repo)
     dir: tmp/app-config (where to clone the repo to)
-    token: a GitHub token or can be set in KONFIG_GIT_TOKEN env variable
 ```
 
 ```toml
@@ -151,7 +163,6 @@ kind = "git"
 [source.git]
 url = "https://github.com/alexfalkowski/app-config (the configuration repo)"
 dir = "tmp/app-config (where to clone the repo to)"
-token = "a GitHub token or can be set in KONFIG_GIT_TOKEN env variable"
 ```
 
 We expect that the folders to have the following conventions:
@@ -177,13 +188,12 @@ Some examples:
 
 To configure we just need the have the following configuration:
 
+[Environment Variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
 ```yaml
 source:
   kind: s3
   s3:
-    access: Specifies an AWS access key associated with an IAM user or role.
-    secret: Specifies the secret key associated with the access key. This is essentially the "password" for the access key.
-    region: AWS Region to send the request to.
     bucket: The bucket that contains all the configs.
 ```
 
@@ -192,9 +202,6 @@ source:
 kind = "s3"
 
 [source.s3]
-access = "Specifies an AWS access key associated with an IAM user or role."
-secret = 'Specifies the secret key associated with the access key. This is essentially the "password" for the access key.'
-region = "AWS Region to send the request to."
 bucket = "The bucket that contains all the configs."
 ```
 
@@ -257,6 +264,24 @@ application
 
 Kind is `yaml`, `toml`.
 
+### Health
+
+The system defines a way to monitor all of it's dependencies.
+
+To configure we just need the have the following configuration:
+
+```yaml
+health:
+  duration: 1s (how often to check)
+  timeout: 1s (when we should timeout the check)
+```
+
+```toml
+[health]
+duration = "1s (how often to check)"
+timeout = "1s (when we should timeout the check)"
+```
+
 ## Client
 
 The client is used to get the config that is defined in the config. These values reflect how the config is stored in the above sources.
@@ -295,24 +320,6 @@ mode = 0o600
 The client writes the config to the location specified by the flag called `--output`. As per the following:
 - `env:APP_CONFIG_FILE` - Write to an env variable called `APP_CONFIG_FILE`. This is the default if nothing is passed.
 - `file:path` - Write to the path.
-
-## Health
-
-The system defines a way to monitor all of it's dependencies.
-
-To configure we just need the have the following configuration:
-
-```yaml
-health:
-  duration: 1s (how often to check)
-  timeout: 1s (when we should timeout the check)
-```
-
-```toml
-[health]
-duration = "1s (how often to check)"
-timeout = "1s (when we should timeout the check)"
-```
 
 ## Deployment
 

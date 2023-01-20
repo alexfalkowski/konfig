@@ -8,7 +8,7 @@ module Konfig
     end
 
     def write(name, value)
-      client.put_parameter(name: name, value: value, overwrite: true)
+      client.put_parameter(name: name, value: value, type: 'String', overwrite: true)
       true
     end
 
