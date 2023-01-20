@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 
 	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
@@ -14,7 +15,6 @@ import (
 	"github.com/alexfalkowski/konfig/source/configurator/s3/opentracing"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/aws/aws-sdk-go-v2/credentials"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
 )
@@ -39,18 +39,17 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	defer span.Finish()
 
 	resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...any) (aws.Endpoint, error) {
-		if c.cfg.URL != "" {
-			return aws.Endpoint{PartitionID: "aws", URL: c.cfg.URL, SigningRegion: c.cfg.Region}, nil
+		url := os.Getenv("AWS_URL")
+		if url != "" {
+			return aws.Endpoint{PartitionID: "aws", URL: url, SigningRegion: region}, nil
 		}
 
 		return aws.Endpoint{}, &aws.EndpointNotFoundError{}
 	})
 
 	opts := []func(*config.LoadOptions) error{
-		config.WithRegion(c.cfg.Region),
 		config.WithEndpointResolverWithOptions(resolver),
 		config.WithHTTPClient(c.client),
-		config.WithCredentialsProvider(credentials.NewStaticCredentialsProvider(c.cfg.Access, c.cfg.Secret, "")),
 	}
 
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)

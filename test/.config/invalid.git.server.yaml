@@ -24,4 +24,3 @@ server:
       git:
         url: https://github.com/alexfalkowski/app-config
         dir: tmp/app-config
-        token: invalid_token
