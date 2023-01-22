@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.37.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.37.0) - 2023-01-22
+
+- [`51d8432`](https://github.com/alexfalkowski/konfig/commit/51d8432308b679a8307dcfaf14cda8a716f14710) feat(source): use config (#420)
+
 ## [v1.36.2](https://github.com/alexfalkowski/konfig/releases/tag/v1.36.2) - 2023-01-21
 
 - [`f05571e`](https://github.com/alexfalkowski/konfig/commit/f05571e69eb9fc878ff27738b80725958a9dd2ff) fix(deps): run mod (#419)
