@@ -3,14 +3,14 @@ package http
 import (
 	"github.com/alexfalkowski/go-health/server"
 	"github.com/alexfalkowski/go-service/health/transport/http"
-	v1 "github.com/alexfalkowski/konfig/server/v1/config"
+	"github.com/alexfalkowski/konfig/source"
 )
 
 // NewHealthObserver for HTTP.
-func NewHealthObserver(healthServer *server.Server, v1Config *v1.Config) *http.HealthObserver {
+func NewHealthObserver(healthServer *server.Server, source *source.Config) *http.HealthObserver {
 	names := []string{"vault"}
-	if v1Config.Source.IsGit() {
-		names = append(names, "v1-git")
+	if source.IsGit() {
+		names = append(names, "git")
 	}
 
 	return &http.HealthObserver{Observer: healthServer.Observe(names...)}

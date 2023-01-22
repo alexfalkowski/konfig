@@ -26,7 +26,7 @@ Then('I should receive a valid config from gRPC:') do |table|
   expect(@response.config.kind).to eq(rows['kind'])
   expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
   expect(data['transport']['grpc']['user_agent']).to eq('Konfig-server/1.0 grpc/1.0')
-  expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
 end
 
 Then('I should receive a valid config with missing provider data from gRPC:') do |table|
@@ -42,7 +42,7 @@ Then('I should receive a valid config with missing provider data from gRPC:') do
   expect(@response.config.kind).to eq(rows['kind'])
   expect(data['transport']['http']['user_agent']).to eq('/secret/data/transport/http/user_agent')
   expect(data['transport']['grpc']['user_agent']).to eq('/secret/data/transport/grpc/user_agent')
-  expect(data['server']['v1']['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
 end
 
 Then('I should receive a missing config from gRPC') do

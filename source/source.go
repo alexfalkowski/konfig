@@ -12,6 +12,7 @@ import (
 	gopentracing "github.com/alexfalkowski/konfig/source/configurator/git/opentracing"
 	"github.com/alexfalkowski/konfig/source/configurator/s3"
 	sopentracing "github.com/alexfalkowski/konfig/source/configurator/s3/opentracing"
+	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
 
@@ -20,6 +21,8 @@ var ErrNoConfigurator = errors.New("no configurator")
 
 // ConfiguratorParams for source.
 type ConfiguratorParams struct {
+	fx.In
+
 	Config     *Config
 	HTTPConfig *http.Config
 	Logger     *zap.Logger
@@ -30,7 +33,7 @@ type ConfiguratorParams struct {
 }
 
 // NewConfigurator for source.
-func NewConfigurator(params *ConfiguratorParams) (configurator.Configurator, error) {
+func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
 	client := http.NewClient(
 		http.ClientParams{Config: params.HTTPConfig},
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.HTTPTracer),

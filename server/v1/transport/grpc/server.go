@@ -7,9 +7,8 @@ import (
 
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	"github.com/alexfalkowski/konfig/server/config"
-	"github.com/alexfalkowski/konfig/server/v1/source"
-	"github.com/alexfalkowski/konfig/source/configurator"
-	kerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
+	source "github.com/alexfalkowski/konfig/source/configurator"
+	serrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"go.uber.org/fx"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -65,7 +64,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		return resp, err
 	}
 
-	p := configurator.ConfigParams{
+	p := source.ConfigParams{
 		Application: req.Application,
 		Version:     req.Version,
 		Environment: req.Environment,
@@ -77,7 +76,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 
 	c, err := s.conf.GetConfig(ctx, p)
 	if err != nil {
-		if errors.Is(err, kerrors.ErrNotFound) {
+		if errors.Is(err, serrors.ErrNotFound) {
 			return resp, status.Error(codes.NotFound, fmt.Sprintf("%s was not found", p))
 		}
 

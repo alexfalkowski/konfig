@@ -4,7 +4,7 @@ import (
 	"github.com/alexfalkowski/go-service/config"
 	cv1 "github.com/alexfalkowski/konfig/client/v1/config"
 	"github.com/alexfalkowski/konfig/health"
-	sv1 "github.com/alexfalkowski/konfig/server/v1/config"
+	"github.com/alexfalkowski/konfig/source"
 )
 
 // NewConfigurator for config.
@@ -14,14 +14,14 @@ func NewConfigurator() config.Configurator {
 	return cfg
 }
 
-func v1Server(cfg config.Configurator) *sv1.Config {
-	return &cfg.(*Config).Server.V1
-}
-
 func v1Client(cfg config.Configurator) *cv1.Config {
 	return &cfg.(*Config).Client.V1
 }
 
 func healthConfig(cfg config.Configurator) *health.Config {
 	return &cfg.(*Config).Health
+}
+
+func sourceConfig(cfg config.Configurator) *source.Config {
+	return &cfg.(*Config).Source
 }

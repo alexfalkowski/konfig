@@ -23,9 +23,9 @@ attempts = 3
 duration = "1s"
 timeout = "1s"
 
-[server.v1.source]
+[source]
 kind = "git"
 
-[server.v1.source.git]
+[source.git]
 url = "env:GITHUB_URL"
 dir = "tmp/app-config"

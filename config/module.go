@@ -12,7 +12,7 @@ var (
 		config.UnmarshalModule,
 		config.ConfigModule,
 		fx.Provide(v1Client),
-		fx.Provide(v1Server),
+		fx.Provide(sourceConfig),
 		fx.Provide(healthConfig),
 	)
 )

@@ -10,6 +10,7 @@ transport:
       timeout: 2s
       attempts: 3
   grpc:
+    port: 9090
     user_agent: ssm:/secret/data/transport/grpc/user_agent
     retry:
       timeout: 2s
@@ -17,10 +18,8 @@ transport:
 health:
   duration: 1s
   timeout: 1s
-server:
-  v1:
-    source:
-      kind: git
-      git:
-        url: env:GITHUB_URL
-        dir: tmp/app-config
+source:
+  kind: git
+  git:
+    url: env:GITHUB_URL
+    dir: tmp/app-config
