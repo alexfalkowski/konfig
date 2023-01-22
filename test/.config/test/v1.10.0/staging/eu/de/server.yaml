@@ -18,10 +18,8 @@ transport:
 health:
   duration: 1s
   timeout: 1s
-server:
-  v1:
-    source:
-      kind: git
-      git:
-        url: env:GITHUB_URL
-        dir: tmp/app-config
+source:
+  kind: git
+  git:
+    url: env:GITHUB_URL
+    dir: tmp/app-config

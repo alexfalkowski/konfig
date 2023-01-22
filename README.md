@@ -116,29 +116,11 @@ An example:
 
 [Environment Variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
 
-## Server
-
-The server is defined by the following [proto contract](api/konfig/v1/service.proto). So each version of the service will have a new contract.
-
-To configure we just need the have the following configuration:
-
-```yaml
-server:
-  v1:
-    source:
-      kind: git, s3, or folder (see below)
-```
-
-```toml
-[server.v1.source]
-kind = "git, s3, or folder (see below)"
-```
-
-### Source
+## Source
 
 This system allows you to store your configuration from various sources. Though we highly recommend that you follow configuration as code.
 
-#### Git
+### Git
 
 [Distributed version control](https://en.wikipedia.org/wiki/Distributed_version_control) is awesome and we believe should be used when managing configuration.
 
@@ -182,7 +164,7 @@ The tag name should be `application/version` and kind is `yml`.
 Some examples:
 - [app-config](https://github.com/alexfalkowski/app-config)
 
-#### S3
+### S3
 
 [S3](https://aws.amazon.com/s3/) is another way to store your configurations.
 
@@ -228,7 +210,7 @@ s3://bucket/test/v1.5.0/production/eu/de/server.kind
 
 Kind is `yaml`, `toml`.
 
-#### Folder
+### Folder
 
 This is mainly used for testing or if you want to quickly run it. If you have a secure way to mount these configs, then by all means go for it.
 
@@ -264,23 +246,9 @@ application
 
 Kind is `yaml`, `toml`.
 
-### Health
+## Server
 
-The system defines a way to monitor all of it's dependencies.
-
-To configure we just need the have the following configuration:
-
-```yaml
-health:
-  duration: 1s (how often to check)
-  timeout: 1s (when we should timeout the check)
-```
-
-```toml
-[health]
-duration = "1s (how often to check)"
-timeout = "1s (when we should timeout the check)"
-```
+The server is defined by the following [proto contract](api/konfig/v1/service.proto). So each version of the service will have a new contract.
 
 ## Client
 
@@ -320,6 +288,24 @@ mode = 0o600
 The client writes the config to the location specified by the flag called `--output`. As per the following:
 - `env:APP_CONFIG_FILE` - Write to an env variable called `APP_CONFIG_FILE`. This is the default if nothing is passed.
 - `file:path` - Write to the path.
+
+## Health
+
+The system defines a way to monitor all of it's dependencies.
+
+To configure we just need the have the following configuration:
+
+```yaml
+health:
+  duration: 1s (how often to check)
+  timeout: 1s (when we should timeout the check)
+```
+
+```toml
+[health]
+duration = "1s (how often to check)"
+timeout = "1s (when we should timeout the check)"
+```
 
 ## Deployment
 

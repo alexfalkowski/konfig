@@ -17,10 +17,8 @@ transport:
 health:
   duration: 1s
   timeout: 1s
-server:
-  v1:
-    source:
-      kind: git
-      git:
-        url: https://github.com/alexfalkowski/app-config
-        dir: tmp/app-config
+source:
+  kind: git
+  git:
+    url: https://github.com/alexfalkowski/app-config
+    dir: tmp/app-config
