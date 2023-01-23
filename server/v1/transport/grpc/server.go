@@ -6,7 +6,6 @@ import (
 	"fmt"
 
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
-	"github.com/alexfalkowski/konfig/server/config"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	serrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"go.uber.org/fx"
@@ -19,18 +18,18 @@ type ServerParams struct {
 	fx.In
 
 	Configurator source.Configurator
-	Transformer  *config.Transformer
+	Transformer  *source.Transformer
 }
 
 // NewServer for gRPC.
 func NewServer(params ServerParams) v1.ServiceServer {
-	return &Server{conf: params.Configurator, trans: params.Transformer}
+	return &Server{conf: params.Configurator, transformer: params.Transformer}
 }
 
 // Server for gRPC.
 type Server struct {
-	conf  source.Configurator
-	trans *config.Transformer
+	conf        source.Configurator
+	transformer *source.Transformer
 	v1.UnimplementedServiceServer
 }
 
@@ -83,7 +82,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		return resp, status.Error(codes.Internal, "could get config")
 	}
 
-	data, err := s.trans.Transform(ctx, c)
+	data, err := s.transformer.Transform(ctx, c)
 	if err != nil {
 		return resp, status.Error(codes.Internal, "could not transform")
 	}

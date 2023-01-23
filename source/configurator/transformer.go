@@ -1,4 +1,4 @@
-package config
+package configurator
 
 import (
 	"context"
@@ -7,7 +7,6 @@ import (
 	"github.com/alexfalkowski/go-service/marshaller"
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/konfig/provider"
-	source "github.com/alexfalkowski/konfig/source/configurator"
 )
 
 var (
@@ -33,7 +32,7 @@ func NewTransformer(pt *provider.Transformer, f *marshaller.Factory) *Transforme
 }
 
 // Transform config.
-func (t *Transformer) Transform(ctx context.Context, cfg *source.Config) ([]byte, error) {
+func (t *Transformer) Transform(ctx context.Context, cfg *Config) ([]byte, error) {
 	m, err := t.f.Create(cfg.Kind)
 	if err != nil {
 		return nil, err
