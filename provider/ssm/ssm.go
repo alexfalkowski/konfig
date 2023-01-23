@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/alexfalkowski/konfig/server/config/provider/ssm/trace/opentracing"
+	"github.com/alexfalkowski/konfig/provider/ssm/trace/opentracing"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/aws/aws-sdk-go-v2/service/ssm/types"
 )

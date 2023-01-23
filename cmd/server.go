@@ -6,7 +6,7 @@ import (
 	"github.com/alexfalkowski/go-service/metrics"
 	"github.com/alexfalkowski/go-service/transport"
 	"github.com/alexfalkowski/konfig/config"
-	kconfig "github.com/alexfalkowski/konfig/server/config"
+	"github.com/alexfalkowski/konfig/provider"
 	"github.com/alexfalkowski/konfig/server/health"
 	v1 "github.com/alexfalkowski/konfig/server/v1"
 	"github.com/alexfalkowski/konfig/source"
@@ -16,7 +16,7 @@ import (
 // ServerOptions for cmd.
 var ServerOptions = []fx.Option{
 	fx.NopLogger, Module, marshaller.Module,
-	config.Module, kconfig.Module, health.Module,
+	config.Module, provider.Module, health.Module,
 	logger.ZapModule, metrics.PrometheusModule, transport.Module,
 	source.Module, v1.Module,
 }

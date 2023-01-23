@@ -2,12 +2,23 @@ package config
 
 import (
 	"context"
+	"errors"
 
 	"github.com/alexfalkowski/go-service/marshaller"
 	"github.com/alexfalkowski/go-service/meta"
-	"github.com/alexfalkowski/konfig/server/config/errors"
-	"github.com/alexfalkowski/konfig/server/config/provider"
+	"github.com/alexfalkowski/konfig/provider"
 	source "github.com/alexfalkowski/konfig/source/configurator"
+)
+
+var (
+	// ErrUnmarshalError in config.
+	ErrUnmarshalError = errors.New("unmarshal issue")
+
+	// ErrMarshalError in config.
+	ErrMarshalError = errors.New("marshal issue")
+
+	// ErrTraverseError in config.
+	ErrTraverseError = errors.New("traverse issue")
 )
 
 // Transformer for config.
@@ -32,20 +43,20 @@ func (t *Transformer) Transform(ctx context.Context, cfg *source.Config) ([]byte
 	if err := m.Unmarshal(cfg.Data, &c); err != nil {
 		meta.WithAttribute(ctx, "config.unmarshal_error", err.Error())
 
-		return nil, errors.ErrUnmarshalError
+		return nil, ErrUnmarshalError
 	}
 
 	if err := t.traverse(ctx, c); err != nil {
 		meta.WithAttribute(ctx, "config.traverse_error", err.Error())
 
-		return nil, errors.ErrTraverseError
+		return nil, ErrTraverseError
 	}
 
 	data, err := m.Marshal(c)
 	if err != nil {
 		meta.WithAttribute(ctx, "config.marshal_error", err.Error())
 
-		return nil, errors.ErrMarshalError
+		return nil, ErrMarshalError
 	}
 
 	return data, nil
