@@ -3,9 +3,9 @@ package provider
 import (
 	"github.com/alexfalkowski/konfig/provider/env"
 	"github.com/alexfalkowski/konfig/provider/ssm"
-	sopentracing "github.com/alexfalkowski/konfig/provider/ssm/trace/opentracing"
+	sotr "github.com/alexfalkowski/konfig/provider/ssm/trace/opentracing"
 	"github.com/alexfalkowski/konfig/provider/vault"
-	vopentracing "github.com/alexfalkowski/konfig/provider/vault/trace/opentracing"
+	votr "github.com/alexfalkowski/konfig/provider/vault/trace/opentracing"
 
 	"go.uber.org/fx"
 )
@@ -17,10 +17,10 @@ var (
 		fx.Provide(vault.NewConfig),
 		fx.Provide(vault.NewClient),
 		fx.Provide(vault.NewTransformer),
-		fx.Provide(vopentracing.NewTracer),
+		fx.Provide(votr.NewTracer),
 		fx.Provide(ssm.NewClient),
 		fx.Provide(ssm.NewTransformer),
-		fx.Provide(sopentracing.NewTracer),
+		fx.Provide(sotr.NewTracer),
 		fx.Provide(NewTransformer),
 	)
 )
