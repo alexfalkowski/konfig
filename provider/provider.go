@@ -4,12 +4,10 @@ import (
 	"context"
 	"strings"
 
-	"github.com/alexfalkowski/konfig/server/config/provider/env"
-	"github.com/alexfalkowski/konfig/server/config/provider/ssm"
-	"github.com/alexfalkowski/konfig/server/config/provider/vault"
+	"github.com/alexfalkowski/konfig/provider/env"
+	"github.com/alexfalkowski/konfig/provider/ssm"
+	"github.com/alexfalkowski/konfig/provider/vault"
 )
-
-const argumentsLen = 2
 
 // Transformer for provider.
 type Transformer struct {
@@ -26,7 +24,7 @@ func NewTransformer(et *env.Transformer, vt *vault.Transformer, st *ssm.Transfor
 // Transform for provider.
 func (t *Transformer) Transform(ctx context.Context, value string) (any, error) {
 	args := strings.Split(value, ":")
-	if len(args) != argumentsLen {
+	if len(args) != 2 {
 		return value, nil
 	}
 

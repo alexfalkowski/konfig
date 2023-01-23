@@ -3,7 +3,7 @@ package vault
 import (
 	"context"
 
-	"github.com/alexfalkowski/konfig/server/config/provider/vault/trace/opentracing"
+	"github.com/alexfalkowski/konfig/provider/vault/trace/opentracing"
 	"github.com/hashicorp/vault/api"
 )
 
