@@ -20,7 +20,3 @@ updates:
     directory: "/test"
     schedule:
       interval: "daily"
-    commit-message:
-      prefix: "fix"
-      prefix-development: "build"
-      include: "scope"
