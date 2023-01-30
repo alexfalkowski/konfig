@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.39.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.39.0) - 2023-01-30
+
+- [`9adc349`](https://github.com/alexfalkowski/konfig/commit/9adc349dc73f784b29f9f1a3a0942b63ee2902e2) feat(observability): change endpoints (#435)
+- [`a9d1f51`](https://github.com/alexfalkowski/konfig/commit/a9d1f5118a9ba388d75bfd179192f351cd80467b) build(deps): bump aws-sdk-s3 from 1.118.0 to 1.119.0 in /test (#434)
+- [`6e86ea6`](https://github.com/alexfalkowski/konfig/commit/6e86ea642542937f9cb3bf663f5cdb71df2b256a) ci: bundler should be build (#433)
+
 ## [v1.38.7](https://github.com/alexfalkowski/konfig/releases/tag/v1.38.7) - 2023-01-26
 
 - [`8cc245e`](https://github.com/alexfalkowski/konfig/commit/8cc245e6d9347be7570238c63740c0765a35ba96) fix(deps): bump github.com/alexfalkowski/go-service (#432)
