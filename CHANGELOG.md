@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.40.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.40.0) - 2023-02-09
+
+- [`514eea2`](https://github.com/alexfalkowski/konfig/commit/514eea24fe51f26806f048bf5b01ee78cecf2afc) feat(go): update to v1.20 (#444)
+- [`fe2a670`](https://github.com/alexfalkowski/konfig/commit/fe2a6706e05bb1734ef113094894ed04effd9008) build(deps): bump rubocop from 1.44.1 to 1.45.1 in /test (#445)
+
 ## [v1.39.5](https://github.com/alexfalkowski/konfig/releases/tag/v1.39.5) - 2023-02-03
 
 - [`3c64cf4`](https://github.com/alexfalkowski/konfig/commit/3c64cf48402c761806d993a13ac937afb3650cb8) fix(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 (#439)
