@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/alexfalkowski/go-health v1.12.0
-	github.com/alexfalkowski/go-service v1.84.3
+	github.com/alexfalkowski/go-service v1.84.4
 	github.com/aws/aws-sdk-go-v2 v1.17.4
 	github.com/aws/aws-sdk-go-v2/config v1.18.12
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.30.2
@@ -89,13 +89,13 @@ require (
 	github.com/imdario/mergo v0.3.13 // indirect
 	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
-	github.com/jackc/pgconn v1.13.0 // indirect
+	github.com/jackc/pgconn v1.14.0 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
-	github.com/jackc/pgproto3/v2 v2.3.1 // indirect
-	github.com/jackc/pgservicefile v0.0.0-20200714003250-2b9c44734f2b // indirect
-	github.com/jackc/pgtype v1.12.0 // indirect
-	github.com/jackc/pgx/v4 v4.17.2 // indirect
+	github.com/jackc/pgproto3/v2 v2.3.2 // indirect
+	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
+	github.com/jackc/pgtype v1.14.0 // indirect
+	github.com/jackc/pgx/v4 v4.18.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
@@ -143,7 +143,7 @@ require (
 	go.uber.org/multierr v1.9.0 // indirect
 	go4.org/intern v0.0.0-20211027215823-ae77deb06f29 // indirect
 	go4.org/unsafe/assume-no-moving-gc v0.0.0-20220617031537-928513b29760 // indirect
-	golang.org/x/crypto v0.3.0 // indirect
+	golang.org/x/crypto v0.6.0 // indirect
 	golang.org/x/net v0.6.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
