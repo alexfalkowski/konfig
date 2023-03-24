@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.40.33](https://github.com/alexfalkowski/konfig/releases/tag/v1.40.33) - 2023-03-24
+
+- [`1b766b7`](https://github.com/alexfalkowski/konfig/commit/1b766b7096cfd7a06d8db6daba1a95c6ea67f3e6) fix(deps): bump github.com/alexfalkowski/go-service (#504)
+- [`471cea4`](https://github.com/alexfalkowski/konfig/commit/471cea4556165d6cf166cc7c946d085d8b013fd8) build(deps): bump aws-sdk-s3 from 1.119.1 to 1.119.2 in /test (#500)
+- [`3bbadf7`](https://github.com/alexfalkowski/konfig/commit/3bbadf7b936dc91969b75ffa83139fce14634185) build(deps): bump aws-sdk-ssm from 1.149.0 to 1.150.0 in /test (#501)
+
 ## [v1.40.32](https://github.com/alexfalkowski/konfig/releases/tag/v1.40.32) - 2023-03-22
 
 - [`6e8618b`](https://github.com/alexfalkowski/konfig/commit/6e8618bc881280272493aeee8d85f298b50b84d9) fix(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 (#499)
