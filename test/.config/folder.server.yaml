@@ -1,7 +1,6 @@
-trace:
-  opentracing:
-    kind: jaeger
-    host: localhost:6831
+otel:
+  kind: jaeger
+  host: localhost:6831
 transport:
   port: 8080
   http:
