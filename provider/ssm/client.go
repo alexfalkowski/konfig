@@ -6,7 +6,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/alexfalkowski/go-service/transport/http/metrics/prometheus"
-	"github.com/alexfalkowski/go-service/transport/http/trace/opentracing"
+	"github.com/alexfalkowski/go-service/transport/http/otel"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
@@ -20,7 +20,7 @@ type ClientParams struct {
 
 	HTTPConfig *http.Config
 	Logger     *zap.Logger
-	Tracer     opentracing.Tracer
+	Tracer     otel.Tracer
 	Metrics    *prometheus.ClientMetrics
 }
 

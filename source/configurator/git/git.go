@@ -13,15 +13,16 @@ import (
 	"github.com/alexfalkowski/go-service/meta"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
-	"github.com/alexfalkowski/konfig/source/configurator/git/opentracing"
+	"github.com/alexfalkowski/konfig/source/configurator/git/otel"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
 	gclient "github.com/go-git/go-git/v5/plumbing/transport/client"
 	ghttp "github.com/go-git/go-git/v5/plumbing/transport/http"
+	"go.opentelemetry.io/otel/trace"
 )
 
 // NewConfigurator for git.
-func NewConfigurator(cfg Config, tracer opentracing.Tracer, client *http.Client) *Configurator {
+func NewConfigurator(cfg Config, tracer otel.Tracer, client *http.Client) *Configurator {
 	c := ghttp.NewClient(client)
 
 	gclient.InstallProtocol("http", c)
@@ -35,7 +36,7 @@ type Configurator struct {
 	cfg    Config
 	repo   *git.Repository
 	mux    sync.Mutex
-	tracer opentracing.Tracer
+	tracer otel.Tracer
 }
 
 // GetConfig for git.
@@ -85,8 +86,8 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
 	tag := fmt.Sprintf("%s/%s", app, ver)
 
-	_, span := opentracing.StartSpanFromContext(ctx, c.tracer, "checkout", tag)
-	defer span.Finish()
+	_, span := c.tracer.Start(ctx, "checkout", trace.WithSpanKind(trace.SpanKindClient))
+	defer span.End()
 
 	tree, _ := c.repo.Worktree()
 
@@ -94,8 +95,8 @@ func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
 }
 
 func (c *Configurator) pull(ctx context.Context) error {
-	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "pull", plumbing.Master.String())
-	defer span.Finish()
+	ctx, span := c.tracer.Start(ctx, "pull", trace.WithSpanKind(trace.SpanKindClient))
+	defer span.End()
 
 	tree, _ := c.repo.Worktree()
 
@@ -111,8 +112,8 @@ func (c *Configurator) pull(ctx context.Context) error {
 }
 
 func (c *Configurator) clone(ctx context.Context) error {
-	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "clone", c.cfg.URL)
-	defer span.Finish()
+	ctx, span := c.tracer.Start(ctx, "clone", trace.WithSpanKind(trace.SpanKindClient))
+	defer span.End()
 
 	if c.repo != nil {
 		return nil

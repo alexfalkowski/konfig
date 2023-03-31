@@ -12,22 +12,24 @@ import (
 	"github.com/alexfalkowski/go-service/meta"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
-	"github.com/alexfalkowski/konfig/source/configurator/s3/opentracing"
+	"github.com/alexfalkowski/konfig/source/configurator/s3/otel"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
+	"go.opentelemetry.io/otel/codes"
+	"go.opentelemetry.io/otel/trace"
 )
 
 // NewConfigurator for s3.
-func NewConfigurator(cfg Config, tracer opentracing.Tracer, client *http.Client) *Configurator {
+func NewConfigurator(cfg Config, tracer otel.Tracer, client *http.Client) *Configurator {
 	return &Configurator{cfg: cfg, tracer: tracer, client: client}
 }
 
 // Configurator for s3.
 type Configurator struct {
 	cfg    Config
-	tracer opentracing.Tracer
+	tracer otel.Tracer
 	client *http.Client
 }
 
@@ -35,8 +37,8 @@ type Configurator struct {
 func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
 	path := c.path(params.Application, params.Version, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
 
-	ctx, span := opentracing.StartSpanFromContext(ctx, c.tracer, "get-object", fmt.Sprintf("%s:%s", c.cfg.Bucket, path))
-	defer span.Finish()
+	ctx, span := c.tracer.Start(ctx, "get-config", trace.WithSpanKind(trace.SpanKindClient))
+	defer span.End()
 
 	resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...any) (aws.Endpoint, error) {
 		url := os.Getenv("AWS_URL")
@@ -54,6 +56,9 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
 	if err != nil {
+		span.SetStatus(codes.Error, err.Error())
+		span.RecordError(err)
+
 		return nil, err
 	}
 
@@ -67,8 +72,14 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 		var nerr *types.NoSuchKey
 		if errors.As(err, &nerr) {
+			span.SetStatus(codes.Error, err.Error())
+			span.RecordError(err)
+
 			return nil, cerrors.ErrNotFound
 		}
+
+		span.SetStatus(codes.Error, err.Error())
+		span.RecordError(err)
 
 		return nil, err
 	}
@@ -76,6 +87,9 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	data, err := io.ReadAll(out.Body)
 	if err != nil {
 		meta.WithAttribute(ctx, "s3.read_all_error", err.Error())
+
+		span.SetStatus(codes.Error, err.Error())
+		span.RecordError(err)
 
 		return nil, err
 	}

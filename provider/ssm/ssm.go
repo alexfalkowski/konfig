@@ -5,9 +5,11 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/alexfalkowski/konfig/provider/ssm/trace/opentracing"
+	"github.com/alexfalkowski/konfig/provider/ssm/otel"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/aws/aws-sdk-go-v2/service/ssm/types"
+	"go.opentelemetry.io/otel/codes"
+	"go.opentelemetry.io/otel/trace"
 )
 
 // Secret from SSM.
@@ -18,18 +20,18 @@ type Secret struct {
 // Transformer for SSM.
 type Transformer struct {
 	client *ssm.Client
-	tracer opentracing.Tracer
+	tracer otel.Tracer
 }
 
 // NewTransformer for SSM.
-func NewTransformer(client *ssm.Client, tracer opentracing.Tracer) *Transformer {
+func NewTransformer(client *ssm.Client, tracer otel.Tracer) *Transformer {
 	return &Transformer{client: client, tracer: tracer}
 }
 
 // Transform for SSM.
 func (t *Transformer) Transform(ctx context.Context, value string) (any, error) {
-	ctx, span := opentracing.StartSpanFromContext(ctx, t.tracer, "transform", value)
-	defer span.Finish()
+	ctx, span := t.tracer.Start(ctx, "transform", trace.WithSpanKind(trace.SpanKindClient))
+	defer span.End()
 
 	out, err := t.client.GetParameter(ctx, &ssm.GetParameterInput{Name: &value})
 	if err != nil {
@@ -38,12 +40,18 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 			return value, nil
 		}
 
+		span.SetStatus(codes.Error, err.Error())
+		span.RecordError(err)
+
 		return value, err
 	}
 
 	var sec Secret
 
 	if err := json.Unmarshal([]byte(*out.Parameter.Value), &sec); err != nil {
+		span.SetStatus(codes.Error, err.Error())
+		span.RecordError(err)
+
 		return value, err
 	}
 
