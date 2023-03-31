@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.41.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.1) - 2023-03-31
+
+- [`cee6d87`](https://github.com/alexfalkowski/konfig/commit/cee6d87aef14bb57e1d563a62c064261e0e85a47) fix(cmd): register otel module (#508)
+
 ## [v1.41.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.0) - 2023-03-31
 
 - [`e097c21`](https://github.com/alexfalkowski/konfig/commit/e097c21c2cb64fe5b735c4ca7627d51a54fd9614) fix: deps (#507)
