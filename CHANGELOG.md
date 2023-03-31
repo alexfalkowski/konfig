@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.41.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.0) - 2023-03-31
+
+- [`e097c21`](https://github.com/alexfalkowski/konfig/commit/e097c21c2cb64fe5b735c4ca7627d51a54fd9614) fix: deps (#507)
+- [`641d0e2`](https://github.com/alexfalkowski/konfig/commit/641d0e2a9f1f2b82ea04e6323275bf888adc11ce) feat: replace opentracing with otel (#506)
+
 ## [v1.40.35](https://github.com/alexfalkowski/konfig/releases/tag/v1.40.35) - 2023-03-31
 
 - [`82ee627`](https://github.com/alexfalkowski/konfig/commit/82ee6275102d2b06a0887bab23b2f08c408fc543) fix(deps): bump github.com/alexfalkowski/go-service (#505)
