@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.41.2](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.2) - 2023-04-01
+
+- [`93527f0`](https://github.com/alexfalkowski/konfig/commit/93527f030532f89e37a59435f9ee188f6067a5a8) fix(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 (#510)
+- [`30ffe3a`](https://github.com/alexfalkowski/konfig/commit/30ffe3a9990d3fa2e44fddd385bd45a79a84ce28) build(deps): bump aws-sdk-s3 from 1.119.2 to 1.120.0 in /test (#509)
+
 ## [v1.41.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.1) - 2023-03-31
 
 - [`cee6d87`](https://github.com/alexfalkowski/konfig/commit/cee6d87aef14bb57e1d563a62c064261e0e85a47) fix(cmd): register otel module (#508)
