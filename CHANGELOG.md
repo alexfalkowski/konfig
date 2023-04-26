@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.41.18](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.18) - 2023-04-26
+
+- [`32cd3fa`](https://github.com/alexfalkowski/konfig/commit/32cd3fa7293cf3ca6edccfaf2234425fc1438407) fix(deps): bump github.com/aws/aws-sdk-go-v2/config (#541)
+- [`c57b6be`](https://github.com/alexfalkowski/konfig/commit/c57b6befee5122536ae868b701586e050c58c9e6) build(deps): bump rspec-expectations from 3.12.2 to 3.12.3 in /test (#538)
+
 ## [v1.41.17](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.17) - 2023-04-20
 
 - [`cef7883`](https://github.com/alexfalkowski/konfig/commit/cef78838f56a07083fcb46ff92fb07a677a31112) fix(deps): bump github.com/hashicorp/vault/api from 1.9.0 to 1.9.1 (#536)
