@@ -12,8 +12,8 @@ require (
 	github.com/go-git/go-git/v5 v5.6.1
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2
 	github.com/hashicorp/vault/api v1.9.1
-	go.opentelemetry.io/otel v1.15.0
-	go.opentelemetry.io/otel/trace v1.15.0
+	go.opentelemetry.io/otel v1.15.1
+	go.opentelemetry.io/otel/trace v1.15.1
 	go.uber.org/fx v1.19.2
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto v0.0.0-20230223222841-637eb2293923
