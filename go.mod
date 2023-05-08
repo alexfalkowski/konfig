@@ -14,7 +14,7 @@ require (
 	github.com/hashicorp/vault/api v1.9.1
 	go.opentelemetry.io/otel v1.15.1
 	go.opentelemetry.io/otel/trace v1.15.1
-	go.uber.org/fx v1.19.2
+	go.uber.org/fx v1.19.3
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto v0.0.0-20230306155012-7f2fa6fef1f4
 	google.golang.org/grpc v1.55.0
