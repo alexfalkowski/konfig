@@ -13,8 +13,8 @@ github.com/acomagu/bufpipe v1.0.4 h1:e3H4WUzM3npvo5uv95QuJM3cQspFNtFBzvJ2oNjKIDQ
 github.com/acomagu/bufpipe v1.0.4/go.mod h1:mxdxdup/WdsKVreO5GpW4+M/1CE2sMG4jeGJ2sYmHc4=
 github.com/alexfalkowski/go-health v1.12.1 h1:dlooDTXD0BL3NZ2zRwxFs1wTitg0gF6Fv7K7hz4XP04=
 github.com/alexfalkowski/go-health v1.12.1/go.mod h1:iyz1zP4j41hK+1doLDAoBfxSTllG89hBnL7QdchrYOU=
-github.com/alexfalkowski/go-service v1.86.19 h1:LPY1wmoaJ2K7Xoj8FQeRlf+rzqG+ud9davj1mv7He7Y=
-github.com/alexfalkowski/go-service v1.86.19/go.mod h1:DhD8dNub/AgIAHNcM1Ux6zkqqsppR6x8wrC3wzLutFI=
+github.com/alexfalkowski/go-service v1.86.20 h1:Pug1LNKyyXOChKWCwgKwcnbOiiSiGVj8I/rjVeUx6VI=
+github.com/alexfalkowski/go-service v1.86.20/go.mod h1:0RXauPD/jhNI6f5QAj7n82zch40yR+KG6Ij0ixpGcfY=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be h1:9AeTilPcZAjCFIImctFaOjnTIavg87rW78vTPkQqLI8=
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
 github.com/armon/go-socks5 v0.0.0-20160902184237-e75332964ef5 h1:0CwZNZbxp69SHPdPJAN/hZIm0C4OItdklCFmMRWYpio=
@@ -401,7 +401,7 @@ github.com/stretchr/testify v1.7.2/go.mod h1:R6va5+xMeoiuVRoj+gSkQ7d3FALtqAAGI1F
 github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO+kdMU+MU=
 github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/stretchr/testify v1.8.3 h1:RP3t2pwF7cMEbC1dqtB6poj3niw/9gnV4Cjg5oW5gtY=
-github.com/ulule/limiter/v3 v3.11.1 h1:wm6YaA2JwIXc0S+z8TK8/neWMOTf4m20I5jL1dwLRcw=
+github.com/ulule/limiter/v3 v3.11.2 h1:P4yOrxoEMJbOTfRJR2OzjL90oflzYPPmWg+dvwN2tHA=
 github.com/vmihailenco/go-tinylfu v0.2.2 h1:H1eiG6HM36iniK6+21n9LLpzx1G9R3DJa2UjUjbynsI=
 github.com/vmihailenco/go-tinylfu v0.2.2/go.mod h1:CutYi2Q9puTxfcolkliPq4npPuofg9N9t8JVrjzwa3Q=
 github.com/vmihailenco/msgpack/v5 v5.3.4/go.mod h1:7xyJ9e+0+9SaZT0Wt1RGleJXzli6Q/V5KbhBonMG9jc=
