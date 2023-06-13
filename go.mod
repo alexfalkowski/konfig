@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/alexfalkowski/go-health v1.12.1
-	github.com/alexfalkowski/go-service v1.86.26
+	github.com/alexfalkowski/go-service v1.86.29
 	github.com/aws/aws-sdk-go-v2 v1.18.0
 	github.com/aws/aws-sdk-go-v2/config v1.18.25
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.33.1
@@ -14,7 +14,7 @@ require (
 	github.com/hashicorp/vault/api v1.9.2
 	go.opentelemetry.io/otel v1.16.0
 	go.opentelemetry.io/otel/trace v1.16.0
-	go.uber.org/fx v1.19.3
+	go.uber.org/fx v1.20.0
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20230530153820-e85fd2cbaebc
 	google.golang.org/grpc v1.55.0
@@ -22,7 +22,7 @@ require (
 )
 
 require (
-	github.com/BurntSushi/toml v1.3.1 // indirect
+	github.com/BurntSushi/toml v1.3.2 // indirect
 	github.com/Microsoft/go-winio v0.5.2 // indirect
 	github.com/ProtonMail/go-crypto v0.0.0-20230518184743-7afd39499903 // indirect
 	github.com/acomagu/bufpipe v1.0.4 // indirect
@@ -119,7 +119,7 @@ require (
 	go.opentelemetry.io/otel/metric v1.16.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.16.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
-	go.uber.org/dig v1.16.1 // indirect
+	go.uber.org/dig v1.17.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/crypto v0.9.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
