@@ -7,7 +7,7 @@ jobs:
       - image: localstack/localstack:latest
         environment:
           SERVICES: s3,ssm
-      - image: vault:latest
+      - image: hashicorp/vault:latest
         environment:
           VAULT_DEV_ROOT_TOKEN_ID: vault-plaintext-root-token
     working_directory: ~/konfig
