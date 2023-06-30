@@ -3,8 +3,8 @@ module github.com/alexfalkowski/konfig
 go 1.20
 
 require (
-	github.com/alexfalkowski/go-health v1.12.1
-	github.com/alexfalkowski/go-service v1.86.36
+	github.com/alexfalkowski/go-health v1.12.2
+	github.com/alexfalkowski/go-service v1.86.37
 	github.com/aws/aws-sdk-go-v2 v1.18.1
 	github.com/aws/aws-sdk-go-v2/config v1.18.27
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.36.0
