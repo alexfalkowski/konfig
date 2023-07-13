@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.41.58](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.58) - 2023-07-13
+
+- [`d7e517a`](https://github.com/alexfalkowski/konfig/commit/d7e517a14831b7b61d05d5b88411a13cb450724c) fix(deps): bump golang from 1.20.5-bullseye to 1.20.6-bullseye (#625)
+- [`0172cfc`](https://github.com/alexfalkowski/konfig/commit/0172cfc673880d558849bf8c7968871f61005a7c) build(deps): bump aws-sdk-s3 from 1.128.0 to 1.129.0 in /test (#623)
+- [`ea23126`](https://github.com/alexfalkowski/konfig/commit/ea231269d5614584df2684f635ec0dfe7d695333) build(deps): bump aws-sdk-ssm from 1.155.0 to 1.156.0 in /test (#624)
+- [`6c80831`](https://github.com/alexfalkowski/konfig/commit/6c808318e97b37aa3dbc828aa2e0d10d454d535b) build(deps): bump aws-sdk-s3 from 1.127.0 to 1.128.0 in /test (#619)
+- [`2c7e444`](https://github.com/alexfalkowski/konfig/commit/2c7e444c8b73fdeb7553d39fdb0b34ebf1d96d18) build(deps): bump aws-sdk-ssm from 1.154.0 to 1.155.0 in /test (#620)
+
 ## [v1.41.57](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.57) - 2023-07-08
 
 - [`8da6783`](https://github.com/alexfalkowski/konfig/commit/8da67839f381ee96a32a38a9bcf1371ad0844038) fix(deps): bump github.com/alexfalkowski/go-service (#621)
