@@ -4,16 +4,16 @@ module Konfig
   class S3
     def initialize
       credentials = Aws::Credentials.new('access', 'secret')
-      @client = Aws::S3::Client.new(endpoint: 'http://localhost:4566', credentials: credentials, region: 'eu-west-1', force_path_style: true)
+      @client = Aws::S3::Client.new(endpoint: 'http://localhost:4566', credentials:, region: 'eu-west-1', force_path_style: true)
     end
 
     def write(key, value)
       create
-      client.put_object(bucket: 'bucket', key: key, body: value)
+      client.put_object(bucket: 'bucket', key:, body: value)
     end
 
     def delete(key)
-      client.delete_object(bucket: 'bucket', key: key)
+      client.delete_object(bucket: 'bucket', key:)
     end
 
     private
