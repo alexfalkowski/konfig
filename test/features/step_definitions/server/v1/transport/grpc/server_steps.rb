@@ -8,7 +8,7 @@ When('I request a config with gRPC:') do |table|
   request = Konfig::V1::GetConfigRequest.new(application: rows['app'], version: rows['ver'], environment: rows['env'],
                                              continent: rows['continent'], country: rows['country'], command: rows['cmd'],
                                              kind: rows['kind'])
-  @response = Konfig::V1.server_grpc.get_config(request, { metadata: metadata })
+  @response = Konfig::V1.server_grpc.get_config(request, { metadata: })
 rescue StandardError => e
   @response = e
 end
