@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.41.70](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.70) - 2023-08-03
+
+- [`85fa059`](https://github.com/alexfalkowski/konfig/commit/85fa059ccede2fe80bb2e244d846f5e5c1223e77) fix(deps): bump golang from 1.20.6-bullseye to 1.20.7-bullseye (#657)
+
 ## [v1.41.69](https://github.com/alexfalkowski/konfig/releases/tag/v1.41.69) - 2023-08-03
 
 - [`6f95dd4`](https://github.com/alexfalkowski/konfig/commit/6f95dd48605bba6b068266b5e60d96b342bcad47) fix(deps): bump github.com/aws/aws-sdk-go-v2/service/ssm (#654)
