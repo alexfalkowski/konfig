@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.42.6](https://github.com/alexfalkowski/konfig/releases/tag/v1.42.6) - 2023-08-21
+
+- [`5a7043e`](https://github.com/alexfalkowski/konfig/commit/5a7043e3e002f6a5ea2a9b4317d1c9e766ed429c) fix(deps): bump github.com/aws/aws-sdk-go-v2/config (#679)
+- [`a5cb0e3`](https://github.com/alexfalkowski/konfig/commit/a5cb0e3b9848ae36fd52920489096578be0b8511) build(deps): bump puma from 6.3.0 to 6.3.1 in /test (#680)
+
 ## [v1.42.5](https://github.com/alexfalkowski/konfig/releases/tag/v1.42.5) - 2023-08-18
 
 - [`74be614`](https://github.com/alexfalkowski/konfig/commit/74be614c1d6e8be179c2c2c7e506a6fd45522cb7) fix(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 (#673)
