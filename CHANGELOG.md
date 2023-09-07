@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.42.12](https://github.com/alexfalkowski/konfig/releases/tag/v1.42.12) - 2023-09-07
+
+- [`0531917`](https://github.com/alexfalkowski/konfig/commit/0531917521feecaa0b61a8424ab5688ecc550347) fix(deps): bump golang from 1.21.0-bullseye to 1.21.1-bullseye (#694)
+- [`dd334ef`](https://github.com/alexfalkowski/konfig/commit/dd334ef33d5490d1de9feca4e58de1f4e1202109) test(deps): upgrade nonnantive to version 1.72.0 (#693)
+- [`55a72c8`](https://github.com/alexfalkowski/konfig/commit/55a72c81b7cccf13254e10b53b0fed8ae3fb6a8c) build(deps): bump nonnative from 1.70.0 to 1.71.0 in /test (#688)
+- [`46e66ae`](https://github.com/alexfalkowski/konfig/commit/46e66ae04b504f1634f1835dcc7e868f1417016c) build(deps): bump aws-sdk-s3 from 1.133.0 to 1.134.0 in /test (#689)
+
 ## [v1.42.11](https://github.com/alexfalkowski/konfig/releases/tag/v1.42.11) - 2023-08-23
 
 - [`5f6035c`](https://github.com/alexfalkowski/konfig/commit/5f6035ccac34b36969027a42e14fcce0d8b515c4) fix(deps): bump github.com/alexfalkowski/go-service (#687)
