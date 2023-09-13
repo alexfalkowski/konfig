@@ -1,6 +1,6 @@
 otel:
-  kind: jaeger
-  host: localhost:6831
+  host: localhost:4318
+  secure: false
 transport:
   port: 8080
   http:
