@@ -1,6 +1,6 @@
 otel:
-  kind: jaeger
-  host: localhost:6831
+  host: localhost:4318
+  secure: false
 transport:
   grpc:
     user_agent: "Konfig-client/1.0 grpc/1.0"
