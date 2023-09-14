@@ -193,7 +193,7 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     unicode-display_width (2.4.2)
-    vault (0.17.0)
+    vault (0.18.1)
       aws-sigv4
     yard (0.9.34)
 
