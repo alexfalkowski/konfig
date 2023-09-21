@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.44.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.44.1) - 2023-09-21
+
+- [`4b5be52`](https://github.com/alexfalkowski/konfig/commit/4b5be5296f8ada17c411086e65dbb0a1636b55d4) fix(deps): bump github.com/aws/aws-sdk-go-v2/config (#705)
+- [`29a923e`](https://github.com/alexfalkowski/konfig/commit/29a923eb9315b739e81bb0bbcc9f8bec3a630826) build(deps): bump aws-sdk-s3 from 1.134.0 to 1.135.0 in /test (#706)
+- [`3785279`](https://github.com/alexfalkowski/konfig/commit/378527987395174b43f50458c3c6681ea735fce4) build(deps): bump vault from 0.17.0 to 0.18.1 in /test (#699)
+
 ## [v1.44.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.44.0) - 2023-09-13
 
 - [`6aee77b`](https://github.com/alexfalkowski/konfig/commit/6aee77b5041e9e83f5f26fe05a3ea0f47f514d0b) feat(otel): support native protocol (#698)
