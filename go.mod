@@ -11,7 +11,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.37.5
 	github.com/go-git/go-git/v5 v5.8.1
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.17.0
-	github.com/hashicorp/vault/api v1.9.2
+	github.com/hashicorp/vault/api v1.10.0
 	go.opentelemetry.io/otel v1.18.0
 	go.opentelemetry.io/otel/trace v1.18.0
 	go.uber.org/fx v1.20.0
