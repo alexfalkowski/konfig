@@ -27,7 +27,7 @@ type ConfiguratorParams struct {
 	HTTPConfig *http.Config
 	Logger     *zap.Logger
 	HTTPTracer hotel.Tracer
-	Metrics    *prometheus.ClientMetrics
+	Metrics    *prometheus.ClientCollector
 	GitTracer  gotel.Tracer
 	S3Tracer   sotel.Tracer
 }

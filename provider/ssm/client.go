@@ -21,7 +21,7 @@ type ClientParams struct {
 	HTTPConfig *http.Config
 	Logger     *zap.Logger
 	Tracer     otel.Tracer
-	Metrics    *prometheus.ClientMetrics
+	Metrics    *prometheus.ClientCollector
 }
 
 // NewClient for SSM.
