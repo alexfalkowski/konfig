@@ -16,7 +16,7 @@ type ConfigParams struct {
 	Config  *http.Config
 	Logger  *zap.Logger
 	Tracer  otel.Tracer
-	Metrics *prometheus.ClientMetrics
+	Metrics *prometheus.ClientCollector
 }
 
 // NewConfig for vault.

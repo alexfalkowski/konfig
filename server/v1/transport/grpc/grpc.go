@@ -25,7 +25,7 @@ type RegisterParams struct {
 	TransportConfig *transport.Config
 	Logger          *zap.Logger
 	Tracer          otel.Tracer
-	Metrics         *prometheus.ClientMetrics
+	Metrics         *prometheus.ClientCollector
 	Server          v1.ServiceServer
 }
 
