@@ -7,7 +7,7 @@ require (
 	github.com/alexfalkowski/go-service v1.90.4
 	github.com/aws/aws-sdk-go-v2 v1.21.0
 	github.com/aws/aws-sdk-go-v2/config v1.18.42
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.39.0
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.40.0
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.38.0
 	github.com/go-git/go-git/v5 v5.9.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.0
