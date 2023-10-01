@@ -12,7 +12,7 @@ import (
 	"github.com/alexfalkowski/go-service/meta"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
-	"github.com/alexfalkowski/konfig/source/configurator/s3/otel"
+	"github.com/alexfalkowski/konfig/source/configurator/s3/telemetry/tracer"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
@@ -22,14 +22,14 @@ import (
 )
 
 // NewConfigurator for s3.
-func NewConfigurator(cfg Config, tracer otel.Tracer, client *http.Client) *Configurator {
-	return &Configurator{cfg: cfg, tracer: tracer, client: client}
+func NewConfigurator(cfg Config, t tracer.Tracer, client *http.Client) *Configurator {
+	return &Configurator{cfg: cfg, tracer: t, client: client}
 }
 
 // Configurator for s3.
 type Configurator struct {
 	cfg    Config
-	tracer otel.Tracer
+	tracer tracer.Tracer
 	client *http.Client
 }
 

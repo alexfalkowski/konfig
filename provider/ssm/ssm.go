@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/alexfalkowski/konfig/provider/ssm/otel"
+	"github.com/alexfalkowski/konfig/provider/ssm/telemetry/tracer"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/aws/aws-sdk-go-v2/service/ssm/types"
 	"go.opentelemetry.io/otel/codes"
@@ -20,12 +20,12 @@ type Secret struct {
 // Transformer for SSM.
 type Transformer struct {
 	client *ssm.Client
-	tracer otel.Tracer
+	tracer tracer.Tracer
 }
 
 // NewTransformer for SSM.
-func NewTransformer(client *ssm.Client, tracer otel.Tracer) *Transformer {
-	return &Transformer{client: client, tracer: tracer}
+func NewTransformer(client *ssm.Client, t tracer.Tracer) *Transformer {
+	return &Transformer{client: client, tracer: t}
 }
 
 // Transform for SSM.

@@ -3,9 +3,9 @@ package provider
 import (
 	"github.com/alexfalkowski/konfig/provider/env"
 	"github.com/alexfalkowski/konfig/provider/ssm"
-	sotel "github.com/alexfalkowski/konfig/provider/ssm/otel"
+	st "github.com/alexfalkowski/konfig/provider/ssm/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/provider/vault"
-	votel "github.com/alexfalkowski/konfig/provider/vault/otel"
+	vt "github.com/alexfalkowski/konfig/provider/vault/telemetry/tracer"
 
 	"go.uber.org/fx"
 )
@@ -17,10 +17,10 @@ var (
 		fx.Provide(vault.NewConfig),
 		fx.Provide(vault.NewClient),
 		fx.Provide(vault.NewTransformer),
-		fx.Provide(votel.NewTracer),
+		fx.Provide(vt.NewTracer),
 		fx.Provide(ssm.NewClient),
 		fx.Provide(ssm.NewTransformer),
-		fx.Provide(sotel.NewTracer),
+		fx.Provide(st.NewTracer),
 		fx.Provide(NewTransformer),
 	)
 )

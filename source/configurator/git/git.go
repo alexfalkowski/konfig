@@ -13,7 +13,7 @@ import (
 	"github.com/alexfalkowski/go-service/meta"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
-	"github.com/alexfalkowski/konfig/source/configurator/git/otel"
+	"github.com/alexfalkowski/konfig/source/configurator/git/telemetry/tracer"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
 	gclient "github.com/go-git/go-git/v5/plumbing/transport/client"
@@ -22,13 +22,13 @@ import (
 )
 
 // NewConfigurator for git.
-func NewConfigurator(cfg Config, tracer otel.Tracer, client *http.Client) *Configurator {
+func NewConfigurator(cfg Config, t tracer.Tracer, client *http.Client) *Configurator {
 	c := ghttp.NewClient(client)
 
 	gclient.InstallProtocol("http", c)
 	gclient.InstallProtocol("https", c)
 
-	return &Configurator{cfg: cfg, tracer: tracer}
+	return &Configurator{cfg: cfg, tracer: t}
 }
 
 // Configurator for git.
@@ -36,7 +36,7 @@ type Configurator struct {
 	cfg    Config
 	repo   *git.Repository
 	mux    sync.Mutex
-	tracer otel.Tracer
+	tracer tracer.Tracer
 }
 
 // GetConfig for git.
