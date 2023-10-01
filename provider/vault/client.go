@@ -2,8 +2,8 @@ package vault
 
 import (
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/alexfalkowski/go-service/transport/http/metrics/prometheus"
-	"github.com/alexfalkowski/go-service/transport/http/otel"
+	"github.com/alexfalkowski/go-service/transport/http/telemetry/metrics/prometheus"
+	"github.com/alexfalkowski/go-service/transport/http/telemetry/tracer"
 	"github.com/hashicorp/vault/api"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
@@ -15,7 +15,7 @@ type ConfigParams struct {
 
 	Config  *http.Config
 	Logger  *zap.Logger
-	Tracer  otel.Tracer
+	Tracer  tracer.Tracer
 	Metrics *prometheus.ClientCollector
 }
 

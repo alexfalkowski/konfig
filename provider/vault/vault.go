@@ -3,7 +3,7 @@ package vault
 import (
 	"context"
 
-	"github.com/alexfalkowski/konfig/provider/vault/otel"
+	"github.com/alexfalkowski/konfig/provider/vault/telemetry/tracer"
 	"github.com/hashicorp/vault/api"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"
@@ -12,12 +12,12 @@ import (
 // Transformer for vault.
 type Transformer struct {
 	client *api.Client
-	tracer otel.Tracer
+	tracer tracer.Tracer
 }
 
 // NewTransformer for vault.
-func NewTransformer(client *api.Client, tracer otel.Tracer) *Transformer {
-	return &Transformer{client: client, tracer: tracer}
+func NewTransformer(client *api.Client, t tracer.Tracer) *Transformer {
+	return &Transformer{client: client, tracer: t}
 }
 
 // Transform for vault.

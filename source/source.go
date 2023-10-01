@@ -4,14 +4,14 @@ import (
 	"errors"
 
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/alexfalkowski/go-service/transport/http/metrics/prometheus"
-	hotel "github.com/alexfalkowski/go-service/transport/http/otel"
+	"github.com/alexfalkowski/go-service/transport/http/telemetry/metrics/prometheus"
+	ht "github.com/alexfalkowski/go-service/transport/http/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
 	"github.com/alexfalkowski/konfig/source/configurator/git"
-	gotel "github.com/alexfalkowski/konfig/source/configurator/git/otel"
+	gt "github.com/alexfalkowski/konfig/source/configurator/git/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/source/configurator/s3"
-	sotel "github.com/alexfalkowski/konfig/source/configurator/s3/otel"
+	st "github.com/alexfalkowski/konfig/source/configurator/s3/telemetry/tracer"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -26,10 +26,10 @@ type ConfiguratorParams struct {
 	Config     *Config
 	HTTPConfig *http.Config
 	Logger     *zap.Logger
-	HTTPTracer hotel.Tracer
+	HTTPTracer ht.Tracer
 	Metrics    *prometheus.ClientCollector
-	GitTracer  gotel.Tracer
-	S3Tracer   sotel.Tracer
+	GitTracer  gt.Tracer
+	S3Tracer   st.Tracer
 }
 
 // NewConfigurator for source.
