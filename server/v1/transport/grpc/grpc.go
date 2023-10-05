@@ -33,8 +33,7 @@ func Register(params RegisterParams) error {
 
 	v1.RegisterServiceServer(params.GRPCServer.Server, params.Server)
 
-	conn, err := grpc.NewClient(
-		grpc.ClientParams{Context: ctx, Host: fmt.Sprintf("127.0.0.1:%s", params.GRPCConfig.Port), Config: params.GRPCConfig},
+	conn, err := grpc.NewClient(ctx, fmt.Sprintf("127.0.0.1:%s", params.GRPCConfig.Port), params.GRPCConfig,
 		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Metrics),
 	)
 	if err != nil {

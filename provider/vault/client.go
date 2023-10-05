@@ -21,8 +21,7 @@ type ConfigParams struct {
 
 // NewConfig for vault.
 func NewConfig(params ConfigParams) *api.Config {
-	client := http.NewClient(
-		http.ClientParams{Config: params.Config},
+	client := http.NewClient(params.Config,
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Metrics),
 	)

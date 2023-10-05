@@ -26,8 +26,7 @@ type ClientParams struct {
 
 // NewClient for SSM.
 func NewClient(params ClientParams) (*ssm.Client, error) {
-	client := http.NewClient(
-		http.ClientParams{Config: params.HTTPConfig},
+	client := http.NewClient(params.HTTPConfig,
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Metrics),
 	)

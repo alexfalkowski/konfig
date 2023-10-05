@@ -30,8 +30,7 @@ func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), params.Client.Timeout)
 	defer cancel()
 
-	conn, err := sgrpc.NewClient(
-		sgrpc.ClientParams{Context: ctx, Host: params.Client.Host, Config: params.Config},
+	conn, err := sgrpc.NewClient(ctx, params.Client.Host, params.Config,
 		sgrpc.WithClientLogger(params.Logger), sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientDialOption(grpc.WithBlock()),
 		sgrpc.WithClientMetrics(params.Metrics),
 	)
