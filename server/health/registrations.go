@@ -23,7 +23,7 @@ type RegistrationsParams struct {
 
 // NewRegistrations for health.
 func NewRegistrations(params RegistrationsParams) health.Registrations {
-	client := http.NewClient(http.ClientParams{Config: params.HTTP})
+	client := http.NewClient(params.HTTP)
 	registrations := health.Registrations{
 		server.NewRegistration("noop", params.Health.Duration, checker.NewNoopChecker()),
 		server.NewRegistration("vault", params.Health.Duration, checker.NewHTTPChecker(params.Vault.Address, client)),

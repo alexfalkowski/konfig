@@ -12,5 +12,5 @@ type Tracer trace.Tracer
 
 // NewTracer for tracer.
 func NewTracer(lc fx.Lifecycle, cfg *tracer.Config, version version.Version) (Tracer, error) {
-	return tracer.NewTracer(tracer.Params{Lifecycle: lc, Name: "ssm", Config: cfg, Version: version})
+	return tracer.NewTracer(lc, "ssm", version, cfg)
 }
