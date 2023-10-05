@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/alexfalkowski/go-service/transport"
 	"github.com/alexfalkowski/go-service/transport/grpc"
 	"github.com/alexfalkowski/go-service/transport/grpc/telemetry/metrics/prometheus"
 	"github.com/alexfalkowski/go-service/transport/grpc/telemetry/tracer"
@@ -18,15 +17,14 @@ import (
 type RegisterParams struct {
 	fx.In
 
-	Lifecycle       fx.Lifecycle
-	GRPCServer      *grpc.Server
-	HTTPServer      *http.Server
-	GRPCConfig      *grpc.Config
-	TransportConfig *transport.Config
-	Logger          *zap.Logger
-	Tracer          tracer.Tracer
-	Metrics         *prometheus.ClientCollector
-	Server          v1.ServiceServer
+	Lifecycle  fx.Lifecycle
+	GRPCServer *grpc.Server
+	HTTPServer *http.Server
+	GRPCConfig *grpc.Config
+	Logger     *zap.Logger
+	Tracer     tracer.Tracer
+	Metrics    *prometheus.ClientCollector
+	Server     v1.ServiceServer
 }
 
 // Register server.
@@ -36,7 +34,7 @@ func Register(params RegisterParams) error {
 	v1.RegisterServiceServer(params.GRPCServer.Server, params.Server)
 
 	conn, err := grpc.NewClient(
-		grpc.ClientParams{Context: ctx, Host: fmt.Sprintf("127.0.0.1:%s", params.TransportConfig.Port), Config: params.GRPCConfig},
+		grpc.ClientParams{Context: ctx, Host: fmt.Sprintf("127.0.0.1:%s", params.GRPCConfig.Port), Config: params.GRPCConfig},
 		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Metrics),
 	)
 	if err != nil {

@@ -4,13 +4,14 @@ telemetry:
     secure: false
 transport:
   grpc:
+    port: 9090
     user_agent: "Konfig-client/1.0 grpc/1.0"
     retry:
       timeout: 2s
       attempts: 3
 client:
   v1:
-    host: localhost:8080
+    host: localhost:9090
     timeout: 1s
     application: test
     version: v1.10.0
