@@ -4,6 +4,7 @@ telemetry:
     secure: false
 transport:
   grpc:
+    enabled: true
     port: 9090
     user_agent: "Konfig-client/1.0 grpc/1.0"
     retry:
