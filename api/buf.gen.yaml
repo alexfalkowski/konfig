@@ -1,18 +1,18 @@
 version: v1
 plugins:
-  - remote: buf.build/protocolbuffers/plugins/go:v1.28.1-1
+  - plugin: buf.build/protocolbuffers/go:v1.31.0
     out: .
     opt:
       - paths=source_relative
-  - remote: buf.build/grpc/plugins/go:v1.2.0-1
+  - plugin: buf.build/grpc/go:v1.3.0
     out: .
     opt:
       - paths=source_relative
-  - remote: buf.build/grpc-ecosystem/plugins/grpc-gateway:v2.15.0-1
+  - plugin: buf.build/grpc-ecosystem/gateway:v2.18.0
     out: .
     opt:
       - paths=source_relative
-  - remote: buf.build/protocolbuffers/plugins/ruby:v21.10.0-1
+  - plugin: buf.build/protocolbuffers/ruby:v24.4
     out: ../test/lib
-  - remote: buf.build/grpc/plugins/ruby:v1.51.1-1
+  - plugin: buf.build/grpc/ruby:v1.58.1
     out: ../test/lib
