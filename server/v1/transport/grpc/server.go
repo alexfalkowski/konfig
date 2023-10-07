@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/alexfalkowski/go-service/meta"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	serrors "github.com/alexfalkowski/konfig/source/configurator/errors"
@@ -89,6 +90,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 
 	resp.Config.Kind = c.Kind
 	resp.Config.Data = data
+	resp.Meta = meta.Attributes(ctx)
 
 	return resp, nil
 }
