@@ -32,7 +32,8 @@ message GetConfigRequest {
 
 // GetConfigResponse for a specific application.
 message GetConfigResponse {
-  Config config = 1;
+  map<string, string> meta = 1;
+  Config config = 2;
 }
 
 // Service allows to manage all application configurations.
