@@ -4,7 +4,6 @@ import (
 	"errors"
 
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/alexfalkowski/go-service/transport/http/telemetry/metrics/prometheus"
 	ht "github.com/alexfalkowski/go-service/transport/http/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
@@ -12,6 +11,7 @@ import (
 	gt "github.com/alexfalkowski/konfig/source/configurator/git/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/source/configurator/s3"
 	st "github.com/alexfalkowski/konfig/source/configurator/s3/telemetry/tracer"
+	"go.opentelemetry.io/otel/metric"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -27,17 +27,20 @@ type ConfiguratorParams struct {
 	HTTPConfig *http.Config
 	Logger     *zap.Logger
 	HTTPTracer ht.Tracer
-	Metrics    *prometheus.ClientCollector
+	Meter      metric.Meter
 	GitTracer  gt.Tracer
 	S3Tracer   st.Tracer
 }
 
 // NewConfigurator for source.
 func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
-	client := http.NewClient(params.HTTPConfig,
+	client, err := http.NewClient(params.HTTPConfig,
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.HTTPTracer),
-		http.WithClientMetrics(params.Metrics),
+		http.WithClientMetrics(params.Meter),
 	)
+	if err != nil {
+		return nil, err
+	}
 
 	var configurator configurator.Configurator
 

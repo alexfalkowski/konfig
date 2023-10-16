@@ -5,11 +5,11 @@ import (
 	"os"
 
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/alexfalkowski/go-service/transport/http/telemetry/metrics/prometheus"
 	"github.com/alexfalkowski/go-service/transport/http/telemetry/tracer"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
+	"go.opentelemetry.io/otel/metric"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -21,15 +21,19 @@ type ClientParams struct {
 	HTTPConfig *http.Config
 	Logger     *zap.Logger
 	Tracer     tracer.Tracer
-	Metrics    *prometheus.ClientCollector
+	Meter      metric.Meter
 }
 
 // NewClient for SSM.
 func NewClient(params ClientParams) (*ssm.Client, error) {
-	client := http.NewClient(params.HTTPConfig,
+	client, err := http.NewClient(params.HTTPConfig,
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Metrics),
+		http.WithClientMetrics(params.Meter),
 	)
+	if err != nil {
+		return nil, err
+	}
+
 	ctx := context.Background()
 
 	resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...any) (aws.Endpoint, error) {

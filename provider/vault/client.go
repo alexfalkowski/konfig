@@ -2,9 +2,9 @@ package vault
 
 import (
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/alexfalkowski/go-service/transport/http/telemetry/metrics/prometheus"
 	"github.com/alexfalkowski/go-service/transport/http/telemetry/tracer"
 	"github.com/hashicorp/vault/api"
+	"go.opentelemetry.io/otel/metric"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -13,23 +13,27 @@ import (
 type ConfigParams struct {
 	fx.In
 
-	Config  *http.Config
-	Logger  *zap.Logger
-	Tracer  tracer.Tracer
-	Metrics *prometheus.ClientCollector
+	Config *http.Config
+	Logger *zap.Logger
+	Tracer tracer.Tracer
+	Meter  metric.Meter
 }
 
 // NewConfig for vault.
-func NewConfig(params ConfigParams) *api.Config {
-	client := http.NewClient(params.Config,
+func NewConfig(params ConfigParams) (*api.Config, error) {
+	client, err := http.NewClient(params.Config,
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Metrics),
+		http.WithClientMetrics(params.Meter),
 	)
+	if err != nil {
+		return nil, err
+	}
+
 	config := api.DefaultConfig()
 
 	config.HttpClient = client
 
-	return config
+	return config, nil
 }
 
 // NewClient for vault.
