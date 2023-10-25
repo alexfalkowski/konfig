@@ -9,7 +9,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/config v1.19.1
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.40.2
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.40.0
-	github.com/go-git/go-git/v5 v5.9.0
+	github.com/go-git/go-git/v5 v5.10.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.0
 	github.com/hashicorp/vault/api v1.10.0
 	go.opentelemetry.io/otel v1.19.0
