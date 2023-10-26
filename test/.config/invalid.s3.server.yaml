@@ -1,3 +1,4 @@
+environment: production
 telemetry:
   logger:
     level: info
