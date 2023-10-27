@@ -17,6 +17,7 @@ Then('I should receive a valid config from gRPC:') do |table|
   rows = table.rows_hash
   data = Konfig.load_config(rows['kind'], @response.config.data)
 
+  expect(@response.meta.length).to be > 0
   expect(@response.config.application).to eq(rows['app'])
   expect(@response.config.version).to eq(rows['ver'])
   expect(@response.config.environment).to eq(rows['env'])
@@ -33,6 +34,7 @@ Then('I should receive a valid config with missing provider data from gRPC:') do
   rows = table.rows_hash
   data = Konfig.load_config(rows['kind'], @response.config.data)
 
+  expect(@response.meta.length).to be > 0
   expect(@response.config.application).to eq(rows['app'])
   expect(@response.config.version).to eq(rows['ver'])
   expect(@response.config.environment).to eq(rows['env'])
