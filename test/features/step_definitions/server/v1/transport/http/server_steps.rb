@@ -19,6 +19,7 @@ Then('I should receive a valid config from HTTP:') do |table|
   rows = table.rows_hash
   data = Konfig.load_config(rows['kind'], Base64.decode64(config['data']))
 
+  expect(resp['meta'].length).to be > 0
   expect(config['application']).to eq(rows['app'])
   expect(config['version']).to eq(rows['ver'])
   expect(config['environment']).to eq(rows['env'])
@@ -39,6 +40,7 @@ Then('I should receive a valid config with missing provider data from HTTP:') do
   rows = table.rows_hash
   data = Konfig.load_config(rows['kind'], Base64.decode64(config['data']))
 
+  expect(resp['meta'].length).to be > 0
   expect(config['application']).to eq(rows['app'])
   expect(config['version']).to eq(rows['ver'])
   expect(config['environment']).to eq(rows['env'])
