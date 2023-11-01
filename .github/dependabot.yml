@@ -11,7 +11,7 @@ updates:
     groups:
       aws:
         patterns:
-        - "aws*"
+        - "*aws*"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
