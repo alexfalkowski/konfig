@@ -26,7 +26,6 @@ github.com/armon/go-socks5 v0.0.0-20160902184237-e75332964ef5 h1:0CwZNZbxp69SHPd
 github.com/armon/go-socks5 v0.0.0-20160902184237-e75332964ef5/go.mod h1:wHh0iHkYZB8zMSxRWpUBQtwG5a7fFgvEO+odwuTv2gs=
 github.com/avast/retry-go/v3 v3.1.1 h1:49Scxf4v8PmiQ/nY0aY3p0hDueqSmc7++cBbtiDGu2g=
 github.com/avast/retry-go/v3 v3.1.1/go.mod h1:6cXRK369RpzFL3UQGqIUp9Q7GDrams+KsYWrfNA1/nQ=
-github.com/aws/aws-sdk-go-v2 v1.21.2/go.mod h1:ErQhvNuEMhJjweavOYhxVkn2RUx7kQXVATHrjKtxIpM=
 github.com/aws/aws-sdk-go-v2 v1.22.0 h1:CpTS3XO3MWNel8ohoazkLZC6scvkYL2k+m0yzFJ17Hg=
 github.com/aws/aws-sdk-go-v2 v1.22.0/go.mod h1:Kd0OJtkW3Q0M0lUWGszapWjEvrXDzRW+D21JNsroB+c=
 github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.5.0 h1:hHgLiIrTRtddC0AKcJr5s7i/hLgcpTt+q/FKxf1Zayk=
@@ -37,10 +36,8 @@ github.com/aws/aws-sdk-go-v2/credentials v1.14.0 h1:LQquqPE7cL55RQmA/UBoBKehDlEt
 github.com/aws/aws-sdk-go-v2/credentials v1.14.0/go.mod h1:q/3oaTPlamrQWHPwJe56Mjq9g1TYDgddvgTgWJtHTmE=
 github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.14.0 h1:lF/cVllNAPKgjDwN2RsQUX9g/f6hXer9f10ubLFSoug=
 github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.14.0/go.mod h1:c28nJNzMVVb9TQpZ5q4tzZvwEJwf/7So7Ie2s90l1Fw=
-github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.43/go.mod h1:auo+PiyLl0n1l8A0e8RIeR8tOzYPfZZH/JNlrJ8igTQ=
 github.com/aws/aws-sdk-go-v2/internal/configsources v1.2.0 h1:tN6dNNE4SzMuyMnVtQJXGVKX177/d5Zy4MuA1HA4KUc=
 github.com/aws/aws-sdk-go-v2/internal/configsources v1.2.0/go.mod h1:F6MXWETIeetAHwFHyoHEqrcB3NpijFv9nLP5h9CXtT0=
-github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.4.37/go.mod h1:Qe+2KtKml+FEsQF/DHmDV+xjtche/hwoF75EG4UlHW8=
 github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.5.0 h1:bfdsbTARDjaC/dSYGMO+E0psxFU4hTvCLnqYAfZ3D38=
 github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.5.0/go.mod h1:Jg8XVv5M2V2wiAMvBFx+O59jg6Yr8vhP0bgNF/IuquM=
 github.com/aws/aws-sdk-go-v2/internal/ini v1.4.0 h1:21tlTXq3ev10yLMAjXZzpkZbrl49h3ElSjmxD57tD/E=
@@ -57,15 +54,14 @@ github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.16.0 h1:Kcts/mLwm4LxbF
 github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.16.0/go.mod h1:ca7+eyqTRByXctslWXXqhSwItEk+4y30azwLYJBBlsU=
 github.com/aws/aws-sdk-go-v2/service/s3 v1.41.0 h1:XJfQwEGLnoqdVQtf+faXr7DMm/Q65SkgnGZJKWxIkPc=
 github.com/aws/aws-sdk-go-v2/service/s3 v1.41.0/go.mod h1:DDsTwoAqmg5h2Up70/2XeCA4woeYdaD71PRucUwltFM=
-github.com/aws/aws-sdk-go-v2/service/ssm v1.40.0 h1:DHZFzwbFXlfw15I0ERlTVB/YH9iHNr2C1axjRpB7/Gg=
-github.com/aws/aws-sdk-go-v2/service/ssm v1.40.0/go.mod h1:qpnJ98BgJ3YUEvHMgJ1OADwaOgqhgv0nxnqAjTKupeY=
+github.com/aws/aws-sdk-go-v2/service/ssm v1.41.0 h1:8EoXNjtr3/AAbcfUYNUrV6fhBWRrmzE+i1tcwsz6BLQ=
+github.com/aws/aws-sdk-go-v2/service/ssm v1.41.0/go.mod h1:o2SNz9BHlL2HiQznIeQwPyHNB0R4Q0ohC+kqkGC4SRw=
 github.com/aws/aws-sdk-go-v2/service/sso v1.16.0 h1:ZIlR6Wr/EgYwBdEz1NWBqdUsTh0mV7A68pId3YZl6H0=
 github.com/aws/aws-sdk-go-v2/service/sso v1.16.0/go.mod h1:O7B5cpuhhJKefAKkM7onb0McmpHyKnsH4RrHJhOyq7M=
 github.com/aws/aws-sdk-go-v2/service/ssooidc v1.18.0 h1:3BZyJei4k1SHdSAFhg9Qg15NnG3v5zosZyFWPm7df/A=
 github.com/aws/aws-sdk-go-v2/service/ssooidc v1.18.0/go.mod h1:Td8EvzggonY02wLaqSpwybI3GbmA0PWoprKGil2uwJg=
 github.com/aws/aws-sdk-go-v2/service/sts v1.24.0 h1:f/V5Y9OaHuNRrA9MntNQNAtMFXqhKj8HTEPnH81eXMI=
 github.com/aws/aws-sdk-go-v2/service/sts v1.24.0/go.mod h1:HnCUMNz2XqwnEEk5X6oeDYB2HgOLFpJ/LyfilN8WErs=
-github.com/aws/smithy-go v1.15.0/go.mod h1:Tg+OJXh4MB2R/uN61Ko2f6hTZwB/ZYGOtib8J3gBHzA=
 github.com/aws/smithy-go v1.16.0 h1:gJZEH/Fqh+RsvlJ1Zt4tVAtV6bKkp3cC+R6FCZMNzik=
 github.com/aws/smithy-go v1.16.0/go.mod h1:NukqUGpCZIILqqiV0NIjeFh24kd/FAa4beRb6nbIUPE=
 github.com/benbjohnson/clock v1.1.0/go.mod h1:J11/hYXuz8f4ySSvYwY0FKfm+ezbsZBKZxNJlLklBHA=
@@ -190,7 +186,6 @@ github.com/google/go-cmp v0.4.0/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.5.0/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-cmp v0.5.6/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
-github.com/google/go-cmp v0.5.8/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=
 github.com/google/go-cmp v0.5.9/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/google/renameio v0.1.0/go.mod h1:KWCgfxg9yswjAJkECMjeO8J8rahYeXnNhOm40UhjYkI=
