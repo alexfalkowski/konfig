@@ -8,6 +8,10 @@ updates:
       prefix: "fix"
       prefix-development: "build"
       include: "scope"
+    groups:
+      aws:
+        patterns:
+        - "aws*"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
