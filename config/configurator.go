@@ -12,11 +12,7 @@ import (
 func NewConfigurator(i *cmd.InputConfig) (config.Configurator, error) {
 	c := &Config{}
 
-	if err := i.Unmarshal(c); err != nil {
-		return nil, err
-	}
-
-	return c, nil
+	return c, i.Unmarshal(c)
 }
 
 func v1Client(cfg config.Configurator) *cv1.Config {
