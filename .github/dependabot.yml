@@ -24,3 +24,7 @@ updates:
     directory: "/test"
     schedule:
       interval: "daily"
+    groups:
+      aws:
+        patterns:
+        - "*aws*"
