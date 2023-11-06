@@ -35,6 +35,7 @@ func Register(params RegisterParams) error {
 
 	conn, err := grpc.NewClient(ctx, fmt.Sprintf("127.0.0.1:%s", params.GRPCConfig.Port), params.GRPCConfig,
 		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Meter),
+		grpc.WithClientRetry(),
 	)
 	if err != nil {
 		return err
