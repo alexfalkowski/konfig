@@ -10,14 +10,14 @@ transport:
     port: 8081
     user_agent: "Konfig-client/1.0 http/1.0"
     retry:
-      timeout: 2s
+      timeout: 10s
       attempts: 3
   grpc:
     enabled: true
     port: 9091
     user_agent: "Konfig-client/1.0 grpc/1.0"
     retry:
-      timeout: 2s
+      timeout: 10s
       attempts: 3
 client:
   v1:
