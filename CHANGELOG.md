@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.56.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.56.1) - 2023-11-06
+
+- [`390d62a`](https://github.com/alexfalkowski/konfig/commit/390d62a629c8387232b24876cb1eda740db7c05d) fix(server): add retry (#780)
+- [`983faa6`](https://github.com/alexfalkowski/konfig/commit/983faa6e62362ae6a9785b717499db9b6624b703) ci: use go:1.21-ruby (#779)
+- [`e437a41`](https://github.com/alexfalkowski/konfig/commit/e437a4138fc33c924dd8e43c4404f8929c51d211) build: push to buf (#778)
+- [`29f6541`](https://github.com/alexfalkowski/konfig/commit/29f654192ed266ddcca46c2073ab040d5baceb87) build(deps): update bin (#777)
+- [`c2d86dd`](https://github.com/alexfalkowski/konfig/commit/c2d86dd515ba3dff5de1e2c907442c37fac6d9c0) test: use grpc port (#776)
+
 ## [v1.56.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.56.0) - 2023-11-03
 
 - [`748aa0f`](https://github.com/alexfalkowski/konfig/commit/748aa0fa68869b0f2b71d96688efc0d2197e655b) feat(deps): update github.com/alexfalkowski/go-service to v1.103.2 (#775)
