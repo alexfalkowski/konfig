@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: alexfalkowski/go:1.21-3.2
+      - image: alexfalkowski/go:1.21-ruby
       - image: localstack/localstack:latest
         environment:
           SERVICES: s3,ssm
@@ -35,7 +35,7 @@ jobs:
     resource_class: large
   docker:
     docker:
-      - image: alexfalkowski/go:1.21-3.2
+      - image: alexfalkowski/go:1.21-ruby
     working_directory: ~/konfig
     steps:
       - checkout
