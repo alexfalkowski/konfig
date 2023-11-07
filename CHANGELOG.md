@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.56.3](https://github.com/alexfalkowski/konfig/releases/tag/v1.56.3) - 2023-11-07
+
+- [`9a9fc1e`](https://github.com/alexfalkowski/konfig/commit/9a9fc1ed564ff475d60c314a7bf65bb1d4688804) fix(deps): bump github.com/alexfalkowski/go-service (#787)
+- [`71f15de`](https://github.com/alexfalkowski/konfig/commit/71f15de10f203c66eab8117a0f239e64632fdd27) ci: add trivy (#786)
+- [`fe94be6`](https://github.com/alexfalkowski/konfig/commit/fe94be623eb03cff59f15d2ab27323a03a70ae56) ci: use make push-docker (#785)
+- [`add4c74`](https://github.com/alexfalkowski/konfig/commit/add4c742fd90756cab12cc925925faca90a6daae) ci: move to new structure (#784)
+
 ## [v1.56.2](https://github.com/alexfalkowski/konfig/releases/tag/v1.56.2) - 2023-11-07
 
 - [`c9349ef`](https://github.com/alexfalkowski/konfig/commit/c9349ef3e82615e8a518d851fefa646af62063b7) fix(deps): bump the aws group with 1 update (#781)
