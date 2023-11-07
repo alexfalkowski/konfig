@@ -35,6 +35,7 @@ jobs:
       - run: git submodule update --init
       - setup_remote_docker
       - run: make build-docker
+      - run: make trivy
     resource_class: large
   release:
     docker:
