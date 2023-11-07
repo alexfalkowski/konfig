@@ -56,7 +56,7 @@ jobs:
       - run:
           name: make login
           command: echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-      - run: make docker
+      - run: make push-docker
     resource_class: large
 
 workflows:
