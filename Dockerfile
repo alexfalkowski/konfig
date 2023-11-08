@@ -1,4 +1,4 @@
-FROM golang:1.21.3-bullseye AS build
+FROM golang:1.21.4-bullseye AS build
 
 ARG version=latest
 
@@ -10,7 +10,7 @@ RUN go mod download
 COPY . ./
 RUN go build -ldflags="-X 'github.com/alexfalkowski/konfig/cmd.Version=${version}'" -a -o konfig main.go
 
-FROM gcr.io/distroless/base-debian11
+FROM gcr.io/distroless/base-debian12
 
 WORKDIR /
 
