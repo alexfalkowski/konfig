@@ -39,7 +39,7 @@ module Konfig
     end
 
     def health_grpc
-      @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:9090', :this_channel_is_insecure)
+      @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:9090', :this_channel_is_insecure, channel_args: Konfig.user_agent)
     end
 
     def load_config(kind, data)
@@ -50,6 +50,10 @@ module Konfig
         TomlRB.parse(data)
       end
     end
+
+    def user_agent
+      @user_agent ||= { 'grpc.primary_user_agent' => server_config('git')['transport']['http']['user_agent'] }
+    end
   end
 
   module V1
@@ -59,7 +63,7 @@ module Konfig
       end
 
       def server_grpc
-        @server_grpc ||= Konfig::V1::Service::Stub.new('localhost:9090', :this_channel_is_insecure)
+        @server_grpc ||= Konfig::V1::Service::Stub.new('localhost:9090', :this_channel_is_insecure, channel_args: Konfig.user_agent)
       end
     end
   end
