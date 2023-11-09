@@ -3,7 +3,7 @@
 When('I request a config with gRPC:') do |table|
   rows = table.rows_hash
   @request_id = SecureRandom.uuid
-  metadata = { 'request-id' => @request_id, 'ua' => Konfig.server_config(rows['source'])['transport']['grpc']['user_agent'] }
+  metadata = { 'request-id' => @request_id, 'user-agent' => Konfig.server_config(rows['source'])['transport']['grpc']['user_agent'] }
 
   request = Konfig::V1::GetConfigRequest.new(application: rows['app'], version: rows['ver'], environment: rows['env'],
                                              continent: rows['continent'], country: rows['country'], command: rows['cmd'],

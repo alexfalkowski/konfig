@@ -2,7 +2,7 @@
 
 When('I request a config with HTTP:') do |table|
   rows = table.rows_hash
-  headers = { request_id: SecureRandom.uuid, user_agent: Konfig.server_config(rows['source'])['transport']['grpc']['user_agent'] }
+  headers = { request_id: SecureRandom.uuid, user_agent: Konfig.server_config(rows['source'])['transport']['http']['user_agent'] }
 
   params = {
     app: rows['app'], ver: rows['ver'], env: rows['env'], continent: rows['continent'],
