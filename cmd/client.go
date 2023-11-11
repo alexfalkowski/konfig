@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/alexfalkowski/go-service/debug"
 	"github.com/alexfalkowski/go-service/runtime"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
@@ -12,7 +13,7 @@ import (
 
 // ClientOptions for cmd.
 var ClientOptions = []fx.Option{
-	fx.NopLogger, runtime.Module, Module,
+	fx.NopLogger, runtime.Module, Module, debug.Module,
 	telemetry.Module, metrics.Module, config.Module,
 	transport.Module, client.CommandModule,
 }
