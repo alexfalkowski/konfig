@@ -17,8 +17,8 @@ github.com/acomagu/bufpipe v1.0.4 h1:e3H4WUzM3npvo5uv95QuJM3cQspFNtFBzvJ2oNjKIDQ
 github.com/acomagu/bufpipe v1.0.4/go.mod h1:mxdxdup/WdsKVreO5GpW4+M/1CE2sMG4jeGJ2sYmHc4=
 github.com/alexfalkowski/go-health v1.13.0 h1:DD+kWEPzn+sIhiv6mMeX1Wtab5sdtQpw8J6TsH/YVL8=
 github.com/alexfalkowski/go-health v1.13.0/go.mod h1:+8Q3zHywTGZl0VcsT2vr5edGOPDMVQIRbx7PboYKhxI=
-github.com/alexfalkowski/go-service v1.112.0 h1:MpvVTHg0Uicnqe5A7JLGdcqBb8DsLLsLm1M1KACmUiI=
-github.com/alexfalkowski/go-service v1.112.0/go.mod h1:BDInwG22T3XV3dDPixNSWd89srsfAaqEekLFIgu8lgg=
+github.com/alexfalkowski/go-service v1.112.1 h1:zWpeqGEZhWIFxsj0r9wjuFlbjfGZXTUpOZIl3h2ECQQ=
+github.com/alexfalkowski/go-service v1.112.1/go.mod h1:BDInwG22T3XV3dDPixNSWd89srsfAaqEekLFIgu8lgg=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be h1:9AeTilPcZAjCFIImctFaOjnTIavg87rW78vTPkQqLI8=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be/go.mod h1:ySMOLuWl6zY27l47sB3qLNK6tF2fkHG55UZxx8oIVo4=
 github.com/arl/statsviz v0.6.0 h1:jbW1QJkEYQkufd//4NDYRSNBpwJNrdzPahF7ZmoGdyE=
