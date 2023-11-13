@@ -1,4 +1,6 @@
 environment: production
+debug:
+  port: 6060
 telemetry:
   logger:
     level: info
