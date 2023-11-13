@@ -3,6 +3,7 @@ processes:
   -
     name: server
     go:
+      tools: [cover]
       output: reports
       executable: ../konfig
       command: server
