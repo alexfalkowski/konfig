@@ -1,4 +1,4 @@
-@startup
+@startup @http
 Feature: Observability
 
   Observability is a measure of how well internal states of a system can be inferred by knowledge of its external outputs.

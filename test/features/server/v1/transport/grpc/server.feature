@@ -1,4 +1,4 @@
-@manual
+@manual @grpc
 Feature: Server
 
   Server allows users to manage their application configurations.

@@ -1,4 +1,4 @@
-@manual
+@manual @grpc
 Feature: Client
 
   Client allows the system to download a new configuration.

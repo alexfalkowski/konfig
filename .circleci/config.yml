@@ -4,6 +4,31 @@ jobs:
   build-service:
     docker:
       - image: alexfalkowski/go:1.21-ruby
+    working_directory: ~/konfig
+    steps:
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
+      - run: make dep
+      - run: make lint
+      - run: make proto-breaking
+      - run: make sec
+    resource_class: large
+  build-docker:
+    docker:
+      - image: alexfalkowski/go:1.21-ruby
+    working_directory: ~/auth
+    steps:
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
+      - setup_remote_docker
+      - run: make build-docker
+      - run: make trivy
+    resource_class: large
+  features-grpc:
+    docker:
+      - image: alexfalkowski/go:1.21-ruby
       - image: localstack/localstack:2.3
         environment:
           SERVICES: s3,ssm
@@ -17,25 +42,51 @@ jobs:
       - run: git submodule update --init
       - run: dockerize -wait tcp://localhost:8200 -wait tcp://localhost:4566 -timeout 1m
       - run: make dep
-      - run: make lint
-      - run: make proto-breaking
-      - run: make sec
-      - run: make features
-      - run: make goveralls
+      - run: make feature=features tags=@grpc features
       - store_artifacts:
           path: test/reports
+      - run: make -C test leave-coverage
+      - persist_to_workspace:
+          root: test
+          paths:
+            - reports
     resource_class: large
-  build-docker:
+  features-http:
     docker:
       - image: alexfalkowski/go:1.21-ruby
-    working_directory: ~/auth
+      - image: localstack/localstack:2.3
+        environment:
+          SERVICES: s3,ssm
+      - image: hashicorp/vault:1.15
+        environment:
+          VAULT_DEV_ROOT_TOKEN_ID: vault-plaintext-root-token
+    working_directory: ~/konfig
     steps:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - setup_remote_docker
-      - run: make build-docker
-      - run: make trivy
+      - run: dockerize -wait tcp://localhost:8200 -wait tcp://localhost:4566 -timeout 1m
+      - run: make dep
+      - run: make feature=features tags=@http features
+      - store_artifacts:
+          path: test/reports
+      - run: make -C test leave-coverage
+      - persist_to_workspace:
+          root: test
+          paths:
+            - reports
+    resource_class: large
+  features-coveralls:
+    docker:
+      - image: alexfalkowski/go:1.21-ruby
+    working_directory: ~/konfig
+    steps:
+      - checkout
+      - attach_workspace:
+          at: test
+      - run: git submodule sync
+      - run: git submodule update --init
+      - run: make goveralls
     resource_class: large
   release:
     docker:
@@ -68,6 +119,21 @@ workflows:
               branches:
                 ignore: master
       - build-docker:
+          filters:
+              branches:
+                ignore: master
+      - features-grpc:
+          filters:
+              branches:
+                ignore: master
+      - features-http:
+          filters:
+              branches:
+                ignore: master
+      - features-coveralls:
+          requires:
+            - features-grpc
+            - features-http
           filters:
               branches:
                 ignore: master
