@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.58.4](https://github.com/alexfalkowski/konfig/releases/tag/v1.58.4) - 2023-11-14
+
+- [`c2c509b`](https://github.com/alexfalkowski/konfig/commit/c2c509bd5bd091fda138f3bea0ce44a0609dd2f8) fix(deps): bump the aws group with 1 update (#807)
+- [`635fc6d`](https://github.com/alexfalkowski/konfig/commit/635fc6d2a83c7e8ae2671d81a837b987ef661a9c) build(deps): bump cucumber from 9.0.2 to 9.1.0 in /test (#808)
+- [`1730f37`](https://github.com/alexfalkowski/konfig/commit/1730f37f5f4ec430ee0fd35d376fe98137327ccb) ci: seperate steps to speedup (#806)
+
 ## [v1.58.3](https://github.com/alexfalkowski/konfig/releases/tag/v1.58.3) - 2023-11-14
 
 - [`3b3a3a3`](https://github.com/alexfalkowski/konfig/commit/3b3a3a39672f1ac3eb7ee43672d0a0012cbac689) fix(deps): update github.com/alexfalkowski/go-service to v1.112.3 (#805)
