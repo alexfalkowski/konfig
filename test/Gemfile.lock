@@ -3,7 +3,7 @@ GEM
   specs:
     ast (2.4.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.848.0)
+    aws-partitions (1.851.0)
     aws-sdk-core (3.186.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
@@ -80,7 +80,7 @@ GEM
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     netrc (0.11.0)
-    nio4r (2.5.9)
+    nio4r (2.6.0)
     nonnative (1.74.1)
       concurrent-ruby (~> 1.0, >= 1.0.5)
       cucumber (>= 7, < 10)
