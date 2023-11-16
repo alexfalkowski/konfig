@@ -10,7 +10,12 @@ Given('I should see {string} as unhealthy') do |service|
 end
 
 When('the system requests the {string} with HTTP') do |name|
-  @response = Konfig.observability.send(name)
+  opts = {
+    headers: { request_id: SecureRandom.uuid, content_type: :json, accept: :json },
+    read_timeout: 10, open_timeout: 10
+  }
+
+  @response = Konfig.observability.send(name, opts)
 end
 
 Then('the system should respond with a healthy status with HTTP') do

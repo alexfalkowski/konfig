@@ -2,13 +2,19 @@
 
 When('I request a config with HTTP:') do |table|
   rows = table.rows_hash
-  headers = { request_id: SecureRandom.uuid, user_agent: Konfig.server_config(rows['source'])['transport']['http']['user_agent'] }
-
+  opts = {
+    headers: {
+      request_id: SecureRandom.uuid, user_agent: Konfig.server_config(rows['source'])['transport']['http']['user_agent'],
+      content_type: :json, accept: :json
+    },
+    read_timeout: 10, open_timeout: 10
+  }
   params = {
     app: rows['app'], ver: rows['ver'], env: rows['env'], continent: rows['continent'],
     country: rows['country'], cmd: rows['cmd'], kind: rows['kind']
   }
-  @response = Konfig::V1.server_http.get_config(params, headers)
+
+  @response = Konfig::V1.server_http.get_config(params, opts)
 end
 
 Then('I should receive a valid config from HTTP:') do |table|
