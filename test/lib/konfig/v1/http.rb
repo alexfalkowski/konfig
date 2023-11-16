@@ -3,17 +3,10 @@
 module Konfig
   module V1
     class HTTP < Nonnative::HTTPClient
-      def get_config(params, headers = {})
-        default_headers = {
-          content_type: :json,
-          accept: :json
-        }
-
-        default_headers.merge!(headers)
-
+      def get_config(params, opts = {})
         url = "v1/config/#{params[:app]}/#{params[:ver]}/#{params[:env]}/#{params[:continent]}/#{params[:country]}/#{params[:cmd]}/#{params[:kind]}"
 
-        get(url, headers, 10)
+        get(url, opts)
       end
     end
   end
