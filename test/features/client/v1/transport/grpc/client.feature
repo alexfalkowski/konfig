@@ -25,7 +25,7 @@ Feature: Client
     And I start the system
     When I download the configuration for "invalid_host" application
     Then I should not have a configuration for "invalid_host" application
-    And I should see a log entry of "context deadline exceeded" in the file "reports/invalid_host.client.log"
+    And I should see a log entry of "invalid_host: missing port in address" in the file "reports/invalid_host.client.log"
 
   Scenario: Download invalid content type in config
     Given I have a "folder" valid setup

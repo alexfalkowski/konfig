@@ -1,13 +1,14 @@
 package cmd
 
 import (
+	ac "github.com/alexfalkowski/auth/client"
 	"github.com/alexfalkowski/go-service/debug"
 	"github.com/alexfalkowski/go-service/runtime"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
-	"github.com/alexfalkowski/go-service/transport"
-	"github.com/alexfalkowski/konfig/client"
+	kc "github.com/alexfalkowski/konfig/client"
 	"github.com/alexfalkowski/konfig/config"
+	"github.com/alexfalkowski/konfig/transport"
 	"go.uber.org/fx"
 )
 
@@ -15,5 +16,6 @@ import (
 var ClientOptions = []fx.Option{
 	fx.NopLogger, runtime.Module, Module, debug.Module,
 	telemetry.Module, metrics.Module, config.Module,
-	transport.Module, client.CommandModule,
+	transport.Module,
+	ac.Module, kc.CommandModule,
 }

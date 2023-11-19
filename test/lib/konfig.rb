@@ -4,6 +4,7 @@ require 'securerandom'
 require 'yaml'
 require 'base64'
 
+require 'auth'
 require 'aws-sdk-s3'
 require 'aws-sdk-ssm'
 require 'vault'
@@ -35,7 +36,7 @@ module Konfig
     end
 
     def server_config(source)
-      YAML.load_file(".config/#{source}.server.yaml")
+      Nonnative.configurations(".config/#{source}.server.yaml")
     end
 
     def health_grpc
@@ -52,7 +53,7 @@ module Konfig
     end
 
     def user_agent
-      @user_agent ||= { 'grpc.primary_user_agent' => server_config('git')['transport']['http']['user_agent'] }
+      @user_agent ||= Nonnative::Header.grpc_user_agent(server_config('git').transport.grpc.user_agent)
     end
   end
 

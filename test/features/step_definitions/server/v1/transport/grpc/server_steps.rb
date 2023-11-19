@@ -2,8 +2,9 @@
 
 When('I request a config with gRPC:') do |table|
   rows = table.rows_hash
+  auth = service_token(Nonnative.configurations('.config/existing.client.yaml'))
   @request_id = SecureRandom.uuid
-  metadata = { 'request-id' => @request_id }
+  metadata = { 'request-id' => @request_id }.merge(auth)
 
   request = Konfig::V1::GetConfigRequest.new(application: rows['app'], version: rows['ver'], environment: rows['env'],
                                              continent: rows['continent'], country: rows['country'], command: rows['cmd'],

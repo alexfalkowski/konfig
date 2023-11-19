@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/alexfalkowski/auth.git
+  revision: 9738d32217bc1742b9712b8e81975658c6e2c42d
+  tag: v1.55.2
+  glob: test/*.gemspec
+  specs:
+    auth (1.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -27,6 +35,9 @@ GEM
     builder (3.2.4)
     citrus (3.0.2)
     concurrent-ruby (1.2.2)
+    config (5.0.0)
+      deep_merge (~> 1.2, >= 1.2.1)
+      dry-validation (~> 1.0, >= 1.0.0)
     cucumber (9.1.0)
       builder (~> 3.2, >= 3.2.4)
       cucumber-ci-environment (~> 9.2, >= 9.2.0)
@@ -51,8 +62,41 @@ GEM
       cucumber-messages (>= 18.0, < 22.1)
     cucumber-messages (22.0.0)
     cucumber-tag-expressions (5.0.6)
+    deep_merge (1.2.2)
     diff-lcs (1.5.0)
     domain_name (0.6.20231109)
+    dry-configurable (1.1.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-core (1.0.1)
+      concurrent-ruby (~> 1.0)
+      zeitwerk (~> 2.6)
+    dry-inflector (1.0.0)
+    dry-initializer (3.1.1)
+    dry-logic (1.5.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-schema (1.13.3)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 1.0, >= 1.0.1)
+      dry-core (~> 1.0, < 2)
+      dry-initializer (~> 3.0)
+      dry-logic (>= 1.4, < 2)
+      dry-types (>= 1.7, < 2)
+      zeitwerk (~> 2.6)
+    dry-types (1.7.1)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0)
+      dry-inflector (~> 1.0)
+      dry-logic (~> 1.4)
+      zeitwerk (~> 2.6)
+    dry-validation (1.10.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      dry-initializer (~> 3.0)
+      dry-schema (>= 1.12, < 2)
+      zeitwerk (~> 2.6)
     ffi (1.16.3)
     get_process_mem (0.2.7)
       ffi (~> 1.0)
@@ -81,8 +125,9 @@ GEM
       ruby2_keywords (~> 0.0.1)
     netrc (0.11.0)
     nio4r (2.6.0)
-    nonnative (1.74.1)
+    nonnative (1.75.0)
       concurrent-ruby (~> 1.0, >= 1.0.5)
+      config (~> 5.0)
       cucumber (>= 7, < 10)
       get_process_mem (~> 0.2.1)
       grpc (>= 1, < 2)
@@ -157,12 +202,14 @@ GEM
     unicode-display_width (2.5.0)
     vault (0.18.1)
       aws-sigv4
+    zeitwerk (2.6.12)
 
 PLATFORMS
   x86_64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
+  auth!
   aws-sdk-s3
   aws-sdk-ssm
   cucumber

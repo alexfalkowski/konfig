@@ -3,42 +3,55 @@ package grpc
 import (
 	"context"
 
-	sgrpc "github.com/alexfalkowski/go-service/transport/grpc"
+	"github.com/alexfalkowski/auth/client"
+	t "github.com/alexfalkowski/go-service/security/token"
+	"github.com/alexfalkowski/go-service/transport/grpc"
+	gt "github.com/alexfalkowski/go-service/transport/grpc/security/token"
 	"github.com/alexfalkowski/go-service/transport/grpc/telemetry/tracer"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
-	"github.com/alexfalkowski/konfig/client/v1/config"
+	v1c "github.com/alexfalkowski/konfig/client/v1/config"
 	"go.opentelemetry.io/otel/metric"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
-	"google.golang.org/grpc"
+	g "google.golang.org/grpc"
 )
 
 // ServiceClientParams for gRPC.
 type ServiceClientParams struct {
 	fx.In
 
-	Lifecycle fx.Lifecycle
-	Config    *sgrpc.Config
-	Logger    *zap.Logger
-	Tracer    tracer.Tracer
-	Client    *config.Config
-	Meter     metric.Meter
+	Lifecycle    fx.Lifecycle
+	GRPCConfig   *grpc.Config
+	TokenConfig  *t.Config
+	ClientConfig *v1c.Config
+	Logger       *zap.Logger
+	Tracer       tracer.Tracer
+	Meter        metric.Meter
+	Token        *client.Token
 }
 
 // NewServiceClient for gRPC.
 func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), params.Client.Timeout)
-	defer cancel()
+	opts := []grpc.ClientOption{
+		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer),
+		grpc.WithClientMetrics(params.Meter), grpc.WithClientRetry(),
+	}
 
-	conn, err := sgrpc.NewClient(ctx, params.Client.Host, params.Config,
-		sgrpc.WithClientLogger(params.Logger), sgrpc.WithClientTracer(params.Tracer), sgrpc.WithClientDialOption(grpc.WithBlock()),
-		sgrpc.WithClientMetrics(params.Meter),
-	)
+	if params.TokenConfig.Kind == "auth" {
+		opts = append(opts, grpc.WithClientDialOption(g.WithPerRPCCredentials(gt.NewPerRPCCredentials(params.Token.Generator("jwt", "konfig")))))
+	}
+
+	conn, err := grpc.NewClient(context.Background(), params.ClientConfig.Host, params.GRPCConfig, opts...)
 	if err != nil {
 		return nil, err
 	}
 
 	params.Lifecycle.Append(fx.Hook{
+		OnStart: func(ctx context.Context) error {
+			conn.ResetConnectBackoff()
+
+			return nil
+		},
 		OnStop: func(ctx context.Context) error {
 			return conn.Close()
 		},
