@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: make dep
+      - run: make setup
       - run: make lint
       - run: make proto-breaking
       - run: make sec
@@ -46,7 +46,7 @@ jobs:
       - run: git submodule sync
       - run: git submodule update --init
       - run: dockerize -wait tcp://localhost:8200 -wait tcp://localhost:4566 -wait tcp://localhost:5001 -timeout 1m
-      - run: make dep
+      - run: make setup
       - run: make feature=features tags=@grpc features
       - store_artifacts:
           path: test/reports
@@ -76,7 +76,7 @@ jobs:
       - run: git submodule sync
       - run: git submodule update --init
       - run: dockerize -wait tcp://localhost:8200 -wait tcp://localhost:4566 -wait tcp://localhost:5001 -timeout 1m
-      - run: make dep
+      - run: make setup
       - run: make feature=features tags=@http features
       - store_artifacts:
           path: test/reports
