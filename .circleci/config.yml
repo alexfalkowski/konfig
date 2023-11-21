@@ -124,22 +124,10 @@ jobs:
 workflows:
   konfig:
     jobs:
-      - build-service:
-          filters:
-              branches:
-                ignore: master
-      - build-docker:
-          filters:
-              branches:
-                ignore: master
-      - features-grpc:
-          filters:
-              branches:
-                ignore: master
-      - features-http:
-          filters:
-              branches:
-                ignore: master
+      - build-service
+      - build-docker
+      - features-grpc
+      - features-http
       - features-coveralls:
           requires:
             - features-grpc
@@ -149,6 +137,10 @@ workflows:
                 ignore: master
       - release:
           context: gh
+          requires:
+            - build-service
+            - build-docker
+            - features-coveralls
           filters:
             branches:
               only: master
