@@ -132,9 +132,6 @@ workflows:
           requires:
             - features-grpc
             - features-http
-          filters:
-              branches:
-                ignore: master
       - release:
           context: gh
           requires:
