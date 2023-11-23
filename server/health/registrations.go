@@ -23,7 +23,7 @@ type RegistrationsParams struct {
 
 // NewRegistrations for health.
 func NewRegistrations(params RegistrationsParams) (health.Registrations, error) {
-	client, err := http.NewClient(params.HTTP)
+	client, err := http.NewClient(http.WithClientUserAgent(params.HTTP.UserAgent))
 	if err != nil {
 		return nil, err
 	}

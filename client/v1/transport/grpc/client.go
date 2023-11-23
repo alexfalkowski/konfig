@@ -33,15 +33,15 @@ type ServiceClientParams struct {
 // NewServiceClient for gRPC.
 func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 	opts := []grpc.ClientOption{
-		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer),
-		grpc.WithClientMetrics(params.Meter), grpc.WithClientRetry(),
+		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Meter),
+		grpc.WithClientRetry(&params.GRPCConfig.Retry), grpc.WithClientUserAgent(params.GRPCConfig.UserAgent),
 	}
 
 	if params.TokenConfig.Kind == "auth" {
 		opts = append(opts, grpc.WithClientDialOption(g.WithPerRPCCredentials(gt.NewPerRPCCredentials(params.Token.Generator("jwt", "konfig")))))
 	}
 
-	conn, err := grpc.NewClient(context.Background(), params.ClientConfig.Host, params.GRPCConfig, opts...)
+	conn, err := grpc.NewClient(context.Background(), params.ClientConfig.Host, opts...)
 	if err != nil {
 		return nil, err
 	}
