@@ -34,9 +34,9 @@ type ConfiguratorParams struct {
 
 // NewConfigurator for source.
 func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
-	client, err := http.NewClient(params.HTTPConfig,
+	client, err := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.HTTPTracer),
-		http.WithClientMetrics(params.Meter),
+		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.HTTPConfig.UserAgent),
 	)
 	if err != nil {
 		return nil, err

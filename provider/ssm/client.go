@@ -18,17 +18,17 @@ import (
 type ClientParams struct {
 	fx.In
 
-	HTTPConfig *http.Config
-	Logger     *zap.Logger
-	Tracer     tracer.Tracer
-	Meter      metric.Meter
+	Config *http.Config
+	Logger *zap.Logger
+	Tracer tracer.Tracer
+	Meter  metric.Meter
 }
 
 // NewClient for SSM.
 func NewClient(params ClientParams) (*ssm.Client, error) {
-	client, err := http.NewClient(params.HTTPConfig,
+	client, err := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Meter),
+		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.Config.UserAgent),
 	)
 	if err != nil {
 		return nil, err
@@ -47,7 +47,7 @@ func NewClient(params ClientParams) (*ssm.Client, error) {
 	opts := []func(*config.LoadOptions) error{
 		config.WithEndpointResolverWithOptions(resolver),
 		config.WithHTTPClient(client),
-		config.WithRetryMaxAttempts(int(params.HTTPConfig.Retry.Attempts)),
+		config.WithRetryMaxAttempts(int(params.Config.Retry.Attempts)),
 	}
 
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
