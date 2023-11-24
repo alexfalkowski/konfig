@@ -36,27 +36,27 @@ type Server struct {
 
 // GetConfig for gRPC.
 func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.GetConfigResponse, error) {
-	if req.Continent == "" {
+	if req.GetContinent() == "" {
 		req.Continent = "*"
 	}
 
-	if req.Country == "" {
+	if req.GetCountry() == "" {
 		req.Country = "*"
 	}
 
-	if req.Kind == "" {
+	if req.GetKind() == "" {
 		req.Kind = "yaml"
 	}
 
 	resp := &v1.GetConfigResponse{
 		Config: &v1.Config{
-			Application: req.Application,
-			Version:     req.Version,
-			Environment: req.Environment,
-			Continent:   req.Continent,
-			Country:     req.Country,
-			Command:     req.Command,
-			Kind:        req.Kind,
+			Application: req.GetApplication(),
+			Version:     req.GetVersion(),
+			Environment: req.GetEnvironment(),
+			Continent:   req.GetContinent(),
+			Country:     req.GetCountry(),
+			Command:     req.GetCommand(),
+			Kind:        req.GetKind(),
 		},
 	}
 
@@ -65,13 +65,13 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 	}
 
 	p := source.ConfigParams{
-		Application: req.Application,
-		Version:     req.Version,
-		Environment: req.Environment,
-		Continent:   req.Continent,
-		Country:     req.Country,
-		Command:     req.Command,
-		Kind:        req.Kind,
+		Application: req.GetApplication(),
+		Version:     req.GetVersion(),
+		Environment: req.GetEnvironment(),
+		Continent:   req.GetContinent(),
+		Country:     req.GetCountry(),
+		Command:     req.GetCommand(),
+		Kind:        req.GetKind(),
 	}
 
 	c, err := s.conf.GetConfig(ctx, p)
@@ -96,19 +96,19 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 }
 
 func (s *Server) validateGetConfigRequest(req *v1.GetConfigRequest) error {
-	if req.Application == "" {
+	if req.GetApplication() == "" {
 		return status.Error(codes.InvalidArgument, "invalid application")
 	}
 
-	if req.Version == "" {
+	if req.GetVersion() == "" {
 		return status.Error(codes.InvalidArgument, "invalid version")
 	}
 
-	if req.Environment == "" {
+	if req.GetEnvironment() == "" {
 		return status.Error(codes.InvalidArgument, "invalid environment")
 	}
 
-	if req.Command == "" {
+	if req.GetCommand() == "" {
 		return status.Error(codes.InvalidArgument, "invalid command")
 	}
 

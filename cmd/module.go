@@ -5,10 +5,8 @@ import (
 	"go.uber.org/fx"
 )
 
-var (
-	// Module for fx.
-	Module = fx.Options(
-		cmd.Module,
-		fx.Provide(NewVersion),
-	)
+// Module for fx.
+var Module = fx.Options(
+	cmd.Module,
+	fx.Provide(NewVersion),
 )

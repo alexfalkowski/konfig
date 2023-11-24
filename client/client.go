@@ -35,5 +35,5 @@ func (c *Client) Config(ctx context.Context) ([]byte, error) {
 		return nil, err
 	}
 
-	return resp.Config.Data, nil
+	return resp.GetConfig().GetData(), nil
 }

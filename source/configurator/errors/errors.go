@@ -4,7 +4,5 @@ import (
 	"errors"
 )
 
-var (
-	// ErrNotFound in source.
-	ErrNotFound = errors.New("not found")
-)
+// ErrNotFound in source.
+var ErrNotFound = errors.New("not found")
