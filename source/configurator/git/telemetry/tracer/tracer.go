@@ -1,6 +1,8 @@
 package tracer
 
 import (
+	"context"
+
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/go-service/version"
@@ -13,5 +15,5 @@ type Tracer trace.Tracer
 
 // NewTracer for tracer.
 func NewTracer(lc fx.Lifecycle, cfg *tracer.Config, env env.Environment, ver version.Version) (Tracer, error) {
-	return tracer.NewTracer(lc, "git", env, ver, cfg)
+	return tracer.NewTracer(context.Background(), lc, "git", env, ver, cfg)
 }

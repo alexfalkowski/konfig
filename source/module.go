@@ -7,12 +7,10 @@ import (
 	"go.uber.org/fx"
 )
 
-var (
-	// Module for fx.
-	Module = fx.Options(
-		fx.Provide(gt.NewTracer),
-		fx.Provide(st.NewTracer),
-		fx.Provide(configurator.NewTransformer),
-		fx.Provide(NewConfigurator),
-	)
+// Module for fx.
+var Module = fx.Options(
+	fx.Provide(gt.NewTracer),
+	fx.Provide(st.NewTracer),
+	fx.Provide(configurator.NewTransformer),
+	fx.Provide(NewConfigurator),
 )

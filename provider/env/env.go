@@ -6,8 +6,7 @@ import (
 )
 
 // Transformer for env.
-type Transformer struct {
-}
+type Transformer struct{}
 
 // NewTransformer for env.
 func NewTransformer() *Transformer {

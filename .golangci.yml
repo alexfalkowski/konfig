@@ -7,35 +7,89 @@ linters-settings:
 linters:
   disable-all: true
   enable:
+    - asasalint
+    - asciicheck
+    - bidichk
     - bodyclose
+    - containedctx
+    - contextcheck
+    - cyclop
+    - decorder
     - dogsled
     - dupl
+    - dupword
+    - durationcheck
     - errcheck
+    - errchkjson
+    - errname
+    - errorlint
     - exportloopref
+    - execinquery
     - exhaustive
+    - exportloopref
+    - forbidigo
     - funlen
     - gochecknoinits
+    - gci
+    - gocognit
     - goconst
     - gocritic
     - gocyclo
+    - godot
+    - godox
     - gofmt
+    - gofumpt
+    - goheader
     - goimports
+    - gomoddirectives
+    - gomodguard
     - goprintffuncname
     - gosec
+    - gosmopolitan
     - gosimple
     - govet
+    - grouper
+    - importas
+    - inamedparam
     - ineffassign
     - lll
+    - loggercheck
+    - maintidx
+    - makezero
+    - mirror
     - misspell
+    - musttag
     - nakedret
+    - nestif
+    - nilerr
+    - nilnil
+    - nlreturn
     - noctx
     - nolintlint
+    - nonamedreturns
+    - nosprintfhostport
+    - perfsprint
+    - prealloc
+    - predeclared
+    - promlinter
+    - protogetter
+    - reassign
     - revive
+    - rowserrcheck
+    - sloglint
+    - sqlclosecheck
     - staticcheck
     - stylecheck
+    - tenv
+    - testableexamples
+    - testifylint
+    - testpackage
+    - thelper
+    - tparallel
     - typecheck
     - unconvert
     - unparam
     - unused
+    - wastedassign
     - whitespace
     - wsl
