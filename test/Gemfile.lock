@@ -200,7 +200,7 @@ GEM
     toml-rb (2.2.0)
       citrus (~> 3.0, > 3.0)
     unicode-display_width (2.5.0)
-    vault (0.18.1)
+    vault (0.18.2)
       aws-sigv4
     zeitwerk (2.6.12)
 
