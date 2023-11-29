@@ -6,10 +6,10 @@ require (
 	github.com/alexfalkowski/auth v1.58.2
 	github.com/alexfalkowski/go-health v1.13.0
 	github.com/alexfalkowski/go-service v1.122.2
-	github.com/aws/aws-sdk-go-v2 v1.23.2
-	github.com/aws/aws-sdk-go-v2/config v1.25.8
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.46.0
-	github.com/aws/aws-sdk-go-v2/service/ssm v1.43.3
+	github.com/aws/aws-sdk-go-v2 v1.23.3
+	github.com/aws/aws-sdk-go-v2/config v1.25.9
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.47.0
+	github.com/aws/aws-sdk-go-v2/service/ssm v1.44.0
 	github.com/go-git/go-git/v5 v5.10.1
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.1
 	github.com/hashicorp/vault/api v1.10.0
@@ -30,21 +30,21 @@ require (
 	github.com/ProtonMail/go-crypto v0.0.0-20230828082145-3c4c8a2d2371 // indirect
 	github.com/arl/statsviz v0.6.0 // indirect
 	github.com/avast/retry-go/v3 v3.1.1 // indirect
-	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.5.1 // indirect
-	github.com/aws/aws-sdk-go-v2/credentials v1.16.6 // indirect
-	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.14.6 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/configsources v1.2.5 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.5.5 // indirect
+	github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream v1.5.2 // indirect
+	github.com/aws/aws-sdk-go-v2/credentials v1.16.7 // indirect
+	github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.14.7 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/configsources v1.2.6 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.5.6 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.7.1 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/v4a v1.2.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.10.1 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.2.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.10.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.16.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sso v1.17.5 // indirect
-	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.20.3 // indirect
-	github.com/aws/aws-sdk-go-v2/service/sts v1.25.6 // indirect
-	github.com/aws/smithy-go v1.17.0 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/v4a v1.2.6 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.10.2 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/checksum v1.2.6 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.10.6 // indirect
+	github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.16.6 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sso v1.18.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.21.0 // indirect
+	github.com/aws/aws-sdk-go-v2/service/sts v1.26.0 // indirect
+	github.com/aws/smithy-go v1.18.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cenkalti/backoff/v3 v3.2.2 // indirect
 	github.com/cenkalti/backoff/v4 v4.2.1 // indirect
