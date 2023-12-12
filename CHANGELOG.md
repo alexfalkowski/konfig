@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.63.18](https://github.com/alexfalkowski/konfig/releases/tag/v1.63.18) - 2023-12-12
+
+- [`d231c90`](https://github.com/alexfalkowski/konfig/commit/d231c906df56dc3150e33eeec0807cc0b5ec8f77) fix(deps): bump github.com/go-git/go-git/v5 from 5.10.1 to 5.11.0 (#865)
+- [`aecb2b7`](https://github.com/alexfalkowski/konfig/commit/aecb2b7eb2f956db11c7ad037d75275c8f5d741f) build(deps): bump rubocop from 1.58.0 to 1.59.0 in /test (#862)
+
 ## [v1.63.17](https://github.com/alexfalkowski/konfig/releases/tag/v1.63.17) - 2023-12-09
 
 - [`0b6616e`](https://github.com/alexfalkowski/konfig/commit/0b6616e0f86e0abfb5c992f0ccde1fa6b1d4ffe7) fix(deps): bump the aws group with 3 updates (#861)
