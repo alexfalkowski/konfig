@@ -5,7 +5,7 @@ go 1.21
 require (
 	github.com/alexfalkowski/auth v1.59.0
 	github.com/alexfalkowski/go-health v1.13.1
-	github.com/alexfalkowski/go-service v1.122.10
+	github.com/alexfalkowski/go-service v1.124.1
 	github.com/aws/aws-sdk-go-v2 v1.24.0
 	github.com/aws/aws-sdk-go-v2/config v1.26.2
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.47.7
@@ -51,6 +51,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/cloudflare/circl v1.3.3 // indirect
 	github.com/cyphar/filepath-securejoin v0.2.4 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgraph-io/ristretto v0.1.1 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
@@ -71,6 +72,7 @@ require (
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0 // indirect
+	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-hclog v1.2.2 // indirect
@@ -99,8 +101,11 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/ngrok/sqlmw v0.0.0-20220520173518-97c9c04efc79 // indirect
 	github.com/nsqio/go-nsq v1.1.0 // indirect
+	github.com/open-feature/go-sdk v1.9.0 // indirect
+	github.com/open-feature/go-sdk-contrib/providers/flipt v0.1.1 // indirect
 	github.com/pjbgf/sha1cd v0.3.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
 	github.com/prometheus/client_golang v1.17.0 // indirect
 	github.com/prometheus/client_model v0.5.0 // indirect
@@ -115,6 +120,8 @@ require (
 	github.com/sony/gobreaker v0.5.0 // indirect
 	github.com/spf13/cobra v1.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/stretchr/objx v0.5.0 // indirect
+	github.com/stretchr/testify v1.8.4 // indirect
 	github.com/tklauser/go-sysconf v0.3.12 // indirect
 	github.com/tklauser/numcpus v0.6.1 // indirect
 	github.com/urfave/negroni/v3 v3.0.0 // indirect
@@ -123,6 +130,10 @@ require (
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	github.com/yusufpapurcu/wmi v1.2.3 // indirect
+	go.flipt.io/flipt/errors v1.19.3 // indirect
+	go.flipt.io/flipt/rpc/flipt v1.30.0 // indirect
+	go.flipt.io/flipt/sdk/go v0.7.0 // indirect
+	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.46.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.21.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.21.0 // indirect
 	go.opentelemetry.io/otel/exporters/prometheus v0.44.0 // indirect
@@ -133,6 +144,7 @@ require (
 	go.uber.org/dig v1.17.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/crypto v0.17.0 // indirect
+	golang.org/x/exp v0.0.0-20230811145659-89c5cff77bcb // indirect
 	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/net v0.19.0 // indirect
 	golang.org/x/sync v0.4.0 // indirect
