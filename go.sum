@@ -21,8 +21,8 @@ github.com/alexfalkowski/auth v1.60.0 h1:yn6lzpy0LwF7Q+oRGNntfCpjdG64lnVcg+RNcOx
 github.com/alexfalkowski/auth v1.60.0/go.mod h1:84XALZsJNHCggyYLF2romNBJMzjPp+6eGC8pzvV4rng=
 github.com/alexfalkowski/go-health v1.13.1 h1:+Lr13AV/2Nki065eNbOKNKBPxOPi4r5vr49rrmDOc0E=
 github.com/alexfalkowski/go-health v1.13.1/go.mod h1:AUmPWJNDt5YQRQEfkdZzoCq/o7lTNfSZvqdI9dfF43Q=
-github.com/alexfalkowski/go-service v1.124.3 h1:QxZNAtWGsTaBt8IAHTBW4ScoqEt7KpaMW6XjprjqdHs=
-github.com/alexfalkowski/go-service v1.124.3/go.mod h1:/A6gGmOu1CAiAtjh61AlE++9vWnSs3la0n4hLMHAtEw=
+github.com/alexfalkowski/go-service v1.124.4 h1:lhztRKedwSQwU3MyoLx2+6Cka07uPK+3NI/zMvKBtds=
+github.com/alexfalkowski/go-service v1.124.4/go.mod h1:QxbjlnKT0iiNzLt1loR0L9Ob5dS1tGbPz+qZLuUpX2s=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be h1:9AeTilPcZAjCFIImctFaOjnTIavg87rW78vTPkQqLI8=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be/go.mod h1:ySMOLuWl6zY27l47sB3qLNK6tF2fkHG55UZxx8oIVo4=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
@@ -351,8 +351,8 @@ github.com/ryanuber/go-glob v1.0.0 h1:iQh3xXAumdQ+4Ufa5b25cRpC5TYKlno6hsv6Cb3pkB
 github.com/ryanuber/go-glob v1.0.0/go.mod h1:807d1WSdnB0XRJzKNil9Om6lcp/3a0v4qIHxIXzX/Yc=
 github.com/sergi/go-diff v1.2.0 h1:XU+rvMAioB0UC3q1MFrIQy4Vo5/4VsRDQQXHsEya6xQ=
 github.com/sergi/go-diff v1.2.0/go.mod h1:STckp+ISIX8hZLjrqAeVduY0gWCT9IjLuqbuNXdaHfM=
-github.com/shirou/gopsutil/v3 v3.23.11 h1:i3jP9NjCPUz7FiZKxlMnODZkdSIp2gnzfrvsu9CuWEQ=
-github.com/shirou/gopsutil/v3 v3.23.11/go.mod h1:1FrWgea594Jp7qmjHUUPlJDTPgcsb9mGnXDxavtikzM=
+github.com/shirou/gopsutil/v3 v3.23.12 h1:z90NtUkp3bMtmICZKpC4+WaknU1eXtp5vtbQ11DgpE4=
+github.com/shirou/gopsutil/v3 v3.23.12/go.mod h1:1FrWgea594Jp7qmjHUUPlJDTPgcsb9mGnXDxavtikzM=
 github.com/shoenig/go-m1cpu v0.1.6 h1:nxdKQNcEB6vzgA2E2bvzKIYRuNj7XNJ4S/aRSwKzFtM=
 github.com/shoenig/go-m1cpu v0.1.6/go.mod h1:1JJMcUBvfNwpq05QDQVAnx3gUHr9IYF7GNg9SUEw2VQ=
 github.com/shoenig/test v0.6.4 h1:kVTaSd7WLz5WZ2IaoM0RSzRsUD+m8wRR+5qvntpn4LU=
