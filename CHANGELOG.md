@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.64.9](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.9) - 2024-01-08
+
+- [`8fc8b7d`](https://github.com/alexfalkowski/konfig/commit/8fc8b7d02baad6eede6c3c9c827d5c0460ee2607) fix(deps): bump github.com/cloudflare/circl from 1.3.3 to 1.3.7 (#895)
+
 ## [v1.64.8](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.8) - 2024-01-08
 
 - [`467d4d4`](https://github.com/alexfalkowski/konfig/commit/467d4d4c670e126dbd94e4d8193c00a88b4917a1) fix(deps): bump github.com/alexfalkowski/auth from 1.60.4 to 1.60.5 (#891)
