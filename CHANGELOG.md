@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.64.8](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.8) - 2024-01-08
+
+- [`467d4d4`](https://github.com/alexfalkowski/konfig/commit/467d4d4c670e126dbd94e4d8193c00a88b4917a1) fix(deps): bump github.com/alexfalkowski/auth from 1.60.4 to 1.60.5 (#891)
+- [`b955a13`](https://github.com/alexfalkowski/konfig/commit/b955a13b67a4ead4c48034980f485d70c70a0631) build(deps): bump puma from 6.4.0 to 6.4.2 in /test (#894)
+
 ## [v1.64.7](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.7) - 2024-01-06
 
 - [`bb2b9fa`](https://github.com/alexfalkowski/konfig/commit/bb2b9fa5309fa945ea8e3acb6b51e818e5f02ea0) fix(deps): bump the aws group with 4 updates (#893)
