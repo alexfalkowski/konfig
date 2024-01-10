@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.64.10](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.10) - 2024-01-10
+
+- [`5f7e8f6`](https://github.com/alexfalkowski/konfig/commit/5f7e8f6ad050601ebb57990a986b11ecad492d3a) fix(deps): bump github.com/alexfalkowski/go-service from 1.124.5 to 1.124.6 (#898)
+
 ## [v1.64.9](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.9) - 2024-01-08
 
 - [`8fc8b7d`](https://github.com/alexfalkowski/konfig/commit/8fc8b7d02baad6eede6c3c9c827d5c0460ee2607) fix(deps): bump github.com/cloudflare/circl from 1.3.3 to 1.3.7 (#895)
