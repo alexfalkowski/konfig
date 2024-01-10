@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: fc9efeea09be7fd829af398c049189bee7d520ea
-  tag: v1.60.5
+  revision: c1bedaba974e96019e8e53bba4dc44e4d81350a2
+  tag: v1.60.7
   glob: test/*.gemspec
   specs:
     auth (1.60.0)
