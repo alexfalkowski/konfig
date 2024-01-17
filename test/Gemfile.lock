@@ -174,7 +174,7 @@ GEM
     rspec-support (3.12.1)
     rspec-wait (0.0.9)
       rspec (>= 3, < 4)
-    rubocop (1.60.0)
+    rubocop (1.60.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
