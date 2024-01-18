@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.64.16](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.16) - 2024-01-18
+
+- [`51b2768`](https://github.com/alexfalkowski/konfig/commit/51b276842ae0a52b5980053cdb119075dbba1599) fix(deps): bump the aws group with 1 update (#909)
+- [`8139086`](https://github.com/alexfalkowski/konfig/commit/81390866374f4452d45952eec0fc2b4089479312) build(deps): bump rubocop from 1.60.0 to 1.60.1 in /test (#908)
+
 ## [v1.64.15](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.15) - 2024-01-17
 
 - [`83e175f`](https://github.com/alexfalkowski/konfig/commit/83e175f52534d523c6764a1759031f3d3a0db8d1) fix(deps): bump the aws group with 1 update (#903)
