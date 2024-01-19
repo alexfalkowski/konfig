@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.64.17](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.17) - 2024-01-19
+
+- [`c39ed4c`](https://github.com/alexfalkowski/konfig/commit/c39ed4c9448c5e8acaf773243b86103a42bab4da) fix(deps): bump github.com/alexfalkowski/auth from 1.60.8 to 1.60.10 (#910)
+
 ## [v1.64.16](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.16) - 2024-01-18
 
 - [`51b2768`](https://github.com/alexfalkowski/konfig/commit/51b276842ae0a52b5980053cdb119075dbba1599) fix(deps): bump the aws group with 1 update (#909)
