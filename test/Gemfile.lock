@@ -40,7 +40,7 @@ GEM
     config (5.1.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
-    cucumber (9.1.1)
+    cucumber (9.1.2)
       builder (~> 3.2, >= 3.2.4)
       cucumber-ci-environment (~> 9.2, >= 9.2.0)
       cucumber-core (~> 12.0)
