@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.64.18](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.18) - 2024-01-23
+
+- [`62e59da`](https://github.com/alexfalkowski/konfig/commit/62e59dacb51bf44b99e763f09be5d4f5ee97e3d1) fix(deps): bump the aws group with 1 update (#914)
+- [`3c8519d`](https://github.com/alexfalkowski/konfig/commit/3c8519d1b9e6f582cbf7222476d77d14a8b03797) build(deps): bump toml-rb from 2.2.0 to 3.0.0 in /test (#912)
+- [`3314a1f`](https://github.com/alexfalkowski/konfig/commit/3314a1feed0ac1fd39f95581831f4b721e170fde) build(deps): bump nonnative from 1.75.0 to 1.76.0 in /test (#913)
+
 ## [v1.64.17](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.17) - 2024-01-19
 
 - [`c39ed4c`](https://github.com/alexfalkowski/konfig/commit/c39ed4c9448c5e8acaf773243b86103a42bab4da) fix(deps): bump github.com/alexfalkowski/auth from 1.60.8 to 1.60.10 (#910)
