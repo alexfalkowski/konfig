@@ -12,7 +12,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.44.7
 	github.com/go-git/go-git/v5 v5.11.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.0
-	github.com/hashicorp/vault/api v1.10.0
+	github.com/hashicorp/vault/api v1.11.0
 	go.opentelemetry.io/otel v1.22.0
 	go.opentelemetry.io/otel/metric v1.22.0
 	go.opentelemetry.io/otel/trace v1.22.0
