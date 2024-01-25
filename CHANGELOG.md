@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.64.19](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.19) - 2024-01-25
+
+- [`68a15f7`](https://github.com/alexfalkowski/konfig/commit/68a15f745a5a929b88eaef534933fb68708e40a8) fix(deps): bump github.com/alexfalkowski/go-service from 1.124.8 to 1.124.10 (#920)
+- [`8188be2`](https://github.com/alexfalkowski/konfig/commit/8188be26db0fb8f747754ceed3979421c2c828f9) build(deps): bump rubocop from 1.60.1 to 1.60.2 in /test (#921)
+- [`ae2cc39`](https://github.com/alexfalkowski/konfig/commit/ae2cc39b62372eeb8068ee80d37c243d69a464aa) build(deps): bump cucumber from 9.1.1 to 9.1.2 in /test (#915)
+
 ## [v1.64.18](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.18) - 2024-01-23
 
 - [`62e59da`](https://github.com/alexfalkowski/konfig/commit/62e59dacb51bf44b99e763f09be5d4f5ee97e3d1) fix(deps): bump the aws group with 1 update (#914)
