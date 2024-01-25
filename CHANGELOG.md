@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.64.21](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.21) - 2024-01-25
+
+- [`d0f1f7a`](https://github.com/alexfalkowski/konfig/commit/d0f1f7a5e0c5abaca126ebacc0f192b4ce9ecffb) fix(deps): bump the aws group with 1 update (#916)
+
 ## [v1.64.20](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.20) - 2024-01-25
 
 - [`578ba0f`](https://github.com/alexfalkowski/konfig/commit/578ba0f5d368e2d94fbe40ce1f2e3121cf3ad810) fix(deps): bump github.com/hashicorp/vault/api from 1.10.0 to 1.11.0 (#917)
