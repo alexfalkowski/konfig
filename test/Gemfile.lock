@@ -140,7 +140,7 @@ GEM
       rspec-expectations (>= 3, < 4)
       sinatra (>= 2, < 5)
     parallel (1.24.0)
-    parser (3.3.0.4)
+    parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
     puma (6.4.2)
@@ -180,7 +180,7 @@ GEM
     rspec-support (3.12.1)
     rspec-wait (0.0.9)
       rspec (>= 3, < 4)
-    rubocop (1.60.1)
+    rubocop (1.60.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
