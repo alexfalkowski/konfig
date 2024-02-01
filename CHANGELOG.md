@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.64.24](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.24) - 2024-02-01
+
+- [`24c1563`](https://github.com/alexfalkowski/konfig/commit/24c156304c871887dabe5b6b012670eb0afd150c) fix(deps): bump the aws group with 1 update (#926)
+- [`781e818`](https://github.com/alexfalkowski/konfig/commit/781e8180c0d6f26ed543956c7f57491d798275e6) build(deps): bump toml-rb from 3.0.0 to 3.0.1 in /test (#928)
+- [`1e943c2`](https://github.com/alexfalkowski/konfig/commit/1e943c29928f66053cb02cbced9a7e6f8abc9bc4) build(deps): bump the aws group in /test with 1 update (#927)
+
 ## [v1.64.23](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.23) - 2024-01-31
 
 - [`246b208`](https://github.com/alexfalkowski/konfig/commit/246b208416cc6198b6cc9bb3503358d7402f82ca) fix(deps): bump github.com/alexfalkowski/go-service from 1.124.10 to 1.124.12 (#924)
