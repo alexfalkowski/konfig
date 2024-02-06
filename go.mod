@@ -5,7 +5,7 @@ go 1.21
 require (
 	github.com/alexfalkowski/auth v1.60.13
 	github.com/alexfalkowski/go-health v1.13.2
-	github.com/alexfalkowski/go-service v1.124.14
+	github.com/alexfalkowski/go-service v1.124.15
 	github.com/aws/aws-sdk-go-v2 v1.24.1
 	github.com/aws/aws-sdk-go-v2/config v1.26.6
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.48.1
@@ -92,7 +92,7 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
-	github.com/klauspost/compress v1.17.5 // indirect
+	github.com/klauspost/compress v1.17.6 // indirect
 	github.com/lib/pq v1.10.7 // indirect
 	github.com/linxGnu/mssqlx v1.1.8 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect

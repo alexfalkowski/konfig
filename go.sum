@@ -21,8 +21,8 @@ github.com/alexfalkowski/auth v1.60.13 h1:Mysbsv3jzhgB0r7L65GCnj6881e0nGdJUqIEOA
 github.com/alexfalkowski/auth v1.60.13/go.mod h1:zKu4VMJGBrLZ34gnuwNT24YzCJ7jaiw4x0QNjbSuXO8=
 github.com/alexfalkowski/go-health v1.13.2 h1:AEJz5roMtIarPK6YgL9BNQ2TftRqtgbqV7GgVAvA93o=
 github.com/alexfalkowski/go-health v1.13.2/go.mod h1:lrkap6VIgLB/Zua/bHc22+6aejg+uSXJyVAD2veF2yg=
-github.com/alexfalkowski/go-service v1.124.14 h1:YgNa2vBALzydgnWBSgilZtj2kVwCohBojix6fjvPbjA=
-github.com/alexfalkowski/go-service v1.124.14/go.mod h1:iLMWfPk3QyaJ8ngGhmzqoqD5OlsiErAie1RXHeIZOcg=
+github.com/alexfalkowski/go-service v1.124.15 h1:gC5CR86Gi4ShxcCU7wvUtn8Zp9EFEhq1xhv4UWYtEaE=
+github.com/alexfalkowski/go-service v1.124.15/go.mod h1:ENphKb3GpaaWUiR4K4i2QD1zWnFiBO+zZKYfqKXy9Og=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be h1:9AeTilPcZAjCFIImctFaOjnTIavg87rW78vTPkQqLI8=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be/go.mod h1:ySMOLuWl6zY27l47sB3qLNK6tF2fkHG55UZxx8oIVo4=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
@@ -259,8 +259,8 @@ github.com/kevinburke/ssh_config v1.2.0/go.mod h1:CT57kijsi8u/K/BOFA39wgDQJ9CxiF
 github.com/kisielk/errcheck v1.5.0/go.mod h1:pFxgyoBC7bSaBwPgfKdkLd5X25qrDl4LWUI2bnpBCr8=
 github.com/kisielk/gotool v1.0.0/go.mod h1:XhKaO+MFFWcvkIS/tQcRk01m1F5IRFswLeQ+oQHNcck=
 github.com/klauspost/compress v1.13.6/go.mod h1:/3/Vjq9QcHkK5uEr5lBEmyoZ1iFhe47etQ6QUkpK6sk=
-github.com/klauspost/compress v1.17.5 h1:d4vBd+7CHydUqpFBgUEKkSdtSugf9YFmSkvUYPquI5E=
-github.com/klauspost/compress v1.17.5/go.mod h1:/dCuZOvVtNoHsyb+cuJD3itjs3NbnF6KH9zAO4BDxPM=
+github.com/klauspost/compress v1.17.6 h1:60eq2E/jlfwQXtvZEeBUYADs+BwKBWURIY+Gj2eRGjI=
+github.com/klauspost/compress v1.17.6/go.mod h1:/dCuZOvVtNoHsyb+cuJD3itjs3NbnF6KH9zAO4BDxPM=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1/go.mod h1:T0+1ngSBFLxvqU3pZ+m/2kptfBszLMUkC4ZK/EgS/cQ=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pretty v0.3.0/go.mod h1:640gp4NfQd8pI5XOwp5fnNeVWj67G7CFk/SaSQn7NBk=
