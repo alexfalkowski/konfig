@@ -3,7 +3,7 @@ module github.com/alexfalkowski/konfig
 go 1.21
 
 require (
-	github.com/alexfalkowski/auth v1.60.13
+	github.com/alexfalkowski/auth v1.60.18
 	github.com/alexfalkowski/go-health v1.13.2
 	github.com/alexfalkowski/go-service v1.124.17
 	github.com/aws/aws-sdk-go-v2 v1.24.1
@@ -143,12 +143,12 @@ require (
 	go.uber.org/automaxprocs v1.5.3 // indirect
 	go.uber.org/dig v1.17.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/crypto v0.18.0 // indirect
+	golang.org/x/crypto v0.19.0 // indirect
 	golang.org/x/exp v0.0.0-20230811145659-89c5cff77bcb // indirect
 	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/net v0.20.0 // indirect
 	golang.org/x/sync v0.5.0 // indirect
-	golang.org/x/sys v0.16.0 // indirect
+	golang.org/x/sys v0.17.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
 	golang.org/x/tools v0.13.0 // indirect
