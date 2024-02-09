@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.64.29](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.29) - 2024-02-09
+
+- [`466d5f2`](https://github.com/alexfalkowski/konfig/commit/466d5f20a33b9dc65464121b45236c241299f0a9) fix(deps): bump github.com/hashicorp/vault/api from 1.11.0 to 1.12.0 (#947)
+
 ## [v1.64.28](https://github.com/alexfalkowski/konfig/releases/tag/v1.64.28) - 2024-02-09
 
 - [`ffc2b42`](https://github.com/alexfalkowski/konfig/commit/ffc2b428b09821f5c88ec1b0d4528e606e7c4a0a) fix(deps): bump github.com/alexfalkowski/go-service from 1.124.14 to 1.124.17 (#943)
