@@ -36,7 +36,7 @@ func NewClient(params ClientParams) (*ssm.Client, error) {
 
 	ctx := context.Background()
 
-	resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...any) (aws.Endpoint, error) {
+	resolver := aws.EndpointResolverWithOptionsFunc(func(_, region string, _ ...any) (aws.Endpoint, error) {
 		url := os.Getenv("AWS_URL")
 		if url != "" {
 			return aws.Endpoint{PartitionID: "aws", URL: url, SigningRegion: region}, nil

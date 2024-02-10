@@ -40,7 +40,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	ctx, span := c.tracer.Start(ctx, "get-config", trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	resolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...any) (aws.Endpoint, error) {
+	resolver := aws.EndpointResolverWithOptionsFunc(func(_, region string, _ ...any) (aws.Endpoint, error) {
 		url := os.Getenv("AWS_URL")
 		if url != "" {
 			return aws.Endpoint{PartitionID: "aws", URL: url, SigningRegion: region}, nil

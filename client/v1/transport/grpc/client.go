@@ -47,12 +47,12 @@ func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 	}
 
 	params.Lifecycle.Append(fx.Hook{
-		OnStart: func(ctx context.Context) error {
+		OnStart: func(_ context.Context) error {
 			conn.ResetConnectBackoff()
 
 			return nil
 		},
-		OnStop: func(ctx context.Context) error {
+		OnStop: func(_ context.Context) error {
 			return conn.Close()
 		},
 	})
