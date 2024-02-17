@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-service:
     docker:
-      - image: alexfalkowski/go:1.21-ruby
+      - image: alexfalkowski/go:1.22-ruby
     working_directory: ~/konfig
     steps:
       - checkout
@@ -16,7 +16,7 @@ jobs:
     resource_class: large
   build-docker:
     docker:
-      - image: alexfalkowski/go:1.21-ruby
+      - image: alexfalkowski/go:1.22-ruby
     working_directory: ~/auth
     steps:
       - checkout
@@ -28,7 +28,7 @@ jobs:
     resource_class: large
   features-grpc:
     docker:
-      - image: alexfalkowski/go:1.21-ruby
+      - image: alexfalkowski/go:1.22-ruby
       - image: localstack/localstack:2.3
         environment:
           SERVICES: s3,ssm
@@ -58,7 +58,7 @@ jobs:
     resource_class: large
   features-http:
     docker:
-      - image: alexfalkowski/go:1.21-ruby
+      - image: alexfalkowski/go:1.22-ruby
       - image: localstack/localstack:2.3
         environment:
           SERVICES: s3,ssm
@@ -88,7 +88,7 @@ jobs:
     resource_class: large
   features-coveralls:
     docker:
-      - image: alexfalkowski/go:1.21-ruby
+      - image: alexfalkowski/go:1.22-ruby
     working_directory: ~/konfig
     steps:
       - checkout
@@ -108,7 +108,7 @@ jobs:
     resource_class: large
   push-docker:
     docker:
-      - image: alexfalkowski/go:1.21-ruby
+      - image: alexfalkowski/go:1.22-ruby
     working_directory: ~/konfig
     steps:
       - checkout
