@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.65.14](https://github.com/alexfalkowski/konfig/releases/tag/v1.65.14) - 2024-02-23
+
+- [`84d7b5e`](https://github.com/alexfalkowski/konfig/commit/84d7b5ec4428ee6a79edb215e3ba0c4117414c6f) fix(deps): bump the aws group with 4 updates (#976)
+- [`6cf53be`](https://github.com/alexfalkowski/konfig/commit/6cf53be970608c8cad51577e63337a9743179829) test: add ruby-lsp (0.14.2) (#975)
+
 ## [v1.65.13](https://github.com/alexfalkowski/konfig/releases/tag/v1.65.13) - 2024-02-22
 
 - [`41f2e7f`](https://github.com/alexfalkowski/konfig/commit/41f2e7f8b936c90d3cdab6125bfd41d76580c4aa) fix(deps): bump the aws group with 3 updates (#973)
