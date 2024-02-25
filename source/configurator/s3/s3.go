@@ -68,7 +68,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	out, err := client.GetObject(ctx, &s3.GetObjectInput{Bucket: &c.cfg.Bucket, Key: &path})
 	if err != nil {
-		meta.WithAttribute(ctx, "s3.get_object_error", err.Error())
+		meta.WithAttribute(ctx, "s3GetObjectError", err.Error())
 
 		var nerr *types.NoSuchKey
 		if errors.As(err, &nerr) {
@@ -86,7 +86,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	data, err := io.ReadAll(out.Body)
 	if err != nil {
-		meta.WithAttribute(ctx, "s3.read_all_error", err.Error())
+		meta.WithAttribute(ctx, "s3ReadAllError", err.Error())
 
 		span.SetStatus(codes.Error, err.Error())
 		span.RecordError(err)

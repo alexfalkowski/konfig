@@ -45,19 +45,19 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	defer c.mux.Unlock()
 
 	if err := c.clone(ctx); err != nil {
-		meta.WithAttribute(ctx, "git.clone_error", err.Error())
+		meta.WithAttribute(ctx, "gitCloneError", err.Error())
 
 		return nil, err
 	}
 
 	if err := c.pull(ctx); err != nil {
-		meta.WithAttribute(ctx, "git.pull_error", err.Error())
+		meta.WithAttribute(ctx, "gitPullError", err.Error())
 
 		return nil, err
 	}
 
 	if err := c.checkout(ctx, params.Application, params.Version); err != nil {
-		meta.WithAttribute(ctx, "git.checkout_error", err.Error())
+		meta.WithAttribute(ctx, "gitCheckoutError", err.Error())
 
 		if errors.Is(err, plumbing.ErrReferenceNotFound) {
 			return nil, cerrors.ErrNotFound
@@ -71,7 +71,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
-		meta.WithAttribute(ctx, "git.file_error", err.Error())
+		meta.WithAttribute(ctx, "gitFileError", err.Error())
 
 		if os.IsNotExist(err) {
 			return nil, cerrors.ErrNotFound

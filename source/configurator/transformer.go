@@ -40,20 +40,20 @@ func (t *Transformer) Transform(ctx context.Context, cfg *Config) ([]byte, error
 
 	c := map[string]any{}
 	if err := m.Unmarshal(cfg.Data, &c); err != nil {
-		meta.WithAttribute(ctx, "config.unmarshal_error", err.Error())
+		meta.WithAttribute(ctx, "configUnmarshalError", err.Error())
 
 		return nil, ErrUnmarshalError
 	}
 
 	if err := t.traverse(ctx, c); err != nil {
-		meta.WithAttribute(ctx, "config.traverse_error", err.Error())
+		meta.WithAttribute(ctx, "configTraverseError", err.Error())
 
 		return nil, ErrTraverseError
 	}
 
 	data, err := m.Marshal(c)
 	if err != nil {
-		meta.WithAttribute(ctx, "config.marshal_error", err.Error())
+		meta.WithAttribute(ctx, "configMarshalError", err.Error())
 
 		return nil, ErrMarshalError
 	}
