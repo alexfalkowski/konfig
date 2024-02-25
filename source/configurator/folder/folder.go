@@ -25,7 +25,7 @@ type Configurator struct {
 // GetConfig for folder.
 func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
 	if _, err := os.Stat(c.cfg.Dir); os.IsNotExist(err) {
-		meta.WithAttribute(ctx, "folder.dir_error", err.Error())
+		meta.WithAttribute(ctx, "folderDirError", err.Error())
 
 		return nil, err
 	}
@@ -35,7 +35,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
-		meta.WithAttribute(ctx, "folder.file_error", err.Error())
+		meta.WithAttribute(ctx, "folderFileError", err.Error())
 
 		if os.IsNotExist(err) {
 			return nil, errors.ErrNotFound
