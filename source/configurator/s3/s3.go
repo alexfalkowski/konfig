@@ -10,6 +10,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
+	tm "github.com/alexfalkowski/go-service/transport/meta"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/alexfalkowski/konfig/source/configurator/s3/telemetry/tracer"
@@ -37,7 +38,7 @@ type Configurator struct {
 func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
 	path := c.path(params.Application, params.Version, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
 
-	ctx, span := c.tracer.Start(ctx, "get-config", trace.WithSpanKind(trace.SpanKindClient))
+	ctx, span := c.span(ctx)
 	defer span.End()
 
 	resolver := aws.EndpointResolverWithOptionsFunc(func(_, region string, _ ...any) (aws.Endpoint, error) {
@@ -107,4 +108,11 @@ func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string)
 	}
 
 	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.%s", app, ver, env, continent, country, cmd, kind)
+}
+
+func (c *Configurator) span(ctx context.Context) (context.Context, trace.Span) {
+	ctx, span := c.tracer.Start(ctx, "get-config", trace.WithSpanKind(trace.SpanKindClient))
+	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID().String())
+
+	return ctx, span
 }

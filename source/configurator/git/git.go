@@ -11,6 +11,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
+	tm "github.com/alexfalkowski/go-service/transport/meta"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/alexfalkowski/konfig/source/configurator/git/telemetry/tracer"
@@ -56,7 +57,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 		return nil, err
 	}
 
-	if err := c.checkout(ctx, params.Application, params.Version); err != nil {
+	if err := c.checkout(params.Application, params.Version); err != nil {
 		meta.WithAttribute(ctx, "gitCheckoutError", err.Error())
 
 		if errors.Is(err, plumbing.ErrReferenceNotFound) {
@@ -83,12 +84,8 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	return &source.Config{Kind: file.Extension(path), Data: data}, nil
 }
 
-func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
+func (c *Configurator) checkout(app, ver string) error {
 	tag := fmt.Sprintf("%s/%s", app, ver)
-
-	_, span := c.tracer.Start(ctx, "checkout", trace.WithSpanKind(trace.SpanKindClient))
-	defer span.End()
-
 	tree, _ := c.repo.Worktree()
 
 	return tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(tag)})
@@ -97,6 +94,8 @@ func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
 func (c *Configurator) pull(ctx context.Context) error {
 	ctx, span := c.tracer.Start(ctx, "pull", trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
+
+	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID().String())
 
 	tree, _ := c.repo.Worktree()
 
@@ -112,12 +111,14 @@ func (c *Configurator) pull(ctx context.Context) error {
 }
 
 func (c *Configurator) clone(ctx context.Context) error {
-	ctx, span := c.tracer.Start(ctx, "clone", trace.WithSpanKind(trace.SpanKindClient))
-	defer span.End()
-
 	if c.repo != nil {
 		return nil
 	}
+
+	ctx, span := c.tracer.Start(ctx, "clone", trace.WithSpanKind(trace.SpanKindClient))
+	defer span.End()
+
+	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID().String())
 
 	if err := os.RemoveAll(c.cfg.Dir); err != nil {
 		return err
