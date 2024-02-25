@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 
+	tm "github.com/alexfalkowski/go-service/transport/meta"
 	"github.com/alexfalkowski/konfig/provider/ssm/telemetry/tracer"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/aws/aws-sdk-go-v2/service/ssm/types"
@@ -32,6 +33,8 @@ func NewTransformer(client *ssm.Client, t tracer.Tracer) *Transformer {
 func (t *Transformer) Transform(ctx context.Context, value string) (any, error) {
 	ctx, span := t.tracer.Start(ctx, "transform", trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
+
+	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID().String())
 
 	out, err := t.client.GetParameter(ctx, &ssm.GetParameterInput{Name: &value})
 	if err != nil {
