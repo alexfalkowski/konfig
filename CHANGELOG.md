@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.67.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.67.1) - 2024-03-05
+
+- [`e4c7748`](https://github.com/alexfalkowski/konfig/commit/e4c774834a0ff6c2f781a31ac7bbcb934f71af1d) fix(deps): bump the aws group with 2 updates (#997)
+
 ## [v1.67.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.67.0) - 2024-03-05
 
 - [`3773e04`](https://github.com/alexfalkowski/konfig/commit/3773e04c96f016a95d50c4349325ec3166955cca) feat(server): use client config (#999)
