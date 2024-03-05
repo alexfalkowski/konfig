@@ -21,7 +21,6 @@ type ServiceClientParams struct {
 	fx.In
 
 	Lifecycle    fx.Lifecycle
-	GRPCConfig   *grpc.Config
 	TokenConfig  *t.Config
 	ClientConfig *v1c.Config
 	Logger       *zap.Logger
@@ -34,7 +33,7 @@ type ServiceClientParams struct {
 func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 	opts := []grpc.ClientOption{
 		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Meter),
-		grpc.WithClientRetry(&params.GRPCConfig.Retry), grpc.WithClientUserAgent(params.GRPCConfig.UserAgent),
+		grpc.WithClientRetry(&params.ClientConfig.Retry), grpc.WithClientUserAgent(params.ClientConfig.UserAgent),
 	}
 
 	if params.TokenConfig.Kind == "auth" {
