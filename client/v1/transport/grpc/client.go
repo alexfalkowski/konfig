@@ -40,6 +40,15 @@ func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 		opts = append(opts, grpc.WithClientDialOption(g.WithPerRPCCredentials(gt.NewPerRPCCredentials(params.Token.Generator("jwt", "konfig")))))
 	}
 
+	if params.ClientConfig.Security.IsEnabled() {
+		sec, err := grpc.WithClientSecure(params.ClientConfig.Security)
+		if err != nil {
+			return nil, err
+		}
+
+		opts = append(opts, sec)
+	}
+
 	conn, err := grpc.NewClient(context.Background(), params.ClientConfig.Host, opts...)
 	if err != nil {
 		return nil, err
