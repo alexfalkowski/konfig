@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.67.2](https://github.com/alexfalkowski/konfig/releases/tag/v1.67.2) - 2024-03-06
+
+- [`510c296`](https://github.com/alexfalkowski/konfig/commit/510c29692622a2a9165d85f9459a60b35a96c8ba) fix(deps): bump golang from 1.22.0-bullseye to 1.22.1-bullseye (#998)
+
 ## [v1.67.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.67.1) - 2024-03-05
 
 - [`e4c7748`](https://github.com/alexfalkowski/konfig/commit/e4c774834a0ff6c2f781a31ac7bbcb934f71af1d) fix(deps): bump the aws group with 2 updates (#997)
