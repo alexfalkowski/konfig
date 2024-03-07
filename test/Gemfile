@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'auth', github: 'alexfalkowski/auth', tag: 'v1.65.0', glob: 'test/*.gemspec'
+gem 'auth', github: 'alexfalkowski/auth', glob: 'test/*.gemspec'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-ssm'
 gem 'cucumber'
