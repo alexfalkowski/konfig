@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: 3b0a607ff39d86a63bcd15bbd7ab5a061e2349f8
+  revision: 4cb7ebeeb217e98611801617c74c36cb56ea8785
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -176,7 +176,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.31.1)
       parser (>= 3.3.0.4)
-    ruby-lsp (0.14.4)
+    ruby-lsp (0.14.5)
       language_server-protocol (~> 3.17.0)
       prism (>= 0.22.0, < 0.25)
       sorbet-runtime (>= 0.5.10782)
@@ -188,7 +188,7 @@ GEM
       rack-protection (= 4.0.0)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11285)
+    sorbet-runtime (0.5.11287)
     sys-uname (1.2.3)
       ffi (~> 1.1)
     tilt (2.3.0)
