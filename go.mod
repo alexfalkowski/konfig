@@ -4,7 +4,7 @@ go 1.22.1
 
 require (
 	github.com/alexfalkowski/auth v1.66.2
-	github.com/alexfalkowski/go-health v1.14.1
+	github.com/alexfalkowski/go-health v1.14.2
 	github.com/alexfalkowski/go-service v1.134.1
 	github.com/aws/aws-sdk-go-v2 v1.25.3
 	github.com/aws/aws-sdk-go-v2/config v1.27.7

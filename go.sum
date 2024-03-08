@@ -21,8 +21,8 @@ github.com/ProtonMail/go-crypto v0.0.0-20230828082145-3c4c8a2d2371 h1:kkhsdkhsCv
 github.com/ProtonMail/go-crypto v0.0.0-20230828082145-3c4c8a2d2371/go.mod h1:EjAoLdwvbIOoOQr3ihjnSoLZRtE8azugULFRteWMNc0=
 github.com/alexfalkowski/auth v1.66.2 h1:PAPgHqGUJkTQSm1Mt8ePfHDfmyHBo7h1pRXkBL7lJXY=
 github.com/alexfalkowski/auth v1.66.2/go.mod h1:slQjCY5444HLIs0WHkhxsq+ojMoSxpB9c6/QK91Gh0c=
-github.com/alexfalkowski/go-health v1.14.1 h1:JWjWdF+cWGzQgAJGq9oUwScDPtLxaZlLYxHzCbb9ylE=
-github.com/alexfalkowski/go-health v1.14.1/go.mod h1:7iYF93qVtgcwmVf6xC5Ek8nsGUnD/ldsYmSvse5Zb9Q=
+github.com/alexfalkowski/go-health v1.14.2 h1:5asjVOWYN3IrbBmoHLuSLEpP6CPdNpZpSiSLXd9qvNI=
+github.com/alexfalkowski/go-health v1.14.2/go.mod h1:GrfpkU3sTiZkGsm1thyZ3WiBFL6/vX29cskAKMw3h48=
 github.com/alexfalkowski/go-service v1.134.1 h1:a5FkiOChnZ0WP90MGDRSvOl4QLtQoI9oEgyd+pMdkN4=
 github.com/alexfalkowski/go-service v1.134.1/go.mod h1:t0UnlinR4PzNuGh4cHwxPrvr9a6LR7dbTSr04egU4o0=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be h1:9AeTilPcZAjCFIImctFaOjnTIavg87rW78vTPkQqLI8=
