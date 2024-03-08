@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/alexfalkowski/go-service/config"
+	"github.com/alexfalkowski/go-service/client"
 )
 
 // Config for client.
@@ -14,5 +14,5 @@ type Config struct {
 	Command       string `yaml:"command" json:"command" toml:"command"`
 	Kind          string `yaml:"kind" json:"kind" toml:"kind"`
 	Mode          uint32 `yaml:"mode" json:"mode" toml:"mode"`
-	config.Client `yaml:",inline" json:",inline" toml:",inline"`
+	client.Config `yaml:",inline" json:",inline" toml:",inline"`
 }
