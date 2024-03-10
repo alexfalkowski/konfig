@@ -1,6 +1,3 @@
-environment: production
-debug:
-  port: 6060
 cache:
   ristretto:
     num_counters: 10000000
@@ -21,6 +18,17 @@ casbin:
     m = r.sub == p.sub && r.obj == p.obj && r.act == p.act
   policy: |
     p, developer, konfig, get-config
+client:
+  v1:
+    host: localhost:5001
+    timeout: 1s
+    user_agent: "Auth-client/1.0 grpc/1.0"
+    retry:
+      timeout: 10s
+      attempts: 3
+debug:
+  port: 6060
+environment: production
 health:
   duration: 1s
   timeout: 1s
@@ -36,31 +44,34 @@ server:
     issuer: https://auth.falkowski.io
     admins:
       - id: admin
-        hash: $2a$10$gDNgEudBe.wJd7cZtBq9tuAFpHvXuzervylm593VY7Pt4O9I.zJEm
-              # MCZxL$Y5beypAWj<JQENft@P_DXVuh#,]02rq1Hwd69mFg(R|7ci&TlaoBU8k3s4
+        hash: $argon2id$v=19$m=65536,t=3,p=4$To7IOyQek0Eza/V+cGE5iA$CsatgA3sSMvPM8YJY53SXaRZ/ClyFLAfDbWrQWufEJQ
+              # o{6wJTESvAy/Z8alkC0]bjsQd2*~zf}DGp=)eLtXg#nV51IRrP974Y3mKBxq%OWi
     services:
       - id: e1602e185cba2a90d8bbcfc3f3c5530c
         name: developer
-        hash: $2a$10$bimUI5M/pkRYgIC3UHzgy.cZjFetNvgt3vG.SPVQRsqU8OFb8V9UG
-              # uC?MxwKO+r1@0RX[q8V5s4F|3oQ)yZ7TYDlUHmIfeNn9E&ScL2Pk{g$pi]z6bBta
-              # PE7+1MdFLPkwb3BCTEYxesCsd96bb+3cfZbObbijWOsQ39HtvlQE9TuptDrurWOeD4gjhxzP1eGEF7A8CE9ddL1gUeulvWYJ16MKog+Rosbsxk3dze5j1yxhRiMzhH4bIe4MvCHdi2NPIRbT7qQcjBHr04KuHjO2qYya398kMuFq5Xezpl1uvv7idcpPQmgT6vKzFH14hVFR1R1S1ABCe7x2Fwxl6xDjaetoJ7vrpVwwbqOLl79L5U98QGyAHVE1kxEkursPQBGa7rb3s0LHAQCJOxS6daeV6Xkbd/y4rC2L+65xfB2FAMZtvg+bX+Tr6S4EyQyQt0GfJvX/8cNy6TN21UG73FNEk3TYIz46JAhRaGk2Atn4+AO35Ypz75ovZghn8snAkSSNjeZMnTFKf0uNIS6W/xULZcaZnxYKYwwjxsTwGsM/H97n2YqbaEOzG4fU69mJsz0KwA/2TE1aqhb5Hpf2GbJVxoN7AkNp6kRmmufMssZluXC5Xd+bKSrNsK2yzxAgPrV7X/xIfqeJZ653Vp6HevN7G41jQuXBXcgn4nnubnf+f/3CyvBpIcwm9OoVFFgb0C60nZFMmSex/yc6EwaRP+9EEESztCzX+W9kN0fNHCnq2+rYsVfc4wZVlQq0aRgtl1k9umGI1ikjGwWaJ8uwmxSOJHPyg6xFmDo=
+        hash: $argon2id$v=19$m=65536,t=3,p=4$K+QmMrqexbtnWYGhSwh7BQ$l8vMcgf8yAWRX1WN5DePMvd1R7Cj7SCRtageARs54iw
+              # $VzL_-HdP3Y7oE(64?jf@Irau|BJ!<ei0)51WcDhnQkZA2NtXMT8yObGUsgvKRl9
+              # jiptGfppR5U9uVHSDPDMlnoOfTysUfruuEngvJDno/LgDt3YiYT+/WMBRr/V91dsXCcSYfut6pgUWh5evBrD4mXGoCc8zrlIM+fllgcGPNuGSYk21Q9C3JKaBm617uOV3nIt1kJT/VKrJGTfqOeiRcPg3+11Urj4/R8NfywZChAQtekoZKjGeB4S9g+oTNDxOkSWfYyY3fiGhxQf4R4KpXaJFP4jEWNoTNslwTMSbFAdF+j2+Ne3rA1jSUJvkUZxjP0snUkbSDLB/BirkZBUDHOnVPOpdLZckGfDpU3Ne/+ZJZAOAECkDBuzMv+oOptRgK/ASxUEs5RWC9AzOjFJ2VdoUJ3yqpqu0+3rn3qAr8YCUwUDYLQS57TH9ESaw/NLW9Qjqn+ku8y9zqmfqRRx4/lxkmV/gTxJuZHE2AJdirkzjp6QKTu3DTCn3qSqlWVnmE6Zo8sH3YCBPzojf57DeZLjP2jgVzsIqTtRT7d/qXH7+7B1f4bB9MhUhbIMzHDq97Zomx+JDrobK5bAtNHYZV4cJukWwlzZDEYLNGUbuuKXiEr8AuXilwNhi4vUDYzq/r/URoj23jMRJH/cb2Kq2KCHPs1u362TmAGRN1/ybQZduwSQHDmxaWTIc0lA0ZBLWvbFqLnNPF5ly3swn5EDBdX+Ze3sMthzWSPcgTs0tog=
         duration: 24h
       - id: 7e8c24379930d107b2d281aa23247092
         name: konfig
-        hash: $2a$10$HsHqKfiEw8xSavbN.EAtV.Cqs.17m.hy7vVjKkyFU7DNrteDaDLKi
-              # Kt8GQkr/61q*bR:yFI72Xna0@MCvp$O]39m)ZJfxN<4}SDsETHh^We5PgBiodUlc
-              # iEzHjRpD8/sEMzCFPA0JqU/ItaBPZwYlsa6W53vHy6yy3MiDkbbhDapHljR5I+3Mzph7jTqrlBMADD1TdJPVAwMtUgfWMwoIQypFPqFYW2iXvTtCz1q4wloTJp+PToII/Q37VOyX26SN+pOsVh2QaxEg2eOIGIAxci4lBJ4MnZvrbYsDtKWNM1fm0JqPYtR6frpt9YyxP4X1dQG953eYFxLMle+SEi+Eh5NUeIpYVTnHW6/UUtkeNrJ7GZmz5RHCin2I5ccd3Euu+CncC87+zeniSWQdM4Sx1mrxJQTF4/bGxf629wpJzn5ah1oC1NjwvwUjdFQKWIU3mMlDQV7qCroLPTo7NFE6LpHOxna5Px8s6qLWnLGQDGCYK6YULFqxtQflpDAGGpLH4ZXwLqpiskOZw22uxgoRlQLphIQLfxa5I1Pdk/TLhSQadacY88Oym88mfgI/xTRTW69ChnbTLnwu65OWqzK8Sg7jkV+beMZL49B1008BGat/7truC1fYJfPGJEetNiOS4o4I+05qWeDs+3XayITf873j1yhj8uZULmBqEYhDSrpJbnswDpsy9GwG3WrE/lkwM7yp43oZ35bcMJneyMkThCRigMgiPHIS40uJGQpXzsWEVrBGjlAl1PoBYXxaxD5wrqvuemROGdswKxQ6Th5nf1Y5LXGpxeE=
+        hash: $argon2id$v=19$m=65536,t=3,p=4$wnPUFNnjQ/DDnFCb4Ilijw$37nM3cmEQ3aOz7l5l1u3Vkdtwr4BV889rv52NuXTE2g
+              # 0Jlj@vNpBo<QLCmZFHxdTV^!eGU-2i6A%q7.f{y9PhOMI3wb1a}?nk548gKurtRE
+              # itCyaP1kpXAQYE2uD/x96fa8jwIGk8oxquYYG4uo0A/ks4FznOJzdSfHQIjSNnHc8QsQDr3400DnEIsQlu0+PVrCvK+HcbhCmWTV956Q4iqki6fLCZRWHAIgmblEePnyl54Ordk73rnb7fbvbxveL1fy95lUJuttgTsPmLPLKZCb+HNhU4bqRdDfYPKcmE/x+hRIjT8RRTgrQgN5tHkv67FSYvC9HN6fcwn7NJeQlnEiasJAcpjgdEIaz6mRfufPIGtFUWj0pobHp6B2A2eV6CCEhXJgQ3iUFY6sth7lv/0y5iUaJpsBMDmg2dDVjPJbMP22FjpptIxJLh624L+B2TJxQL1+e6ePGNsGZhZ48Gs0vs8ybyXzpkRxgI/Fs41SvmAfJ+nPv9WiUxEbQNXEVM+CXz93vrsX6wpi1FwmheFvGyj2gDbEO1OWuwWAGNVRb2YlLrNjMGE5ShThyIWdvDBO96SGXQvmAFCqF199vsge8eAmdK2PBAMiH192siho0sOV8sWDnPH/p4ne3i/ejfaYHMo1MTJKjqgLnncngt4Q9/mWLjp7hcow5sW8+ZNQo4RyLbQ3NEndc6/NVAP3eKuVXnlkQJxvmYVS2UKZy2TOtBNZg28JSC76HP8sf9aOQq5UsusR22rkgF+SKMqCxdnfJUje1AlmFch2aCihe9A=
         duration: 24h
 telemetry:
   logger:
+    enabled: true
     level: info
   tracer:
+    enabled: true
     host: localhost:4318
     secure: false
 token:
   kind: auth
 transport:
   http:
+    enabled: true
     port: 5000
     user_agent: "Auth-server/1.0 http/1.0"
     retry:
