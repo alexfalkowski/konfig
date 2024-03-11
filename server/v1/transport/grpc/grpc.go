@@ -39,7 +39,7 @@ func Register(params RegisterParams) error {
 		grpc.WithClientUserAgent(params.ClientConfig.UserAgent),
 	}
 
-	if params.ClientConfig.Security.IsEnabled() {
+	if params.ClientConfig.Security.Enabled {
 		sec, err := grpc.WithClientSecure(params.ClientConfig.Security)
 		if err != nil {
 			return err
