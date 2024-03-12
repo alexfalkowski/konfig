@@ -5,7 +5,7 @@ go 1.22.1
 require (
 	github.com/alexfalkowski/auth v1.68.0
 	github.com/alexfalkowski/go-health v1.14.2
-	github.com/alexfalkowski/go-service v1.137.2
+	github.com/alexfalkowski/go-service v1.138.1
 	github.com/aws/aws-sdk-go-v2 v1.25.3
 	github.com/aws/aws-sdk-go-v2/config v1.27.7
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.51.4
@@ -128,6 +128,7 @@ require (
 	github.com/sony/gobreaker v0.5.0 // indirect
 	github.com/spf13/cobra v1.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/standard-webhooks/standard-webhooks/libraries v0.0.0-20240307173632-a6f22495dec6 // indirect
 	github.com/stretchr/objx v0.5.0 // indirect
 	github.com/stretchr/testify v1.8.4 // indirect
 	github.com/tklauser/go-sysconf v0.3.13 // indirect
