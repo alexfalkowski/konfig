@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.71.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.71.0) - 2024-03-14
+
+- [`7a1ca5e`](https://github.com/alexfalkowski/konfig/commit/7a1ca5eeaa87e1225f60dd63e9caa9cad3d59884) feat: change license to MIT (#1028)
+
 ## [v1.70.5](https://github.com/alexfalkowski/konfig/releases/tag/v1.70.5) - 2024-03-14
 
 - [`e7d2058`](https://github.com/alexfalkowski/konfig/commit/e7d2058a50fae71a12df112cbde8457bbcce32f7) fix(deps): bump github.com/hashicorp/vault/api from 1.12.0 to 1.12.1 (#1026)
