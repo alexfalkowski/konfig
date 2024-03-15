@@ -6,5 +6,5 @@ import (
 
 // Config for auth.
 type Config struct {
-	Client client.Config `yaml:"client" json:"client" toml:"client"`
+	Client client.Config `yaml:"client,omitempty" json:"client,omitempty" toml:"client,omitempty"`
 }

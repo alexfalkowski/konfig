@@ -6,8 +6,8 @@ import (
 
 // Config for git.
 type Config struct {
-	URL string `yaml:"url" json:"url" toml:"url"`
-	Dir string `yaml:"dir" json:"dir" toml:"dir"`
+	URL string `yaml:"url,omitempty" json:"url,omitempty" toml:"url,omitempty"`
+	Dir string `yaml:"dir,omitempty" json:"dir,omitempty" toml:"dir,omitempty"`
 }
 
 // Token for git.
