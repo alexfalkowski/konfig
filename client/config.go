@@ -6,5 +6,5 @@ import (
 
 // Config for client.
 type Config struct {
-	V1 config.Config `yaml:"v1" json:"v1" toml:"v1"`
+	V1 config.Config `yaml:"v1,omitempty" json:"v1,omitempty" toml:"v1,omitempty"`
 }

@@ -10,9 +10,9 @@ import (
 
 // Config for the service.
 type Config struct {
-	Auth          auth.Config   `yaml:"auth" json:"auth" toml:"auth"`
-	Source        source.Config `yaml:"source" json:"source" toml:"source"`
-	Client        client.Config `yaml:"client" json:"client" toml:"client"`
-	Health        health.Config `yaml:"health" json:"health" toml:"health"`
+	Auth          auth.Config   `yaml:"auth,omitempty" json:"auth,omitempty" toml:"auth,omitempty"`
+	Source        source.Config `yaml:"source,omitempty" json:"source,omitempty" toml:"source,omitempty"`
+	Client        client.Config `yaml:"client,omitempty" json:"client,omitempty" toml:"client,omitempty"`
+	Health        health.Config `yaml:"health,omitempty" json:"health,omitempty" toml:"health,omitempty"`
 	config.Config `yaml:",inline" json:",inline" toml:",inline"`
 }
