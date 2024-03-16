@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: fafae3a927d10501145079a1db948155e682dbe0
+  revision: 608f7b1133e8c604d25a478b68ea14481df1153e
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -36,7 +36,7 @@ GEM
     builder (3.2.4)
     citrus (3.0.2)
     concurrent-ruby (1.2.3)
-    config (5.3.0)
+    config (5.4.0)
       deep_merge (~> 1.2, >= 1.2.1)
     cucumber (9.1.2)
       builder (~> 3.2, >= 3.2.4)
@@ -59,7 +59,7 @@ GEM
       bigdecimal
     cucumber-gherkin (26.2.0)
       cucumber-messages (>= 19.1.4, < 22.1)
-    cucumber-html-formatter (21.2.0)
+    cucumber-html-formatter (21.3.0)
       cucumber-messages (> 19, < 25)
     cucumber-messages (22.0.0)
     cucumber-tag-expressions (5.0.6)
@@ -75,7 +75,7 @@ GEM
     google-protobuf (3.25.3-x86-linux)
     google-protobuf (3.25.3-x86_64-darwin)
     google-protobuf (3.25.3-x86_64-linux)
-    googleapis-common-protos-types (1.13.0)
+    googleapis-common-protos-types (1.14.0)
       google-protobuf (~> 3.18)
     grpc (1.62.0)
       google-protobuf (~> 3.25)
@@ -188,7 +188,7 @@ GEM
       rack-protection (= 4.0.0)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11293)
+    sorbet-runtime (0.5.11294)
     sys-uname (1.2.3)
       ffi (~> 1.1)
     tilt (2.3.0)

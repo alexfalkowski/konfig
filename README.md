@@ -138,15 +138,6 @@ source:
     dir: tmp/app-config (where to clone the repo to)
 ```
 
-```toml
-[source]
-kind = "git"
-
-[source.git]
-url = "https://github.com/alexfalkowski/app-config (the configuration repo)"
-dir = "tmp/app-config (where to clone the repo to)"
-```
-
 We expect that the folders to have the following conventions:
 
 ```tree
@@ -177,14 +168,6 @@ source:
   kind: s3
   s3:
     bucket: The bucket that contains all the configs.
-```
-
-```toml
-[source]
-kind = "s3"
-
-[source.s3]
-bucket = "The bucket that contains all the configs."
 ```
 
 We expect that the folders to have the following conventions:
@@ -221,14 +204,6 @@ source:
   kind: folder
   folder:
     dir: .config (the folder where the configurations can be found)
-```
-
-```toml
-[source]
-kind = "folder"
-
-[source.folder]
-dir = ".config (the folder where the configurations can be found)"
 ```
 
 We expect that the folders to have the following conventions:
@@ -271,20 +246,6 @@ client:
     mode: 0o600
 ```
 
-```toml
-[client.v1]
-host = "localhost:8080"
-timeout = "5s"
-application = "test"
-version = "v1.5.0"
-environment = "staging"
-continent = "*"
-country = "*"
-command = "server"
-kind = "yml"
-mode = 0o600
-```
-
 The client writes the config to the location specified by the flag called `--output`. As per the following:
 - `env:APP_CONFIG_FILE` - Write to an env variable called `APP_CONFIG_FILE`. This is the default if nothing is passed.
 - `file:path` - Write to the path.
@@ -299,12 +260,6 @@ To configure we just need the have the following configuration:
 health:
   duration: 1s (how often to check)
   timeout: 1s (when we should timeout the check)
-```
-
-```toml
-[health]
-duration = "1s (how often to check)"
-timeout = "1s (when we should timeout the check)"
 ```
 
 ## Deployment
