@@ -23,7 +23,7 @@ import (
 )
 
 // NewConfigurator for git.
-func NewConfigurator(cfg Config, t tracer.Tracer, client *http.Client) *Configurator {
+func NewConfigurator(cfg *Config, t tracer.Tracer, client *http.Client) *Configurator {
 	c := ghttp.NewClient(client)
 
 	gclient.InstallProtocol("http", c)
@@ -34,7 +34,7 @@ func NewConfigurator(cfg Config, t tracer.Tracer, client *http.Client) *Configur
 
 // Configurator for git.
 type Configurator struct {
-	cfg    Config
+	cfg    *Config
 	repo   *git.Repository
 	mux    sync.Mutex
 	tracer tracer.Tracer

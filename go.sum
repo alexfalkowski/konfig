@@ -19,12 +19,12 @@ github.com/Microsoft/go-winio v0.6.1 h1:9/kr64B9VUZrLm5YYwbGtUJnMgqWVOdUAXu6Migc
 github.com/Microsoft/go-winio v0.6.1/go.mod h1:LRdKpFKfdobln8UmuiYcKPot9D2v6svN5+sAH+4kjUM=
 github.com/ProtonMail/go-crypto v0.0.0-20230828082145-3c4c8a2d2371 h1:kkhsdkhsCvIsutKu5zLMgWtgh9YxGCNAw8Ad8hjwfYg=
 github.com/ProtonMail/go-crypto v0.0.0-20230828082145-3c4c8a2d2371/go.mod h1:EjAoLdwvbIOoOQr3ihjnSoLZRtE8azugULFRteWMNc0=
-github.com/alexfalkowski/auth v1.72.0 h1:rGau3Hgf09LE3zvuQRAovozJjp1wNpVFrbyA4YMDep4=
-github.com/alexfalkowski/auth v1.72.0/go.mod h1:XoK/9+aWZgx0txt21DMTrhixXQH7Brh+pzqaueZ3wOA=
+github.com/alexfalkowski/auth v1.74.0 h1:i1pblhFEAWPwm4x1JDDu36fkRPZ1m3B1N+moBEIbjRI=
+github.com/alexfalkowski/auth v1.74.0/go.mod h1:0+60FgyXAj74nhfdAUEj3lL9/NK5TnyENc1iK1a8SqQ=
 github.com/alexfalkowski/go-health v1.15.0 h1:n762ffF7Ulg+lWDw/PLvWvzTj3H4I8dFet+kmI3HNFk=
 github.com/alexfalkowski/go-health v1.15.0/go.mod h1:GrfpkU3sTiZkGsm1thyZ3WiBFL6/vX29cskAKMw3h48=
-github.com/alexfalkowski/go-service v1.141.0 h1:1/2ao/uepeUHWTZz+nrsAz9jBDSnDIdJqIxT7p6mYvo=
-github.com/alexfalkowski/go-service v1.141.0/go.mod h1:R+gAUBrM/jJFtdun8CWQIGnQMq+tfU+CIP7qRLWvT0k=
+github.com/alexfalkowski/go-service v1.143.0 h1:BbAKt3y3Ua1ZBNKKO3FOxxBtmq9ZMv9iS8VU4v3MjKI=
+github.com/alexfalkowski/go-service v1.143.0/go.mod h1:ztMRU5rJCk2JitHJ89By2Rn1Fi1zw63/wn+4B89/UyY=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be h1:9AeTilPcZAjCFIImctFaOjnTIavg87rW78vTPkQqLI8=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be/go.mod h1:ySMOLuWl6zY27l47sB3qLNK6tF2fkHG55UZxx8oIVo4=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
@@ -173,6 +173,8 @@ github.com/go-stack/stack v1.8.0/go.mod h1:v0f6uXyyMGvRgIKkXu+yp6POWl0qKG85gN/me
 github.com/go-task/slim-sprig v0.0.0-20210107165309-348f09dbbbc0/go.mod h1:fyg7847qk6SyHyPtNmDHnmrv/HOrqktSC+C9fM+CJOE=
 github.com/go-test/deep v1.0.2 h1:onZX1rnHT3Wv6cqNgYyFOOlgVKJrksuCMCRvJStbMYw=
 github.com/go-test/deep v1.0.2/go.mod h1:wGDj63lr65AM2AQyKZd/NYHGb0R+1RLqB8NKt3aSFNA=
+github.com/goccy/go-json v0.10.2 h1:CrxCmQqYDkv1z7lO7Wbh2HN93uovUHgrECaO5ZrCXAU=
+github.com/goccy/go-json v0.10.2/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
 github.com/godbus/dbus/v5 v5.0.4 h1:9349emZab16e7zQvpmsbtjc18ykshndd8y2PG3sgJbA=
 github.com/godbus/dbus/v5 v5.0.4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
 github.com/gogo/protobuf v1.3.2/go.mod h1:P1XiOD3dCwIKUDQYPy72D8LYyHL2YPYrpS2s69NZV8Q=

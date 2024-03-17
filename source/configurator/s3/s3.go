@@ -23,13 +23,13 @@ import (
 )
 
 // NewConfigurator for s3.
-func NewConfigurator(cfg Config, t tracer.Tracer, client *http.Client) *Configurator {
+func NewConfigurator(cfg *Config, t tracer.Tracer, client *http.Client) *Configurator {
 	return &Configurator{cfg: cfg, tracer: t, client: client}
 }
 
 // Configurator for s3.
 type Configurator struct {
-	cfg    Config
+	cfg    *Config
 	tracer tracer.Tracer
 	client *http.Client
 }
