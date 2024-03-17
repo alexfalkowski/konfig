@@ -13,13 +13,13 @@ import (
 )
 
 // NewConfigurator for folder.
-func NewConfigurator(cfg Config) *Configurator {
+func NewConfigurator(cfg *Config) *Configurator {
 	return &Configurator{cfg: cfg}
 }
 
 // Configurator for folder.
 type Configurator struct {
-	cfg Config
+	cfg *Config
 }
 
 // GetConfig for folder.
