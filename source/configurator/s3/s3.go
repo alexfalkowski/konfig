@@ -69,7 +69,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	out, err := client.GetObject(ctx, &s3.GetObjectInput{Bucket: &c.cfg.Bucket, Key: &path})
 	if err != nil {
-		meta.WithAttribute(ctx, "s3GetObjectError", err.Error())
+		meta.WithAttribute(ctx, "s3GetObjectError", meta.Error(err))
 
 		var nerr *types.NoSuchKey
 		if errors.As(err, &nerr) {
@@ -87,7 +87,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	data, err := io.ReadAll(out.Body)
 	if err != nil {
-		meta.WithAttribute(ctx, "s3ReadAllError", err.Error())
+		meta.WithAttribute(ctx, "s3ReadAllError", meta.Error(err))
 
 		span.SetStatus(codes.Error, err.Error())
 		span.RecordError(err)
@@ -112,7 +112,7 @@ func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string)
 
 func (c *Configurator) span(ctx context.Context) (context.Context, trace.Span) {
 	ctx, span := c.tracer.Start(ctx, "get-config", trace.WithSpanKind(trace.SpanKindClient))
-	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID().String())
+	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID())
 
 	return ctx, span
 }

@@ -26,7 +26,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 	ctx, span := t.tracer.Start(ctx, "transform", trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID().String())
+	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID())
 
 	sec, err := t.client.Logical().ReadWithContext(ctx, value)
 	if err != nil {

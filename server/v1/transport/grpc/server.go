@@ -90,7 +90,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 
 	resp.Config.Kind = c.Kind
 	resp.Config.Data = data
-	resp.Meta = meta.Attributes(ctx)
+	resp.Meta = meta.Strings(ctx)
 
 	return resp, nil
 }

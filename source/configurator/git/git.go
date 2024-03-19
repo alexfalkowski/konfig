@@ -46,19 +46,19 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	defer c.mux.Unlock()
 
 	if err := c.clone(ctx); err != nil {
-		meta.WithAttribute(ctx, "gitCloneError", err.Error())
+		meta.WithAttribute(ctx, "gitCloneError", meta.Error(err))
 
 		return nil, err
 	}
 
 	if err := c.pull(ctx); err != nil {
-		meta.WithAttribute(ctx, "gitPullError", err.Error())
+		meta.WithAttribute(ctx, "gitPullError", meta.Error(err))
 
 		return nil, err
 	}
 
 	if err := c.checkout(params.Application, params.Version); err != nil {
-		meta.WithAttribute(ctx, "gitCheckoutError", err.Error())
+		meta.WithAttribute(ctx, "gitCheckoutError", meta.Error(err))
 
 		if errors.Is(err, plumbing.ErrReferenceNotFound) {
 			return nil, cerrors.ErrNotFound
@@ -72,7 +72,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
-		meta.WithAttribute(ctx, "gitFileError", err.Error())
+		meta.WithAttribute(ctx, "gitFileError", meta.Error(err))
 
 		if os.IsNotExist(err) {
 			return nil, cerrors.ErrNotFound
@@ -95,7 +95,7 @@ func (c *Configurator) pull(ctx context.Context) error {
 	ctx, span := c.tracer.Start(ctx, "pull", trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID().String())
+	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID())
 
 	tree, _ := c.repo.Worktree()
 
@@ -118,7 +118,7 @@ func (c *Configurator) clone(ctx context.Context) error {
 	ctx, span := c.tracer.Start(ctx, "clone", trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID().String())
+	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID())
 
 	if err := os.RemoveAll(c.cfg.Dir); err != nil {
 		return err
