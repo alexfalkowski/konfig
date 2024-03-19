@@ -16,13 +16,12 @@ func main() {
 
 func command() *scmd.Command {
 	command := scmd.New(cmd.Version)
-
 	command.AddServer(cmd.ServerOptions...)
 
 	c := command.AddClient(cmd.ClientOptions...)
-	c.PersistentFlags().StringVar(
+	c.PersistentFlags().StringVarP(
 		&client.OutputFlag,
-		"output", "env:APP_CONFIG_FILE", "output config location (format kind:location, default env:APP_CONFIG_FILE)",
+		"output", "o", "env:APP_CONFIG_FILE", "output config location (format kind:location, default env:APP_CONFIG_FILE)",
 	)
 
 	return command
