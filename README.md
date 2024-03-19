@@ -229,6 +229,21 @@ The server is defined by the following [proto contract](api/konfig/v1/service.pr
 
 The client is used to get the config that is defined in the config. These values reflect how the config is stored in the above sources.
 
+```bash
+./konfig client --help
+Start the client.
+
+Usage:
+  konfig client [flags]
+
+Flags:
+  -h, --help            help for client
+  -o, --output string   output config location (format kind:location, default env:APP_CONFIG_FILE) (default "env:APP_CONFIG_FILE")
+
+Global Flags:
+  -i, --input string   input config location (format kind:location, default env:CONFIG_FILE) (default "env:CONFIG_FILE")
+```
+
 To configure we just need the have the following configuration:
 
 ```yaml
