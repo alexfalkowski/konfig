@@ -3,9 +3,9 @@ module github.com/alexfalkowski/konfig
 go 1.22.1
 
 require (
-	github.com/alexfalkowski/auth v1.77.0
+	github.com/alexfalkowski/auth v1.77.1
 	github.com/alexfalkowski/go-health v1.15.0
-	github.com/alexfalkowski/go-service v1.145.2
+	github.com/alexfalkowski/go-service v1.145.3
 	github.com/aws/aws-sdk-go-v2 v1.26.0
 	github.com/aws/aws-sdk-go-v2/config v1.27.8
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.53.0
@@ -18,7 +18,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.24.0
 	go.uber.org/fx v1.21.0
 	go.uber.org/zap v1.27.0
-	google.golang.org/genproto/googleapis/api v0.0.0-20240314234333-6e1732d8331c
+	google.golang.org/genproto/googleapis/api v0.0.0-20240318140521-94a12d6c2237
 	google.golang.org/grpc v1.62.1
 	google.golang.org/protobuf v1.33.0
 )
@@ -170,7 +170,7 @@ require (
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
 	golang.org/x/tools v0.17.0 // indirect
 	google.golang.org/genproto v0.0.0-20240123012728-ef4313101c80 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240311132316-a219d84964c2 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240314234333-6e1732d8331c // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
