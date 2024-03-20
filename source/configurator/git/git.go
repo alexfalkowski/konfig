@@ -95,7 +95,7 @@ func (c *Configurator) pull(ctx context.Context) error {
 	ctx, span := c.tracer.Start(ctx, "pull", trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID())
+	ctx = tm.WithTraceID(ctx, meta.ToValuer(span.SpanContext().TraceID()))
 
 	tree, _ := c.repo.Worktree()
 
@@ -118,7 +118,7 @@ func (c *Configurator) clone(ctx context.Context) error {
 	ctx, span := c.tracer.Start(ctx, "clone", trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID())
+	ctx = tm.WithTraceID(ctx, meta.ToValuer(span.SpanContext().TraceID()))
 
 	if err := os.RemoveAll(c.cfg.Dir); err != nil {
 		return err
