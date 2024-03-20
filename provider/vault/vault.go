@@ -3,6 +3,7 @@ package vault
 import (
 	"context"
 
+	"github.com/alexfalkowski/go-service/meta"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
 	"github.com/alexfalkowski/konfig/provider/vault/telemetry/tracer"
 	"github.com/hashicorp/vault/api"
@@ -26,7 +27,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 	ctx, span := t.tracer.Start(ctx, "transform", trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, span.SpanContext().TraceID())
+	ctx = tm.WithTraceID(ctx, meta.ToValuer(span.SpanContext().TraceID()))
 
 	sec, err := t.client.Logical().ReadWithContext(ctx, value)
 	if err != nil {
