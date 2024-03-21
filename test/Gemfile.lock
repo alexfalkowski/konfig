@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: fbc9622a86ec4388c33c5e6fda1c90465b2fe0f8
+  revision: 3570f5f48afcde64c48b9711fb3abcc3cf1a1e29
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -109,7 +109,7 @@ GEM
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     netrc (0.11.0)
-    nio4r (2.7.0)
+    nio4r (2.7.1)
     nonnative (1.79.0)
       concurrent-ruby (>= 1, < 2)
       config (>= 5, < 6)
@@ -129,7 +129,7 @@ GEM
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
-    rack (3.0.9.1)
+    rack (3.0.10)
     rack-protection (4.0.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0, < 4)
@@ -188,7 +188,7 @@ GEM
       rack-protection (= 4.0.0)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11301)
+    sorbet-runtime (0.5.11303)
     sys-uname (1.2.3)
       ffi (~> 1.1)
     tilt (2.3.0)
