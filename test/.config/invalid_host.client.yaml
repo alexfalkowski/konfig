@@ -2,6 +2,7 @@ auth:
   client:
     v1:
       host: localhost:5001
+      user_agent: "Konfig-client/1.0 gRPC/1.0"
       timeout: 1s
       retry:
         timeout: 10s
@@ -10,7 +11,7 @@ auth:
 client:
   v1:
     host: invalid_host
-    user_agent: "Konfig-client/1.0 grpc/1.0"
+    user_agent: "Konfig-client/1.0 gRPC/1.0"
     timeout: 1s
     retry:
       timeout: 10s
@@ -32,18 +33,3 @@ telemetry:
     secure: false
 token:
   kind: auth
-transport:
-  http:
-    enabled: true
-    port: 8081
-    user_agent: "Konfig-client/1.0 http/1.0"
-    retry:
-      timeout: 10s
-      attempts: 3
-  grpc:
-    enabled: true
-    port: 9091
-    user_agent: "Konfig-client/1.0 grpc/1.0"
-    retry:
-      timeout: 10s
-      attempts: 3

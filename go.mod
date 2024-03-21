@@ -3,9 +3,9 @@ module github.com/alexfalkowski/konfig
 go 1.22.1
 
 require (
-	github.com/alexfalkowski/auth v1.78.1
+	github.com/alexfalkowski/auth v1.78.2
 	github.com/alexfalkowski/go-health v1.15.0
-	github.com/alexfalkowski/go-service v1.147.0
+	github.com/alexfalkowski/go-service v1.147.1
 	github.com/aws/aws-sdk-go-v2 v1.26.0
 	github.com/aws/aws-sdk-go-v2/config v1.27.8
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.53.0
@@ -26,7 +26,6 @@ require (
 require (
 	dario.cat/mergo v1.0.0 // indirect
 	github.com/BurntSushi/toml v1.3.2 // indirect
-	github.com/Code-Hex/dd v1.1.0 // indirect
 	github.com/KimMachineGun/automemlimit v0.5.0 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/ProtonMail/go-crypto v0.0.0-20230828082145-3c4c8a2d2371 // indirect
@@ -133,7 +132,6 @@ require (
 	github.com/standard-webhooks/standard-webhooks/libraries v0.0.0-20240311193959-ebea2bd69f4e // indirect
 	github.com/stretchr/objx v0.5.0 // indirect
 	github.com/stretchr/testify v1.8.4 // indirect
-	github.com/thessem/zap-prettyconsole v0.3.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.13 // indirect
 	github.com/tklauser/numcpus v0.7.0 // indirect
 	github.com/urfave/negroni/v3 v3.1.0 // indirect

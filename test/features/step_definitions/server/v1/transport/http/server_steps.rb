@@ -5,7 +5,7 @@ When('I request a config with HTTP:') do |table|
   auth = service_token(Nonnative.configurations('.config/existing.client.yaml'))
   opts = {
     headers: {
-      request_id: SecureRandom.uuid, user_agent: Konfig.server_config(rows['source']).transport.http.user_agent,
+      request_id: SecureRandom.uuid, user_agent: 'Konfig-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
     }.merge(auth),
     read_timeout: 10, open_timeout: 10

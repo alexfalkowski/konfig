@@ -53,7 +53,7 @@ module Konfig
     end
 
     def user_agent
-      @user_agent ||= Nonnative::Header.grpc_user_agent(server_config('git').transport.grpc.user_agent)
+      @user_agent ||= Nonnative::Header.grpc_user_agent('Konfig-ruby-client/1.0 gRPC/1.0')
     end
   end
 
