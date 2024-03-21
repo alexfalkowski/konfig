@@ -19,8 +19,8 @@ github.com/Microsoft/go-winio v0.6.1 h1:9/kr64B9VUZrLm5YYwbGtUJnMgqWVOdUAXu6Migc
 github.com/Microsoft/go-winio v0.6.1/go.mod h1:LRdKpFKfdobln8UmuiYcKPot9D2v6svN5+sAH+4kjUM=
 github.com/ProtonMail/go-crypto v0.0.0-20230828082145-3c4c8a2d2371 h1:kkhsdkhsCvIsutKu5zLMgWtgh9YxGCNAw8Ad8hjwfYg=
 github.com/ProtonMail/go-crypto v0.0.0-20230828082145-3c4c8a2d2371/go.mod h1:EjAoLdwvbIOoOQr3ihjnSoLZRtE8azugULFRteWMNc0=
-github.com/alexfalkowski/auth v1.78.2 h1:30GCDbTb+a3qiGQPOaqQfAikf6kUZMnzm8tgPjPD9bA=
-github.com/alexfalkowski/auth v1.78.2/go.mod h1:orPdahc+DQT4cOOEg9KChfydUE90q6e1QUj+UgWmf44=
+github.com/alexfalkowski/auth v1.78.3 h1:VBRtLw8kQP1f4ZMWm2kFCDKyt9Ehj//tWMA6BUZC8Es=
+github.com/alexfalkowski/auth v1.78.3/go.mod h1:aJv6FnPyd5M6sLCEcNoTuHBMNOMm1EYK3GGYCHi+ZTk=
 github.com/alexfalkowski/go-health v1.15.0 h1:n762ffF7Ulg+lWDw/PLvWvzTj3H4I8dFet+kmI3HNFk=
 github.com/alexfalkowski/go-health v1.15.0/go.mod h1:GrfpkU3sTiZkGsm1thyZ3WiBFL6/vX29cskAKMw3h48=
 github.com/alexfalkowski/go-service v1.147.2 h1:bTXOUQ2GiBJ3m3VuLqWKjWMFPnfJTxazq27lsOHC0Bw=
