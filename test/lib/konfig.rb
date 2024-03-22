@@ -20,7 +20,7 @@ require 'konfig/v1/service_services_pb'
 module Konfig
   class << self
     def observability
-      @observability ||= Nonnative::Observability.new('http://localhost:8080')
+      @observability ||= Nonnative::Observability.new('http://localhost:11000')
     end
 
     def vault
@@ -40,7 +40,7 @@ module Konfig
     end
 
     def health_grpc
-      @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:9090', :this_channel_is_insecure, channel_args: Konfig.user_agent)
+      @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:12000', :this_channel_is_insecure, channel_args: Konfig.user_agent)
     end
 
     def load_config(kind, data)
@@ -60,11 +60,11 @@ module Konfig
   module V1
     class << self
       def server_http
-        @server_http ||= Konfig::V1::HTTP.new('http://localhost:8080')
+        @server_http ||= Konfig::V1::HTTP.new('http://localhost:11000')
       end
 
       def server_grpc
-        @server_grpc ||= Konfig::V1::Service::Stub.new('localhost:9090', :this_channel_is_insecure, channel_args: Konfig.user_agent)
+        @server_grpc ||= Konfig::V1::Service::Stub.new('localhost:12000', :this_channel_is_insecure, channel_args: Konfig.user_agent)
       end
     end
   end
