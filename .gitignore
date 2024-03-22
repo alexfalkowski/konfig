@@ -4,3 +4,4 @@ vendor
 *.cov
 *.out
 /konfig
+tmp/

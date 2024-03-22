@@ -80,7 +80,7 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 			return resp, status.Error(codes.NotFound, fmt.Sprintf("%s was not found", p))
 		}
 
-		return resp, status.Error(codes.Internal, "could get config")
+		return resp, status.Error(codes.Internal, "could not get config")
 	}
 
 	data, err := s.transformer.Transform(ctx, c)
