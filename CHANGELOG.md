@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.78.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.78.1) - 2024-03-22
+
+- [`6b57649`](https://github.com/alexfalkowski/konfig/commit/6b57649cdf37e5b03ac24658398fc9d0faa59383) fix(server): error message (#1058)
+
 ## [v1.78.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.78.0) - 2024-03-22
 
 - [`3e60c73`](https://github.com/alexfalkowski/konfig/commit/3e60c73c10c097acd993feb21047726984286a17) feat: add ldflags to minimise binary size (#1057)
