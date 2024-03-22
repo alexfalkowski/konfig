@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: 40b265f038de0d3b0cfe41b924fb445f3407a287
+  revision: 77b3cc09791fd6d6dcbd36276cb4f6420780f2b5
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -51,11 +51,11 @@ GEM
       multi_test (~> 1.1)
       sys-uname (~> 1.2)
     cucumber-ci-environment (10.0.1)
-    cucumber-core (13.0.1)
+    cucumber-core (13.0.2)
       cucumber-gherkin (>= 27, < 28)
       cucumber-messages (>= 20, < 23)
       cucumber-tag-expressions (> 5, < 7)
-    cucumber-cucumber-expressions (17.0.2)
+    cucumber-cucumber-expressions (17.1.0)
       bigdecimal
     cucumber-gherkin (27.0.0)
       cucumber-messages (>= 19.1.4, < 23)
