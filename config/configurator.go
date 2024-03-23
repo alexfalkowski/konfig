@@ -21,7 +21,12 @@ func v1Client(cfg config.Configurator) *v1.Config {
 }
 
 func v1AuthClientConfig(cfg config.Configurator) *av1.Config {
-	return cfg.(*Config).Auth.Client.V1
+	c := cfg.(*Config)
+	if c.Auth == nil || c.Auth.Client == nil {
+		return nil
+	}
+
+	return c.Auth.Client.V1
 }
 
 func healthConfig(cfg config.Configurator) *health.Config {
