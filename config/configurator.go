@@ -17,7 +17,12 @@ func NewConfigurator(i *cmd.InputConfig) (config.Configurator, error) {
 }
 
 func v1Client(cfg config.Configurator) *v1.Config {
-	return cfg.(*Config).Client.V1
+	c := cfg.(*Config)
+	if c.Client == nil {
+		return nil
+	}
+
+	return c.Client.V1
 }
 
 func v1AuthClientConfig(cfg config.Configurator) *av1.Config {
