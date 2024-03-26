@@ -8,10 +8,6 @@ updates:
       prefix: "fix"
       prefix-development: "build"
       include: "scope"
-    groups:
-      aws:
-        patterns:
-        - "*aws*"
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
@@ -24,13 +20,17 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "build"
+      prefix-development: "build"
+      include: "scope"
     allow:
       - dependency-name: "bin"
   - package-ecosystem: "bundler"
     directory: "/test"
     schedule:
       interval: "daily"
-    groups:
-      aws:
-        patterns:
-        - "*aws*"
+    commit-message:
+      prefix: "test"
+      prefix-development: "test"
+      include: "scope"
