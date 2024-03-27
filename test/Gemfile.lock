@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: 57cfd99de824cf08488fd64edf21715b0fe42575
+  revision: a3a384e7c7649721dbf454b8a4f764914b7b390f
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -10,8 +10,8 @@ GEM
   specs:
     ast (2.4.2)
     aws-eventstream (1.3.0)
-    aws-partitions (1.899.0)
-    aws-sdk-core (3.191.4)
+    aws-partitions (1.902.0)
+    aws-sdk-core (3.191.5)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.651.0)
       aws-sigv4 (~> 1.8)
@@ -59,7 +59,7 @@ GEM
       bigdecimal
     cucumber-gherkin (27.0.0)
       cucumber-messages (>= 19.1.4, < 23)
-    cucumber-html-formatter (21.3.0)
+    cucumber-html-formatter (21.3.1)
       cucumber-messages (> 19, < 25)
     cucumber-messages (22.0.0)
     cucumber-tag-expressions (6.1.0)
@@ -176,7 +176,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.31.2)
       parser (>= 3.3.0.4)
-    ruby-lsp (0.14.6)
+    ruby-lsp (0.15.0)
       language_server-protocol (~> 3.17.0)
       prism (>= 0.22.0, < 0.25)
       sorbet-runtime (>= 0.5.10782)
@@ -188,7 +188,7 @@ GEM
       rack-protection (= 4.0.0)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11305)
+    sorbet-runtime (0.5.11311)
     sys-uname (1.2.3)
       ffi (~> 1.1)
     tilt (2.3.0)
