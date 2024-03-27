@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.79.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.79.0) - 2024-03-27
+
+- [`ec2ca04`](https://github.com/alexfalkowski/konfig/commit/ec2ca0448bcad3dc47b40e0e22c868fc0290a83f) feat(deps): update github.com/alexfalkowski/go-service to v1.149.0 (#1067)
+- [`64f0dc1`](https://github.com/alexfalkowski/konfig/commit/64f0dc1d0b11d85f7a801e640b422193196e54f1) build(deps): bump bin from `b9b6ae3` to `a19d7ca` (#1065)
+- [`35816e9`](https://github.com/alexfalkowski/konfig/commit/35816e95a4e8748824d94c757f2e9bb2794e79fd) build(deps): bump bin from `60071ae` to `b9b6ae3` (#1064)
+- [`bef199b`](https://github.com/alexfalkowski/konfig/commit/bef199b527de21e8baaebd3a03e97a113ce0472f) build(dependabot): change prefixes (#1063)
+- [`2b6a999`](https://github.com/alexfalkowski/konfig/commit/2b6a999473b86e0deedff12c5228d1024f22645a) build(make): add git commands (#1062)
+
 ## [v1.78.3](https://github.com/alexfalkowski/konfig/releases/tag/v1.78.3) - 2024-03-24
 
 - [`1e03fe0`](https://github.com/alexfalkowski/konfig/commit/1e03fe0e5d36a1d49047fcf23829e61f4947a467) fix(config): check presense (#1060)
