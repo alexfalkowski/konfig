@@ -15,5 +15,10 @@ func NewTransformer() *Transformer {
 
 // Transform for env.
 func (e *Transformer) Transform(_ context.Context, value string) (any, error) {
-	return os.Getenv(value), nil
+	v := os.Getenv(value)
+	if v != "" {
+		return v, nil
+	}
+
+	return value, nil
 }
