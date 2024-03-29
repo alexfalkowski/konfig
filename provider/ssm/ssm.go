@@ -14,6 +14,8 @@ import (
 	"go.opentelemetry.io/otel/trace"
 )
 
+var errMissing = errors.New("missing value")
+
 // Secret from SSM.
 type Secret struct {
 	Data map[string]any `json:"data"`
@@ -41,7 +43,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 	if err != nil {
 		var perr *types.ParameterNotFound
 		if errors.As(err, &perr) {
-			return value, nil
+			return value, errMissing
 		}
 
 		span.SetStatus(codes.Error, err.Error())
@@ -61,8 +63,13 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 
 	v := sec.Data["value"]
 	if v == nil {
-		return value, nil
+		return value, errMissing
 	}
 
 	return v, nil
+}
+
+// IsMissing value for SSM.
+func (t *Transformer) IsMissing(err error) bool {
+	return errors.Is(err, errMissing)
 }

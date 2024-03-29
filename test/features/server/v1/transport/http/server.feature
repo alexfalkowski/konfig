@@ -31,29 +31,29 @@ Feature: Server
 
     Examples: With YAML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | git    | test | v1.10.0 | staging | eu        | *       | server | yaml |
-      | git    | test | v1.10.0 | staging | eu        | de      | server | yaml |
-      | folder | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | folder | test | v1.10.0 | staging | eu        | *       | server | yaml |
-      | folder | test | v1.10.0 | staging | eu        | de      | server | yaml |
-      | s3     | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | s3     | test | v1.10.0 | staging | eu        | *       | server | yaml |
-      | s3     | test | v1.10.0 | staging | eu        | de      | server | yaml |
+      | git    | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | git    | test | v1.11.0 | staging | eu        | *       | server | yaml |
+      | git    | test | v1.11.0 | staging | eu        | de      | server | yaml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | eu        | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | eu        | de      | server | yaml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | eu        | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | eu        | de      | server | yaml |
 
     Examples: With TOML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.10.0 | staging | *         | *       | server | toml |
-      | git    | test | v1.10.0 | staging | eu        | *       | server | toml |
-      | git    | test | v1.10.0 | staging | eu        | de      | server | toml |
-      | folder | test | v1.10.0 | staging | *         | *       | server | toml |
-      | folder | test | v1.10.0 | staging | eu        | *       | server | toml |
-      | folder | test | v1.10.0 | staging | eu        | de      | server | toml |
-      | s3     | test | v1.10.0 | staging | *         | *       | server | toml |
-      | s3     | test | v1.10.0 | staging | eu        | *       | server | toml |
-      | s3     | test | v1.10.0 | staging | eu        | de      | server | toml |
+      | git    | test | v1.11.0 | staging | *         | *       | server | toml |
+      | git    | test | v1.11.0 | staging | eu        | *       | server | toml |
+      | git    | test | v1.11.0 | staging | eu        | de      | server | toml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | toml |
+      | folder | test | v1.11.0 | staging | eu        | *       | server | toml |
+      | folder | test | v1.11.0 | staging | eu        | de      | server | toml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | eu        | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | eu        | de      | server | toml |
 
-  Scenario Outline: Existing config with non existent provider data with HTTP
+  Scenario Outline: Existing config with non existent information with HTTP
     Given I have a "<source>" valid setup
     And I start the system
     And I do not have the following provider information:
@@ -69,7 +69,7 @@ Feature: Server
       | country   | <country>   |
       | cmd       | <cmd>       |
       | kind      | <kind>      |
-    Then I should receive a valid config with missing provider data from HTTP:
+    Then I should receive a valid config with missing information from HTTP:
       | source    | <source>    |
       | app       | <app>       |
       | ver       | <ver>       |
@@ -81,23 +81,23 @@ Feature: Server
 
     Examples: With YAML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | folder | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | s3     | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | git    | test | v1.10.0 | staging | eu        | *       | server | yaml |
-      | folder | test | v1.10.0 | staging | eu        | *       | server | yaml |
-      | s3     | test | v1.10.0 | staging | eu        | *       | server | yaml |
+      | git    | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | git    | test | v1.11.0 | staging | eu        | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | eu        | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | eu        | *       | server | yaml |
 
     Examples: With TOML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.10.0 | staging | *         | *       | server | toml |
-      | folder | test | v1.10.0 | staging | *         | *       | server | toml |
-      | s3     | test | v1.10.0 | staging | *         | *       | server | toml |
-      | git    | test | v1.10.0 | staging | eu        | *       | server | toml |
-      | folder | test | v1.10.0 | staging | eu        | *       | server | toml |
-      | s3     | test | v1.10.0 | staging | eu        | *       | server | toml |
+      | git    | test | v1.11.0 | staging | *         | *       | server | toml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | toml |
+      | git    | test | v1.11.0 | staging | eu        | *       | server | toml |
+      | folder | test | v1.11.0 | staging | eu        | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | eu        | *       | server | toml |
 
-  Scenario Outline: Existing config with missing provider data with HTTP
+  Scenario Outline: Existing config with missing information with HTTP
     Given I have a "<source>" valid setup
     And I start the system
     And I have the following provider information:
@@ -113,7 +113,7 @@ Feature: Server
       | country   | <country>   |
       | cmd       | <cmd>       |
       | kind      | <kind>      |
-    Then I should receive a valid config with missing provider data from HTTP:
+    Then I should receive a valid config with missing information from HTTP:
       | source    | <source>    |
       | app       | <app>       |
       | ver       | <ver>       |
@@ -125,21 +125,21 @@ Feature: Server
 
     Examples: With YAML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | folder | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | s3     | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | git    | test | v1.10.0 | staging | eu        | *       | server | yaml |
-      | folder | test | v1.10.0 | staging | eu        | *       | server | yaml |
-      | s3     | test | v1.10.0 | staging | eu        | *       | server | yaml |
+      | git    | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | git    | test | v1.11.0 | staging | eu        | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | eu        | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | eu        | *       | server | yaml |
 
     Examples: With TOML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.10.0 | staging | *         | *       | server | toml |
-      | folder | test | v1.10.0 | staging | *         | *       | server | toml |
-      | s3     | test | v1.10.0 | staging | *         | *       | server | toml |
-      | git    | test | v1.10.0 | staging | eu        | *       | server | toml |
-      | folder | test | v1.10.0 | staging | eu        | *       | server | toml |
-      | s3     | test | v1.10.0 | staging | eu        | *       | server | toml |
+      | git    | test | v1.11.0 | staging | *         | *       | server | toml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | toml |
+      | git    | test | v1.11.0 | staging | eu        | *       | server | toml |
+      | folder | test | v1.11.0 | staging | eu        | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | eu        | *       | server | toml |
 
   Scenario Outline: Missing config with HTTP
     Given I have a "<source>" valid setup
@@ -157,21 +157,21 @@ Feature: Server
 
     Examples: With YAML kind
       | source | app     | ver     | env     | continent | country | cmd     | kind |
-      | git    | missing | v1.10.0 | staging | *         | *       | server  | yaml |
-      | git    | test    | v1.10.0 | staging | *         | *       | missing | yaml |
-      | folder | missing | v1.10.0 | staging | *         | *       | server  | yaml |
-      | folder | test    | v1.10.0 | staging | *         | *       | missing | yaml |
-      | s3     | missing | v1.10.0 | staging | *         | *       | server  | yaml |
-      | s3     | test    | v1.10.0 | staging | *         | *       | missing | yaml |
+      | git    | missing | v1.11.0 | staging | *         | *       | server  | yaml |
+      | git    | test    | v1.11.0 | staging | *         | *       | missing | yaml |
+      | folder | missing | v1.11.0 | staging | *         | *       | server  | yaml |
+      | folder | test    | v1.11.0 | staging | *         | *       | missing | yaml |
+      | s3     | missing | v1.11.0 | staging | *         | *       | server  | yaml |
+      | s3     | test    | v1.11.0 | staging | *         | *       | missing | yaml |
 
     Examples: With TOML kind
       | source | app     | ver     | env     | continent | country | cmd     | kind |
-      | git    | missing | v1.10.0 | staging | *         | *       | server  | toml |
-      | git    | test    | v1.10.0 | staging | *         | *       | missing | toml |
-      | folder | missing | v1.10.0 | staging | *         | *       | server  | toml |
-      | folder | test    | v1.10.0 | staging | *         | *       | missing | toml |
-      | s3     | missing | v1.10.0 | staging | *         | *       | server  | toml |
-      | s3     | test    | v1.10.0 | staging | *         | *       | missing | toml |
+      | git    | missing | v1.11.0 | staging | *         | *       | server  | toml |
+      | git    | test    | v1.11.0 | staging | *         | *       | missing | toml |
+      | folder | missing | v1.11.0 | staging | *         | *       | server  | toml |
+      | folder | test    | v1.11.0 | staging | *         | *       | missing | toml |
+      | s3     | missing | v1.11.0 | staging | *         | *       | server  | toml |
+      | s3     | test    | v1.11.0 | staging | *         | *       | missing | toml |
 
   Scenario: Misconfigured config with HTTP
     Given I have a "<source>" invalid setup
@@ -188,15 +188,15 @@ Feature: Server
 
     Examples: With YAML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | folder | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | s3     | test | v1.10.0 | staging | *         | *       | server | yaml |
+      | git    | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | yaml |
 
     Examples: With TOML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.10.0 | staging | *         | *       | server | toml |
-      | folder | test | v1.10.0 | staging | *         | *       | server | toml |
-      | s3     | test | v1.10.0 | staging | *         | *       | server | toml |
+      | git    | test | v1.11.0 | staging | *         | *       | server | toml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | toml |
 
   Scenario Outline: Invalid config with HTTP
     Given I have a "<source>" valid setup
@@ -212,33 +212,33 @@ Feature: Server
 
     Examples: With YAML kind
       | source | app  | ver     | env     | cmd    | kind |
-      | git    |      | v1.10.0 | staging | server | yaml |
+      | git    |      | v1.11.0 | staging | server | yaml |
       | git    | test |         | staging | server | yaml |
-      | git    | test | v1.10.0 |         | server | yaml |
-      | git    | test | v1.10.0 | staging |        | yaml |
-      | folder |      | v1.10.0 | staging | server | yaml |
+      | git    | test | v1.11.0 |         | server | yaml |
+      | git    | test | v1.11.0 | staging |        | yaml |
+      | folder |      | v1.11.0 | staging | server | yaml |
       | folder | test |         | staging | server | yaml |
-      | folder | test | v1.10.0 |         | server | yaml |
-      | folder | test | v1.10.0 | staging |        | yaml |
-      | s3     |      | v1.10.0 | staging | server | yaml |
+      | folder | test | v1.11.0 |         | server | yaml |
+      | folder | test | v1.11.0 | staging |        | yaml |
+      | s3     |      | v1.11.0 | staging | server | yaml |
       | s3     | test |         | staging | server | yaml |
-      | s3     | test | v1.10.0 |         | server | yaml |
-      | s3     | test | v1.10.0 | staging |        | yaml |
+      | s3     | test | v1.11.0 |         | server | yaml |
+      | s3     | test | v1.11.0 | staging |        | yaml |
 
     Examples: With TOML kind
       | source | app  | ver     | env     | cmd    | kind |
-      | git    |      | v1.10.0 | staging | server | toml |
+      | git    |      | v1.11.0 | staging | server | toml |
       | git    | test |         | staging | server | toml |
-      | git    | test | v1.10.0 |         | server | toml |
-      | git    | test | v1.10.0 | staging |        | toml |
-      | folder |      | v1.10.0 | staging | server | toml |
+      | git    | test | v1.11.0 |         | server | toml |
+      | git    | test | v1.11.0 | staging |        | toml |
+      | folder |      | v1.11.0 | staging | server | toml |
       | folder | test |         | staging | server | toml |
-      | folder | test | v1.10.0 |         | server | toml |
-      | folder | test | v1.10.0 | staging |        | toml |
-      | s3     |      | v1.10.0 | staging | server | toml |
+      | folder | test | v1.11.0 |         | server | toml |
+      | folder | test | v1.11.0 | staging |        | toml |
+      | s3     |      | v1.11.0 | staging | server | toml |
       | s3     | test |         | staging | server | toml |
-      | s3     | test | v1.10.0 |         | server | toml |
-      | s3     | test | v1.10.0 | staging |        | toml |
+      | s3     | test | v1.11.0 |         | server | toml |
+      | s3     | test | v1.11.0 | staging |        | toml |
 
   Scenario Outline: Existing config with HTTP and broken vault
     Given I have a "<source>" valid setup
@@ -263,12 +263,12 @@ Feature: Server
 
     Examples: With YAML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | folder | test | v1.10.0 | staging | *         | *       | server | yaml |
-      | s3     | test | v1.10.0 | staging | *         | *       | server | yaml |
+      | git    | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | yaml |
 
     Examples: With TOML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.10.0 | staging | *         | *       | server | toml |
-      | folder | test | v1.10.0 | staging | *         | *       | server | toml |
-      | s3     | test | v1.10.0 | staging | *         | *       | server | toml |
+      | git    | test | v1.11.0 | staging | *         | *       | server | toml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | toml |

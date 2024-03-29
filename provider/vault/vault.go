@@ -2,6 +2,7 @@ package vault
 
 import (
 	"context"
+	"errors"
 
 	"github.com/alexfalkowski/go-service/meta"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
@@ -10,6 +11,8 @@ import (
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"
 )
+
+var errMissing = errors.New("missing value")
 
 // Transformer for vault.
 type Transformer struct {
@@ -38,18 +41,23 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 	}
 
 	if sec == nil || sec.Data == nil {
-		return value, nil
+		return value, errMissing
 	}
 
 	d := sec.Data["data"]
 	if d == nil {
-		return value, nil
+		return value, errMissing
 	}
 
 	md, ok := d.(map[string]any)
 	if !ok || md["value"] == nil {
-		return value, nil
+		return value, errMissing
 	}
 
 	return md["value"], nil
+}
+
+// IsMissing value for vault.
+func (t *Transformer) IsMissing(err error) bool {
+	return errors.Is(err, errMissing)
 }
