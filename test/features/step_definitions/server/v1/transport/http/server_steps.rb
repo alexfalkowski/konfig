@@ -39,7 +39,7 @@ Then('I should receive a valid config from HTTP:') do |table|
   expect(data['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
 end
 
-Then('I should receive a valid config with missing provider data from HTTP:') do |table|
+Then('I should receive a valid config with missing information from HTTP:') do |table|
   expect(@response.code).to eq(200)
 
   resp = JSON.parse(@response.body)
@@ -57,7 +57,7 @@ Then('I should receive a valid config with missing provider data from HTTP:') do
   expect(config['kind']).to eq(rows['kind'])
   expect(data['transport']['http']['user_agent']).to eq('/secret/data/transport/http/user_agent')
   expect(data['transport']['grpc']['user_agent']).to eq('/secret/data/transport/grpc/user_agent')
-  expect(data['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['source']['git']['url']).to eq('env:GITHUB_URL')
 end
 
 Then('I should receive a missing config from HTTP') do

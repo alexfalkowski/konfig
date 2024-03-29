@@ -53,8 +53,8 @@ Feature: Server
       | s3     | test | v1.10.0 | staging | eu        | *       | server | toml |
       | s3     | test | v1.10.0 | staging | eu        | de      | server | toml |
 
-  Scenario Outline: Existing config with non existent provider data with HTTP
-    Given I have a "<source>" valid setup
+  Scenario Outline: Existing config with non existent information with HTTP
+    Given I have a "<source>" missing setup
     And I start the system
     And I do not have the following provider information:
       | provider | key                                    |
@@ -69,7 +69,7 @@ Feature: Server
       | country   | <country>   |
       | cmd       | <cmd>       |
       | kind      | <kind>      |
-    Then I should receive a valid config with missing provider data from HTTP:
+    Then I should receive a valid config with missing information from HTTP:
       | source    | <source>    |
       | app       | <app>       |
       | ver       | <ver>       |
@@ -97,8 +97,8 @@ Feature: Server
       | folder | test | v1.10.0 | staging | eu        | *       | server | toml |
       | s3     | test | v1.10.0 | staging | eu        | *       | server | toml |
 
-  Scenario Outline: Existing config with missing provider data with HTTP
-    Given I have a "<source>" valid setup
+  Scenario Outline: Existing config with missing information with HTTP
+    Given I have a "<source>" missing setup
     And I start the system
     And I have the following provider information:
       | provider | key                                    | value        |
@@ -113,7 +113,7 @@ Feature: Server
       | country   | <country>   |
       | cmd       | <cmd>       |
       | kind      | <kind>      |
-    Then I should receive a valid config with missing provider data from HTTP:
+    Then I should receive a valid config with missing information from HTTP:
       | source    | <source>    |
       | app       | <app>       |
       | ver       | <ver>       |

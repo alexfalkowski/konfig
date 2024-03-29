@@ -47,7 +47,7 @@ jobs:
       - run: git submodule update --init
       - run: dockerize -wait tcp://localhost:8200 -wait tcp://localhost:4566 -wait tcp://localhost:5001 -timeout 1m
       - run: make setup
-      - run: make feature=features tags=@grpc features
+      - run: make features-grpc
       - store_artifacts:
           path: test/reports
       - run: make -C test leave-coverage
@@ -77,7 +77,7 @@ jobs:
       - run: git submodule update --init
       - run: dockerize -wait tcp://localhost:8200 -wait tcp://localhost:4566 -wait tcp://localhost:5001 -timeout 1m
       - run: make setup
-      - run: make feature=features tags=@http features
+      - run: make features-http
       - store_artifacts:
           path: test/reports
       - run: make -C test leave-coverage
