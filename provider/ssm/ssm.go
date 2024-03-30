@@ -2,9 +2,9 @@ package ssm
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 
+	"github.com/alexfalkowski/go-service/marshaller"
 	"github.com/alexfalkowski/go-service/meta"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
 	"github.com/alexfalkowski/konfig/provider/ssm/telemetry/tracer"
@@ -24,12 +24,13 @@ type Secret struct {
 // Transformer for SSM.
 type Transformer struct {
 	client *ssm.Client
+	json   *marshaller.JSON
 	tracer tracer.Tracer
 }
 
 // NewTransformer for SSM.
-func NewTransformer(client *ssm.Client, t tracer.Tracer) *Transformer {
-	return &Transformer{client: client, tracer: t}
+func NewTransformer(client *ssm.Client, json *marshaller.JSON, tracer tracer.Tracer) *Transformer {
+	return &Transformer{client: client, json: json, tracer: tracer}
 }
 
 // Transform for SSM.
@@ -54,7 +55,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 
 	var sec Secret
 
-	if err := json.Unmarshal([]byte(*out.Parameter.Value), &sec); err != nil {
+	if err := t.json.Unmarshal([]byte(*out.Parameter.Value), &sec); err != nil {
 		span.SetStatus(codes.Error, err.Error())
 		span.RecordError(err)
 
