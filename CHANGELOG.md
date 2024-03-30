@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.79.9](https://github.com/alexfalkowski/konfig/releases/tag/v1.79.9) - 2024-03-30
+
+- [`332666e`](https://github.com/alexfalkowski/konfig/commit/332666e8eb8e6ca6f3f7d750a3d9a246d0c7fb33) fix(provider): use marshaller (#1081)
+
 ## [v1.79.8](https://github.com/alexfalkowski/konfig/releases/tag/v1.79.8) - 2024-03-30
 
 - [`d9f7263`](https://github.com/alexfalkowski/konfig/commit/d9f7263dda7e5bb0fa18bc935542c17e44b9f2a1) fix(provider): pass through the value of missing information (#1076)
