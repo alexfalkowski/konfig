@@ -1,0 +1,5 @@
+test:
+  http_user_agent: vault:/secret/data/transport/http/user_agent
+  grpc_user_agent: ssm:/secret/data/transport/grpc/user_agent
+  git_url: env:GITHUB_URL
+  nonexistent_url: env:NONEXISTENT_URL

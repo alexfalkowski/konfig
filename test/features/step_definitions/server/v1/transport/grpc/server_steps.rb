@@ -26,12 +26,13 @@ Then('I should receive a valid config from gRPC:') do |table|
   expect(@response.config.country).to eq(rows['country'])
   expect(@response.config.command).to eq(rows['cmd'])
   expect(@response.config.kind).to eq(rows['kind'])
-  expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
-  expect(data['transport']['grpc']['user_agent']).to eq('Konfig-server/1.0 grpc/1.0')
-  expect(data['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['test']['http_user_agent']).to eq('Konfig-server/1.0 http/1.0')
+  expect(data['test']['grpc_user_agent']).to eq('Konfig-server/1.0 grpc/1.0')
+  expect(data['test']['git_url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['test']['nonexistent_url']).to eq('env:NONEXISTENT_URL')
 end
 
-Then('I should receive a valid config with missing provider data from gRPC:') do |table|
+Then('I should receive a valid config with missing information from gRPC:') do |table|
   rows = table.rows_hash
   data = Konfig.load_config(rows['kind'], @response.config.data)
 
@@ -43,9 +44,10 @@ Then('I should receive a valid config with missing provider data from gRPC:') do
   expect(@response.config.country).to eq(rows['country'])
   expect(@response.config.command).to eq(rows['cmd'])
   expect(@response.config.kind).to eq(rows['kind'])
-  expect(data['transport']['http']['user_agent']).to eq('/secret/data/transport/http/user_agent')
-  expect(data['transport']['grpc']['user_agent']).to eq('/secret/data/transport/grpc/user_agent')
-  expect(data['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['test']['http_user_agent']).to eq('vault:/secret/data/transport/http/user_agent')
+  expect(data['test']['grpc_user_agent']).to eq('ssm:/secret/data/transport/grpc/user_agent')
+  expect(data['test']['git_url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['test']['nonexistent_url']).to eq('env:NONEXISTENT_URL')
 end
 
 Then('I should receive a missing config from gRPC') do

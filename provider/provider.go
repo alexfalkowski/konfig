@@ -9,16 +9,27 @@ import (
 	"github.com/alexfalkowski/konfig/provider/vault"
 )
 
+type transformer interface {
+	Transform(ctx context.Context, value string) (any, error)
+	IsMissing(err error) bool
+}
+
+type transformers map[string]transformer
+
 // Transformer for provider.
 type Transformer struct {
-	et *env.Transformer
-	vt *vault.Transformer
-	st *ssm.Transformer
+	ts transformers
 }
 
 // NewTransformer for provider.
 func NewTransformer(et *env.Transformer, vt *vault.Transformer, st *ssm.Transformer) *Transformer {
-	return &Transformer{et: et, vt: vt, st: st}
+	ts := transformers{
+		"env":   et,
+		"vault": vt,
+		"ssm":   st,
+	}
+
+	return &Transformer{ts: ts}
 }
 
 // Transform for provider.
@@ -28,14 +39,17 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 		return value, nil
 	}
 
-	switch args[0] {
-	case "env":
-		return t.et.Transform(ctx, args[1])
-	case "vault":
-		return t.vt.Transform(ctx, args[1])
-	case "ssm":
-		return t.st.Transform(ctx, args[1])
-	default:
+	tr, ok := t.ts[args[0]]
+	if !ok {
 		return value, nil
 	}
+
+	a, err := tr.Transform(ctx, args[1])
+	if err != nil {
+		if tr.IsMissing(err) {
+			return value, nil
+		}
+	}
+
+	return a, err
 }

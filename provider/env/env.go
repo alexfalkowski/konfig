@@ -2,8 +2,11 @@ package env
 
 import (
 	"context"
+	"errors"
 	"os"
 )
+
+var errMissing = errors.New("missing value")
 
 // Transformer for env.
 type Transformer struct{}
@@ -20,5 +23,10 @@ func (e *Transformer) Transform(_ context.Context, value string) (any, error) {
 		return v, nil
 	}
 
-	return value, nil
+	return value, errMissing
+}
+
+// IsMissing value for env.
+func (e *Transformer) IsMissing(err error) bool {
+	return errors.Is(err, errMissing)
 }

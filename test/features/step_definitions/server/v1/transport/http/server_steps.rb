@@ -34,12 +34,13 @@ Then('I should receive a valid config from HTTP:') do |table|
   expect(config['country']).to eq(rows['country'])
   expect(config['command']).to eq(rows['cmd'])
   expect(config['kind']).to eq(rows['kind'])
-  expect(data['transport']['http']['user_agent']).to eq('Konfig-server/1.0 http/1.0')
-  expect(data['transport']['grpc']['user_agent']).to eq('Konfig-server/1.0 grpc/1.0')
-  expect(data['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['test']['http_user_agent']).to eq('Konfig-server/1.0 http/1.0')
+  expect(data['test']['grpc_user_agent']).to eq('Konfig-server/1.0 grpc/1.0')
+  expect(data['test']['git_url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['test']['nonexistent_url']).to eq('env:NONEXISTENT_URL')
 end
 
-Then('I should receive a valid config with missing provider data from HTTP:') do |table|
+Then('I should receive a valid config with missing information from HTTP:') do |table|
   expect(@response.code).to eq(200)
 
   resp = JSON.parse(@response.body)
@@ -55,9 +56,10 @@ Then('I should receive a valid config with missing provider data from HTTP:') do
   expect(config['continent']).to eq(rows['continent'])
   expect(config['country']).to eq(rows['country'])
   expect(config['kind']).to eq(rows['kind'])
-  expect(data['transport']['http']['user_agent']).to eq('/secret/data/transport/http/user_agent')
-  expect(data['transport']['grpc']['user_agent']).to eq('/secret/data/transport/grpc/user_agent')
-  expect(data['source']['git']['url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['test']['http_user_agent']).to eq('vault:/secret/data/transport/http/user_agent')
+  expect(data['test']['grpc_user_agent']).to eq('ssm:/secret/data/transport/grpc/user_agent')
+  expect(data['test']['git_url']).to eq(ENV.fetch('GITHUB_URL', nil))
+  expect(data['test']['nonexistent_url']).to eq('env:NONEXISTENT_URL')
 end
 
 Then('I should receive a missing config from HTTP') do
