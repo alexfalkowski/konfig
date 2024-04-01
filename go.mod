@@ -3,9 +3,9 @@ module github.com/alexfalkowski/konfig
 go 1.22.1
 
 require (
-	github.com/alexfalkowski/auth v1.81.3
+	github.com/alexfalkowski/auth v1.81.4
 	github.com/alexfalkowski/go-health v1.16.0
-	github.com/alexfalkowski/go-service v1.149.3
+	github.com/alexfalkowski/go-service v1.149.4
 	github.com/aws/aws-sdk-go-v2 v1.26.1
 	github.com/aws/aws-sdk-go-v2/config v1.27.10
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.53.1
@@ -120,7 +120,7 @@ require (
 	github.com/rs/cors v1.10.1 // indirect
 	github.com/ryanuber/go-glob v1.0.0 // indirect
 	github.com/sergi/go-diff v1.2.0 // indirect
-	github.com/shirou/gopsutil/v3 v3.24.2 // indirect
+	github.com/shirou/gopsutil/v3 v3.24.3 // indirect
 	github.com/shoenig/go-m1cpu v0.1.6 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/skeema/knownhosts v1.2.1 // indirect
@@ -128,8 +128,8 @@ require (
 	github.com/spf13/cobra v1.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/standard-webhooks/standard-webhooks/libraries v0.0.0-20240326063454-14ec0876f23f // indirect
-	github.com/stretchr/objx v0.5.0 // indirect
-	github.com/stretchr/testify v1.8.4 // indirect
+	github.com/stretchr/objx v0.5.2 // indirect
+	github.com/stretchr/testify v1.9.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.13 // indirect
 	github.com/tklauser/numcpus v0.7.0 // indirect
 	github.com/urfave/negroni/v3 v3.1.0 // indirect
