@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.80.3](https://github.com/alexfalkowski/konfig/releases/tag/v1.80.3) - 2024-04-04
+
+- [`61f330a`](https://github.com/alexfalkowski/konfig/commit/61f330abcc445fd6d359b15e756d2a10b1e8061d) fix(build): upgraded github.com/alexfalkowski/go-service v1.150.0 => v1.150.2 (#1092)
+- [`9cbf2f3`](https://github.com/alexfalkowski/konfig/commit/9cbf2f3a4fa7e5cd5c6cdddd3f255503bea9aad0) test(deps): bump ruby-lsp from 0.15.0 to 0.16.0 in /test (#1090)
+- [`65aed9d`](https://github.com/alexfalkowski/konfig/commit/65aed9dfd095858dee1e1ab393dff187474b13f0) build(deps): bump bin from `ed17684` to `13a7302` (#1089)
+- [`b749c11`](https://github.com/alexfalkowski/konfig/commit/b749c11ebeca0715fbefad56aa637e238651765f) build(deps): bump bin from `024be7f` to `ed17684` (#1088)
+
 ## [v1.80.2](https://github.com/alexfalkowski/konfig/releases/tag/v1.80.2) - 2024-04-02
 
 - [`1c2db49`](https://github.com/alexfalkowski/konfig/commit/1c2db493a14bd508684d7354352de35487c49f4d) fix(deps): bump github.com/go-git/go-git/v5 from 5.11.0 to 5.12.0 (#1087)
