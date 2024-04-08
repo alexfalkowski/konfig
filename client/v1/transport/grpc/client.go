@@ -1,8 +1,6 @@
 package grpc
 
 import (
-	"context"
-
 	"github.com/alexfalkowski/auth/client"
 	t "github.com/alexfalkowski/go-service/security/token"
 	"github.com/alexfalkowski/go-service/transport/grpc/telemetry/tracer"
@@ -29,7 +27,6 @@ type ServiceClientParams struct {
 
 // NewServiceClient for gRPC.
 func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
-	ctx := context.Background()
 	opts := grpc.ClientOpts{
 		Lifecycle:    params.Lifecycle,
 		ClientConfig: params.ClientConfig.Config,
@@ -40,7 +37,7 @@ func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 		Token:        params.Token,
 	}
 
-	conn, err := grpc.NewClient(ctx, opts)
+	conn, err := grpc.NewClient(opts)
 	if err != nil {
 		return nil, err
 	}

@@ -28,7 +28,7 @@ type ClientOpts struct {
 }
 
 // NewClient for gRPC.
-func NewClient(ctx context.Context, options ClientOpts) (*g.ClientConn, error) {
+func NewClient(options ClientOpts) (*g.ClientConn, error) {
 	opts := []grpc.ClientOption{
 		grpc.WithClientLogger(options.Logger), grpc.WithClientTracer(options.Tracer),
 		grpc.WithClientMetrics(options.Meter), grpc.WithClientRetry(options.ClientConfig.Retry),
@@ -48,7 +48,7 @@ func NewClient(ctx context.Context, options ClientOpts) (*g.ClientConn, error) {
 		opts = append(opts, sec)
 	}
 
-	conn, err := grpc.NewClient(ctx, options.ClientConfig.Host, opts...)
+	conn, err := grpc.NewClient(options.ClientConfig.Host, opts...)
 	if err != nil {
 		return nil, err
 	}
