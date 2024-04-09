@@ -19,7 +19,7 @@ require (
 	go.uber.org/fx v1.21.0
 	go.uber.org/zap v1.27.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20240401170217-c3f982113cda
-	google.golang.org/grpc v1.63.0
+	google.golang.org/grpc v1.63.2
 	google.golang.org/protobuf v1.33.0
 )
 
