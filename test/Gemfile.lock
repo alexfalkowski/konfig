@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: f8302adff3d8bb887117c95002f3c89b9e83457e
+  revision: e1bba35fa24adf22a562726157372a19a63e3c96
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -10,7 +10,7 @@ GEM
   specs:
     ast (2.4.2)
     aws-eventstream (1.3.0)
-    aws-partitions (1.909.0)
+    aws-partitions (1.911.0)
     aws-sdk-core (3.191.6)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.651.0)
