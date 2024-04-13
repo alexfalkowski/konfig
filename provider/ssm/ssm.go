@@ -7,7 +7,6 @@ import (
 	"github.com/alexfalkowski/go-service/marshaller"
 	"github.com/alexfalkowski/go-service/meta"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
-	"github.com/alexfalkowski/konfig/provider/ssm/telemetry/tracer"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/aws/aws-sdk-go-v2/service/ssm/types"
 	"go.opentelemetry.io/otel/codes"
@@ -25,11 +24,11 @@ type Secret struct {
 type Transformer struct {
 	client *ssm.Client
 	json   *marshaller.JSON
-	tracer tracer.Tracer
+	tracer trace.Tracer
 }
 
 // NewTransformer for SSM.
-func NewTransformer(client *ssm.Client, json *marshaller.JSON, tracer tracer.Tracer) *Transformer {
+func NewTransformer(client *ssm.Client, json *marshaller.JSON, tracer trace.Tracer) *Transformer {
 	return &Transformer{client: client, json: json, tracer: tracer}
 }
 

@@ -5,11 +5,11 @@ import (
 	"os"
 
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/alexfalkowski/go-service/transport/http/telemetry/tracer"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"go.opentelemetry.io/otel/metric"
+	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -20,7 +20,7 @@ type ClientParams struct {
 
 	Config *http.Config
 	Logger *zap.Logger
-	Tracer tracer.Tracer
+	Tracer trace.Tracer
 	Meter  metric.Meter
 }
 

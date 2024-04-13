@@ -4,14 +4,12 @@ import (
 	"errors"
 
 	"github.com/alexfalkowski/go-service/transport/http"
-	ht "github.com/alexfalkowski/go-service/transport/http/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
 	"github.com/alexfalkowski/konfig/source/configurator/git"
-	gt "github.com/alexfalkowski/konfig/source/configurator/git/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/source/configurator/s3"
-	st "github.com/alexfalkowski/konfig/source/configurator/s3/telemetry/tracer"
 	"go.opentelemetry.io/otel/metric"
+	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -26,16 +24,14 @@ type ConfiguratorParams struct {
 	Config     *Config
 	HTTPConfig *http.Config
 	Logger     *zap.Logger
-	HTTPTracer ht.Tracer
+	Tracer     trace.Tracer
 	Meter      metric.Meter
-	GitTracer  gt.Tracer
-	S3Tracer   st.Tracer
 }
 
 // NewConfigurator for source.
 func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
 	client, err := http.NewClient(
-		http.WithClientLogger(params.Logger), http.WithClientTracer(params.HTTPTracer),
+		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.HTTPConfig.UserAgent),
 	)
 	if err != nil {
@@ -48,9 +44,9 @@ func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, erro
 	case params.Config.IsFolder():
 		configurator = folder.NewConfigurator(params.Config.Folder)
 	case params.Config.IsGit():
-		configurator = git.NewConfigurator(params.Config.Git, params.GitTracer, client)
+		configurator = git.NewConfigurator(params.Config.Git, params.Tracer, client)
 	case params.Config.IsS3():
-		configurator = s3.NewConfigurator(params.Config.S3, params.S3Tracer, client)
+		configurator = s3.NewConfigurator(params.Config.S3, params.Tracer, client)
 	default:
 		return nil, ErrNoConfigurator
 	}

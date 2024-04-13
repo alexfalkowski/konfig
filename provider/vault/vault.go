@@ -6,7 +6,6 @@ import (
 
 	"github.com/alexfalkowski/go-service/meta"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
-	"github.com/alexfalkowski/konfig/provider/vault/telemetry/tracer"
 	"github.com/hashicorp/vault/api"
 	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"
@@ -17,11 +16,11 @@ var errMissing = errors.New("missing value")
 // Transformer for vault.
 type Transformer struct {
 	client *api.Client
-	tracer tracer.Tracer
+	tracer trace.Tracer
 }
 
 // NewTransformer for vault.
-func NewTransformer(client *api.Client, t tracer.Tracer) *Transformer {
+func NewTransformer(client *api.Client, t trace.Tracer) *Transformer {
 	return &Transformer{client: client, tracer: t}
 }
 

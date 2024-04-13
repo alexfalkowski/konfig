@@ -2,9 +2,9 @@ package vault
 
 import (
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/alexfalkowski/go-service/transport/http/telemetry/tracer"
 	"github.com/hashicorp/vault/api"
 	"go.opentelemetry.io/otel/metric"
+	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -15,7 +15,7 @@ type ConfigParams struct {
 
 	Config *http.Config
 	Logger *zap.Logger
-	Tracer tracer.Tracer
+	Tracer trace.Tracer
 	Meter  metric.Meter
 }
 

@@ -14,7 +14,6 @@ import (
 	tm "github.com/alexfalkowski/go-service/transport/meta"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
-	"github.com/alexfalkowski/konfig/source/configurator/git/telemetry/tracer"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
 	gclient "github.com/go-git/go-git/v5/plumbing/transport/client"
@@ -23,7 +22,7 @@ import (
 )
 
 // NewConfigurator for git.
-func NewConfigurator(cfg *Config, t tracer.Tracer, client *http.Client) *Configurator {
+func NewConfigurator(cfg *Config, t trace.Tracer, client *http.Client) *Configurator {
 	c := ghttp.NewClient(client)
 
 	gclient.InstallProtocol("http", c)
@@ -37,7 +36,7 @@ type Configurator struct {
 	cfg    *Config
 	repo   *git.Repository
 	mux    sync.Mutex
-	tracer tracer.Tracer
+	tracer trace.Tracer
 }
 
 // GetConfig for git.
