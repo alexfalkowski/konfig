@@ -9,8 +9,8 @@ import (
 	"github.com/alexfalkowski/go-service/security/token"
 	"github.com/alexfalkowski/go-service/transport/grpc"
 	gt "github.com/alexfalkowski/go-service/transport/grpc/security/token"
-	"github.com/alexfalkowski/go-service/transport/grpc/telemetry/tracer"
 	"go.opentelemetry.io/otel/metric"
+	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	g "google.golang.org/grpc"
@@ -22,7 +22,7 @@ type ClientOpts struct {
 	ClientConfig *c.Config
 	TokenConfig  *token.Config
 	Logger       *zap.Logger
-	Tracer       tracer.Tracer
+	Tracer       trace.Tracer
 	Meter        metric.Meter
 	Token        *ac.Token
 }
