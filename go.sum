@@ -18,8 +18,8 @@ github.com/alexfalkowski/auth v1.85.2 h1:iv3GuMOMEBkBrVnpsT+duAHM46WXuUU5ETRsn/d
 github.com/alexfalkowski/auth v1.85.2/go.mod h1:Fdhl8/ioOCMXnTZ2Xey6QBAen2lwvwJiNvA3piA1SVw=
 github.com/alexfalkowski/go-health v1.16.1 h1:7XfEevvFKq/BicJ1tol2CN+A6j1LzlMmol5hmbd3F+A=
 github.com/alexfalkowski/go-health v1.16.1/go.mod h1:GrfpkU3sTiZkGsm1thyZ3WiBFL6/vX29cskAKMw3h48=
-github.com/alexfalkowski/go-service v1.154.3 h1:bC6A6RYpGdLwB6wqNEtVUAnNhsBavaCWrFVU64X/3TQ=
-github.com/alexfalkowski/go-service v1.154.3/go.mod h1:4d3BLGodOu0RtI4mw1BFrgsWabYwxyaKEQveJ1DTY7Y=
+github.com/alexfalkowski/go-service v1.154.4 h1:V99JSTUE3WR+Euqw+TpwYDh4xCmvvgMO0Snx45cv9gE=
+github.com/alexfalkowski/go-service v1.154.4/go.mod h1:4d3BLGodOu0RtI4mw1BFrgsWabYwxyaKEQveJ1DTY7Y=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be h1:9AeTilPcZAjCFIImctFaOjnTIavg87rW78vTPkQqLI8=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be/go.mod h1:ySMOLuWl6zY27l47sB3qLNK6tF2fkHG55UZxx8oIVo4=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
