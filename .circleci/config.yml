@@ -9,7 +9,25 @@ jobs:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
+      - restore_cache:
+          name: restore go deps
+          keys:
+            - konfig-go-cache-{{ checksum "go.sum" }}
+      - restore_cache:
+          name: restore ruby deps
+          keys:
+            - konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
       - run: make dep
+      - save_cache:
+          name: save go deps
+          key: konfig-go-cache-{{ checksum "go.sum" }}
+          paths:
+            - /home/circleci/go/pkg/mod
+      - save_cache:
+          name: save ruby deps
+          key: konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+          paths:
+            - test/vendor
       - run: make lint
       - run: make proto-breaking
       - run: make sec
@@ -48,7 +66,25 @@ jobs:
       - run: git submodule sync
       - run: git submodule update --init
       - run: dockerize -wait tcp://localhost:8200 -wait tcp://localhost:4566 -wait tcp://localhost:5001 -wait tcp://localhost:9009 -timeout 1m
+      - restore_cache:
+          name: restore go deps
+          keys:
+            - konfig-go-cache-{{ checksum "go.sum" }}
+      - restore_cache:
+          name: restore ruby deps
+          keys:
+            - konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
       - run: make dep
+      - save_cache:
+          name: save go deps
+          key: konfig-go-cache-{{ checksum "go.sum" }}
+          paths:
+            - /home/circleci/go/pkg/mod
+      - save_cache:
+          name: save ruby deps
+          key: konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+          paths:
+            - test/vendor
       - run: make features-grpc
       - store_artifacts:
           path: test/reports
@@ -80,7 +116,25 @@ jobs:
       - run: git submodule sync
       - run: git submodule update --init
       - run: dockerize -wait tcp://localhost:8200 -wait tcp://localhost:4566 -wait tcp://localhost:5001 -wait tcp://localhost:9009 -timeout 1m
+      - restore_cache:
+          name: restore go deps
+          keys:
+            - konfig-go-cache-{{ checksum "go.sum" }}
+      - restore_cache:
+          name: restore ruby deps
+          keys:
+            - konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
       - run: make dep
+      - save_cache:
+          name: save go deps
+          key: konfig-go-cache-{{ checksum "go.sum" }}
+          paths:
+            - /home/circleci/go/pkg/mod
+      - save_cache:
+          name: save ruby deps
+          key: konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+          paths:
+            - test/vendor
       - run: make features-http
       - store_artifacts:
           path: test/reports
