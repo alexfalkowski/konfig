@@ -12,25 +12,34 @@ jobs:
       - restore_cache:
           name: restore go deps
           keys:
-            - konfig-go-cache-{{ checksum "go.sum" }}
+            - konfig-build-service-go-cache-{{ checksum "go.sum" }}
       - restore_cache:
           name: restore ruby deps
           keys:
-            - konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+            - konfig-build-service-ruby-cache-{{ checksum "test/Gemfile.lock" }}
       - run: make dep
       - save_cache:
           name: save go deps
-          key: konfig-go-cache-{{ checksum "go.sum" }}
+          key: konfig-build-service-go-cache-{{ checksum "go.sum" }}
           paths:
             - /home/circleci/go/pkg/mod
       - save_cache:
           name: save ruby deps
-          key: konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+          key: konfig-build-service-ruby-cache-{{ checksum "test/Gemfile.lock" }}
           paths:
             - test/vendor
+      - restore_cache:
+          name: restore go build cache
+          keys:
+            - konfig-build-service-go-build-cache-{{ checksum "go.sum" }}
       - run: make lint
       - run: make proto-breaking
       - run: make sec
+      - save_cache:
+          name: save go build cache
+          key: konfig-build-service-go-build-cache-{{ checksum "go.sum" }}
+          paths:
+            - /home/circleci/.cache/go-build
     resource_class: large
   build-docker:
     docker:
@@ -69,23 +78,32 @@ jobs:
       - restore_cache:
           name: restore go deps
           keys:
-            - konfig-go-cache-{{ checksum "go.sum" }}
+            - konfig-features-grpc-go-cache-{{ checksum "go.sum" }}
       - restore_cache:
           name: restore ruby deps
           keys:
-            - konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+            - konfig-features-grpc-ruby-cache-{{ checksum "test/Gemfile.lock" }}
       - run: make dep
       - save_cache:
           name: save go deps
-          key: konfig-go-cache-{{ checksum "go.sum" }}
+          key: konfig-features-grpc-go-cache-{{ checksum "go.sum" }}
           paths:
             - /home/circleci/go/pkg/mod
       - save_cache:
           name: save ruby deps
-          key: konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+          key: konfig-features-grpc-ruby-cache-{{ checksum "test/Gemfile.lock" }}
           paths:
             - test/vendor
+      - restore_cache:
+          name: restore go build cache
+          keys:
+            - konfig-features-grpc-go-build-cache-{{ checksum "go.sum" }}
       - run: make features-grpc
+      - save_cache:
+          name: save go build cache
+          key: konfig-features-grpc-go-build-cache-{{ checksum "go.sum" }}
+          paths:
+            - /home/circleci/.cache/go-build
       - store_artifacts:
           path: test/reports
       - run: make -C test leave-coverage
@@ -119,23 +137,32 @@ jobs:
       - restore_cache:
           name: restore go deps
           keys:
-            - konfig-go-cache-{{ checksum "go.sum" }}
+            - konfig-features-http-go-cache-{{ checksum "go.sum" }}
       - restore_cache:
           name: restore ruby deps
           keys:
-            - konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+            - konfig-features-http-ruby-cache-{{ checksum "test/Gemfile.lock" }}
       - run: make dep
       - save_cache:
           name: save go deps
-          key: konfig-go-cache-{{ checksum "go.sum" }}
+          key: konfig-features-http-go-cache-{{ checksum "go.sum" }}
           paths:
             - /home/circleci/go/pkg/mod
       - save_cache:
           name: save ruby deps
-          key: konfig-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+          key: konfig-features-http-ruby-cache-{{ checksum "test/Gemfile.lock" }}
           paths:
             - test/vendor
+      - restore_cache:
+          name: restore go build cache
+          keys:
+            - konfig-features-http-go-build-cache-{{ checksum "go.sum" }}
       - run: make features-http
+      - save_cache:
+          name: save go build cache
+          key: konfig-features-http-go-build-cache-{{ checksum "go.sum" }}
+          paths:
+            - /home/circleci/.cache/go-build
       - store_artifacts:
           path: test/reports
       - run: make -C test leave-coverage
