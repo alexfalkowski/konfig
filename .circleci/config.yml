@@ -104,6 +104,8 @@ jobs:
           key: konfig-features-grpc-go-build-cache-{{ checksum "go.sum" }}
           paths:
             - /home/circleci/.cache/go-build
+      - store_test_results:
+          path: test/reports
       - store_artifacts:
           path: test/reports
       - run: make -C test leave-coverage
@@ -163,6 +165,8 @@ jobs:
           key: konfig-features-http-go-build-cache-{{ checksum "go.sum" }}
           paths:
             - /home/circleci/.cache/go-build
+      - store_test_results:
+          path: test/reports
       - store_artifacts:
           path: test/reports
       - run: make -C test leave-coverage
