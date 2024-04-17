@@ -13,10 +13,12 @@ jobs:
           name: restore go deps
           keys:
             - konfig-build-service-go-cache-{{ checksum "go.sum" }}
+            - konfig-build-service-go-cache-
       - restore_cache:
           name: restore ruby deps
           keys:
             - konfig-build-service-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+            - konfig-build-service-ruby-cache-
       - run: make dep
       - save_cache:
           name: save go deps
@@ -32,6 +34,7 @@ jobs:
           name: restore go build cache
           keys:
             - konfig-build-service-go-build-cache-{{ checksum "go.sum" }}
+            - konfig-build-service-go-build-cache-
       - run: make lint
       - run: make proto-breaking
       - run: make sec
@@ -79,10 +82,12 @@ jobs:
           name: restore go deps
           keys:
             - konfig-features-grpc-go-cache-{{ checksum "go.sum" }}
+            - konfig-features-grpc-go-cache-
       - restore_cache:
           name: restore ruby deps
           keys:
             - konfig-features-grpc-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+            - konfig-features-grpc-ruby-cache-
       - run: make dep
       - save_cache:
           name: save go deps
@@ -98,6 +103,7 @@ jobs:
           name: restore go build cache
           keys:
             - konfig-features-grpc-go-build-cache-{{ checksum "go.sum" }}
+            - konfig-features-grpc-go-build-cache-
       - run: make features-grpc
       - save_cache:
           name: save go build cache
@@ -140,10 +146,12 @@ jobs:
           name: restore go deps
           keys:
             - konfig-features-http-go-cache-{{ checksum "go.sum" }}
+            - konfig-features-http-go-cache-
       - restore_cache:
           name: restore ruby deps
           keys:
             - konfig-features-http-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+            - konfig-features-http-ruby-cache-
       - run: make dep
       - save_cache:
           name: save go deps
@@ -159,6 +167,7 @@ jobs:
           name: restore go build cache
           keys:
             - konfig-features-http-go-build-cache-{{ checksum "go.sum" }}
+            - konfig-features-http-go-build-cache-
       - run: make features-http
       - save_cache:
           name: save go build cache
