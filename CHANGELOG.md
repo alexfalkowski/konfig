@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.84.2](https://github.com/alexfalkowski/konfig/releases/tag/v1.84.2) - 2024-04-17
+
+- [`cfb8441`](https://github.com/alexfalkowski/konfig/commit/cfb84410a094361956cb9d8478caac38cbcd12d0) fix(grpc): remove reset conn (#1123)
+- [`dec6c5c`](https://github.com/alexfalkowski/konfig/commit/dec6c5c9db4d875a13afed6cc37c3f37d559345a) test(deps): bump aws-sdk-s3 from 1.146.1 to 1.147.0 in /test (#1120)
+- [`7e23d65`](https://github.com/alexfalkowski/konfig/commit/7e23d6558b2e31c5f34ab3aa0bd31cdc41a7c49b) test(deps): bump rubocop from 1.63.1 to 1.63.2 in /test (#1121)
+- [`4ca6e0f`](https://github.com/alexfalkowski/konfig/commit/4ca6e0fac85f963c9a03d5d7697c9c17b734f6bd) build(deps): bump bin from `b850b19` to `d5f116d` (#1122)
+- [`1329f36`](https://github.com/alexfalkowski/konfig/commit/1329f3625fb19a3a35a77c08d348ec2baee05490) build(ci): store tests (#1119)
+- [`5f1e21c`](https://github.com/alexfalkowski/konfig/commit/5f1e21c7b714bcbfd8eff3091b4c29852a2a73b9) build(deps): bump bin from `a1fc5ac` to `b850b19` (#1118)
+- [`42ae868`](https://github.com/alexfalkowski/konfig/commit/42ae868621ec96a1586e5cf273e8163bb7156ee5) build(ci): cache go build (#1117)
+- [`e2ce479`](https://github.com/alexfalkowski/konfig/commit/e2ce479df463d9b6c7d22faf15455879825f6732) build(ci): cache deps (#1116)
+- [`6501144`](https://github.com/alexfalkowski/konfig/commit/6501144a7b8d62df1b664ec4fd58e8c587f02ff1) build(deps): bump bin from `c322696` to `a1fc5ac` (#1115)
+
 ## [v1.84.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.84.1) - 2024-04-14
 
 - [`72f9cc5`](https://github.com/alexfalkowski/konfig/commit/72f9cc5293abca4f18470c57349a92690c74415b) fix(deps): upgraded github.com/alexfalkowski/go-service to v1.154.5 (#1114)
