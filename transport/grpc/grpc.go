@@ -54,11 +54,6 @@ func NewClient(options ClientOpts) (*g.ClientConn, error) {
 	}
 
 	options.Lifecycle.Append(fx.Hook{
-		OnStart: func(_ context.Context) error {
-			conn.ResetConnectBackoff()
-
-			return nil
-		},
 		OnStop: func(_ context.Context) error {
 			return conn.Close()
 		},
