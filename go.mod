@@ -3,9 +3,9 @@ module github.com/alexfalkowski/konfig
 go 1.22.2
 
 require (
-	github.com/alexfalkowski/auth v1.85.5
+	github.com/alexfalkowski/auth v1.85.6
 	github.com/alexfalkowski/go-health v1.16.1
-	github.com/alexfalkowski/go-service v1.154.5
+	github.com/alexfalkowski/go-service v1.154.6
 	github.com/aws/aws-sdk-go-v2 v1.26.1
 	github.com/aws/aws-sdk-go-v2/config v1.27.11
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.53.1
@@ -26,7 +26,7 @@ require (
 require (
 	dario.cat/mergo v1.0.0 // indirect
 	github.com/BurntSushi/toml v1.3.2 // indirect
-	github.com/KimMachineGun/automemlimit v0.5.0 // indirect
+	github.com/KimMachineGun/automemlimit v0.6.0 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/ProtonMail/go-crypto v1.0.0 // indirect
 	github.com/arl/statsviz v0.6.0 // indirect
