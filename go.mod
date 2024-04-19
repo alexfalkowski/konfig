@@ -12,7 +12,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.49.5
 	github.com/go-git/go-git/v5 v5.12.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.1
-	github.com/hashicorp/vault/api v1.12.2
+	github.com/hashicorp/vault/api v1.13.0
 	go.opentelemetry.io/otel v1.25.0
 	go.opentelemetry.io/otel/metric v1.25.0
 	go.opentelemetry.io/otel/trace v1.25.0
@@ -64,7 +64,7 @@ require (
 	github.com/felixge/fgprof v0.9.4 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
 	github.com/go-git/go-billy/v5 v5.5.0 // indirect
-	github.com/go-jose/go-jose/v3 v3.0.3 // indirect
+	github.com/go-jose/go-jose/v4 v4.0.1 // indirect
 	github.com/go-logr/logr v1.4.1 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-ole/go-ole v1.3.0 // indirect
