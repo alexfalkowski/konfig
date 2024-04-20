@@ -24,8 +24,6 @@ client:
     command: server
     kind: yaml
     mode: 0o600
-debug:
-  port: 6060
 environment: production
 telemetry:
   logger:

@@ -22,8 +22,6 @@ client:
     continent: '*'
     country: '*'
     command: invalid
-debug:
-  port: 6060
 environment: production
 telemetry:
   logger:
