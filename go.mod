@@ -3,7 +3,7 @@ module github.com/alexfalkowski/konfig
 go 1.22.2
 
 require (
-	github.com/alexfalkowski/auth v1.85.7
+	github.com/alexfalkowski/auth v1.85.8
 	github.com/alexfalkowski/go-health v1.16.1
 	github.com/alexfalkowski/go-service v1.154.6
 	github.com/aws/aws-sdk-go-v2 v1.26.1
