@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.84.6](https://github.com/alexfalkowski/konfig/releases/tag/v1.84.6) - 2024-04-20
+
+- [`5d057a4`](https://github.com/alexfalkowski/konfig/commit/5d057a41599ed8a823b62ab52b477280e33715f6) fix(deps): upgrade github.com/alexfalkowski/auth to v1.85.8 (#1130)
+
 ## [v1.84.5](https://github.com/alexfalkowski/konfig/releases/tag/v1.84.5) - 2024-04-19
 
 - [`48a6cb2`](https://github.com/alexfalkowski/konfig/commit/48a6cb2e56c6343ac0bb11ca32b44257af42aeb1) fix(deps): bump github.com/hashicorp/vault/api from 1.12.2 to 1.13.0 (#1128)
