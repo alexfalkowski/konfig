@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: 5f7087d97b3a7f6b57bdeea2026251e979637f79
+  revision: 5d6a05d27a0e08a265be5db5a8fe06a7628c3ecb
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -163,7 +163,7 @@ GEM
     rspec-support (3.13.1)
     rspec-wait (0.0.9)
       rspec (>= 3, < 4)
-    rubocop (1.63.2)
+    rubocop (1.63.3)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
