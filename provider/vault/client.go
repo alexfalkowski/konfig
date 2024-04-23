@@ -20,20 +20,16 @@ type ConfigParams struct {
 }
 
 // NewConfig for vault.
-func NewConfig(params ConfigParams) (*api.Config, error) {
-	client, err := http.NewClient(
+func NewConfig(params ConfigParams) *api.Config {
+	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.Config.UserAgent),
 	)
-	if err != nil {
-		return nil, err
-	}
 
 	config := api.DefaultConfig()
-
 	config.HttpClient = client
 
-	return config, nil
+	return config
 }
 
 // NewClient for vault.

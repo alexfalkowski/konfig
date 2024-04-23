@@ -23,12 +23,8 @@ type RegistrationsParams struct {
 }
 
 // NewRegistrations for health.
-func NewRegistrations(params RegistrationsParams) (health.Registrations, error) {
-	client, err := http.NewClient(http.WithClientUserAgent(params.HTTP.UserAgent))
-	if err != nil {
-		return nil, err
-	}
-
+func NewRegistrations(params RegistrationsParams) health.Registrations {
+	client := http.NewClient(http.WithClientUserAgent(params.HTTP.UserAgent))
 	d := time.MustParseDuration(params.Health.Duration)
 	registrations := health.Registrations{
 		server.NewRegistration("noop", d, checker.NewNoopChecker()),
@@ -40,5 +36,5 @@ func NewRegistrations(params RegistrationsParams) (health.Registrations, error) 
 		registrations = append(registrations, server.NewRegistration("git", d, checker.NewHTTPChecker(s.Git.URL, client)))
 	}
 
-	return registrations, nil
+	return registrations
 }
