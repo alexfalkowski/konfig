@@ -30,13 +30,10 @@ type ConfiguratorParams struct {
 
 // NewConfigurator for source.
 func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
-	client, err := http.NewClient(
+	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.HTTPConfig.UserAgent),
 	)
-	if err != nil {
-		return nil, err
-	}
 
 	var configurator configurator.Configurator
 

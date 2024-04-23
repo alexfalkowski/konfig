@@ -25,13 +25,10 @@ type ClientParams struct {
 
 // NewClient for SSM.
 func NewClient(params ClientParams) (*ssm.Client, error) {
-	client, err := http.NewClient(
+	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.Config.UserAgent),
 	)
-	if err != nil {
-		return nil, err
-	}
 
 	ctx := context.Background()
 	opts := []func(*config.LoadOptions) error{
