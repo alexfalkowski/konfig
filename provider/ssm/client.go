@@ -2,10 +2,9 @@ package ssm
 
 import (
 	"context"
-	"os"
 
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/alexfalkowski/konfig/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"go.opentelemetry.io/otel/metric"
@@ -35,17 +34,8 @@ func NewClient(params ClientParams) (*ssm.Client, error) {
 	}
 
 	ctx := context.Background()
-
-	resolver := aws.EndpointResolverWithOptionsFunc(func(_, region string, _ ...any) (aws.Endpoint, error) {
-		url := os.Getenv("AWS_URL")
-		if url != "" {
-			return aws.Endpoint{PartitionID: "aws", URL: url, SigningRegion: region}, nil
-		}
-
-		return aws.Endpoint{}, &aws.EndpointNotFoundError{}
-	})
 	opts := []func(*config.LoadOptions) error{
-		config.WithEndpointResolverWithOptions(resolver),
+		config.WithEndpointResolverWithOptions(aws.EndpointResolver()),
 		config.WithHTTPClient(client),
 		config.WithRetryMaxAttempts(int(params.Config.Retry.Attempts)),
 	}

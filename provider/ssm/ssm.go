@@ -6,6 +6,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/marshaller"
 	"github.com/alexfalkowski/go-service/meta"
+	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/aws/aws-sdk-go-v2/service/ssm/types"
@@ -34,10 +35,11 @@ func NewTransformer(client *ssm.Client, json *marshaller.JSON, tracer trace.Trac
 
 // Transform for SSM.
 func (t *Transformer) Transform(ctx context.Context, value string) (any, error) {
-	ctx, span := t.tracer.Start(ctx, "transform", trace.WithSpanKind(trace.SpanKindClient))
+	ctx, span := t.tracer.Start(ctx, operationName("transform"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
 	ctx = tm.WithTraceID(ctx, meta.ToValuer(span.SpanContext().TraceID()))
+	tracer.Meta(ctx, span)
 
 	out, err := t.client.GetParameter(ctx, &ssm.GetParameterInput{Name: &value})
 	if err != nil {
@@ -72,4 +74,8 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 // IsMissing value for SSM.
 func (t *Transformer) IsMissing(err error) bool {
 	return errors.Is(err, errMissing)
+}
+
+func operationName(name string) string {
+	return tracer.OperationName("ssm", name)
 }
