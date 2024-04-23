@@ -6,14 +6,14 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 
 	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
+	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
+	"github.com/alexfalkowski/konfig/aws"
 	source "github.com/alexfalkowski/konfig/source/configurator"
-	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
-	"github.com/aws/aws-sdk-go-v2/aws"
+	ke "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
@@ -40,22 +40,15 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	ctx, span := c.span(ctx)
 	defer span.End()
 
-	resolver := aws.EndpointResolverWithOptionsFunc(func(_, region string, _ ...any) (aws.Endpoint, error) {
-		url := os.Getenv("AWS_URL")
-		if url != "" {
-			return aws.Endpoint{PartitionID: "aws", URL: url, SigningRegion: region}, nil
-		}
-
-		return aws.Endpoint{}, &aws.EndpointNotFoundError{}
-	})
-
 	opts := []func(*config.LoadOptions) error{
-		config.WithEndpointResolverWithOptions(resolver),
+		config.WithEndpointResolverWithOptions(aws.EndpointResolver()),
 		config.WithHTTPClient(c.client),
 	}
 
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
 	if err != nil {
+		tracer.Meta(ctx, span)
+
 		span.SetStatus(codes.Error, err.Error())
 		span.RecordError(err)
 
@@ -68,14 +61,14 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	out, err := client.GetObject(ctx, &s3.GetObjectInput{Bucket: &c.cfg.Bucket, Key: &path})
 	if err != nil {
-		meta.WithAttribute(ctx, "s3GetObjectError", meta.Error(err))
+		tracer.Meta(ctx, span)
 
 		var nerr *types.NoSuchKey
 		if errors.As(err, &nerr) {
 			span.SetStatus(codes.Error, err.Error())
 			span.RecordError(err)
 
-			return nil, cerrors.ErrNotFound
+			return nil, ke.ErrNotFound
 		}
 
 		span.SetStatus(codes.Error, err.Error())
@@ -86,13 +79,15 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	data, err := io.ReadAll(out.Body)
 	if err != nil {
-		meta.WithAttribute(ctx, "s3ReadAllError", meta.Error(err))
+		tracer.Meta(ctx, span)
 
 		span.SetStatus(codes.Error, err.Error())
 		span.RecordError(err)
 
 		return nil, err
 	}
+
+	tracer.Meta(ctx, span)
 
 	return &source.Config{Kind: file.Extension(path), Data: data}, nil
 }
@@ -110,8 +105,12 @@ func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string)
 }
 
 func (c *Configurator) span(ctx context.Context) (context.Context, trace.Span) {
-	ctx, span := c.tracer.Start(ctx, "get-config", trace.WithSpanKind(trace.SpanKindClient))
+	ctx, span := c.tracer.Start(ctx, operationName("get config"), trace.WithSpanKind(trace.SpanKindClient))
 	ctx = tm.WithTraceID(ctx, meta.ToValuer(span.SpanContext().TraceID()))
 
 	return ctx, span
+}
+
+func operationName(name string) string {
+	return tracer.OperationName("s3", name)
 }

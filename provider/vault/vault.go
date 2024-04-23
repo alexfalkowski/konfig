@@ -5,6 +5,7 @@ import (
 	"errors"
 
 	"github.com/alexfalkowski/go-service/meta"
+	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
 	"github.com/hashicorp/vault/api"
 	"go.opentelemetry.io/otel/codes"
@@ -26,10 +27,11 @@ func NewTransformer(client *api.Client, t trace.Tracer) *Transformer {
 
 // Transform for vault.
 func (t *Transformer) Transform(ctx context.Context, value string) (any, error) {
-	ctx, span := t.tracer.Start(ctx, "transform", trace.WithSpanKind(trace.SpanKindClient))
+	ctx, span := t.tracer.Start(ctx, operationName("transform"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
 	ctx = tm.WithTraceID(ctx, meta.ToValuer(span.SpanContext().TraceID()))
+	tracer.Meta(ctx, span)
 
 	sec, err := t.client.Logical().ReadWithContext(ctx, value)
 	if err != nil {
@@ -59,4 +61,8 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 // IsMissing value for vault.
 func (t *Transformer) IsMissing(err error) bool {
 	return errors.Is(err, errMissing)
+}
+
+func operationName(name string) string {
+	return tracer.OperationName("vault", name)
 }

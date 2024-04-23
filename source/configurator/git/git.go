@@ -11,22 +11,23 @@ import (
 
 	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
+	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
 	source "github.com/alexfalkowski/konfig/source/configurator"
-	cerrors "github.com/alexfalkowski/konfig/source/configurator/errors"
+	ke "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
-	gclient "github.com/go-git/go-git/v5/plumbing/transport/client"
-	ghttp "github.com/go-git/go-git/v5/plumbing/transport/http"
+	gc "github.com/go-git/go-git/v5/plumbing/transport/client"
+	gh "github.com/go-git/go-git/v5/plumbing/transport/http"
 	"go.opentelemetry.io/otel/trace"
 )
 
 // NewConfigurator for git.
 func NewConfigurator(cfg *Config, t trace.Tracer, client *http.Client) *Configurator {
-	c := ghttp.NewClient(client)
+	c := gh.NewClient(client)
 
-	gclient.InstallProtocol("http", c)
-	gclient.InstallProtocol("https", c)
+	gc.InstallProtocol("http", c)
+	gc.InstallProtocol("https", c)
 
 	return &Configurator{cfg: cfg, tracer: t}
 }
@@ -45,22 +46,18 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	defer c.mux.Unlock()
 
 	if err := c.clone(ctx); err != nil {
-		meta.WithAttribute(ctx, "gitCloneError", meta.Error(err))
-
 		return nil, err
 	}
 
 	if err := c.pull(ctx); err != nil {
-		meta.WithAttribute(ctx, "gitPullError", meta.Error(err))
-
 		return nil, err
 	}
 
 	if err := c.checkout(params.Application, params.Version); err != nil {
-		meta.WithAttribute(ctx, "gitCheckoutError", meta.Error(err))
-
 		if errors.Is(err, plumbing.ErrReferenceNotFound) {
-			return nil, cerrors.ErrNotFound
+			meta.WithAttribute(ctx, "gitCheckoutError", meta.Error(err))
+
+			return nil, ke.ErrNotFound
 		}
 
 		return nil, err
@@ -71,10 +68,10 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
-		meta.WithAttribute(ctx, "gitFileError", meta.Error(err))
-
 		if os.IsNotExist(err) {
-			return nil, cerrors.ErrNotFound
+			meta.WithAttribute(ctx, "gitFileError", meta.Error(err))
+
+			return nil, ke.ErrNotFound
 		}
 
 		return nil, err
@@ -91,10 +88,11 @@ func (c *Configurator) checkout(app, ver string) error {
 }
 
 func (c *Configurator) pull(ctx context.Context) error {
-	ctx, span := c.tracer.Start(ctx, "pull", trace.WithSpanKind(trace.SpanKindClient))
+	ctx, span := c.tracer.Start(ctx, operationName("pull"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
 	ctx = tm.WithTraceID(ctx, meta.ToValuer(span.SpanContext().TraceID()))
+	tracer.Meta(ctx, span)
 
 	tree, _ := c.repo.Worktree()
 
@@ -114,16 +112,17 @@ func (c *Configurator) clone(ctx context.Context) error {
 		return nil
 	}
 
-	ctx, span := c.tracer.Start(ctx, "clone", trace.WithSpanKind(trace.SpanKindClient))
+	ctx, span := c.tracer.Start(ctx, operationName("clone"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
 	ctx = tm.WithTraceID(ctx, meta.ToValuer(span.SpanContext().TraceID()))
+	tracer.Meta(ctx, span)
 
 	if err := os.RemoveAll(c.cfg.Dir); err != nil {
 		return err
 	}
 
-	opts := &git.CloneOptions{Auth: &ghttp.BasicAuth{Username: "a", Password: c.cfg.Token()}, URL: c.cfg.URL}
+	opts := &git.CloneOptions{Auth: &gh.BasicAuth{Username: "a", Password: c.cfg.Token()}, URL: c.cfg.URL}
 
 	r, err := git.PlainCloneContext(ctx, c.cfg.Dir, false, opts)
 	if err != nil {
@@ -145,4 +144,8 @@ func (c *Configurator) path(app, env, continent, country, cmd, kind string) stri
 	}
 
 	return fmt.Sprintf("%s/%s/%s/%s/%s.%s", app, env, continent, country, cmd, kind)
+}
+
+func operationName(name string) string {
+	return tracer.OperationName("git", name)
 }
