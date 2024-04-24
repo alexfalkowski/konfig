@@ -8,7 +8,6 @@ import (
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
 	"github.com/hashicorp/vault/api"
-	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -35,8 +34,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 
 	sec, err := t.client.Logical().ReadWithContext(ctx, value)
 	if err != nil {
-		span.SetStatus(codes.Error, err.Error())
-		span.RecordError(err)
+		tracer.Error(err, span)
 
 		return value, err
 	}
