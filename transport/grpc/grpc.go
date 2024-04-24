@@ -5,7 +5,6 @@ import (
 
 	ac "github.com/alexfalkowski/auth/client"
 	c "github.com/alexfalkowski/go-service/client"
-	"github.com/alexfalkowski/go-service/security"
 	"github.com/alexfalkowski/go-service/security/token"
 	"github.com/alexfalkowski/go-service/transport/grpc"
 	gt "github.com/alexfalkowski/go-service/transport/grpc/security/token"
@@ -29,29 +28,22 @@ type ClientOpts struct {
 
 // NewClient for gRPC.
 func NewClient(options ClientOpts) (*g.ClientConn, error) {
+	sec, err := grpc.WithClientSecure(options.ClientConfig.Security)
+	if err != nil {
+		return nil, err
+	}
+
 	opts := []grpc.ClientOption{
 		grpc.WithClientLogger(options.Logger), grpc.WithClientTracer(options.Tracer),
 		grpc.WithClientMetrics(options.Meter), grpc.WithClientRetry(options.ClientConfig.Retry),
-		grpc.WithClientUserAgent(options.ClientConfig.UserAgent),
+		grpc.WithClientUserAgent(options.ClientConfig.UserAgent), sec,
 	}
 
 	if IsAuth(options.TokenConfig) {
 		opts = append(opts, grpc.WithClientDialOption(g.WithPerRPCCredentials(gt.NewPerRPCCredentials(options.Token.Generator("jwt", "konfig")))))
 	}
 
-	if security.IsEnabled(options.ClientConfig.Security) {
-		sec, err := grpc.WithClientSecure(options.ClientConfig.Security)
-		if err != nil {
-			return nil, err
-		}
-
-		opts = append(opts, sec)
-	}
-
 	conn, err := grpc.NewClient(options.ClientConfig.Host, opts...)
-	if err != nil {
-		return nil, err
-	}
 
 	options.Lifecycle.Append(fx.Hook{
 		OnStop: func(_ context.Context) error {
@@ -59,5 +51,5 @@ func NewClient(options ClientOpts) (*g.ClientConn, error) {
 		},
 	})
 
-	return conn, nil
+	return conn, err
 }
