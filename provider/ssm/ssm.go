@@ -10,7 +10,6 @@ import (
 	tm "github.com/alexfalkowski/go-service/transport/meta"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/aws/aws-sdk-go-v2/service/ssm/types"
-	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -48,8 +47,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 			return value, errMissing
 		}
 
-		span.SetStatus(codes.Error, err.Error())
-		span.RecordError(err)
+		tracer.Error(err, span)
 
 		return value, err
 	}
@@ -57,8 +55,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 	var sec Secret
 
 	if err := t.json.Unmarshal([]byte(*out.Parameter.Value), &sec); err != nil {
-		span.SetStatus(codes.Error, err.Error())
-		span.RecordError(err)
+		tracer.Error(err, span)
 
 		return value, err
 	}

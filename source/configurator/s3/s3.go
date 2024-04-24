@@ -17,7 +17,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
-	"go.opentelemetry.io/otel/codes"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -48,9 +47,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
 	if err != nil {
 		tracer.Meta(ctx, span)
-
-		span.SetStatus(codes.Error, err.Error())
-		span.RecordError(err)
+		tracer.Error(err, span)
 
 		return nil, err
 	}
@@ -65,14 +62,12 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 		var nerr *types.NoSuchKey
 		if errors.As(err, &nerr) {
-			span.SetStatus(codes.Error, err.Error())
-			span.RecordError(err)
+			tracer.Error(err, span)
 
 			return nil, ke.ErrNotFound
 		}
 
-		span.SetStatus(codes.Error, err.Error())
-		span.RecordError(err)
+		tracer.Error(err, span)
 
 		return nil, err
 	}
@@ -80,9 +75,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	data, err := io.ReadAll(out.Body)
 	if err != nil {
 		tracer.Meta(ctx, span)
-
-		span.SetStatus(codes.Error, err.Error())
-		span.RecordError(err)
+		tracer.Error(err, span)
 
 		return nil, err
 	}
