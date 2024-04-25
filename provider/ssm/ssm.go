@@ -37,7 +37,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 	ctx, span := t.tracer.Start(ctx, operationName("transform"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, meta.ToValuer(span.SpanContext().TraceID()))
+	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
 	tracer.Meta(ctx, span)
 
 	out, err := t.client.GetParameter(ctx, &ssm.GetParameterInput{Name: &value})
