@@ -99,7 +99,7 @@ func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string)
 
 func (c *Configurator) span(ctx context.Context) (context.Context, trace.Span) {
 	ctx, span := c.tracer.Start(ctx, operationName("get config"), trace.WithSpanKind(trace.SpanKindClient))
-	ctx = tm.WithTraceID(ctx, meta.ToValuer(span.SpanContext().TraceID()))
+	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
 
 	return ctx, span
 }
