@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.100.2](https://github.com/alexfalkowski/konfig/releases/tag/v1.100.2) - 2024-04-28
+
+- [`a5d8dd9`](https://github.com/alexfalkowski/konfig/commit/a5d8dd9face23d2c1bf2aab8ad21339c0007d17d) fix(client): remove err check (#1174)
+- [`edd7a3a`](https://github.com/alexfalkowski/konfig/commit/edd7a3aca96c2535f723d44fdce5d1823a965ccd) build(ci): store artifacts (#1173)
+- [`e474938`](https://github.com/alexfalkowski/konfig/commit/e474938573978bb4bedef87b39354323113affcc) build(ci): html coverage (#1172)
+- [`696d8a1`](https://github.com/alexfalkowski/konfig/commit/696d8a1ac023ff012474ce92f03613c47e506a4f) build(deps): bump bin from `62c9b8d` to `3976e45` (#1171)
+- [`edf8881`](https://github.com/alexfalkowski/konfig/commit/edf88817200a5200bb594b9f453f15e4e208f241) build(coveralls): remove goveralls (#1169)
+
 ## [v1.100.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.100.1) - 2024-04-27
 
 - [`b8e0d35`](https://github.com/alexfalkowski/konfig/commit/b8e0d358a0d3ca8d08292739c5c0d142c5ad8e10) fix(deps): upgraded github.com/alexfalkowski/auth to v1.101.1 (#1168)
