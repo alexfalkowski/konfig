@@ -38,9 +38,6 @@ func NewClient(params ClientParams) (*ssm.Client, error) {
 	}
 
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
-	if err != nil {
-		return nil, err
-	}
 
-	return ssm.NewFromConfig(cfg), nil
+	return ssm.NewFromConfig(cfg), err
 }
