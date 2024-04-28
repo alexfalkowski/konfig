@@ -1,5 +1,4 @@
 [![CircleCI](https://circleci.com/gh/alexfalkowski/konfig.svg?style=svg)](https://circleci.com/gh/alexfalkowski/konfig)
-[![Coverage Status](https://coveralls.io/repos/github/alexfalkowski/konfig/badge.svg?branch=master)](https://coveralls.io/github/alexfalkowski/konfig?branch=master)
 
 # Konfig
 
@@ -23,6 +22,7 @@ Here are some reasons:
 
 We want to standardize configuration and check it into version control. We are firm believers of using [GitOps](https://about.gitlab.com/topics/gitops/). Take a look at [Your configs suck? Try a real programming language](https://beepb00p.xyz/configs-suck.html). Some systems to have a look at:
 - [The Dhall configuration language](https://dhall-lang.org/)
+- [The Pkl configuration language](https://pkl-lang.org/index.html)
 
 ## Format
 
