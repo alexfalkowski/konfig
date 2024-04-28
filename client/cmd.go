@@ -21,11 +21,8 @@ type OutputConfig struct {
 // NewOutputConfig for client.
 func NewOutputConfig(factory *marshaller.Factory) (*OutputConfig, error) {
 	c, err := cmd.NewConfig(OutputFlag, factory)
-	if err != nil {
-		return nil, err
-	}
 
-	return &OutputConfig{Config: c}, nil
+	return &OutputConfig{Config: c}, err
 }
 
 // RunCommandParams for client.
