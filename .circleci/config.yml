@@ -194,7 +194,7 @@ jobs:
           at: test
       - run: git submodule sync
       - run: git submodule update --init
-      - run: make func-coverage
+      - run: make html-coverage
     resource_class: large
   release:
     docker:
