@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: 33068196711d55ea9c8bdfb686f9555fe0949a6c
+  revision: 26f52bace6b4600eaab18ccfb95780c3b7a59299
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -163,7 +163,7 @@ GEM
     rspec-support (3.13.1)
     rspec-wait (0.0.10)
       rspec (>= 3.0)
-    rubocop (1.63.3)
+    rubocop (1.63.4)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -174,8 +174,8 @@ GEM
       rubocop-ast (>= 1.31.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.31.2)
-      parser (>= 3.3.0.4)
+    rubocop-ast (1.31.3)
+      parser (>= 3.3.1.0)
     ruby-lsp (0.16.6)
       language_server-protocol (~> 3.17.0)
       prism (>= 0.23.0, < 0.28)
