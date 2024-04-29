@@ -194,7 +194,7 @@ jobs:
           at: test
       - run: git submodule sync
       - run: git submodule update --init
-      - run: make html-coverage
+      - run: make coverage
       - store_artifacts:
           path: test/reports
     resource_class: large
