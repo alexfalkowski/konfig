@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: 754d78a267d1cffcd5f460f8c363407fb9e415e4
+  revision: 5c02d72678d5090c3f5ced17e243f5e35c7902dc
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -11,7 +11,7 @@ GEM
     ast (2.4.2)
     aws-eventstream (1.3.0)
     aws-partitions (1.922.0)
-    aws-sdk-core (3.193.0)
+    aws-sdk-core (3.194.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.651.0)
       aws-sigv4 (~> 1.8)
@@ -19,8 +19,8 @@ GEM
     aws-sdk-kms (1.80.0)
       aws-sdk-core (~> 3, >= 3.193.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.148.0)
-      aws-sdk-core (~> 3, >= 3.193.0)
+    aws-sdk-s3 (1.149.0)
+      aws-sdk-core (~> 3, >= 3.194.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.8)
     aws-sdk-ssm (1.168.0)
