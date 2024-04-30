@@ -3,9 +3,9 @@ module github.com/alexfalkowski/konfig
 go 1.22.2
 
 require (
-	github.com/alexfalkowski/auth v1.101.6
+	github.com/alexfalkowski/auth v1.101.7
 	github.com/alexfalkowski/go-health v1.16.1
-	github.com/alexfalkowski/go-service v1.172.5
+	github.com/alexfalkowski/go-service v1.172.7
 	github.com/aws/aws-sdk-go-v2 v1.26.1
 	github.com/aws/aws-sdk-go-v2/config v1.27.11
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.53.1
@@ -19,7 +19,7 @@ require (
 	go.uber.org/zap v1.27.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20240415180920-8c6c420018be
 	google.golang.org/grpc v1.63.2
-	google.golang.org/protobuf v1.33.0
+	google.golang.org/protobuf v1.34.0
 )
 
 require (
@@ -128,7 +128,7 @@ require (
 	github.com/shoenig/go-m1cpu v0.1.6 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/skeema/knownhosts v1.2.2 // indirect
-	github.com/sony/gobreaker v0.5.0 // indirect
+	github.com/sony/gobreaker v1.0.0 // indirect
 	github.com/spf13/cobra v1.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/standard-webhooks/standard-webhooks/libraries v0.0.0-20240423152038-0519ca272bb2 // indirect
