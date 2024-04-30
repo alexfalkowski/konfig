@@ -16,7 +16,7 @@ import (
 
 // ClientOptions for cmd.
 var ClientOptions = []fx.Option{
-	fx.NopLogger, runtime.Module, debug.Module, feature.Module,
+	runtime.Module, debug.Module, feature.Module,
 	compressor.Module, marshaller.Module,
 	telemetry.Module, metrics.Module, config.Module,
 	ac.Module, kc.CommandModule, Module,
