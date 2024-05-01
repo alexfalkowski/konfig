@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: d440becbe18040dc59785236953ab1811cd7be60
+  revision: 163e8326f21daddbce233fe90408ac1bfb037cc2
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -77,22 +77,22 @@ GEM
     google-protobuf (3.25.3-x86_64-linux)
     googleapis-common-protos-types (1.14.0)
       google-protobuf (~> 3.18)
-    grpc (1.62.0)
+    grpc (1.63.0)
       google-protobuf (~> 3.25)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.62.0-aarch64-linux)
+    grpc (1.63.0-aarch64-linux)
       google-protobuf (~> 3.25)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.62.0-arm64-darwin)
+    grpc (1.63.0-arm64-darwin)
       google-protobuf (~> 3.25)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.62.0-x86-linux)
+    grpc (1.63.0-x86-linux)
       google-protobuf (~> 3.25)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.62.0-x86_64-darwin)
+    grpc (1.63.0-x86_64-darwin)
       google-protobuf (~> 3.25)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.62.0-x86_64-linux)
+    grpc (1.63.0-x86_64-linux)
       google-protobuf (~> 3.25)
       googleapis-common-protos-types (~> 1.0)
     http-accept (1.7.0)
