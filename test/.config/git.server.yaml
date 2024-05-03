@@ -15,14 +15,11 @@ client:
     retry:
       timeout: 10s
       attempts: 3
-debug:
-  port: 6060
 environment: production
 health:
   duration: 1s
   timeout: 1s
 limiter:
-  enabled: true
   kind: user-agent
   pattern: 1000-S
 source:
@@ -32,27 +29,22 @@ source:
     dir: tmp/app-config
 telemetry:
   logger:
-    enabled: true
     level: info
   metrics:
-    enabled: true
     kind: prometheus
   tracer:
-    enabled: true
     kind: otlp
     host: http://localhost:4318/v1/traces
 token:
   kind: auth
 transport:
   http:
-    enabled: true
     port: 11000
     user_agent: "Konfig-server/1.0 HTTP/1.0"
     retry:
       timeout: 10s
       attempts: 3
   grpc:
-    enabled: true
     port: 12000
     user_agent: "Konfig-server/1.0 gRPC/1.0"
     retry:
