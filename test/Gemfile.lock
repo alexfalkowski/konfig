@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: 7e9497c77a9090fdeafa8bc1960946b2605acec0
+  revision: 19a28174316080770010751bcd4fda12aeb08ade
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -188,7 +188,7 @@ GEM
       rack-protection (= 4.0.0)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11367)
+    sorbet-runtime (0.5.11368)
     sys-uname (1.2.3)
       ffi (~> 1.1)
     tilt (2.3.0)
