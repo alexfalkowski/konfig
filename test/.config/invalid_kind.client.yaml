@@ -25,14 +25,11 @@ client:
 environment: production
 telemetry:
   logger:
-    enabled: true
     level: info
   metrics:
-    enabled: true
     kind: otlp
     host: http://localhost:9009/otlp/v1/metrics
   tracer:
-    enabled: true
     host: http://localhost:4318/v1/traces
 token:
   kind: auth
