@@ -23,7 +23,6 @@ source:
   kind: git
   git:
     url: https://github.com/alexfalkowski/app-config
-    dir: tmp/app-config
 telemetry:
   logger:
     level: info
