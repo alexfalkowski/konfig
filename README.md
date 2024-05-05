@@ -135,7 +135,6 @@ source:
   kind: git
   git:
     url: https://github.com/alexfalkowski/app-config (the configuration repo)
-    dir: tmp/app-config (where to clone the repo to)
 ```
 
 We expect that the folders to have the following conventions:

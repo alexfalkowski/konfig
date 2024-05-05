@@ -4,9 +4,9 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
-	"path/filepath"
 	"sync"
 
 	"github.com/alexfalkowski/go-service/file"
@@ -14,11 +14,15 @@ import (
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	tm "github.com/alexfalkowski/go-service/transport/meta"
 	source "github.com/alexfalkowski/konfig/source/configurator"
-	ke "github.com/alexfalkowski/konfig/source/configurator/errors"
+	ce "github.com/alexfalkowski/konfig/source/configurator/errors"
+	"github.com/go-git/go-billy/v5"
+	"github.com/go-git/go-billy/v5/memfs"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
 	gc "github.com/go-git/go-git/v5/plumbing/transport/client"
 	gh "github.com/go-git/go-git/v5/plumbing/transport/http"
+	"github.com/go-git/go-git/v5/storage"
+	"github.com/go-git/go-git/v5/storage/memory"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -29,15 +33,17 @@ func NewConfigurator(cfg *Config, t trace.Tracer, client *http.Client) *Configur
 	gc.InstallProtocol("http", c)
 	gc.InstallProtocol("https", c)
 
-	return &Configurator{cfg: cfg, tracer: t}
+	return &Configurator{cfg: cfg, tracer: t, storage: memory.NewStorage(), fs: memfs.New()}
 }
 
 // Configurator for git.
 type Configurator struct {
-	cfg    *Config
-	repo   *git.Repository
-	mux    sync.Mutex
-	tracer trace.Tracer
+	cfg     *Config
+	repo    *git.Repository
+	mux     sync.Mutex
+	tracer  trace.Tracer
+	storage storage.Storer
+	fs      billy.Filesystem
 }
 
 // GetConfig for git.
@@ -57,27 +63,28 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 		if errors.Is(err, plumbing.ErrReferenceNotFound) {
 			meta.WithAttribute(ctx, "gitCheckoutError", meta.Error(err))
 
-			return nil, ke.ErrNotFound
+			return nil, ce.ErrNotFound
 		}
 
 		return nil, err
 	}
 
-	p := c.path(params.Application, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
-	path := filepath.Join(c.cfg.Dir, p)
+	path := c.path(params.Application, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
 
-	data, err := os.ReadFile(filepath.Clean(path))
+	f, err := c.fs.Open(path)
 	if err != nil {
 		if os.IsNotExist(err) {
 			meta.WithAttribute(ctx, "gitFileError", meta.Error(err))
 
-			return nil, ke.ErrNotFound
+			return nil, ce.ErrNotFound
 		}
 
 		return nil, err
 	}
 
-	return &source.Config{Kind: file.Extension(path), Data: data}, nil
+	data, err := io.ReadAll(f)
+
+	return &source.Config{Kind: file.Extension(path), Data: data}, err
 }
 
 func (c *Configurator) checkout(app, ver string) error {
@@ -118,13 +125,9 @@ func (c *Configurator) clone(ctx context.Context) error {
 	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
 	tracer.Meta(ctx, span)
 
-	if err := os.RemoveAll(c.cfg.Dir); err != nil {
-		return err
-	}
-
 	opts := &git.CloneOptions{Auth: &gh.BasicAuth{Username: "a", Password: c.cfg.Token()}, URL: c.cfg.URL}
 
-	r, err := git.PlainCloneContext(ctx, c.cfg.Dir, false, opts)
+	r, err := git.CloneContext(ctx, c.storage, c.fs, opts)
 	if err != nil {
 		return err
 	}
