@@ -59,10 +59,10 @@ jobs:
   features-grpc:
     docker:
       - image: alexfalkowski/go:1.22-ruby
-      - image: localstack/localstack:2.3
+      - image: localstack/localstack:3.4
         environment:
           SERVICES: s3,ssm
-      - image: hashicorp/vault:1.15
+      - image: hashicorp/vault:1.16
         environment:
           VAULT_DEV_ROOT_TOKEN_ID: vault-plaintext-root-token
       - image: alexfalkowski/auth:latest
@@ -123,10 +123,10 @@ jobs:
   features-http:
     docker:
       - image: alexfalkowski/go:1.22-ruby
-      - image: localstack/localstack:2.3
+      - image: localstack/localstack:3.4
         environment:
           SERVICES: s3,ssm
-      - image: hashicorp/vault:1.15
+      - image: hashicorp/vault:1.16
         environment:
           VAULT_DEV_ROOT_TOKEN_ID: vault-plaintext-root-token
       - image: alexfalkowski/auth:latest
