@@ -24,6 +24,7 @@ import (
 	"github.com/go-git/go-git/v5/storage"
 	"github.com/go-git/go-git/v5/storage/memory"
 	"go.opentelemetry.io/otel/trace"
+	"golang.org/x/sync/errgroup"
 )
 
 // NewConfigurator for git.
@@ -33,7 +34,13 @@ func NewConfigurator(cfg *Config, t trace.Tracer, client *http.Client) *Configur
 	gc.InstallProtocol("http", c)
 	gc.InstallProtocol("https", c)
 
-	return &Configurator{cfg: cfg, tracer: t, storage: memory.NewStorage(), fs: memfs.New()}
+	gr := &errgroup.Group{}
+	gr.SetLimit(1)
+
+	cf := &Configurator{cfg: cfg, tracer: t, storage: memory.NewStorage(), fs: memfs.New(), gr: gr}
+	gr.Go(func() error { return cf.clone(context.Background()) })
+
+	return cf
 }
 
 // Configurator for git.
@@ -44,6 +51,7 @@ type Configurator struct {
 	tracer  trace.Tracer
 	storage storage.Storer
 	fs      billy.Filesystem
+	gr      *errgroup.Group
 }
 
 // GetConfig for git.
@@ -51,7 +59,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
-	if err := c.clone(ctx); err != nil {
+	if err := c.wait(ctx); err != nil {
 		return nil, err
 	}
 
@@ -59,39 +67,47 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 		return nil, err
 	}
 
-	if err := c.checkout(params.Application, params.Version); err != nil {
-		if errors.Is(err, plumbing.ErrReferenceNotFound) {
-			meta.WithAttribute(ctx, "gitCheckoutError", meta.Error(err))
-
-			return nil, ce.ErrNotFound
-		}
-
+	if err := c.checkout(ctx, params.Application, params.Version); err != nil {
 		return nil, err
 	}
 
 	path := c.path(params.Application, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
-
-	f, err := c.fs.Open(path)
-	if err != nil {
-		if os.IsNotExist(err) {
-			meta.WithAttribute(ctx, "gitFileError", meta.Error(err))
-
-			return nil, ce.ErrNotFound
-		}
-
-		return nil, err
-	}
-
-	data, err := io.ReadAll(f)
+	data, err := c.open(ctx, path)
 
 	return &source.Config{Kind: file.Extension(path), Data: data}, err
 }
 
-func (c *Configurator) checkout(app, ver string) error {
+func (c *Configurator) wait(ctx context.Context) error {
+	ctx, span := c.tracer.Start(ctx, operationName("wait"), trace.WithSpanKind(trace.SpanKindClient))
+	defer span.End()
+
+	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
+	tracer.Meta(ctx, span)
+
+	return c.gr.Wait()
+}
+
+func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
+	ctx, span := c.tracer.Start(ctx, operationName("checkout"), trace.WithSpanKind(trace.SpanKindClient))
+	defer span.End()
+
+	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
+	tracer.Meta(ctx, span)
+
 	tag := fmt.Sprintf("%s/%s", app, ver)
 	tree, _ := c.repo.Worktree()
 
-	return tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(tag)})
+	if err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(tag)}); err != nil {
+		if errors.Is(err, plumbing.ErrReferenceNotFound) {
+			meta.WithAttribute(ctx, "gitCheckoutError", meta.Error(err))
+
+			return ce.ErrNotFound
+		}
+
+		return err
+	}
+
+	return nil
 }
 
 func (c *Configurator) pull(ctx context.Context) error {
@@ -115,10 +131,6 @@ func (c *Configurator) pull(ctx context.Context) error {
 }
 
 func (c *Configurator) clone(ctx context.Context) error {
-	if c.repo != nil {
-		return nil
-	}
-
 	ctx, span := c.tracer.Start(ctx, operationName("clone"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
@@ -147,6 +159,27 @@ func (c *Configurator) path(app, env, continent, country, cmd, kind string) stri
 	}
 
 	return fmt.Sprintf("%s/%s/%s/%s/%s.%s", app, env, continent, country, cmd, kind)
+}
+
+func (c *Configurator) open(ctx context.Context, path string) ([]byte, error) {
+	ctx, span := c.tracer.Start(ctx, operationName("open"), trace.WithSpanKind(trace.SpanKindClient))
+	defer span.End()
+
+	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
+	tracer.Meta(ctx, span)
+
+	f, err := c.fs.Open(path)
+	if err != nil {
+		if os.IsNotExist(err) {
+			meta.WithAttribute(ctx, "gitFileError", meta.Error(err))
+
+			return nil, ce.ErrNotFound
+		}
+
+		return nil, err
+	}
+
+	return io.ReadAll(f)
 }
 
 func operationName(name string) string {
