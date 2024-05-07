@@ -24,6 +24,7 @@ import (
 	"github.com/go-git/go-git/v5/storage"
 	"github.com/go-git/go-git/v5/storage/memory"
 	"go.opentelemetry.io/otel/trace"
+	"golang.org/x/sync/errgroup"
 )
 
 // NewConfigurator for git.
@@ -33,7 +34,13 @@ func NewConfigurator(cfg *Config, t trace.Tracer, client *http.Client) *Configur
 	gc.InstallProtocol("http", c)
 	gc.InstallProtocol("https", c)
 
-	return &Configurator{cfg: cfg, tracer: t, storage: memory.NewStorage(), fs: memfs.New()}
+	gr := &errgroup.Group{}
+	gr.SetLimit(1)
+
+	cf := &Configurator{cfg: cfg, tracer: t, storage: memory.NewStorage(), fs: memfs.New(), gr: gr}
+	cf.gr.Go(cf.clone)
+
+	return cf
 }
 
 // Configurator for git.
@@ -44,6 +51,7 @@ type Configurator struct {
 	tracer  trace.Tracer
 	storage storage.Storer
 	fs      billy.Filesystem
+	gr      *errgroup.Group
 }
 
 // GetConfig for git.
@@ -51,7 +59,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	c.mux.Lock()
 	defer c.mux.Unlock()
 
-	if err := c.clone(ctx); err != nil {
+	if err := c.gr.Wait(); err != nil {
 		return nil, err
 	}
 
@@ -114,20 +122,10 @@ func (c *Configurator) pull(ctx context.Context) error {
 	return nil
 }
 
-func (c *Configurator) clone(ctx context.Context) error {
-	if c.repo != nil {
-		return nil
-	}
-
-	ctx, span := c.tracer.Start(ctx, operationName("clone"), trace.WithSpanKind(trace.SpanKindClient))
-	defer span.End()
-
-	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
-	tracer.Meta(ctx, span)
-
+func (c *Configurator) clone() error {
 	opts := &git.CloneOptions{Auth: &gh.BasicAuth{Username: "a", Password: c.cfg.Token()}, URL: c.cfg.URL}
 
-	r, err := git.CloneContext(ctx, c.storage, c.fs, opts)
+	r, err := git.Clone(c.storage, c.fs, opts)
 	if err != nil {
 		return err
 	}
