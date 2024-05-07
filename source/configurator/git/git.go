@@ -27,13 +27,18 @@ import (
 )
 
 // NewConfigurator for git.
-func NewConfigurator(cfg *Config, t trace.Tracer, client *http.Client) *Configurator {
+func NewConfigurator(cfg *Config, t trace.Tracer, client *http.Client) (*Configurator, error) {
 	c := gh.NewClient(client)
 
 	gc.InstallProtocol("http", c)
 	gc.InstallProtocol("https", c)
 
-	return &Configurator{cfg: cfg, tracer: t, storage: memory.NewStorage(), fs: memfs.New()}
+	cf := &Configurator{cfg: cfg, tracer: t, storage: memory.NewStorage(), fs: memfs.New()}
+	if err := cf.clone(); err != nil {
+		return cf, err
+	}
+
+	return cf, nil
 }
 
 // Configurator for git.
@@ -50,10 +55,6 @@ type Configurator struct {
 func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
 	c.mux.Lock()
 	defer c.mux.Unlock()
-
-	if err := c.clone(ctx); err != nil {
-		return nil, err
-	}
 
 	if err := c.pull(ctx); err != nil {
 		return nil, err
@@ -114,20 +115,10 @@ func (c *Configurator) pull(ctx context.Context) error {
 	return nil
 }
 
-func (c *Configurator) clone(ctx context.Context) error {
-	if c.repo != nil {
-		return nil
-	}
-
-	ctx, span := c.tracer.Start(ctx, operationName("clone"), trace.WithSpanKind(trace.SpanKindClient))
-	defer span.End()
-
-	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
-	tracer.Meta(ctx, span)
-
+func (c *Configurator) clone() error {
 	opts := &git.CloneOptions{Auth: &gh.BasicAuth{Username: "a", Password: c.cfg.Token()}, URL: c.cfg.URL}
 
-	r, err := git.CloneContext(ctx, c.storage, c.fs, opts)
+	r, err := git.Clone(c.storage, c.fs, opts)
 	if err != nil {
 		return err
 	}

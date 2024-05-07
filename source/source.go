@@ -3,6 +3,7 @@ package source
 import (
 	"errors"
 
+	se "github.com/alexfalkowski/go-service/errors"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
@@ -41,7 +42,12 @@ func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, erro
 	case params.Config.IsFolder():
 		configurator = folder.NewConfigurator(params.Config.Folder)
 	case params.Config.IsGit():
-		configurator = git.NewConfigurator(params.Config.Git, params.Tracer, client)
+		c, err := git.NewConfigurator(params.Config.Git, params.Tracer, client)
+		if err != nil {
+			return nil, se.Prefix("new configurator", err)
+		}
+
+		configurator = c
 	case params.Config.IsS3():
 		configurator = s3.NewConfigurator(params.Config.S3, params.Tracer, client)
 	default:
