@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.110.2](https://github.com/alexfalkowski/konfig/releases/tag/v1.110.2) - 2024-05-08
+
+- [`e1486c3`](https://github.com/alexfalkowski/konfig/commit/e1486c317558eb39d918fb5b7dbc5610ce6f3f8c) fix(deps): upgraded go to v1.22.3 (#1212)
+- [`68b8198`](https://github.com/alexfalkowski/konfig/commit/68b81988509c4654c508790d34e5f44e6b7bb711) fix(deps): bump golang.org/x/sync from 0.6.0 to 0.7.0 (#1210)
+
 ## [v1.110.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.110.1) - 2024-05-07
 
 - [`03c5527`](https://github.com/alexfalkowski/konfig/commit/03c55273177d3ddd8f81a9edb8a325d12b75a3e3) fix(deps): upgraded github.com/alexfalkowski/auth to v1.109.3 (#1209)
