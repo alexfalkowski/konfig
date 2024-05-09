@@ -4,7 +4,9 @@ import (
 	"context"
 
 	ac "github.com/alexfalkowski/auth/client"
-	c "github.com/alexfalkowski/go-service/client"
+	"github.com/alexfalkowski/auth/security"
+	"github.com/alexfalkowski/go-service/client"
+	"github.com/alexfalkowski/go-service/os"
 	"github.com/alexfalkowski/go-service/security/token"
 	"github.com/alexfalkowski/go-service/transport/grpc"
 	gt "github.com/alexfalkowski/go-service/transport/grpc/security/token"
@@ -18,7 +20,7 @@ import (
 // ClientOpts for gRPC.
 type ClientOpts struct {
 	Lifecycle    fx.Lifecycle
-	ClientConfig *c.Config
+	ClientConfig *client.Config
 	TokenConfig  *token.Config
 	Logger       *zap.Logger
 	Tracer       trace.Tracer
@@ -39,8 +41,9 @@ func NewClient(options ClientOpts) (*g.ClientConn, error) {
 		grpc.WithClientUserAgent(options.ClientConfig.UserAgent), sec,
 	}
 
-	if IsAuth(options.TokenConfig) {
-		opts = append(opts, grpc.WithClientDialOption(g.WithPerRPCCredentials(gt.NewPerRPCCredentials(options.Token.Generator("jwt", "konfig")))))
+	if security.IsAuth(options.TokenConfig) {
+		kind, name := "jwt", os.ExecutableName()
+		opts = append(opts, grpc.WithClientDialOption(g.WithPerRPCCredentials(gt.NewPerRPCCredentials(options.Token.Generator(kind, name)))))
 	}
 
 	conn, err := grpc.NewClient(options.ClientConfig.Host, opts...)
