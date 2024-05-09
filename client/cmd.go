@@ -5,26 +5,9 @@ import (
 	"io/fs"
 
 	"github.com/alexfalkowski/go-service/cmd"
-	"github.com/alexfalkowski/go-service/errors"
-	"github.com/alexfalkowski/go-service/marshaller"
 	v1 "github.com/alexfalkowski/konfig/client/v1/config"
 	"go.uber.org/fx"
 )
-
-// OutputFlag for client.
-var OutputFlag string
-
-// OutputConfig for client.
-type OutputConfig struct {
-	*cmd.Config
-}
-
-// NewOutputConfig for client.
-func NewOutputConfig(factory *marshaller.Factory) (*OutputConfig, error) {
-	c, err := cmd.NewConfig(OutputFlag, factory)
-
-	return &OutputConfig{Config: c}, errors.Prefix("new output", err)
-}
 
 // RunCommandParams for client.
 type RunCommandParams struct {
@@ -32,7 +15,7 @@ type RunCommandParams struct {
 
 	Lifecycle    fx.Lifecycle
 	Client       *Client
-	OutputConfig *OutputConfig
+	OutputConfig *cmd.OutputConfig
 	Config       *v1.Config
 }
 
