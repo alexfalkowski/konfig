@@ -28,7 +28,7 @@ type ClientOpts struct {
 
 // NewClient for gRPC.
 func NewClient(options ClientOpts) (*g.ClientConn, error) {
-	sec, err := grpc.WithClientSecure(options.ClientConfig.Security)
+	sec, err := grpc.WithClientTLS(options.ClientConfig.TLS)
 	if err != nil {
 		return nil, err
 	}
