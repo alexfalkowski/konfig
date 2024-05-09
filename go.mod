@@ -3,9 +3,9 @@ module github.com/alexfalkowski/konfig
 go 1.22.3
 
 require (
-	github.com/alexfalkowski/auth v1.110.1
+	github.com/alexfalkowski/auth v1.110.2
 	github.com/alexfalkowski/go-health v1.16.2
-	github.com/alexfalkowski/go-service v1.180.0
+	github.com/alexfalkowski/go-service v1.180.1
 	github.com/aws/aws-sdk-go-v2 v1.26.1
 	github.com/aws/aws-sdk-go-v2/config v1.27.12
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.53.2
@@ -126,7 +126,7 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/power-devops/perfstat v0.0.0-20221212215047-62379fc7944b // indirect
-	github.com/prometheus/client_golang v1.19.0 // indirect
+	github.com/prometheus/client_golang v1.19.1 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/prometheus/common v0.48.0 // indirect
 	github.com/prometheus/procfs v0.12.0 // indirect
