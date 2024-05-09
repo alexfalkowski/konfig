@@ -18,12 +18,12 @@ github.com/ProtonMail/go-crypto v1.0.0 h1:LRuvITjQWX+WIfr930YHG2HNfjR1uOfyf5vE0k
 github.com/ProtonMail/go-crypto v1.0.0/go.mod h1:EjAoLdwvbIOoOQr3ihjnSoLZRtE8azugULFRteWMNc0=
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 h1:+JkXLHME8vLJafGhOH4aoV2Iu8bR55nU6iKMVfYVLjY=
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1/go.mod h1:nuudZmJhzWtx2212z+pkuy7B6nkBqa+xwNXZHL1j8cg=
-github.com/alexfalkowski/auth v1.109.5 h1:bVAUx6ZDWjJjBM65MDqq80ooq3Uo5qURnlSxyDW5Dxg=
-github.com/alexfalkowski/auth v1.109.5/go.mod h1:VBZgbcR8e1/0UNNZa+rd+bM8WbvDOY/gAotEaLauUOw=
+github.com/alexfalkowski/auth v1.110.0 h1:YjTD7QN/PYPpPwOoah82ufw7j++xOXFeDFl+G4VBsr4=
+github.com/alexfalkowski/auth v1.110.0/go.mod h1:KsfNqyCDGwQLM0InUhUSlFL3aGOaysYK8fE6/aPGtsI=
 github.com/alexfalkowski/go-health v1.16.2 h1:pouusvYIWkNtcJAzblPLjzwW4WjJ2KsiGfuEKH9ShGE=
 github.com/alexfalkowski/go-health v1.16.2/go.mod h1:3Wp4CqKiDtVQUx9ss5Qs+PwAHkdI9d1xS8x56qYswqY=
-github.com/alexfalkowski/go-service v1.179.4 h1:aJMJQ0DpSV6yRFCYoqCr7v6KRQmX/RuxbetoK9BCbZ0=
-github.com/alexfalkowski/go-service v1.179.4/go.mod h1:0Qn3s0U/AEXufzxjSwl8rg9ZPT1ewSjgqxno9+tiusg=
+github.com/alexfalkowski/go-service v1.180.0 h1:gvbsy4tBs9wk1Cd/GLZphANoAbTcSGlqlu6bofJ4AcA=
+github.com/alexfalkowski/go-service v1.180.0/go.mod h1:9HPNI8ipTSoAg1cSE2efaT1EaIsrcdULUrpkX44s5Wk=
 github.com/alicebob/gopher-json v0.0.0-20200520072559-a9ecdc9d1d3a h1:HbKu58rmZpUGpz5+4FfNmIU+FmZg2P3Xaj2v2bfNWmk=
 github.com/alicebob/gopher-json v0.0.0-20200520072559-a9ecdc9d1d3a/go.mod h1:SGnFV6hVsYE877CKEZ6tDNTjaSXYUk6QqoIK6PrAtcc=
 github.com/alicebob/miniredis/v2 v2.32.1 h1:Bz7CciDnYSaa0mX5xODh6GUITRSx+cVhjNoOR4JssBo=
@@ -318,6 +318,8 @@ github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0/go.mod h1:zJYVVT2
 github.com/lufia/plan9stats v0.0.0-20231016141302-07b5767bb0ed h1:036IscGBfJsFIgJQzlui7nK1Ncm0tp2ktmPj8xO4N/0=
 github.com/lufia/plan9stats v0.0.0-20231016141302-07b5767bb0ed/go.mod h1:ilwx/Dta8jXAgpFYFvSWEMwxmbWXyiUHkd5FwyKhb5k=
 github.com/mailru/easyjson v0.7.7/go.mod h1:xzfreul335JAWq5oZzymOObrkdz5UnU4kGfJJLY9Nlc=
+github.com/matthewhartstonge/argon2 v1.0.0 h1:e65fkae6O8Na6YTy2HAccUbXR+GQHOnpQxeWGqWCRIw=
+github.com/matthewhartstonge/argon2 v1.0.0/go.mod h1:Fm4FHZxdxCM6hg21Jkz3YZVKnU7VnTlqDQ3ghS/Myok=
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
 github.com/mattn/go-colorable v0.1.9/go.mod h1:u6P/XSegPjTcexA+o6vUJrdnUu04hMope9wVRipJSqc=
 github.com/mattn/go-colorable v0.1.12/go.mod h1:u5H1YNBxpqRaxsYJYSkiCWKzEfiAb1Gb520KVy5xxl4=
