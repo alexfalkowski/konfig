@@ -18,8 +18,8 @@ github.com/ProtonMail/go-crypto v1.0.0 h1:LRuvITjQWX+WIfr930YHG2HNfjR1uOfyf5vE0k
 github.com/ProtonMail/go-crypto v1.0.0/go.mod h1:EjAoLdwvbIOoOQr3ihjnSoLZRtE8azugULFRteWMNc0=
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 h1:+JkXLHME8vLJafGhOH4aoV2Iu8bR55nU6iKMVfYVLjY=
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1/go.mod h1:nuudZmJhzWtx2212z+pkuy7B6nkBqa+xwNXZHL1j8cg=
-github.com/alexfalkowski/auth v1.110.0 h1:YjTD7QN/PYPpPwOoah82ufw7j++xOXFeDFl+G4VBsr4=
-github.com/alexfalkowski/auth v1.110.0/go.mod h1:KsfNqyCDGwQLM0InUhUSlFL3aGOaysYK8fE6/aPGtsI=
+github.com/alexfalkowski/auth v1.110.1 h1:8YKUJEZz2zt/LTPkV0CvCfUfs4uhzSA+SwDIH2eHLjA=
+github.com/alexfalkowski/auth v1.110.1/go.mod h1:KsfNqyCDGwQLM0InUhUSlFL3aGOaysYK8fE6/aPGtsI=
 github.com/alexfalkowski/go-health v1.16.2 h1:pouusvYIWkNtcJAzblPLjzwW4WjJ2KsiGfuEKH9ShGE=
 github.com/alexfalkowski/go-health v1.16.2/go.mod h1:3Wp4CqKiDtVQUx9ss5Qs+PwAHkdI9d1xS8x56qYswqY=
 github.com/alexfalkowski/go-service v1.180.0 h1:gvbsy4tBs9wk1Cd/GLZphANoAbTcSGlqlu6bofJ4AcA=
