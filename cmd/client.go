@@ -19,5 +19,5 @@ var ClientOptions = []fx.Option{
 	runtime.Module, debug.Module, feature.Module,
 	compressor.Module, marshaller.Module,
 	telemetry.Module, metrics.Module, config.Module,
-	ac.Module, kc.CommandModule, Module,
+	ac.Module, kc.Module, Module,
 }

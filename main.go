@@ -3,8 +3,7 @@ package main
 import (
 	"os"
 
-	scmd "github.com/alexfalkowski/go-service/cmd"
-	"github.com/alexfalkowski/konfig/client"
+	sc "github.com/alexfalkowski/go-service/cmd"
 	"github.com/alexfalkowski/konfig/cmd"
 )
 
@@ -14,15 +13,12 @@ func main() {
 	}
 }
 
-func command() *scmd.Command {
-	command := scmd.New(cmd.Version)
+func command() *sc.Command {
+	command := sc.New(cmd.Version)
 	command.AddServer(cmd.ServerOptions...)
 
 	c := command.AddClient(cmd.ClientOptions...)
-	c.PersistentFlags().StringVarP(
-		&client.OutputFlag,
-		"output", "o", "env:APP_CONFIG_FILE", "output config location (format kind:location, default env:APP_CONFIG_FILE)",
-	)
+	sc.StringVar(c, sc.OutputFlag, "output", "o", "env:APP_CONFIG_FILE", "output config location (format kind:location, default env:APP_CONFIG_FILE)")
 
 	return command
 }
