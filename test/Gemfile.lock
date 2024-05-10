@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: e5913d3aaa970bff9f58057b4f7fa8d9c635a966
+  revision: bdaa8e2297e1ba6ac4228cd3cdcee5cb70d27e0a
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -10,7 +10,7 @@ GEM
   specs:
     ast (2.4.2)
     aws-eventstream (1.3.0)
-    aws-partitions (1.925.0)
+    aws-partitions (1.926.0)
     aws-sdk-core (3.194.2)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.651.0)
@@ -129,7 +129,7 @@ GEM
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
-    rack (3.0.10)
+    rack (3.0.11)
     rack-protection (4.0.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0, < 4)
@@ -188,7 +188,7 @@ GEM
       rack-protection (= 4.0.0)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11370)
+    sorbet-runtime (0.5.11371)
     sys-uname (1.2.3)
       ffi (~> 1.1)
     tilt (2.3.0)

@@ -45,13 +45,13 @@ func NewConfigurator(cfg *Config, t trace.Tracer, client *http.Client) *Configur
 
 // Configurator for git.
 type Configurator struct {
-	cfg     *Config
-	repo    *git.Repository
-	mux     sync.Mutex
 	tracer  trace.Tracer
 	storage storage.Storer
 	fs      billy.Filesystem
+	cfg     *Config
+	repo    *git.Repository
 	gr      *errgroup.Group
+	mux     sync.Mutex
 }
 
 // GetConfig for git.

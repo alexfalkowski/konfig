@@ -29,9 +29,9 @@ func NewServer(params ServerParams) v1.ServiceServer {
 
 // Server for gRPC.
 type Server struct {
+	v1.UnimplementedServiceServer
 	conf        source.Configurator
 	transformer *source.Transformer
-	v1.UnimplementedServiceServer
 }
 
 // GetConfig for gRPC.
