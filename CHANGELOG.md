@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.115.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.115.0) - 2024-05-11
+
+- [`a8a8624`](https://github.com/alexfalkowski/konfig/commit/a8a86243d2a4a30a7d9b63d0935543fcd63bb334) feat(deps): upgraded github.com/alexfalkowski/auth to v1.114.0 (#1227)
+- [`32dc3d2`](https://github.com/alexfalkowski/konfig/commit/32dc3d2eeed1a645b9d460fa700740c2099dce0f) build(deps): bump bin from `55a2500` to `93c02b7` (#1225)
+- [`018e511`](https://github.com/alexfalkowski/konfig/commit/018e51104e17311f9f1837f4b330b72a2785584d) test(deps): update with ruby-update-all-dep (#1226)
+
 ## [v1.114.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.114.0) - 2024-05-10
 
 - [`bfb382b`](https://github.com/alexfalkowski/konfig/commit/bfb382b7c204f5bcf86c08bdbc47d389ce20c232) feat(deps): upgraded github.com/alexfalkowski/auth to v1.113.0 (#1224)
