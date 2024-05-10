@@ -4,6 +4,7 @@ import (
 	"os"
 
 	sc "github.com/alexfalkowski/go-service/cmd"
+	"github.com/alexfalkowski/go-service/flags"
 	"github.com/alexfalkowski/konfig/cmd"
 )
 
@@ -18,7 +19,8 @@ func command() *sc.Command {
 	command.AddServer(cmd.ServerOptions...)
 
 	c := command.AddClient(cmd.ClientOptions...)
-	sc.StringVar(c, sc.OutputFlag, "output", "o", "env:APP_CONFIG_FILE", "output config location (format kind:location, default env:APP_CONFIG_FILE)")
+	flags.StringVar(c, sc.OutputFlag,
+		"output", "o", "env:APP_CONFIG_FILE", "output config location (format kind:location, default env:APP_CONFIG_FILE)")
 
 	return command
 }
