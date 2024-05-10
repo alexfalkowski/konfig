@@ -24,17 +24,16 @@ const (
 // Config for a specific application.
 type Config struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	Application   string `protobuf:"bytes,1,opt,name=application,proto3" json:"application,omitempty"`
+	Version       string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	Environment   string `protobuf:"bytes,3,opt,name=environment,proto3" json:"environment,omitempty"`
+	Continent     string `protobuf:"bytes,4,opt,name=continent,proto3" json:"continent,omitempty"`
+	Country       string `protobuf:"bytes,5,opt,name=country,proto3" json:"country,omitempty"`
+	Command       string `protobuf:"bytes,6,opt,name=command,proto3" json:"command,omitempty"`
+	Kind          string `protobuf:"bytes,7,opt,name=kind,proto3" json:"kind,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	Application string `protobuf:"bytes,1,opt,name=application,proto3" json:"application,omitempty"`
-	Version     string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
-	Environment string `protobuf:"bytes,3,opt,name=environment,proto3" json:"environment,omitempty"`
-	Continent   string `protobuf:"bytes,4,opt,name=continent,proto3" json:"continent,omitempty"`
-	Country     string `protobuf:"bytes,5,opt,name=country,proto3" json:"country,omitempty"`
-	Command     string `protobuf:"bytes,6,opt,name=command,proto3" json:"command,omitempty"`
-	Kind        string `protobuf:"bytes,7,opt,name=kind,proto3" json:"kind,omitempty"`
-	Data        []byte `protobuf:"bytes,8,opt,name=data,proto3" json:"data,omitempty"`
+	Data          []byte `protobuf:"bytes,8,opt,name=data,proto3" json:"data,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Config) Reset() {
@@ -128,16 +127,15 @@ func (x *Config) GetData() []byte {
 // GetConfigRequest for a specific application.
 type GetConfigRequest struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	Application   string `protobuf:"bytes,1,opt,name=application,proto3" json:"application,omitempty"`
+	Version       string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	Environment   string `protobuf:"bytes,3,opt,name=environment,proto3" json:"environment,omitempty"`
+	Continent     string `protobuf:"bytes,4,opt,name=continent,proto3" json:"continent,omitempty"`
+	Country       string `protobuf:"bytes,5,opt,name=country,proto3" json:"country,omitempty"`
+	Command       string `protobuf:"bytes,6,opt,name=command,proto3" json:"command,omitempty"`
+	Kind          string `protobuf:"bytes,7,opt,name=kind,proto3" json:"kind,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	Application string `protobuf:"bytes,1,opt,name=application,proto3" json:"application,omitempty"`
-	Version     string `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
-	Environment string `protobuf:"bytes,3,opt,name=environment,proto3" json:"environment,omitempty"`
-	Continent   string `protobuf:"bytes,4,opt,name=continent,proto3" json:"continent,omitempty"`
-	Country     string `protobuf:"bytes,5,opt,name=country,proto3" json:"country,omitempty"`
-	Command     string `protobuf:"bytes,6,opt,name=command,proto3" json:"command,omitempty"`
-	Kind        string `protobuf:"bytes,7,opt,name=kind,proto3" json:"kind,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetConfigRequest) Reset() {
@@ -224,11 +222,10 @@ func (x *GetConfigRequest) GetKind() string {
 // GetConfigResponse for a specific application.
 type GetConfigResponse struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	Meta          map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Config        *Config           `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	Meta   map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	Config *Config           `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetConfigResponse) Reset() {
