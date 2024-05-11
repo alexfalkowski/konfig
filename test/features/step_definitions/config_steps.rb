@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Given('I have a {string} valid setup') do |source|
-  Nonnative.configuration.processes[0].environment['CONFIG_FILE'] = ".config/#{source}.server.yaml"
+  Nonnative.configuration.processes[0].environment['KONFIG_CONFIG_FILE'] = ".config/#{source}.server.yaml"
 
   case source
   when 'git'
@@ -22,7 +22,7 @@ Given('I have a {string} valid setup') do |source|
 end
 
 Given('I have a {string} invalid setup') do |source|
-  Nonnative.configuration.processes[0].environment['CONFIG_FILE'] = ".config/invalid.#{source}.server.yaml"
+  Nonnative.configuration.processes[0].environment['KONFIG_CONFIG_FILE'] = ".config/invalid.#{source}.server.yaml"
 
   case source
   when 'git'

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: e3045f16e275f5194320c769f20d16be4f35a620
+  revision: df7d5e2c758023e8aace3db1dc7cc292b780f40c
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -136,7 +136,7 @@ GEM
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rainbow (3.1.1)
-    regexp_parser (2.9.0)
+    regexp_parser (2.9.1)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)

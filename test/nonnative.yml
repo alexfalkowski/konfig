@@ -12,7 +12,7 @@ processes:
     port: 12000
     log: reports/server.log
     environment:
-      CONFIG_FILE: .config/folder.server.yaml
+      KONFIG_CONFIG_FILE: .config/folder.server.yaml
       AWS_URL: http://localhost:4566
       AWS_REGION: eu-west-1
       AWS_ACCESS_KEY: access
