@@ -23,20 +23,17 @@ var (
 // Transformer for config.
 type Transformer struct {
 	pt *provider.Transformer
-	f  *marshaller.Factory
+	mm *marshaller.Map
 }
 
 // NewTransformer for config.
-func NewTransformer(pt *provider.Transformer, f *marshaller.Factory) *Transformer {
-	return &Transformer{pt: pt, f: f}
+func NewTransformer(pt *provider.Transformer, mm *marshaller.Map) *Transformer {
+	return &Transformer{pt: pt, mm: mm}
 }
 
 // Transform config.
 func (t *Transformer) Transform(ctx context.Context, cfg *Config) ([]byte, error) {
-	m, err := t.f.Create(cfg.Kind)
-	if err != nil {
-		return nil, err
-	}
+	m := t.mm.Get(cfg.Kind)
 
 	c := map[string]any{}
 	if err := m.Unmarshal(cfg.Data, &c); err != nil {

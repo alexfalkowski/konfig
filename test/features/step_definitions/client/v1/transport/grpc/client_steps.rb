@@ -2,8 +2,8 @@
 
 When('I download the configuration for {string} application') do |app|
   env = {
-    'CONFIG_FILE' => ".config/#{app}.client.yaml",
-    'APP_CONFIG_FILE' => "reports/#{app}.server.yaml"
+    'KONFIG_CONFIG_FILE' => ".config/#{app}.client.yaml",
+    'KONFIG_APP_CONFIG_FILE' => "reports/#{app}.server.yaml"
   }
   cmd = Nonnative.go_executable(%w[cover], 'reports', '../konfig', 'client')
   pid = spawn(env, cmd, %i[out err] => ["reports/#{app}.client.log", 'a'])
