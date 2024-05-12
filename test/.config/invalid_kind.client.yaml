@@ -30,6 +30,7 @@ telemetry:
     kind: otlp
     host: http://localhost:9009/otlp/v1/metrics
   tracer:
+    kind: otlp
     host: http://localhost:4318/v1/traces
 token:
   kind: auth
