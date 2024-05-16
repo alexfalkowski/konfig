@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/alexfalkowski/auth.git
-  revision: 90a446d2fcd1e7a27ce24bd05a157bd388c94a27
+  revision: 5b3bffdf643f56e4779ffbd87bbb189e769f3e62
   glob: test/*.gemspec
   specs:
     auth (1.0.0)
@@ -136,13 +136,14 @@ GEM
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rainbow (3.1.1)
-    regexp_parser (2.9.1)
+    regexp_parser (2.9.2)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rexml (3.2.6)
+    rexml (3.2.7)
+      strscan (>= 3.0.9)
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -188,7 +189,8 @@ GEM
       rack-protection (= 4.0.0)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11375)
+    sorbet-runtime (0.5.11376)
+    strscan (3.1.0)
     sys-uname (1.2.3)
       ffi (~> 1.1)
     tilt (2.3.0)
