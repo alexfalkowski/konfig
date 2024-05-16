@@ -8,9 +8,7 @@ import (
 	"net/http"
 
 	"github.com/alexfalkowski/go-service/file"
-	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
-	tm "github.com/alexfalkowski/go-service/transport/meta"
 	"github.com/alexfalkowski/konfig/aws"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	ke "github.com/alexfalkowski/konfig/source/configurator/errors"
@@ -99,7 +97,7 @@ func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string)
 
 func (c *Configurator) span(ctx context.Context) (context.Context, trace.Span) {
 	ctx, span := c.tracer.Start(ctx, operationName("get config"), trace.WithSpanKind(trace.SpanKindClient))
-	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
+	ctx = tracer.WithTraceID(ctx, span)
 
 	return ctx, span
 }
