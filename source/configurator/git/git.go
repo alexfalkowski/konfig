@@ -12,7 +12,6 @@ import (
 	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
-	tm "github.com/alexfalkowski/go-service/transport/meta"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	ce "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/go-git/go-billy/v5"
@@ -81,7 +80,7 @@ func (c *Configurator) wait(ctx context.Context) error {
 	ctx, span := c.tracer.Start(ctx, operationName("wait"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
+	ctx = tracer.WithTraceID(ctx, span)
 	tracer.Meta(ctx, span)
 
 	return c.gr.Wait()
@@ -91,7 +90,7 @@ func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
 	ctx, span := c.tracer.Start(ctx, operationName("checkout"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
+	ctx = tracer.WithTraceID(ctx, span)
 	tracer.Meta(ctx, span)
 
 	tag := fmt.Sprintf("%s/%s", app, ver)
@@ -114,7 +113,7 @@ func (c *Configurator) pull(ctx context.Context) error {
 	ctx, span := c.tracer.Start(ctx, operationName("pull"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
+	ctx = tracer.WithTraceID(ctx, span)
 	tracer.Meta(ctx, span)
 
 	tree, _ := c.repo.Worktree()
@@ -134,7 +133,7 @@ func (c *Configurator) clone(ctx context.Context) error {
 	ctx, span := c.tracer.Start(ctx, operationName("clone"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
+	ctx = tracer.WithTraceID(ctx, span)
 	tracer.Meta(ctx, span)
 
 	opts := &git.CloneOptions{Auth: &gh.BasicAuth{Username: "a", Password: c.cfg.Token()}, URL: c.cfg.URL}
@@ -165,7 +164,7 @@ func (c *Configurator) open(ctx context.Context, path string) ([]byte, error) {
 	ctx, span := c.tracer.Start(ctx, operationName("open"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
-	ctx = tm.WithTraceID(ctx, meta.ToString(span.SpanContext().TraceID()))
+	ctx = tracer.WithTraceID(ctx, span)
 	tracer.Meta(ctx, span)
 
 	f, err := c.fs.Open(path)
