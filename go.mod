@@ -3,23 +3,23 @@ module github.com/alexfalkowski/konfig
 go 1.22.3
 
 require (
-	github.com/alexfalkowski/auth v1.118.4
+	github.com/alexfalkowski/auth v1.118.5
 	github.com/alexfalkowski/go-health v1.17.0
-	github.com/alexfalkowski/go-service v1.189.3
+	github.com/alexfalkowski/go-service v1.189.4
 	github.com/aws/aws-sdk-go-v2 v1.26.1
 	github.com/aws/aws-sdk-go-v2/config v1.27.13
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.54.0
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.50.1
 	github.com/go-git/go-billy/v5 v5.5.0
 	github.com/go-git/go-git/v5 v5.12.0
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.1
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0
 	github.com/hashicorp/vault/api v1.13.0
 	go.opentelemetry.io/otel/metric v1.26.0
 	go.opentelemetry.io/otel/trace v1.26.0
 	go.uber.org/fx v1.21.1
 	go.uber.org/zap v1.27.0
 	golang.org/x/sync v0.7.0
-	google.golang.org/genproto/googleapis/api v0.0.0-20240509183442-62759503f434
+	google.golang.org/genproto/googleapis/api v0.0.0-20240513163218-0867130af1f8
 	google.golang.org/grpc v1.64.0
 	google.golang.org/protobuf v1.34.1
 )
@@ -172,11 +172,11 @@ require (
 	golang.org/x/mod v0.14.0 // indirect
 	golang.org/x/net v0.24.0 // indirect
 	golang.org/x/sys v0.20.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/text v0.15.0 // indirect
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
 	golang.org/x/tools v0.17.0 // indirect
 	google.golang.org/genproto v0.0.0-20240227224415-6ceb2ff114de // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240429193739-8cf5692501f6 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240513163218-0867130af1f8 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
