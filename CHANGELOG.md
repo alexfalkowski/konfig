@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.121.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.121.1) - 2024-05-19
+
+- [`49adab7`](https://github.com/alexfalkowski/konfig/commit/49adab7bd22f01878ed643abbae1ddc69a2d36b1) fix(deps): upgraded github.com/alexfalkowski/auth to v1.121.1 (#1241)
+
 ## [v1.121.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.121.0) - 2024-05-17
 
 - [`5083e1d`](https://github.com/alexfalkowski/konfig/commit/5083e1d2660d4ff4e02ebca373bc517af44f613f) feat(deps): upgraded github.com/alexfalkowski/auth to v1.121.0 (#1240)
