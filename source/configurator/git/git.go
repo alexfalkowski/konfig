@@ -136,7 +136,12 @@ func (c *Configurator) clone(ctx context.Context) error {
 	ctx = tracer.WithTraceID(ctx, span)
 	tracer.Meta(ctx, span)
 
-	opts := &git.CloneOptions{Auth: &gh.BasicAuth{Username: "a", Password: c.cfg.Token()}, URL: c.cfg.URL}
+	t, err := c.cfg.GetToken()
+	if err != nil {
+		return err
+	}
+
+	opts := &git.CloneOptions{Auth: &gh.BasicAuth{Username: "a", Password: t}, URL: c.cfg.URL}
 
 	r, err := git.CloneContext(ctx, c.storage, c.fs, opts)
 	if err != nil {

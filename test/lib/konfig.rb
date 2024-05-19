@@ -4,7 +4,6 @@ require 'securerandom'
 require 'yaml'
 require 'base64'
 
-require 'auth'
 require 'aws-sdk-s3'
 require 'aws-sdk-ssm'
 require 'vault'

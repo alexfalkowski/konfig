@@ -2,14 +2,24 @@ package git
 
 import (
 	"os"
+	"path/filepath"
+	"strings"
 )
 
-// Config for git.
-type Config struct {
-	URL string `yaml:"url,omitempty" json:"url,omitempty" toml:"url,omitempty"`
-}
+type (
+	// Token for git.
+	Token string
 
-// Token for git.
-func (c *Config) Token() string {
-	return os.Getenv("KONFIG_GIT_TOKEN")
+	// Config for git.
+	Config struct {
+		Token Token  `yaml:"token,omitempty" json:"token,omitempty" toml:"token,omitempty"`
+		URL   string `yaml:"url,omitempty" json:"url,omitempty" toml:"url,omitempty"`
+	}
+)
+
+// GetToken for git.
+func (c *Config) GetToken() (string, error) {
+	k, err := os.ReadFile(filepath.Clean(string(c.Token)))
+
+	return strings.TrimSpace(string(k)), err
 }

@@ -126,14 +126,11 @@ This system allows you to store your configuration from various sources. Though 
 
 To configure we just need the have the following configuration:
 
-```bash
-KONFIG_GIT_TOKEN=GitHub token
-```
-
 ```yaml
 source:
   kind: git
   git:
+    token: path to token
     url: https://github.com/alexfalkowski/app-config (the configuration repo)
 ```
 

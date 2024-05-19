@@ -25,8 +25,6 @@ Given('I have a {string} invalid setup') do |source|
   Nonnative.configuration.processes[0].environment['KONFIG_CONFIG_FILE'] = ".config/invalid.#{source}.server.yaml"
 
   case source
-  when 'git'
-    Nonnative.configuration.processes[0].environment['KONFIG_GIT_TOKEN'] = 'invalid_token'
   when 's3'
     Nonnative.configuration.processes[0].environment['AWS_URL'] = 'does_not_exist'
 
