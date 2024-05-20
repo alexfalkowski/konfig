@@ -97,6 +97,8 @@ func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
 	tree, _ := c.repo.Worktree()
 
 	if err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(tag)}); err != nil {
+		tracer.Error(err, span)
+
 		if errors.Is(err, plumbing.ErrReferenceNotFound) {
 			meta.WithAttribute(ctx, "gitCheckoutError", meta.Error(err))
 
@@ -119,10 +121,14 @@ func (c *Configurator) pull(ctx context.Context) error {
 	tree, _ := c.repo.Worktree()
 
 	if err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.Master}); err != nil {
+		tracer.Error(err, span)
+
 		return err
 	}
 
 	if err := tree.PullContext(ctx, &git.PullOptions{RemoteName: "origin"}); err != nil && !errors.Is(err, git.NoErrAlreadyUpToDate) {
+		tracer.Error(err, span)
+
 		return err
 	}
 
@@ -138,6 +144,8 @@ func (c *Configurator) clone(ctx context.Context) error {
 
 	t, err := c.cfg.GetToken()
 	if err != nil {
+		tracer.Error(err, span)
+
 		return err
 	}
 
@@ -145,6 +153,8 @@ func (c *Configurator) clone(ctx context.Context) error {
 
 	r, err := git.CloneContext(ctx, c.storage, c.fs, opts)
 	if err != nil {
+		tracer.Error(err, span)
+
 		return err
 	}
 
@@ -174,6 +184,8 @@ func (c *Configurator) open(ctx context.Context, path string) ([]byte, error) {
 
 	f, err := c.fs.Open(path)
 	if err != nil {
+		tracer.Error(err, span)
+
 		if os.IsNotExist(err) {
 			meta.WithAttribute(ctx, "gitFileError", meta.Error(err))
 

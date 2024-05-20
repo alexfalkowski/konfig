@@ -57,15 +57,12 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	out, err := client.GetObject(ctx, &s3.GetObjectInput{Bucket: &c.cfg.Bucket, Key: &path})
 	if err != nil {
 		tracer.Meta(ctx, span)
+		tracer.Error(err, span)
 
 		var nerr *types.NoSuchKey
 		if errors.As(err, &nerr) {
-			tracer.Error(err, span)
-
 			return nil, ke.ErrNotFound
 		}
-
-		tracer.Error(err, span)
 
 		return nil, err
 	}

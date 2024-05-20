@@ -39,7 +39,7 @@ func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, erro
 
 	switch {
 	case params.Config.IsFolder():
-		configurator = folder.NewConfigurator(params.Config.Folder)
+		configurator = folder.NewConfigurator(params.Config.Folder, params.Tracer)
 	case params.Config.IsGit():
 		configurator = git.NewConfigurator(params.Config.Git, params.Tracer, client)
 	case params.Config.IsS3():
