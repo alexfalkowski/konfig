@@ -8,7 +8,7 @@ import (
 	"github.com/alexfalkowski/go-service/meta"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	source "github.com/alexfalkowski/konfig/source/configurator"
-	serrors "github.com/alexfalkowski/konfig/source/configurator/errors"
+	ce "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"go.uber.org/fx"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -50,41 +50,43 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 
 	resp := &v1.GetConfigResponse{
 		Config: &v1.Config{
-			Application: req.GetApplication(),
-			Version:     req.GetVersion(),
-			Environment: req.GetEnvironment(),
-			Continent:   req.GetContinent(),
-			Country:     req.GetCountry(),
-			Command:     req.GetCommand(),
-			Kind:        req.GetKind(),
+			Application: req.GetApplication(), Version: req.GetVersion(),
+			Environment: req.GetEnvironment(), Continent: req.GetContinent(), Country: req.GetCountry(),
+			Command: req.GetCommand(), Kind: req.GetKind(),
 		},
 	}
 
 	if err := s.validateGetConfigRequest(req); err != nil {
+		resp.Meta = s.meta(ctx)
+
 		return resp, err
 	}
 
 	p := source.ConfigParams{
-		Application: req.GetApplication(),
-		Version:     req.GetVersion(),
-		Environment: req.GetEnvironment(),
-		Continent:   req.GetContinent(),
-		Country:     req.GetCountry(),
-		Command:     req.GetCommand(),
-		Kind:        req.GetKind(),
+		Application: req.GetApplication(), Version: req.GetVersion(),
+		Environment: req.GetEnvironment(), Continent: req.GetContinent(), Country: req.GetCountry(),
+		Command: req.GetCommand(), Kind: req.GetKind(),
 	}
 
 	c, err := s.conf.GetConfig(ctx, p)
 	if err != nil {
-		if errors.Is(err, serrors.ErrNotFound) {
+		if errors.Is(err, ce.ErrNotFound) {
+			resp.Meta = s.meta(ctx)
+
 			return resp, status.Error(codes.NotFound, fmt.Sprintf("%s was not found", p))
 		}
+
+		ctx = meta.WithAttribute(ctx, "configError", meta.Error(err))
+		resp.Meta = s.meta(ctx)
 
 		return resp, status.Error(codes.Internal, "could not get config")
 	}
 
 	data, err := s.transformer.Transform(ctx, c)
 	if err != nil {
+		ctx = meta.WithAttribute(ctx, "configError", meta.Error(err))
+		resp.Meta = s.meta(ctx)
+
 		return resp, status.Error(codes.Internal, "could not transform")
 	}
 
