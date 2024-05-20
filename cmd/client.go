@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	ac "github.com/alexfalkowski/auth/client"
 	"github.com/alexfalkowski/go-service/compressor"
 	"github.com/alexfalkowski/go-service/debug"
 	"github.com/alexfalkowski/go-service/feature"
@@ -19,5 +18,5 @@ var ClientOptions = []fx.Option{
 	runtime.Module, debug.Module, feature.Module,
 	compressor.Module, marshaller.Module,
 	telemetry.Module, metrics.Module, config.Module,
-	ac.Module, kc.Module, Module,
+	kc.Module, Module,
 }

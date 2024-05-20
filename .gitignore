@@ -5,3 +5,4 @@ vendor
 *.out
 /konfig
 tmp/
+test/secrets/gh
