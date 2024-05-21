@@ -18,6 +18,8 @@ module Konfig
 
         # GetConfig for a specific application.
         rpc :GetConfig, ::Konfig::V1::GetConfigRequest, ::Konfig::V1::GetConfigResponse
+        # GetSecrets that are configured.
+        rpc :GetSecrets, ::Konfig::V1::GetSecretsRequest, ::Konfig::V1::GetSecretsResponse
       end
 
       Stub = Service.rpc_stub_class

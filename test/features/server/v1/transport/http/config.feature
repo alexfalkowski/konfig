@@ -1,7 +1,7 @@
 @manual @http
-Feature: Server
+Feature: Config
 
-  Server allows users to manage their application configurations.
+  Config allows users to manage their application configurations.
 
   Scenario Outline: Existing config with HTTP
     Given I have a "<source>" valid setup
@@ -173,7 +173,7 @@ Feature: Server
       | s3     | missing | v1.11.0 | staging | *         | *       | server  | toml |
       | s3     | test    | v1.11.0 | staging | *         | *       | missing | toml |
 
-  Scenario: Misconfigured config with HTTP
+  Scenario Outline: Misconfigured config with HTTP
     Given I have a "<source>" invalid setup
     And I start the system
     When I request a config with HTTP:

@@ -36,10 +36,29 @@ message GetConfigResponse {
   Config config = 2;
 }
 
+// GetSecretsRequest a map of name and secret.
+message GetSecretsRequest {
+  map<string, string> secrets = 1;
+}
+
+// GetSecretsResponse a map of meta and secrets.
+message GetSecretsResponse {
+  map<string, string> meta = 1;
+  map<string, bytes> secrets = 2;
+}
+
 // Service allows to manage all application configurations.
 service Service {
   // GetConfig for a specific application.
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse) {
     option (google.api.http) = {get: "/v1/config/{application}/{version}/{environment}/{continent}/{country}/{command}/{kind}"};
+  }
+
+  // GetSecrets that are configured.
+  rpc GetSecrets(GetSecretsRequest) returns (GetSecretsResponse) {
+    option (google.api.http) = {
+      post: "/v1/secrets"
+      body: "secrets"
+    };
   }
 }

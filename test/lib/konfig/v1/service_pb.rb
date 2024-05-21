@@ -7,36 +7,17 @@ require 'google/protobuf'
 require 'google/api/annotations_pb'
 
 
-descriptor_data = "\n\x17konfig/v1/service.proto\x12\tkonfig.v1\x1a\x1cgoogle/api/annotations.proto\"\xe0\x01\n\x06\x43onfig\x12 \n\x0b\x61pplication\x18\x01 \x01(\tR\x0b\x61pplication\x12\x18\n\x07version\x18\x02 \x01(\tR\x07version\x12 \n\x0b\x65nvironment\x18\x03 \x01(\tR\x0b\x65nvironment\x12\x1c\n\tcontinent\x18\x04 \x01(\tR\tcontinent\x12\x18\n\x07\x63ountry\x18\x05 \x01(\tR\x07\x63ountry\x12\x18\n\x07\x63ommand\x18\x06 \x01(\tR\x07\x63ommand\x12\x12\n\x04kind\x18\x07 \x01(\tR\x04kind\x12\x12\n\x04\x64\x61ta\x18\x08 \x01(\x0cR\x04\x64\x61ta\"\xd6\x01\n\x10GetConfigRequest\x12 \n\x0b\x61pplication\x18\x01 \x01(\tR\x0b\x61pplication\x12\x18\n\x07version\x18\x02 \x01(\tR\x07version\x12 \n\x0b\x65nvironment\x18\x03 \x01(\tR\x0b\x65nvironment\x12\x1c\n\tcontinent\x18\x04 \x01(\tR\tcontinent\x12\x18\n\x07\x63ountry\x18\x05 \x01(\tR\x07\x63ountry\x12\x18\n\x07\x63ommand\x18\x06 \x01(\tR\x07\x63ommand\x12\x12\n\x04kind\x18\x07 \x01(\tR\x04kind\"\xb3\x01\n\x11GetConfigResponse\x12:\n\x04meta\x18\x01 \x03(\x0b\x32&.konfig.v1.GetConfigResponse.MetaEntryR\x04meta\x12)\n\x06\x63onfig\x18\x02 \x01(\x0b\x32\x11.konfig.v1.ConfigR\x06\x63onfig\x1a\x37\n\tMetaEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\x32\xb3\x01\n\x07Service\x12\xa7\x01\n\tGetConfig\x12\x1b.konfig.v1.GetConfigRequest\x1a\x1c.konfig.v1.GetConfigResponse\"_\x82\xd3\xe4\x93\x02Y\x12W/v1/config/{application}/{version}/{environment}/{continent}/{country}/{command}/{kind}B<Z-github.com/alexfalkowski/konfig/api/konfig/v1\xea\x02\nKonfig::V1b\x06proto3"
+descriptor_data = "\n\x17konfig/v1/service.proto\x12\tkonfig.v1\x1a\x1cgoogle/api/annotations.proto\"\xe0\x01\n\x06\x43onfig\x12 \n\x0b\x61pplication\x18\x01 \x01(\tR\x0b\x61pplication\x12\x18\n\x07version\x18\x02 \x01(\tR\x07version\x12 \n\x0b\x65nvironment\x18\x03 \x01(\tR\x0b\x65nvironment\x12\x1c\n\tcontinent\x18\x04 \x01(\tR\tcontinent\x12\x18\n\x07\x63ountry\x18\x05 \x01(\tR\x07\x63ountry\x12\x18\n\x07\x63ommand\x18\x06 \x01(\tR\x07\x63ommand\x12\x12\n\x04kind\x18\x07 \x01(\tR\x04kind\x12\x12\n\x04\x64\x61ta\x18\x08 \x01(\x0cR\x04\x64\x61ta\"\xd6\x01\n\x10GetConfigRequest\x12 \n\x0b\x61pplication\x18\x01 \x01(\tR\x0b\x61pplication\x12\x18\n\x07version\x18\x02 \x01(\tR\x07version\x12 \n\x0b\x65nvironment\x18\x03 \x01(\tR\x0b\x65nvironment\x12\x1c\n\tcontinent\x18\x04 \x01(\tR\tcontinent\x12\x18\n\x07\x63ountry\x18\x05 \x01(\tR\x07\x63ountry\x12\x18\n\x07\x63ommand\x18\x06 \x01(\tR\x07\x63ommand\x12\x12\n\x04kind\x18\x07 \x01(\tR\x04kind\"\xb3\x01\n\x11GetConfigResponse\x12:\n\x04meta\x18\x01 \x03(\x0b\x32&.konfig.v1.GetConfigResponse.MetaEntryR\x04meta\x12)\n\x06\x63onfig\x18\x02 \x01(\x0b\x32\x11.konfig.v1.ConfigR\x06\x63onfig\x1a\x37\n\tMetaEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\x94\x01\n\x11GetSecretsRequest\x12\x43\n\x07secrets\x18\x01 \x03(\x0b\x32).konfig.v1.GetSecretsRequest.SecretsEntryR\x07secrets\x1a:\n\x0cSecretsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\x8c\x02\n\x12GetSecretsResponse\x12;\n\x04meta\x18\x01 \x03(\x0b\x32\'.konfig.v1.GetSecretsResponse.MetaEntryR\x04meta\x12\x44\n\x07secrets\x18\x02 \x03(\x0b\x32*.konfig.v1.GetSecretsResponse.SecretsEntryR\x07secrets\x1a\x37\n\tMetaEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\x1a:\n\x0cSecretsEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\x0cR\x05value:\x02\x38\x01\x32\x9c\x02\n\x07Service\x12\xa7\x01\n\tGetConfig\x12\x1b.konfig.v1.GetConfigRequest\x1a\x1c.konfig.v1.GetConfigResponse\"_\x82\xd3\xe4\x93\x02Y\x12W/v1/config/{application}/{version}/{environment}/{continent}/{country}/{command}/{kind}\x12g\n\nGetSecrets\x12\x1c.konfig.v1.GetSecretsRequest\x1a\x1d.konfig.v1.GetSecretsResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\"\x0b/v1/secrets:\x07secretsB<Z-github.com/alexfalkowski/konfig/api/konfig/v1\xea\x02\nKonfig::V1b\x06proto3"
 
 pool = Google::Protobuf::DescriptorPool.generated_pool
-
-begin
-  pool.add_serialized_file(descriptor_data)
-rescue TypeError
-  # Compatibility code: will be removed in the next major version.
-  require 'google/protobuf/descriptor_pb'
-  parsed = Google::Protobuf::FileDescriptorProto.decode(descriptor_data)
-  parsed.clear_dependency
-  serialized = parsed.class.encode(parsed)
-  file = pool.add_serialized_file(serialized)
-  warn "Warning: Protobuf detected an import path issue while loading generated file #{__FILE__}"
-  imports = [
-  ]
-  imports.each do |type_name, expected_filename|
-    import_file = pool.lookup(type_name).file_descriptor
-    if import_file.name != expected_filename
-      warn "- #{file.name} imports #{expected_filename}, but that import was loaded as #{import_file.name}"
-    end
-  end
-  warn "Each proto file must use a consistent fully-qualified name."
-  warn "This will become an error in the next major version."
-end
+pool.add_serialized_file(descriptor_data)
 
 module Konfig
   module V1
     Config = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("konfig.v1.Config").msgclass
     GetConfigRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("konfig.v1.GetConfigRequest").msgclass
     GetConfigResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("konfig.v1.GetConfigResponse").msgclass
+    GetSecretsRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("konfig.v1.GetSecretsRequest").msgclass
+    GetSecretsResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("konfig.v1.GetSecretsResponse").msgclass
   end
 end
