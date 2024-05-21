@@ -1,9 +1,7 @@
 package git
 
 import (
-	"os"
-	"path/filepath"
-	"strings"
+	"github.com/alexfalkowski/go-service/os"
 )
 
 type (
@@ -19,7 +17,5 @@ type (
 
 // GetToken for git.
 func (c *Config) GetToken() (string, error) {
-	k, err := os.ReadFile(filepath.Clean(string(c.Token)))
-
-	return strings.TrimSpace(string(k)), err
+	return os.ReadFile(string(c.Token))
 }
