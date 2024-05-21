@@ -5,7 +5,8 @@ import (
 	"github.com/alexfalkowski/go-service/marshaller"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
-	kc "github.com/alexfalkowski/konfig/client"
+	"github.com/alexfalkowski/konfig/client"
+	"github.com/alexfalkowski/konfig/cmd/secrets"
 	"github.com/alexfalkowski/konfig/config"
 	"go.uber.org/fx"
 )
@@ -14,5 +15,6 @@ import (
 var SecretsOptions = []fx.Option{
 	compressor.Module, marshaller.Module,
 	telemetry.Module, metrics.Module,
-	config.Module, kc.SecretsModule, Module,
+	client.Module, secrets.Module,
+	config.Module, Module,
 }
