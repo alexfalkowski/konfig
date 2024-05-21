@@ -6,3 +6,4 @@ vendor
 /konfig
 tmp/
 test/secrets/gh
+test/reports/*.secret

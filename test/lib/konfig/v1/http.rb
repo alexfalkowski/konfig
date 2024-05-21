@@ -8,6 +8,10 @@ module Konfig
 
         get(url, opts)
       end
+
+      def get_secrets(params, opts = {})
+        post('/v1/secrets', params.to_json, opts)
+      end
     end
   end
 end

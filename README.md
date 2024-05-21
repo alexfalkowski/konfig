@@ -223,17 +223,21 @@ The server is defined by the following [proto contract](api/konfig/v1/service.pr
 
 ## Client
 
-The client is used to get the config that is defined in the config. These values reflect how the config is stored in the above sources.
+The client provides a few options.
+
+### Config
+
+The client can download a configuration.
 
 ```bash
-❯ ./konfig client --help
-Start the client.
+❯ ./konfig config --help
+Get Config.
 
 Usage:
-  konfig client [flags]
+  konfig config [flags]
 
 Flags:
-  -h, --help   help for client
+  -h, --help   help for config
 
 Global Flags:
   -i, --input string    input config location (format kind:location) (default "env:KONFIG_CONFIG_FILE")
@@ -247,19 +251,53 @@ client:
   v1:
     host: localhost:8080
     timeout: 5s
-    application: test
-    version: v1.5.0
-    environment: staging
-    continent: '*'
-    country: '*'
-    command: server
-    kind: yml
-    mode: 0o600
+    config:
+      application: test
+      version: v1.5.0
+      environment: staging
+      continent: '*'
+      country: '*'
+      command: server
+      kind: yml
+      mode: 0o600
 ```
 
 The client writes the config to the location specified by the flag called `--output`. As per the following:
 - `env:KONFIG_APP_CONFIG_FILE` - Write to an env variable called `KONFIG_APP_CONFIG_FILE`. This is the default if nothing is passed.
 - `file:path` - Write to the path.
+
+## Secrets
+
+The client can write secrets to a specified path.
+
+```bash
+❯ ./konfig secrets --help
+Write secrets.
+
+Usage:
+  konfig secrets [flags]
+
+Flags:
+  -h, --help   help for secrets
+
+Global Flags:
+  -i, --input string    input config location (format kind:location) (default "env:KONFIG_CONFIG_FILE")
+```
+
+To configure we just need the have the following configuration:
+
+```yaml
+client:
+  v1:
+    host: localhost:8080
+    timeout: 5s
+    secrets:
+      files:
+        vault.secret: vault:/secret/data/transport/http/user_agent
+        ssm.secret: ssm:/secret/data/transport/http/user_agent
+      path: reports
+      mode: 0o600
+```
 
 ## Health
 

@@ -1,7 +1,7 @@
 @manual @grpc
-Feature: Client
+Feature: Config
 
-  Client allows the system to download a new configuration.
+  Config allows the system to download a new configuration.
 
   Scenario: Download existing config
     Given I have a "folder" valid setup

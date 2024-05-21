@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Service_GetConfig_FullMethodName = "/konfig.v1.Service/GetConfig"
+	Service_GetConfig_FullMethodName  = "/konfig.v1.Service/GetConfig"
+	Service_GetSecrets_FullMethodName = "/konfig.v1.Service/GetSecrets"
 )
 
 // ServiceClient is the client API for Service service.
@@ -28,6 +29,8 @@ const (
 type ServiceClient interface {
 	// GetConfig for a specific application.
 	GetConfig(ctx context.Context, in *GetConfigRequest, opts ...grpc.CallOption) (*GetConfigResponse, error)
+	// GetSecrets that are configured.
+	GetSecrets(ctx context.Context, in *GetSecretsRequest, opts ...grpc.CallOption) (*GetSecretsResponse, error)
 }
 
 type serviceClient struct {
@@ -47,12 +50,23 @@ func (c *serviceClient) GetConfig(ctx context.Context, in *GetConfigRequest, opt
 	return out, nil
 }
 
+func (c *serviceClient) GetSecrets(ctx context.Context, in *GetSecretsRequest, opts ...grpc.CallOption) (*GetSecretsResponse, error) {
+	out := new(GetSecretsResponse)
+	err := c.cc.Invoke(ctx, Service_GetSecrets_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ServiceServer is the server API for Service service.
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility
 type ServiceServer interface {
 	// GetConfig for a specific application.
 	GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error)
+	// GetSecrets that are configured.
+	GetSecrets(context.Context, *GetSecretsRequest) (*GetSecretsResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -62,6 +76,9 @@ type UnimplementedServiceServer struct {
 
 func (UnimplementedServiceServer) GetConfig(context.Context, *GetConfigRequest) (*GetConfigResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetConfig not implemented")
+}
+func (UnimplementedServiceServer) GetSecrets(context.Context, *GetSecretsRequest) (*GetSecretsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSecrets not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 
@@ -94,6 +111,24 @@ func _Service_GetConfig_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_GetSecrets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSecretsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).GetSecrets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_GetSecrets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).GetSecrets(ctx, req.(*GetSecretsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -104,6 +139,10 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetConfig",
 			Handler:    _Service_GetConfig_Handler,
+		},
+		{
+			MethodName: "GetSecrets",
+			Handler:    _Service_GetSecrets_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

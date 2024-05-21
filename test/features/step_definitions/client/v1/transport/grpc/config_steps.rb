@@ -5,7 +5,7 @@ When('I download the configuration for {string} application') do |app|
     'KONFIG_CONFIG_FILE' => ".config/#{app}.client.yaml",
     'KONFIG_APP_CONFIG_FILE' => "reports/#{app}.server.yaml"
   }
-  cmd = Nonnative.go_executable(%w[cover], 'reports', '../konfig', 'client')
+  cmd = Nonnative.go_executable(%w[cover], 'reports', '../konfig', 'config')
   pid = spawn(env, cmd, %i[out err] => ["reports/#{app}.client.log", 'a'])
 
   _, @status = Process.waitpid2(pid)
