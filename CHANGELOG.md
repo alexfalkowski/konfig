@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.128.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.128.0) - 2024-05-21
+
+- [`8e2668b`](https://github.com/alexfalkowski/konfig/commit/8e2668b0798882c2233acbc86ee6a9fae792f2ee) feat(client): move commands (#1249)
+
 ## [v1.127.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.127.0) - 2024-05-21
 
 - [`41323be`](https://github.com/alexfalkowski/konfig/commit/41323be69fd2df9bf1e7036c512c15f0847ad2bc) feat(secrets): add the ability to get secrets for clients (#1248)
