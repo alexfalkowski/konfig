@@ -2,15 +2,16 @@ client:
   v1:
     host: localhost:12000
     user_agent: "Konfig-client/1.0 gRPC/1.0"
-    timeout: 5s
-    retry:
-      timeout: 10s
-      attempts: 3
     config:
       application: test
       version: v1.11.0
       environment: staging
       command: bob
+    retry:
+      attempts: 3
+      backoff: 100ms
+      timeout: 10s
+    timeout: 5s
 environment: production
 telemetry:
   logger:
