@@ -14,21 +14,21 @@ import (
 type ServiceClientParams struct {
 	fx.In
 
-	Lifecycle    fx.Lifecycle
-	ClientConfig *v1c.Config
-	Logger       *zap.Logger
-	Tracer       trace.Tracer
-	Meter        metric.Meter
+	Lifecycle fx.Lifecycle
+	Client    *v1c.Config
+	Logger    *zap.Logger
+	Tracer    trace.Tracer
+	Meter     metric.Meter
 }
 
 // NewServiceClient for gRPC.
 func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 	opts := grpc.ClientOpts{
-		Lifecycle:    params.Lifecycle,
-		ClientConfig: params.ClientConfig.Config,
-		Logger:       params.Logger,
-		Tracer:       params.Tracer,
-		Meter:        params.Meter,
+		Lifecycle: params.Lifecycle,
+		Client:    params.Client.Config,
+		Logger:    params.Logger,
+		Tracer:    params.Tracer,
+		Meter:     params.Meter,
 	}
 	conn, err := grpc.NewClient(opts)
 
