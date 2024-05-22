@@ -14,27 +14,27 @@ import (
 
 // ClientOpts for gRPC.
 type ClientOpts struct {
-	Lifecycle    fx.Lifecycle
-	ClientConfig *client.Config
-	Logger       *zap.Logger
-	Tracer       trace.Tracer
-	Meter        metric.Meter
+	Lifecycle fx.Lifecycle
+	Client    *client.Config
+	Logger    *zap.Logger
+	Tracer    trace.Tracer
+	Meter     metric.Meter
 }
 
 // NewClient for gRPC.
 func NewClient(options ClientOpts) (*g.ClientConn, error) {
-	sec, err := grpc.WithClientTLS(options.ClientConfig.TLS)
+	sec, err := grpc.WithClientTLS(options.Client.TLS)
 	if err != nil {
 		return nil, err
 	}
 
 	opts := []grpc.ClientOption{
 		grpc.WithClientLogger(options.Logger), grpc.WithClientTracer(options.Tracer),
-		grpc.WithClientMetrics(options.Meter), grpc.WithClientRetry(options.ClientConfig.Retry),
-		grpc.WithClientUserAgent(options.ClientConfig.UserAgent), sec,
+		grpc.WithClientMetrics(options.Meter), grpc.WithClientRetry(options.Client.Retry),
+		grpc.WithClientUserAgent(options.Client.UserAgent), grpc.WithClientTimeout(options.Client.Timeout), sec,
 	}
 
-	conn, err := grpc.NewClient(options.ClientConfig.Host, opts...)
+	conn, err := grpc.NewClient(options.Client.Host, opts...)
 
 	options.Lifecycle.Append(fx.Hook{
 		OnStop: func(_ context.Context) error {

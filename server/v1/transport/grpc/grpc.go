@@ -33,11 +33,11 @@ func Register(params RegisterParams) error {
 	v1.RegisterServiceServer(params.GRPC.Server(), params.Server)
 
 	opts := g.ClientOpts{
-		Lifecycle:    params.Lifecycle,
-		ClientConfig: params.Client.Config,
-		Logger:       params.Logger,
-		Tracer:       params.Tracer,
-		Meter:        params.Meter,
+		Lifecycle: params.Lifecycle,
+		Client:    params.Client.Config,
+		Logger:    params.Logger,
+		Tracer:    params.Tracer,
+		Meter:     params.Meter,
 	}
 
 	conn, err := g.NewClient(opts)

@@ -2,6 +2,7 @@ client:
   v1:
     host: localhost:12000
     user_agent: "Konfig-client/1.0 gRPC/1.0"
+    timeout: 5s
     retry:
       timeout: 10s
       attempts: 3
