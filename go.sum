@@ -20,8 +20,8 @@ github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 h1:+JkXLHME8vLJafGhOH4ao
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1/go.mod h1:nuudZmJhzWtx2212z+pkuy7B6nkBqa+xwNXZHL1j8cg=
 github.com/alexfalkowski/go-health v1.17.0 h1:bGJPEsb05LhpetTepurzWba+sXuZ41utOrr4HvQKx4g=
 github.com/alexfalkowski/go-health v1.17.0/go.mod h1:3Wp4CqKiDtVQUx9ss5Qs+PwAHkdI9d1xS8x56qYswqY=
-github.com/alexfalkowski/go-service v1.202.0 h1:ZvyX55hPrG2StmPVHwJS/Gy0Uzo8CZPbBy1qQ/0ASVU=
-github.com/alexfalkowski/go-service v1.202.0/go.mod h1:XFUNfqPoBsFQWCo/qIP9sfTgoCnYoT8DMwXYfpHFdJg=
+github.com/alexfalkowski/go-service v1.202.1 h1:puBrACKMODlmbtsK22V7WQjpVhwPKXnYTTO3Bw9wp3k=
+github.com/alexfalkowski/go-service v1.202.1/go.mod h1:XFUNfqPoBsFQWCo/qIP9sfTgoCnYoT8DMwXYfpHFdJg=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be h1:9AeTilPcZAjCFIImctFaOjnTIavg87rW78vTPkQqLI8=
 github.com/anmitsu/go-shlex v0.0.0-20200514113438-38f4b401e2be/go.mod h1:ySMOLuWl6zY27l47sB3qLNK6tF2fkHG55UZxx8oIVo4=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
