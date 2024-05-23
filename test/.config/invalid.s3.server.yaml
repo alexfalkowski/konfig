@@ -27,6 +27,7 @@ token:
   kind: auth
 transport:
   http:
+    mux: gateway
     port: 11000
     user_agent: "Konfig-server/1.0 HTTP/1.0"
     retry:
