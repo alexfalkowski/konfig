@@ -4,7 +4,7 @@ go 1.22.3
 
 require (
 	github.com/alexfalkowski/go-health v1.17.0
-	github.com/alexfalkowski/go-service v1.202.1
+	github.com/alexfalkowski/go-service v1.202.3
 	github.com/aws/aws-sdk-go-v2 v1.26.2
 	github.com/aws/aws-sdk-go-v2/config v1.27.14
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.54.1
@@ -26,7 +26,7 @@ require (
 require (
 	dario.cat/mergo v1.0.0 // indirect
 	filippo.io/edwards25519 v1.1.0 // indirect
-	github.com/BurntSushi/toml v1.3.2 // indirect
+	github.com/BurntSushi/toml v1.4.0 // indirect
 	github.com/KimMachineGun/automemlimit v0.6.1 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/ProtonMail/go-crypto v1.0.0 // indirect
@@ -48,7 +48,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.24.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.28.8 // indirect
 	github.com/aws/smithy-go v1.20.2 // indirect
-	github.com/beevik/ntp v1.4.1 // indirect
+	github.com/beevik/ntp v1.4.2 // indirect
 	github.com/beevik/nts v0.1.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cenkalti/backoff/v3 v3.2.2 // indirect
