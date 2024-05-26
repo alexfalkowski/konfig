@@ -12,7 +12,7 @@ health:
   duration: 1s
   timeout: 1s
 limiter:
-  kind: user-agent
+  kind: token
   pattern: 1000-S
 source:
   kind: s3
@@ -27,7 +27,7 @@ telemetry:
     kind: otlp
     host: http://localhost:4318/v1/traces
 token:
-  kind: auth
+  hash: $argon2id$v=19$m=65536,t=3,p=4$HKvNAPz7okGD8blLQ/8hmA$Qk2nwk9vWf2rWTv/J4ejgg6WlpnHQJC2YKZMqArsn6o
 transport:
   http:
     mux: gateway

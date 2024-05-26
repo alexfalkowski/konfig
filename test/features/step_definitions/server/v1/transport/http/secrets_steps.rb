@@ -5,7 +5,7 @@ When('I request secrets with HTTP:') do |table|
     headers: {
       request_id: SecureRandom.uuid, user_agent: 'Konfig-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
-    },
+    }.merge(Konfig.token),
     read_timeout: 10, open_timeout: 10
   }
 
