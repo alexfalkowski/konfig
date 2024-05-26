@@ -3,7 +3,7 @@
 When('I request a config with gRPC:') do |table|
   rows = table.rows_hash
   @request_id = SecureRandom.uuid
-  metadata = { 'request-id' => @request_id }
+  metadata = { 'request-id' => @request_id }.merge(Konfig.token)
   request = Konfig::V1::GetConfigRequest.new(application: rows['app'], version: rows['ver'], environment: rows['env'],
                                              continent: rows['continent'], country: rows['country'], command: rows['cmd'],
                                              kind: rows['kind'])

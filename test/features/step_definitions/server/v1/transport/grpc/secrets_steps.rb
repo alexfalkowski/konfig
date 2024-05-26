@@ -2,7 +2,7 @@
 
 When('I request secrets with gRPC:') do |table|
   @request_id = SecureRandom.uuid
-  metadata = { 'request-id' => @request_id }
+  metadata = { 'request-id' => @request_id }.merge(Konfig.token)
   request = Konfig::V1::GetSecretsRequest.new(secrets: table.rows_hash)
   @response = Konfig::V1.server_grpc.get_secrets(request, { metadata: })
 rescue StandardError => e

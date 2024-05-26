@@ -54,6 +54,10 @@ module Konfig
     def user_agent
       @user_agent ||= Nonnative::Header.grpc_user_agent('Konfig-ruby-client/1.0 gRPC/1.0')
     end
+
+    def token
+      Nonnative::Header.auth_bearer(Base64.decode64(File.read('secrets/token')))
+    end
   end
 
   module V1

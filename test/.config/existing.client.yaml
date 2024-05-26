@@ -33,4 +33,4 @@ telemetry:
     kind: otlp
     host: http://localhost:4318/v1/traces
 token:
-  kind: auth
+  key: secrets/token
