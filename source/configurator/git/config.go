@@ -10,8 +10,9 @@ type (
 
 	// Config for git.
 	Config struct {
-		Token Token  `yaml:"token,omitempty" json:"token,omitempty" toml:"token,omitempty"`
-		URL   string `yaml:"url,omitempty" json:"url,omitempty" toml:"url,omitempty"`
+		Token      Token  `yaml:"token,omitempty" json:"token,omitempty" toml:"token,omitempty"`
+		Owner      string `yaml:"owner,omitempty" json:"owner,omitempty" toml:"owner,omitempty"`
+		Repository string `yaml:"repository,omitempty" json:"repository,omitempty" toml:"repository,omitempty"`
 	}
 )
 

@@ -130,8 +130,9 @@ To configure we just need the have the following configuration:
 source:
   kind: git
   git:
+    owner: the repo owner
+    repository: the repo name
     token: path to token
-    url: https://github.com/alexfalkowski/app-config (the configuration repo)
 ```
 
 We expect that the folders to have the following conventions:

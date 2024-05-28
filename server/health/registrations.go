@@ -30,11 +30,6 @@ func NewRegistrations(params RegistrationsParams) health.Registrations {
 		server.NewRegistration("noop", d, checker.NewNoopChecker()),
 		server.NewRegistration("vault", d, checker.NewHTTPChecker(params.Vault.Address, client)),
 	}
-	s := params.Source
-
-	if s.IsGit() {
-		registrations = append(registrations, server.NewRegistration("git", d, checker.NewHTTPChecker(s.Git.URL, client)))
-	}
 
 	return registrations
 }
