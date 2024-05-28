@@ -17,7 +17,8 @@ limiter:
 source:
   kind: git
   git:
-    url: https://github.com/alexfalkowski/app-config
+    owner: alexfalkowski
+    repository: app-config
     token: secrets/gh
 telemetry:
   logger:

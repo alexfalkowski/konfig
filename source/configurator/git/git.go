@@ -2,165 +2,64 @@ package git
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"io"
 	"net/http"
-	"os"
-	"sync"
 
 	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
+	"github.com/alexfalkowski/konfig/git"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	ce "github.com/alexfalkowski/konfig/source/configurator/errors"
-	"github.com/go-git/go-billy/v5"
-	"github.com/go-git/go-billy/v5/memfs"
-	"github.com/go-git/go-git/v5"
-	"github.com/go-git/go-git/v5/plumbing"
-	gc "github.com/go-git/go-git/v5/plumbing/transport/client"
-	gh "github.com/go-git/go-git/v5/plumbing/transport/http"
-	"github.com/go-git/go-git/v5/storage"
-	"github.com/go-git/go-git/v5/storage/memory"
+	"github.com/google/go-github/v62/github"
 	"go.opentelemetry.io/otel/trace"
-	"golang.org/x/sync/errgroup"
 )
 
 // NewConfigurator for git.
 func NewConfigurator(cfg *Config, t trace.Tracer, client *http.Client) *Configurator {
-	c := gh.NewClient(client)
+	cl := github.NewClient(client)
 
-	gc.InstallProtocol("http", c)
-	gc.InstallProtocol("https", c)
-
-	gr := &errgroup.Group{}
-	gr.SetLimit(1)
-
-	cf := &Configurator{cfg: cfg, tracer: t, storage: memory.NewStorage(), fs: memfs.New(), gr: gr}
-	gr.Go(func() error { return cf.clone(context.Background()) })
-
-	return cf
+	return &Configurator{cfg: cfg, tracer: t, client: cl}
 }
 
 // Configurator for git.
 type Configurator struct {
-	tracer  trace.Tracer
-	storage storage.Storer
-	fs      billy.Filesystem
-	cfg     *Config
-	repo    *git.Repository
-	gr      *errgroup.Group
-	mux     sync.Mutex
+	tracer trace.Tracer
+	cfg    *Config
+	client *github.Client
 }
 
 // GetConfig for git.
 func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
-	c.mux.Lock()
-	defer c.mux.Unlock()
-
-	if err := c.wait(ctx); err != nil {
-		return nil, err
-	}
-
-	if err := c.pull(ctx); err != nil {
-		return nil, err
-	}
-
-	if err := c.checkout(ctx, params.Application, params.Version); err != nil {
-		return nil, err
-	}
-
-	path := c.path(params.Application, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
-	data, err := c.open(ctx, path)
-
-	return &source.Config{Kind: file.Extension(path), Data: data}, err
-}
-
-func (c *Configurator) wait(ctx context.Context) error {
-	ctx, span := c.tracer.Start(ctx, operationName("wait"), trace.WithSpanKind(trace.SpanKindClient))
-	defer span.End()
-
-	ctx = tracer.WithTraceID(ctx, span)
-	tracer.Meta(ctx, span)
-
-	return c.gr.Wait()
-}
-
-func (c *Configurator) checkout(ctx context.Context, app, ver string) error {
-	ctx, span := c.tracer.Start(ctx, operationName("checkout"), trace.WithSpanKind(trace.SpanKindClient))
-	defer span.End()
-
-	ctx = tracer.WithTraceID(ctx, span)
-	tracer.Meta(ctx, span)
-
-	tag := fmt.Sprintf("%s/%s", app, ver)
-	tree, _ := c.repo.Worktree()
-
-	if err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.NewTagReferenceName(tag)}); err != nil {
-		tracer.Error(err, span)
-
-		if errors.Is(err, plumbing.ErrReferenceNotFound) {
-			meta.WithAttribute(ctx, "gitCheckoutError", meta.Error(err))
-
-			return ce.ErrNotFound
-		}
-
-		return err
-	}
-
-	return nil
-}
-
-func (c *Configurator) pull(ctx context.Context) error {
-	ctx, span := c.tracer.Start(ctx, operationName("pull"), trace.WithSpanKind(trace.SpanKindClient))
-	defer span.End()
-
-	ctx = tracer.WithTraceID(ctx, span)
-	tracer.Meta(ctx, span)
-
-	tree, _ := c.repo.Worktree()
-
-	if err := tree.Checkout(&git.CheckoutOptions{Branch: plumbing.Master}); err != nil {
-		tracer.Error(err, span)
-
-		return err
-	}
-
-	if err := tree.PullContext(ctx, &git.PullOptions{RemoteName: "origin"}); err != nil && !errors.Is(err, git.NoErrAlreadyUpToDate) {
-		tracer.Error(err, span)
-
-		return err
-	}
-
-	return nil
-}
-
-func (c *Configurator) clone(ctx context.Context) error {
-	ctx, span := c.tracer.Start(ctx, operationName("clone"), trace.WithSpanKind(trace.SpanKindClient))
-	defer span.End()
-
-	ctx = tracer.WithTraceID(ctx, span)
-	tracer.Meta(ctx, span)
-
 	t, err := c.cfg.GetToken()
 	if err != nil {
-		tracer.Error(err, span)
-
-		return err
+		return nil, err
 	}
 
-	opts := &git.CloneOptions{Auth: &gh.BasicAuth{Username: "a", Password: t}, URL: c.cfg.URL}
+	client := c.client.WithAuthToken(t)
+	path := c.path(params.Application, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
 
-	r, err := git.CloneContext(ctx, c.storage, c.fs, opts)
+	ctx, span := c.span(ctx)
+	defer span.End()
+
+	tag := fmt.Sprintf("%s/%s", params.Application, params.Version)
+	opts := &github.RepositoryContentGetOptions{Ref: tag}
+
+	rc, _, err := client.Repositories.DownloadContents(ctx, c.cfg.Owner, c.cfg.Repository, path, opts)
 	if err != nil {
-		tracer.Error(err, span)
+		if git.IsNotFoundError(err) {
+			meta.WithAttribute(ctx, "gitError", meta.Error(err))
 
-		return err
+			return nil, ce.ErrNotFound
+		}
+
+		return nil, err
 	}
 
-	c.repo = r
+	d, err := io.ReadAll(rc)
 
-	return nil
+	return &source.Config{Kind: file.Extension(path), Data: d}, err
 }
 
 func (c *Configurator) path(app, env, continent, country, cmd, kind string) string {
@@ -175,27 +74,11 @@ func (c *Configurator) path(app, env, continent, country, cmd, kind string) stri
 	return fmt.Sprintf("%s/%s/%s/%s/%s.%s", app, env, continent, country, cmd, kind)
 }
 
-func (c *Configurator) open(ctx context.Context, path string) ([]byte, error) {
-	ctx, span := c.tracer.Start(ctx, operationName("open"), trace.WithSpanKind(trace.SpanKindClient))
-	defer span.End()
-
+func (c *Configurator) span(ctx context.Context) (context.Context, trace.Span) {
+	ctx, span := c.tracer.Start(ctx, operationName("get config"), trace.WithSpanKind(trace.SpanKindClient))
 	ctx = tracer.WithTraceID(ctx, span)
-	tracer.Meta(ctx, span)
 
-	f, err := c.fs.Open(path)
-	if err != nil {
-		tracer.Error(err, span)
-
-		if os.IsNotExist(err) {
-			meta.WithAttribute(ctx, "gitFileError", meta.Error(err))
-
-			return nil, ce.ErrNotFound
-		}
-
-		return nil, err
-	}
-
-	return io.ReadAll(f)
+	return ctx, span
 }
 
 func operationName(name string) string {
