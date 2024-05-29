@@ -1,6 +1,7 @@
 package grpc
 
 import (
+	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/security/token"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
 	v1c "github.com/alexfalkowski/konfig/client/v1/config"
@@ -21,6 +22,7 @@ type ServiceClientParams struct {
 	Tracer    trace.Tracer
 	Meter     metric.Meter
 	Generator token.Generator
+	UserAgent env.UserAgent
 }
 
 // NewServiceClient for gRPC.
@@ -28,7 +30,7 @@ func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 	opts := grpc.ClientOpts{
 		Lifecycle: params.Lifecycle, Client: params.Client.Config,
 		Logger: params.Logger, Tracer: params.Tracer, Meter: params.Meter,
-		Generator: params.Generator,
+		Generator: params.Generator, UserAgent: params.UserAgent,
 	}
 	conn, err := grpc.NewClient(opts)
 
