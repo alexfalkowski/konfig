@@ -1,13 +1,13 @@
 package cmd
 
 import (
-	"github.com/alexfalkowski/go-service/version"
+	"github.com/alexfalkowski/go-service/env"
 )
 
 // Version of the app.
 var Version = "development"
 
 // NewVersion of the app.
-func NewVersion() version.Version {
-	return version.Version(Version)
+func NewVersion() env.Version {
+	return env.Version(Version)
 }

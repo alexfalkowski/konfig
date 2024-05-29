@@ -3,6 +3,7 @@ package ssm
 import (
 	"context"
 
+	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/alexfalkowski/konfig/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
@@ -17,17 +18,18 @@ import (
 type ClientParams struct {
 	fx.In
 
-	Config *http.Config
-	Logger *zap.Logger
-	Tracer trace.Tracer
-	Meter  metric.Meter
+	Config    *http.Config
+	Logger    *zap.Logger
+	Tracer    trace.Tracer
+	Meter     metric.Meter
+	UserAgent env.UserAgent
 }
 
 // NewClient for SSM.
 func NewClient(params ClientParams) (*ssm.Client, error) {
 	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.Config.UserAgent),
+		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(string(params.UserAgent)),
 	)
 
 	ctx := context.Background()

@@ -1,6 +1,7 @@
 package vault
 
 import (
+	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/hashicorp/vault/api"
 	"go.opentelemetry.io/otel/metric"
@@ -13,17 +14,18 @@ import (
 type ConfigParams struct {
 	fx.In
 
-	Config *http.Config
-	Logger *zap.Logger
-	Tracer trace.Tracer
-	Meter  metric.Meter
+	Config    *http.Config
+	Logger    *zap.Logger
+	Tracer    trace.Tracer
+	Meter     metric.Meter
+	UserAgent env.UserAgent
 }
 
 // NewConfig for vault.
 func NewConfig(params ConfigParams) *api.Config {
 	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.Config.UserAgent),
+		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(string(params.UserAgent)),
 	)
 
 	config := api.DefaultConfig()
