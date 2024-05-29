@@ -3,6 +3,7 @@ package health
 import (
 	"github.com/alexfalkowski/go-health/checker"
 	"github.com/alexfalkowski/go-health/server"
+	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/health"
 	"github.com/alexfalkowski/go-service/time"
 	"github.com/alexfalkowski/go-service/transport/http"
@@ -16,15 +17,16 @@ import (
 type RegistrationsParams struct {
 	fx.In
 
-	HTTP   *http.Config
-	Source *source.Config
-	Vault  *api.Config
-	Health *h.Config
+	HTTP      *http.Config
+	Source    *source.Config
+	Vault     *api.Config
+	Health    *h.Config
+	UserAgent env.UserAgent
 }
 
 // NewRegistrations for health.
 func NewRegistrations(params RegistrationsParams) health.Registrations {
-	client := http.NewClient(http.WithClientUserAgent(params.HTTP.UserAgent))
+	client := http.NewClient(http.WithClientUserAgent(string(params.UserAgent)))
 	d := time.MustParseDuration(params.Health.Duration)
 	registrations := health.Registrations{
 		server.NewRegistration("noop", d, checker.NewNoopChecker()),

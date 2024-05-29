@@ -3,6 +3,7 @@ package source
 import (
 	"errors"
 
+	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
@@ -26,13 +27,14 @@ type ConfiguratorParams struct {
 	Logger     *zap.Logger
 	Tracer     trace.Tracer
 	Meter      metric.Meter
+	UserAgent  env.UserAgent
 }
 
 // NewConfigurator for source.
 func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
 	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.HTTPConfig.UserAgent),
+		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(string(params.UserAgent)),
 	)
 
 	var configurator configurator.Configurator
