@@ -13,8 +13,8 @@ github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 h1:+JkXLHME8vLJafGhOH4ao
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1/go.mod h1:nuudZmJhzWtx2212z+pkuy7B6nkBqa+xwNXZHL1j8cg=
 github.com/alexfalkowski/go-health v1.17.0 h1:bGJPEsb05LhpetTepurzWba+sXuZ41utOrr4HvQKx4g=
 github.com/alexfalkowski/go-health v1.17.0/go.mod h1:3Wp4CqKiDtVQUx9ss5Qs+PwAHkdI9d1xS8x56qYswqY=
-github.com/alexfalkowski/go-service v1.209.0 h1:5WQzAQlJOJTZavSTKLVeQqUDHGuTvC1kxSN/P8Pg6v0=
-github.com/alexfalkowski/go-service v1.209.0/go.mod h1:qo0ckInu0Uf2uGt7KVJqc+A0F9iJJhGb37PioURquCs=
+github.com/alexfalkowski/go-service v1.209.1 h1:utBEHmPSj4mxiEcbMIT0xq7oWBguxOmAQdZrF0SKW8g=
+github.com/alexfalkowski/go-service v1.209.1/go.mod h1:2WNIM76LagSbj/jadGfrTh0iUAwUNxDHc7yYazHkwPs=
 github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kdvxnR2qWY=
 github.com/arl/statsviz v0.6.0 h1:jbW1QJkEYQkufd//4NDYRSNBpwJNrdzPahF7ZmoGdyE=
 github.com/arl/statsviz v0.6.0/go.mod h1:0toboo+YGSUXDaS4g1D5TVS4dXs7S7YYT5J/qnW2h8s=
@@ -59,8 +59,8 @@ github.com/aws/aws-sdk-go-v2/service/sts v1.28.10 h1:69tpbPED7jKPyzMcrwSvhWcJ9bP
 github.com/aws/aws-sdk-go-v2/service/sts v1.28.10/go.mod h1:0Aqn1MnEuitqfsCNyKsdKLhDUOr4txD/g19EfiUqgws=
 github.com/aws/smithy-go v1.20.2 h1:tbp628ireGtzcHDDmLT/6ADHidqnwgF57XOXZe6tp4Q=
 github.com/aws/smithy-go v1.20.2/go.mod h1:krry+ya/rV9RDcV/Q16kpu6ypI4K2czasz0NC3qS14E=
-github.com/beevik/ntp v1.4.2 h1:cjYhZqczanf6br/ocViahE75ipj7CmKQAh7fSBaCNK4=
-github.com/beevik/ntp v1.4.2/go.mod h1:zkATLTt8VUZuOfYX2KgOnir4yvtAxWbnUUA24umXFnc=
+github.com/beevik/ntp v1.4.3 h1:PlbTvE5NNy4QHmA4Mg57n7mcFTmr1W1j3gcK7L1lqho=
+github.com/beevik/ntp v1.4.3/go.mod h1:Unr8Zg+2dRn7d8bHFuehIMSvvUYssHMxW3Q5Nx4RW5Q=
 github.com/beevik/nts v0.1.1 h1:a8yot7WDfsQ/BWuAyAtxdPZ46bsz4tF1drE6DwIrFV8=
 github.com/beevik/nts v0.1.1/go.mod h1:24oIgxWAgpbVCDUltveb3riYNBToDhrPj0dtSwMTLmk=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=
