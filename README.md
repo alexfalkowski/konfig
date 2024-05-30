@@ -238,11 +238,11 @@ Usage:
   konfig config [flags]
 
 Flags:
-  -h, --help   help for config
+  -h, --help            help for config
+  -o, --output string   output config location (format kind:location) (default "env:KONFIG_APP_CONFIG_FILE")
 
 Global Flags:
-  -i, --input string    input config location (format kind:location) (default "env:KONFIG_CONFIG_FILE")
-  -o, --output string   output config location (format kind:location) (default "env:KONFIG_APP_CONFIG_FILE")
+  -i, --input string   input config location (format kind:location) (default "env:KONFIG_CONFIG_FILE")
 ```
 
 To configure we just need the have the following configuration:
@@ -279,10 +279,11 @@ Usage:
   konfig secrets [flags]
 
 Flags:
-  -h, --help   help for secrets
+  -h, --help            help for secrets
+  -o, --output string   output config location (format kind:location) (default "env:KONFIG_APP_CONFIG_FILE")
 
 Global Flags:
-  -i, --input string    input config location (format kind:location) (default "env:KONFIG_CONFIG_FILE")
+  -i, --input string   input config location (format kind:location) (default "env:KONFIG_CONFIG_FILE")
 ```
 
 To configure we just need the have the following configuration:
