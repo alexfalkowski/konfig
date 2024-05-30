@@ -222,6 +222,10 @@ Kind is `yaml`, `toml`.
 
 The server is defined by the following [proto contract](api/konfig/v1/service.proto). So each version of the service will have a new contract.
 
+### Dependencies
+
+![Dependencies](./assets/server.png)
+
 ## Client
 
 The client provides a few options.
@@ -300,6 +304,10 @@ client:
       path: reports
       mode: 0o600
 ```
+
+### Dependencies
+
+![Dependencies](./assets/client.png)
 
 ## Health
 
