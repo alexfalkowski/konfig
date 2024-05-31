@@ -4,7 +4,7 @@ go 1.22.3
 
 require (
 	github.com/alexfalkowski/go-health v1.17.0
-	github.com/alexfalkowski/go-service v1.209.1
+	github.com/alexfalkowski/go-service v1.210.0
 	github.com/aws/aws-sdk-go-v2 v1.27.0
 	github.com/aws/aws-sdk-go-v2/config v1.27.16
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.54.3
@@ -14,7 +14,7 @@ require (
 	github.com/hashicorp/vault/api v1.14.0
 	go.opentelemetry.io/otel/metric v1.27.0
 	go.opentelemetry.io/otel/trace v1.27.0
-	go.uber.org/fx v1.21.1
+	go.uber.org/fx v1.22.0
 	go.uber.org/zap v1.27.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20240520151616-dc85e6b867a5
 	google.golang.org/grpc v1.64.0
