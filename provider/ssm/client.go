@@ -4,8 +4,7 @@ import (
 	"context"
 
 	"github.com/alexfalkowski/go-service/env"
-	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/alexfalkowski/konfig/aws"
+	sh "github.com/alexfalkowski/go-service/transport/http"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"go.opentelemetry.io/otel/metric"
@@ -18,7 +17,7 @@ import (
 type ClientParams struct {
 	fx.In
 
-	Config    *http.Config
+	Config    *sh.Config
 	Logger    *zap.Logger
 	Tracer    trace.Tracer
 	Meter     metric.Meter
@@ -27,19 +26,19 @@ type ClientParams struct {
 
 // NewClient for SSM.
 func NewClient(params ClientParams) (*ssm.Client, error) {
-	client := http.NewClient(
-		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(string(params.UserAgent)),
+	client := sh.NewClient(
+		sh.WithClientLogger(params.Logger), sh.WithClientTracer(params.Tracer),
+		sh.WithClientMetrics(params.Meter), sh.WithClientUserAgent(string(params.UserAgent)),
 	)
 
 	ctx := context.Background()
 	opts := []func(*config.LoadOptions) error{
-		config.WithEndpointResolverWithOptions(aws.EndpointResolver()),
 		config.WithHTTPClient(client),
 		config.WithRetryMaxAttempts(int(params.Config.Retry.Attempts)),
 	}
 
+	r := &resolver{EndpointResolverV2: ssm.NewDefaultEndpointResolverV2()}
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
 
-	return ssm.NewFromConfig(cfg), err
+	return ssm.NewFromConfig(cfg, ssm.WithEndpointResolverV2(r)), err
 }

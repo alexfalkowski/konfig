@@ -9,7 +9,6 @@ import (
 
 	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
-	"github.com/alexfalkowski/konfig/aws"
 	source "github.com/alexfalkowski/konfig/source/configurator"
 	ke "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/aws/aws-sdk-go-v2/config"
@@ -37,10 +36,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 	ctx, span := c.span(ctx)
 	defer span.End()
 
-	opts := []func(*config.LoadOptions) error{
-		config.WithEndpointResolverWithOptions(aws.EndpointResolver()),
-		config.WithHTTPClient(c.client),
-	}
+	opts := []func(*config.LoadOptions) error{config.WithHTTPClient(c.client)}
 
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
 	if err != nil {
@@ -50,7 +46,8 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 		return nil, err
 	}
 
-	client := s3.NewFromConfig(cfg, func(o *s3.Options) {
+	r := &resolver{EndpointResolverV2: s3.NewDefaultEndpointResolverV2()}
+	client := s3.NewFromConfig(cfg, s3.WithEndpointResolverV2(r), func(o *s3.Options) {
 		o.UsePathStyle = true
 	})
 
