@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"net/http"
 
 	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
@@ -17,10 +16,8 @@ import (
 )
 
 // NewConfigurator for git.
-func NewConfigurator(cfg *Config, t trace.Tracer, client *http.Client) *Configurator {
-	cl := github.NewClient(client)
-
-	return &Configurator{cfg: cfg, tracer: t, client: cl}
+func NewConfigurator(client *github.Client, cfg *Config, t trace.Tracer) *Configurator {
+	return &Configurator{cfg: cfg, tracer: t, client: client}
 }
 
 // Configurator for git.

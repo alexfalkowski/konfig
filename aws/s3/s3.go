@@ -1,20 +1,21 @@
-package ssm
+package s3
 
 import (
 	"context"
+	"os"
 
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/alexfalkowski/konfig/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/aws/aws-sdk-go-v2/service/ssm"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+	endpoints "github.com/aws/smithy-go/endpoints"
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
 
-// ConfigParams for SSM.
+// ConfigParams for S3.
 type ClientParams struct {
 	fx.In
 
@@ -25,8 +26,8 @@ type ClientParams struct {
 	UserAgent env.UserAgent
 }
 
-// NewClient for SSM.
-func NewClient(params ClientParams) (*ssm.Client, error) {
+// NewClient for S3.
+func NewClient(params ClientParams) (*s3.Client, error) {
 	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(string(params.UserAgent)),
@@ -34,12 +35,29 @@ func NewClient(params ClientParams) (*ssm.Client, error) {
 
 	ctx := context.Background()
 	opts := []func(*config.LoadOptions) error{
-		config.WithEndpointResolverWithOptions(aws.EndpointResolver()),
 		config.WithHTTPClient(client),
 		config.WithRetryMaxAttempts(int(params.Config.Retry.Attempts)),
 	}
 
+	r := &resolver{EndpointResolverV2: s3.NewDefaultEndpointResolverV2()}
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
 
-	return ssm.NewFromConfig(cfg), err
+	cl := s3.NewFromConfig(cfg, s3.WithEndpointResolverV2(r), func(o *s3.Options) {
+		o.UsePathStyle = true
+	})
+
+	return cl, err
+}
+
+type resolver struct {
+	s3.EndpointResolverV2
+}
+
+func (r *resolver) ResolveEndpoint(ctx context.Context, params s3.EndpointParameters) (endpoints.Endpoint, error) {
+	u := os.Getenv("AWS_URL")
+	if u != "" {
+		params.Endpoint = &u
+	}
+
+	return r.EndpointResolverV2.ResolveEndpoint(ctx, params)
 }

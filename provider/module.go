@@ -13,7 +13,6 @@ var Module = fx.Options(
 	fx.Provide(vault.NewConfig),
 	fx.Provide(vault.NewClient),
 	fx.Provide(vault.NewTransformer),
-	fx.Provide(ssm.NewClient),
 	fx.Provide(ssm.NewTransformer),
 	fx.Provide(NewTransformer),
 )
