@@ -4,11 +4,12 @@ import (
 	"errors"
 
 	"github.com/alexfalkowski/go-service/env"
-	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
 	"github.com/alexfalkowski/konfig/source/configurator/git"
-	"github.com/alexfalkowski/konfig/source/configurator/s3"
+	cs3 "github.com/alexfalkowski/konfig/source/configurator/s3"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/google/go-github/v62/github"
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
@@ -22,30 +23,26 @@ var ErrNoConfigurator = errors.New("no configurator")
 type ConfiguratorParams struct {
 	fx.In
 
-	Config     *Config
-	HTTPConfig *http.Config
-	Logger     *zap.Logger
-	Tracer     trace.Tracer
-	Meter      metric.Meter
-	UserAgent  env.UserAgent
+	Config    *Config
+	S3Client  *s3.Client
+	GitClient *github.Client
+	Logger    *zap.Logger
+	Tracer    trace.Tracer
+	Meter     metric.Meter
+	UserAgent env.UserAgent
 }
 
 // NewConfigurator for source.
 func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
-	client := http.NewClient(
-		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(string(params.UserAgent)),
-	)
-
 	var configurator configurator.Configurator
 
 	switch {
 	case params.Config.IsFolder():
 		configurator = folder.NewConfigurator(params.Config.Folder, params.Tracer)
 	case params.Config.IsGit():
-		configurator = git.NewConfigurator(params.Config.Git, params.Tracer, client)
+		configurator = git.NewConfigurator(params.GitClient, params.Config.Git, params.Tracer)
 	case params.Config.IsS3():
-		configurator = s3.NewConfigurator(params.Config.S3, params.Tracer, client)
+		configurator = cs3.NewConfigurator(params.S3Client, params.Config.S3, params.Tracer)
 	default:
 		return nil, ErrNoConfigurator
 	}
