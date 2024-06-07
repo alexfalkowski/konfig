@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.145.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.145.0) - 2024-06-07
+
+- [`3d5dd9e`](https://github.com/alexfalkowski/konfig/commit/3d5dd9e8971f7a159edeb1911b4dc0c3f81bb969) feat(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 from 1.55.0 to 1.55.1 (#1284)
+- [`846224f`](https://github.com/alexfalkowski/konfig/commit/846224f29ce8da1d29a61d59dacd7d09d9e34ac2) build(deps): bump bin from `955891d` to `897d5f1` (#1282)
+- [`2afca91`](https://github.com/alexfalkowski/konfig/commit/2afca9124232c3c86f27902ea9f6fa15a98b0dbb) build(ci): fix bundler dependabot (#1281)
+
 ## [v1.144.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.144.0) - 2024-06-06
 
 - [`128b8a9`](https://github.com/alexfalkowski/konfig/commit/128b8a90cf1a06e05f1b176366e6576247a54af8) feat(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 from 1.54.4 to 1.55.0 (#1280)
