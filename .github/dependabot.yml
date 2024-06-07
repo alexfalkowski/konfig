@@ -9,7 +9,7 @@ updates:
       prefix-development: "fix"
       include: "scope"
   - package-ecosystem: "bundler"
-    directory: "/"
+    directory: "/test"
     schedule:
       interval: "daily"
     commit-message:
