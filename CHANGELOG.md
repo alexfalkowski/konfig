@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.152.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.152.0) - 2024-06-18
+
+- [`416b62f`](https://github.com/alexfalkowski/konfig/commit/416b62f097eaf5387a98815b4c5ddc7ffe941a0b) feat(deps): bump github.com/aws/aws-sdk-go-v2/config from 1.27.18 to 1.27.19 (#1299)
+- [`d0904ac`](https://github.com/alexfalkowski/konfig/commit/d0904ac01b3df07a5b1db06fad33d9a968dd713b) test(deps): bump aws-sdk-s3 from 1.152.2 to 1.152.3 in /test (#1295)
+- [`bde9057`](https://github.com/alexfalkowski/konfig/commit/bde9057b0adce4fd9ba53307a941014a462468e1) test(deps): bump rspec-expectations from 3.13.0 to 3.13.1 in /test (#1294)
+
 ## [v1.151.3](https://github.com/alexfalkowski/konfig/releases/tag/v1.151.3) - 2024-06-13
 
 - [`40985c7`](https://github.com/alexfalkowski/konfig/commit/40985c7b443745a576abd9c850e883444ed2ec4a) fix(deps): upgraded github.com/alexfalkowski/go-service to v1.217.2 (#1293)
