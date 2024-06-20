@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.159.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.159.0) - 2024-06-20
+
+- [`796a246`](https://github.com/alexfalkowski/konfig/commit/796a246af1b3bf567bec57d89f88f551b7b8da5d) feat(deps): bump github.com/aws/aws-sdk-go-v2/config from 1.27.20 to 1.27.21 (#1304)
+- [`30ab454`](https://github.com/alexfalkowski/konfig/commit/30ab4540e7e677c8f3fc70861464139a52f40f18) test(deps): bump ruby-lsp from 0.17.3 to 0.17.4 in /test (#1303)
+
 ## [v1.158.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.158.0) - 2024-06-19
 
 - [`d5fc4ed`](https://github.com/alexfalkowski/konfig/commit/d5fc4edfeea7bf7819e43426f3ffb202052afa84) feat(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 from 1.55.2 to 1.56.0 (#1301)
