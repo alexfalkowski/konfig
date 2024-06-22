@@ -4,7 +4,7 @@ go 1.22.4
 
 require (
 	github.com/alexfalkowski/go-health v1.17.1
-	github.com/alexfalkowski/go-service v1.217.3
+	github.com/alexfalkowski/go-service v1.218.0
 	github.com/aws/aws-sdk-go-v2/config v1.27.21
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.56.1
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.51.1
@@ -58,6 +58,7 @@ require (
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/docker/go-units v0.4.0 // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
+	github.com/elnormous/contenttype v1.0.4 // indirect
 	github.com/felixge/fgprof v0.9.4 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-jose/go-jose/v4 v4.0.1 // indirect
