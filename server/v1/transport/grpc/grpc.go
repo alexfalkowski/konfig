@@ -1,49 +1,37 @@
 package grpc
 
 import (
-	"context"
-
 	"github.com/alexfalkowski/go-service/transport/grpc"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
-	v1c "github.com/alexfalkowski/konfig/client/v1/config"
-	g "github.com/alexfalkowski/konfig/transport/grpc"
-	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"go.opentelemetry.io/otel/metric"
-	"go.opentelemetry.io/otel/trace"
-	"go.uber.org/fx"
-	"go.uber.org/zap"
+	"github.com/alexfalkowski/konfig/server/service"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
-// RegisterParams for gRPC.
-type RegisterParams struct {
-	fx.In
-
-	Lifecycle fx.Lifecycle
-	GRPC      *grpc.Server
-	Mux       *runtime.ServeMux
-	Client    *v1c.Config
-	Logger    *zap.Logger
-	Tracer    trace.Tracer
-	Meter     metric.Meter
-	Server    v1.ServiceServer
+// Register server.
+func Register(gs *grpc.Server, server v1.ServiceServer) {
+	v1.RegisterServiceServer(gs.Server(), server)
 }
 
-// Register server.
-func Register(params RegisterParams) error {
-	v1.RegisterServiceServer(params.GRPC.Server(), params.Server)
+// NewServer for gRPC.
+func NewServer(service *service.Service) v1.ServiceServer {
+	return &Server{service: service}
+}
 
-	opts := g.ClientOpts{
-		Lifecycle: params.Lifecycle,
-		Client:    params.Client.Config,
-		Logger:    params.Logger,
-		Tracer:    params.Tracer,
-		Meter:     params.Meter,
+// Server for gRPC.
+type Server struct {
+	v1.UnimplementedServiceServer
+	service *service.Service
+}
+
+func (s *Server) error(err error) error {
+	if service.IsInvalidArgument(err) {
+		return status.Error(codes.InvalidArgument, err.Error())
 	}
 
-	conn, err := g.NewClient(opts)
-	if err != nil {
-		return err
+	if service.IsNotFoundError(err) {
+		return status.Error(codes.NotFound, err.Error())
 	}
 
-	return v1.RegisterServiceHandler(context.Background(), params.Mux, conn)
+	return status.Error(codes.Internal, err.Error())
 }

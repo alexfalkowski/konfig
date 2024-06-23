@@ -10,8 +10,8 @@ When('I request a config with HTTP:') do |table|
     read_timeout: 10, open_timeout: 10
   }
   params = {
-    app: rows['app'], ver: rows['ver'], env: rows['env'], continent: rows['continent'],
-    country: rows['country'], cmd: rows['cmd'], kind: rows['kind']
+    application: rows['app'], version: rows['ver'], environment: rows['env'], continent: rows['continent'],
+    country: rows['country'], command: rows['cmd'], kind: rows['kind']
   }
 
   @response = Konfig::V1.server_http.get_config(params, opts)

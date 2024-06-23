@@ -5,11 +5,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/git"
-	source "github.com/alexfalkowski/konfig/source/configurator"
 	ce "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/google/go-github/v62/github"
 	"go.opentelemetry.io/otel/trace"
@@ -28,19 +26,19 @@ type Configurator struct {
 }
 
 // GetConfig for git.
-func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd, kind string) ([]byte, error) {
 	t, err := c.cfg.GetToken()
 	if err != nil {
 		return nil, err
 	}
 
 	client := c.client.WithAuthToken(t)
-	path := c.path(params.Application, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
+	path := c.path(app, env, continent, country, cmd, kind)
 
 	ctx, span := c.span(ctx)
 	defer span.End()
 
-	tag := fmt.Sprintf("%s/%s", params.Application, params.Version)
+	tag := fmt.Sprintf("%s/%s", app, ver)
 	opts := &github.RepositoryContentGetOptions{Ref: tag}
 
 	rc, _, err := client.Repositories.DownloadContents(ctx, c.cfg.Owner, c.cfg.Repository, path, opts)
@@ -56,7 +54,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	d, err := io.ReadAll(rc)
 
-	return &source.Config{Kind: file.Extension(path), Data: d}, err
+	return d, err
 }
 
 func (c *Configurator) path(app, env, continent, country, cmd, kind string) string {
