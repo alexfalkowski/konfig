@@ -36,7 +36,7 @@ jobs:
             - konfig-build-service-go-build-cache-{{ checksum "go.sum" }}
             - konfig-build-service-go-build-cache-
       - run: make lint
-      # - run: make proto-breaking
+      - run: make proto-breaking
       - run: make sec
       - save_cache:
           name: save go build cache
