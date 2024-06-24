@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.164.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.164.0) - 2024-06-24
+
+- [`d8ebd04`](https://github.com/alexfalkowski/konfig/commit/d8ebd049c8c4d0419022889e42d68bb4b29480f7) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.220.0 (#1309)
+
 ## [v1.163.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.163.0) - 2024-06-24
 
 - [`40a97f2`](https://github.com/alexfalkowski/konfig/commit/40a97f2279a2fbfe6cbf0c994c938dbbbc40f05c) feat(http): move away from grpc gateway (#1308)
