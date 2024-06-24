@@ -31,7 +31,6 @@ token:
     hash: $argon2id$v=19$m=65536,t=3,p=4$HKvNAPz7okGD8blLQ/8hmA$Qk2nwk9vWf2rWTv/J4ejgg6WlpnHQJC2YKZMqArsn6o
 transport:
   http:
-    mux: standard
     port: 11000
     user_agent: "Konfig-server/1.0 HTTP/1.0"
     retry:
