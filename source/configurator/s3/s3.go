@@ -6,9 +6,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
-	source "github.com/alexfalkowski/konfig/source/configurator"
 	ke "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
@@ -28,8 +26,8 @@ type Configurator struct {
 }
 
 // GetConfig for s3.
-func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
-	path := c.path(params.Application, params.Version, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd, kind string) ([]byte, error) {
+	path := c.path(app, ver, env, continent, country, cmd, kind)
 
 	ctx, span := c.span(ctx)
 	defer span.End()
@@ -57,7 +55,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 
 	tracer.Meta(ctx, span)
 
-	return &source.Config{Kind: file.Extension(path), Data: data}, nil
+	return data, nil
 }
 
 func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string) string {

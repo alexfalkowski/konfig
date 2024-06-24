@@ -32,11 +32,11 @@ func NewTransformer(pt *provider.Transformer, mm *marshaller.Map) *Transformer {
 }
 
 // Transform config.
-func (t *Transformer) Transform(ctx context.Context, cfg *Config) ([]byte, error) {
-	m := t.mm.Get(cfg.Kind)
+func (t *Transformer) Transform(ctx context.Context, kind string, data []byte) ([]byte, error) {
+	m := t.mm.Get(kind)
 
 	c := map[string]any{}
-	if err := m.Unmarshal(cfg.Data, &c); err != nil {
+	if err := m.Unmarshal(data, &c); err != nil {
 		meta.WithAttribute(ctx, "configUnmarshalError", meta.Error(err))
 
 		return nil, ErrUnmarshalError

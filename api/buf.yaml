@@ -1,7 +1,5 @@
-version: v1
+version: v2
 name: buf.build/afalkowski/konfig
-deps:
-  - buf.build/googleapis/googleapis
 breaking:
   use:
     - FILE

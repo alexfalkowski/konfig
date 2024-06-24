@@ -6,10 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/alexfalkowski/go-service/file"
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
-	source "github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/errors"
 	"go.opentelemetry.io/otel/trace"
 )
@@ -26,7 +24,7 @@ type Configurator struct {
 }
 
 // GetConfig for folder.
-func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams) (*source.Config, error) {
+func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd, kind string) ([]byte, error) {
 	ctx, span := c.span(ctx)
 	defer span.End()
 
@@ -36,7 +34,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 		return nil, err
 	}
 
-	p := c.path(params.Application, params.Version, params.Environment, params.Continent, params.Country, params.Command, params.Kind)
+	p := c.path(app, ver, env, continent, country, cmd, kind)
 	path := filepath.Join(c.cfg.Dir, p)
 
 	data, err := os.ReadFile(filepath.Clean(path))
@@ -52,7 +50,7 @@ func (c *Configurator) GetConfig(ctx context.Context, params source.ConfigParams
 		return nil, err
 	}
 
-	return &source.Config{Kind: file.Extension(path), Data: data}, nil
+	return data, nil
 }
 
 func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string) string {

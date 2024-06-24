@@ -32,4 +32,4 @@ Feature: Config
     And I start the system
     When I download the configuration for "invalid_kind" application
     Then I should not have a configuration for "invalid_kind" application
-    And I should see a log entry of "could not transform" in the file "reports/invalid_kind.client.log"
+    And I should see a log entry of "unmarshal issue" in the file "reports/invalid_kind.client.log"

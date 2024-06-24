@@ -3,16 +3,20 @@ package v1
 import (
 	"github.com/alexfalkowski/konfig/aws"
 	"github.com/alexfalkowski/konfig/git"
+	"github.com/alexfalkowski/konfig/server/security/token"
+	"github.com/alexfalkowski/konfig/server/service"
 	"github.com/alexfalkowski/konfig/server/v1/transport/grpc"
-	"github.com/alexfalkowski/konfig/server/v1/transport/grpc/security/token"
+	"github.com/alexfalkowski/konfig/server/v1/transport/http"
 	"go.uber.org/fx"
 )
 
 // Module for fx.
 var Module = fx.Options(
+	service.Module,
 	aws.Module,
 	git.Module,
-	fx.Provide(token.NewVerifier),
+	token.Module,
 	fx.Provide(grpc.NewServer),
 	fx.Invoke(grpc.Register),
+	fx.Invoke(http.Register),
 )
