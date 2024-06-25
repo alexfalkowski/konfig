@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/alexfalkowski/go-service/meta"
+	"github.com/alexfalkowski/konfig/server/service"
 )
 
 type (
@@ -20,12 +21,13 @@ type (
 		Secrets map[string][]byte `json:"secrets,omitempty"`
 	}
 
-	secretsErrorer struct{}
+	secretsHandler struct {
+		service *service.Service
+	}
 )
 
-// GetSecrets for HTTP.
-func (s *Server) GetSecrets(ctx context.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
-	secrets, err := s.service.GetSecrets(ctx, req.Secrets)
+func (h *secretsHandler) Handle(ctx context.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
+	secrets, err := h.service.GetSecrets(ctx, req.Secrets)
 	resp := &GetSecretsResponse{
 		Meta:    meta.CamelStrings(ctx, ""),
 		Secrets: secrets,
@@ -34,10 +36,18 @@ func (s *Server) GetSecrets(ctx context.Context, req *GetSecretsRequest) (*GetSe
 	return resp, err
 }
 
-func (*secretsErrorer) Error(ctx context.Context, err error) *GetSecretsResponse {
+func (h *secretsHandler) Error(ctx context.Context, err error) *GetSecretsResponse {
 	return &GetSecretsResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
-func (*secretsErrorer) Status(_ error) int {
+func (h *secretsHandler) Status(err error) int {
+	if service.IsInvalidArgument(err) {
+		return http.StatusBadRequest
+	}
+
+	if service.IsNotFoundError(err) {
+		return http.StatusNotFound
+	}
+
 	return http.StatusInternalServerError
 }
