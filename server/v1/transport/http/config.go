@@ -39,11 +39,12 @@ type (
 		Data        []byte `json:"data,omitempty"`
 	}
 
-	configErrorer struct{}
+	configHandler struct {
+		service *service.Service
+	}
 )
 
-// GetConfig for HTTP.
-func (s *Server) GetConfig(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
+func (h *configHandler) Handle(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
 	resp := &GetConfigResponse{}
 
 	cfg, err := service.NewConfig(req.Application, req.Version,
@@ -53,7 +54,7 @@ func (s *Server) GetConfig(ctx context.Context, req *GetConfigRequest) (*GetConf
 		return resp, err
 	}
 
-	data, err := s.service.GetConfig(ctx, cfg)
+	data, err := h.service.GetConfig(ctx, cfg)
 
 	resp.Meta = meta.CamelStrings(ctx, "")
 	resp.Config = &Config{
@@ -65,11 +66,11 @@ func (s *Server) GetConfig(ctx context.Context, req *GetConfigRequest) (*GetConf
 	return resp, err
 }
 
-func (*configErrorer) Error(ctx context.Context, err error) *GetConfigResponse {
+func (h *configHandler) Error(ctx context.Context, err error) *GetConfigResponse {
 	return &GetConfigResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
-func (*configErrorer) Status(err error) int {
+func (h *configHandler) Status(err error) int {
 	if service.IsInvalidArgument(err) {
 		return http.StatusBadRequest
 	}
