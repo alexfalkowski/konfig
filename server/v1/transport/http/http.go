@@ -12,6 +12,6 @@ type Error struct {
 
 // Register for HTTP.
 func Register(service *service.Service) {
-	http.Handle("POST /v1/config", &configHandler{service: service})
-	http.Handle("POST /v1/secrets", &secretsHandler{service: service})
+	http.Handle("/v1/config", &configHandler{service: service})
+	http.Handle("/v1/secrets", &secretsHandler{service: service})
 }
