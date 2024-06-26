@@ -43,7 +43,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 
 	rc, _, err := client.Repositories.DownloadContents(ctx, c.cfg.Owner, c.cfg.Repository, path, opts)
 	if err != nil {
-		if git.IsNotFoundError(err) {
+		if git.IsNotFound(err) {
 			meta.WithAttribute(ctx, "gitError", meta.Error(err))
 
 			return nil, ce.ErrNotFound

@@ -29,7 +29,7 @@ func (s *Server) error(err error) error {
 		return status.Error(codes.InvalidArgument, err.Error())
 	}
 
-	if service.IsNotFoundError(err) {
+	if service.IsNotFound(err) {
 		return status.Error(codes.NotFound, err.Error())
 	}
 

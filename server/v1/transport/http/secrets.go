@@ -45,7 +45,7 @@ func (h *secretsHandler) Status(err error) int {
 		return http.StatusBadRequest
 	}
 
-	if service.IsNotFoundError(err) {
+	if service.IsNotFound(err) {
 		return http.StatusNotFound
 	}
 

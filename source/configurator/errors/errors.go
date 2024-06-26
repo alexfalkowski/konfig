@@ -7,7 +7,7 @@ import (
 // ErrNotFound in source.
 var ErrNotFound = errors.New("not found")
 
-// IsNotFoundError in source.
-func IsNotFoundError(err error) bool {
+// IsNotFound in source.
+func IsNotFound(err error) bool {
 	return errors.Is(err, ErrNotFound)
 }
