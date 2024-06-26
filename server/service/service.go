@@ -18,8 +18,8 @@ var (
 	ErrInvalidArgument = errors.New("invalid argument")
 )
 
-// IsNotFoundError for service.
-func IsNotFoundError(err error) bool {
+// IsNotFound for service.
+func IsNotFound(err error) bool {
 	return errors.Is(err, ErrNotFound)
 }
 
@@ -59,7 +59,7 @@ func (s *Service) GetConfig(ctx context.Context, cfg *Config) ([]byte, error) {
 		cfg.environment, cfg.continent, cfg.country,
 		cfg.command, cfg.kind)
 	if err != nil {
-		if ce.IsNotFoundError(err) {
+		if ce.IsNotFound(err) {
 			return nil, fmt.Errorf("%s: %w", cfg, ErrNotFound)
 		}
 
