@@ -1,10 +1,10 @@
 package http
 
 import (
-	"context"
 	"net/http"
 
 	"github.com/alexfalkowski/go-service/meta"
+	nh "github.com/alexfalkowski/go-service/net/http"
 	"github.com/alexfalkowski/konfig/server/service"
 )
 
@@ -44,7 +44,7 @@ type (
 	}
 )
 
-func (h *configHandler) Handle(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
+func (h *configHandler) Handle(ctx nh.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
 	resp := &GetConfigResponse{}
 
 	cfg, err := service.NewConfig(req.Application, req.Version,
@@ -66,7 +66,7 @@ func (h *configHandler) Handle(ctx context.Context, req *GetConfigRequest) (*Get
 	return resp, err
 }
 
-func (h *configHandler) Error(ctx context.Context, err error) *GetConfigResponse {
+func (h *configHandler) Error(ctx nh.Context, err error) *GetConfigResponse {
 	return &GetConfigResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
