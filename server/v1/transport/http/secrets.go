@@ -1,10 +1,10 @@
 package http
 
 import (
-	"context"
 	"net/http"
 
 	"github.com/alexfalkowski/go-service/meta"
+	nh "github.com/alexfalkowski/go-service/net/http"
 	"github.com/alexfalkowski/konfig/server/service"
 )
 
@@ -26,7 +26,7 @@ type (
 	}
 )
 
-func (h *secretsHandler) Handle(ctx context.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
+func (h *secretsHandler) Handle(ctx nh.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
 	secrets, err := h.service.GetSecrets(ctx, req.Secrets)
 	resp := &GetSecretsResponse{
 		Meta:    meta.CamelStrings(ctx, ""),
@@ -36,7 +36,7 @@ func (h *secretsHandler) Handle(ctx context.Context, req *GetSecretsRequest) (*G
 	return resp, err
 }
 
-func (h *secretsHandler) Error(ctx context.Context, err error) *GetSecretsResponse {
+func (h *secretsHandler) Error(ctx nh.Context, err error) *GetSecretsResponse {
 	return &GetSecretsResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
