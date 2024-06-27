@@ -30,7 +30,7 @@ type ClientParams struct {
 func NewClient(params ClientParams) (*ssm.Client, error) {
 	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(string(params.UserAgent)),
+		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.UserAgent),
 	)
 
 	ctx := context.Background()

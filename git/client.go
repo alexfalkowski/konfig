@@ -25,7 +25,7 @@ type ClientParams struct {
 func NewClient(params ClientParams) *github.Client {
 	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(string(params.UserAgent)),
+		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.UserAgent),
 	)
 
 	return github.NewClient(client)
