@@ -25,7 +25,7 @@ type ConfigParams struct {
 func NewConfig(params ConfigParams) *api.Config {
 	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
-		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(string(params.UserAgent)),
+		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.UserAgent),
 	)
 
 	config := api.DefaultConfig()
