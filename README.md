@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/alexfalkowski/konfig.svg?style=svg)](https://circleci.com/gh/alexfalkowski/konfig)
+[![codecov](https://codecov.io/gh/alexfalkowski/konfig/graph/badge.svg?token=EZQ0Y4847T)](https://codecov.io/gh/alexfalkowski/konfig)
 
 # Konfig
 
