@@ -1,5 +1,8 @@
-[![CircleCI](https://circleci.com/gh/alexfalkowski/konfig.svg?style=svg)](https://circleci.com/gh/alexfalkowski/konfig)
+[![CircleCI](https://circleci.com/gh/alexfalkowski/konfig.svg?style=shield)](https://circleci.com/gh/alexfalkowski/konfig)
 [![codecov](https://codecov.io/gh/alexfalkowski/konfig/graph/badge.svg?token=EZQ0Y4847T)](https://codecov.io/gh/alexfalkowski/konfig)
+[![Go Report Card](https://goreportcard.com/badge/github.com/alexfalkowski/konfig)](https://goreportcard.com/report/github.com/alexfalkowski/konfig)
+[![Go Reference](https://pkg.go.dev/badge/github.com/alexfalkowski/konfig.svg)](https://pkg.go.dev/github.com/alexfalkowski/konfig)
+[![Stability: Active](https://masterminds.github.io/stability/active.svg)](https://masterminds.github.io/stability/active.html)
 
 # Konfig
 
@@ -27,7 +30,7 @@ We want to standardize configuration and check it into version control. We are f
 
 ## Format
 
-This system is geared around a very specific system that we use to build [services](https://github.com/alexfalkowski/go-service).
+This system is geared around a very specific system that we use to build [services](https://github.com/alexfalkowski/konfig).
 
 The kinds of this config that are supported are:
 - [YAML](https://en.wikipedia.org/wiki/YAML)
