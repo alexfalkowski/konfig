@@ -10,7 +10,8 @@ client:
 environment: production
 limiter:
   kind: token
-  pattern: 1000-S
+  tokens: 1000
+  interval: 1s
 health:
   duration: 1s
   timeout: 1s
