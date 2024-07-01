@@ -4,7 +4,7 @@ go 1.22.4
 
 require (
 	github.com/alexfalkowski/go-health v1.17.1
-	github.com/alexfalkowski/go-service v1.230.0
+	github.com/alexfalkowski/go-service v1.230.1
 	github.com/aws/aws-sdk-go-v2/config v1.27.23
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.57.1
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.52.1
