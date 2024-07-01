@@ -23,7 +23,6 @@ type (
 	// GetConfigResponse for a specific application.
 	GetConfigResponse struct {
 		Meta   map[string]string `json:"meta,omitempty"`
-		Error  *Error            `json:"error,omitempty"`
 		Config *Config           `json:"config,omitempty"`
 	}
 
@@ -64,10 +63,6 @@ func (h *configHandler) Handle(ctx nh.Context, req *GetConfigRequest) (*GetConfi
 	}
 
 	return resp, err
-}
-
-func (h *configHandler) Error(ctx nh.Context, err error) *GetConfigResponse {
-	return &GetConfigResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
 func (h *configHandler) Status(err error) int {

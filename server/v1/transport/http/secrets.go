@@ -17,7 +17,6 @@ type (
 	// GetSecretsResponse a map of meta and secrets.
 	GetSecretsResponse struct {
 		Meta    map[string]string `json:"meta,omitempty"`
-		Error   *Error            `json:"error,omitempty"`
 		Secrets map[string][]byte `json:"secrets,omitempty"`
 	}
 
@@ -34,10 +33,6 @@ func (h *secretsHandler) Handle(ctx nh.Context, req *GetSecretsRequest) (*GetSec
 	}
 
 	return resp, err
-}
-
-func (h *secretsHandler) Error(ctx nh.Context, err error) *GetSecretsResponse {
-	return &GetSecretsResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
 func (h *secretsHandler) Status(err error) int {
