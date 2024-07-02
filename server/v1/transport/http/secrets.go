@@ -1,10 +1,8 @@
 package http
 
 import (
-	"net/http"
-
 	"github.com/alexfalkowski/go-service/meta"
-	nh "github.com/alexfalkowski/go-service/net/http"
+	"github.com/alexfalkowski/go-service/net/http"
 	"github.com/alexfalkowski/konfig/server/service"
 )
 
@@ -25,24 +23,18 @@ type (
 	}
 )
 
-func (h *secretsHandler) Handle(ctx nh.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
+func (h *secretsHandler) Handle(ctx http.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
+	resp := &GetSecretsResponse{}
+
 	secrets, err := h.service.GetSecrets(ctx, req.Secrets)
-	resp := &GetSecretsResponse{
-		Meta:    meta.CamelStrings(ctx, ""),
-		Secrets: secrets,
+	if err != nil {
+		resp.Meta = meta.CamelStrings(ctx, "")
+
+		return resp, handleError(err)
 	}
 
-	return resp, err
-}
+	resp.Meta = meta.CamelStrings(ctx, "")
+	resp.Secrets = secrets
 
-func (h *secretsHandler) Status(err error) int {
-	if service.IsInvalidArgument(err) {
-		return http.StatusBadRequest
-	}
-
-	if service.IsNotFound(err) {
-		return http.StatusNotFound
-	}
-
-	return http.StatusInternalServerError
+	return resp, nil
 }
