@@ -1,10 +1,8 @@
 package http
 
 import (
-	"net/http"
-
 	"github.com/alexfalkowski/go-service/meta"
-	nh "github.com/alexfalkowski/go-service/net/http"
+	"github.com/alexfalkowski/go-service/net/http"
 	"github.com/alexfalkowski/konfig/server/service"
 )
 
@@ -43,17 +41,22 @@ type (
 	}
 )
 
-func (h *configHandler) Handle(ctx nh.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
+func (h *configHandler) Handle(ctx http.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
 	resp := &GetConfigResponse{}
 
 	cfg, err := service.NewConfig(req.Application, req.Version,
 		req.Environment, req.Continent, req.Country,
 		req.Command, req.Kind)
 	if err != nil {
-		return resp, err
+		return resp, handleError(err)
 	}
 
 	data, err := h.service.GetConfig(ctx, cfg)
+	if err != nil {
+		resp.Meta = meta.CamelStrings(ctx, "")
+
+		return resp, handleError(err)
+	}
 
 	resp.Meta = meta.CamelStrings(ctx, "")
 	resp.Config = &Config{
@@ -63,16 +66,4 @@ func (h *configHandler) Handle(ctx nh.Context, req *GetConfigRequest) (*GetConfi
 	}
 
 	return resp, err
-}
-
-func (h *configHandler) Status(err error) int {
-	if service.IsInvalidArgument(err) {
-		return http.StatusBadRequest
-	}
-
-	if service.IsNotFound(err) {
-		return http.StatusNotFound
-	}
-
-	return http.StatusInternalServerError
 }
