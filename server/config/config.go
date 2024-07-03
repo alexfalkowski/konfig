@@ -1,4 +1,4 @@
-package service
+package config
 
 import (
 	"context"
@@ -40,21 +40,21 @@ type (
 		kind        string
 	}
 
-	// Service for the different transports.
-	Service struct {
+	// Configuration for the different transports.
+	Configuration struct {
 		provider *provider.Transformer
 		config   source.Configurator
 		source   *source.Transformer
 	}
 )
 
-// NewService for the different transports.
-func NewService(provider *provider.Transformer, config source.Configurator, source *source.Transformer) *Service {
-	return &Service{provider: provider, config: config, source: source}
+// NewConfiguration for the different transports.
+func NewConfiguration(provider *provider.Transformer, config source.Configurator, source *source.Transformer) *Configuration {
+	return &Configuration{provider: provider, config: config, source: source}
 }
 
 // GetConfig for service.
-func (s *Service) GetConfig(ctx context.Context, cfg *Config) ([]byte, error) {
+func (s *Configuration) GetConfig(ctx context.Context, cfg *Config) ([]byte, error) {
 	d, err := s.config.GetConfig(ctx, cfg.application, cfg.version,
 		cfg.environment, cfg.continent, cfg.country,
 		cfg.command, cfg.kind)
@@ -70,7 +70,7 @@ func (s *Service) GetConfig(ctx context.Context, cfg *Config) ([]byte, error) {
 }
 
 // GetSecrets for service.
-func (s *Service) GetSecrets(ctx context.Context, secs map[string]string) (map[string][]byte, error) {
+func (s *Configuration) GetSecrets(ctx context.Context, secs map[string]string) (map[string][]byte, error) {
 	secrets := make(map[string][]byte, len(secs))
 
 	for n, v := range secs {
