@@ -1,4 +1,4 @@
-FROM golang:1.22.5-bullseye AS build
+FROM golang:1.23rc1-bullseye AS build
 
 ARG version=latest
 
