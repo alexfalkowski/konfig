@@ -3,7 +3,7 @@ package http
 import (
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/net/http"
-	"github.com/alexfalkowski/konfig/server/service"
+	"github.com/alexfalkowski/konfig/server/config"
 )
 
 type (
@@ -19,7 +19,7 @@ type (
 	}
 
 	secretsHandler struct {
-		service *service.Service
+		service *config.Configuration
 	}
 )
 

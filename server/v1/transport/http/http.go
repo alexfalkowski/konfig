@@ -4,21 +4,21 @@ import (
 	"net/http"
 
 	nh "github.com/alexfalkowski/go-service/net/http"
-	"github.com/alexfalkowski/konfig/server/service"
+	"github.com/alexfalkowski/konfig/server/config"
 )
 
 // Register for HTTP.
-func Register(service *service.Service) {
+func Register(service *config.Configuration) {
 	nh.Handle("/v1/config", &configHandler{service: service})
 	nh.Handle("/v1/secrets", &secretsHandler{service: service})
 }
 
 func handleError(err error) error {
-	if service.IsInvalidArgument(err) {
+	if config.IsInvalidArgument(err) {
 		return nh.Error(http.StatusBadRequest, err.Error())
 	}
 
-	if service.IsNotFound(err) {
+	if config.IsNotFound(err) {
 		return nh.Error(http.StatusNotFound, err.Error())
 	}
 

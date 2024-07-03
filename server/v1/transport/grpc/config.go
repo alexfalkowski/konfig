@@ -5,14 +5,14 @@ import (
 
 	"github.com/alexfalkowski/go-service/meta"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
-	"github.com/alexfalkowski/konfig/server/service"
+	"github.com/alexfalkowski/konfig/server/config"
 )
 
 // GetConfig for gRPC.
 func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.GetConfigResponse, error) {
 	resp := &v1.GetConfigResponse{}
 
-	cfg, err := service.NewConfig(req.GetApplication(), req.GetVersion(),
+	cfg, err := config.NewConfig(req.GetApplication(), req.GetVersion(),
 		req.GetEnvironment(), req.GetContinent(), req.GetCountry(),
 		req.GetCommand(), req.GetKind())
 	if err != nil {

@@ -1,4 +1,4 @@
-package service
+package config
 
 import (
 	"go.uber.org/fx"
@@ -6,5 +6,5 @@ import (
 
 // Module for fx.
 var Module = fx.Options(
-	fx.Provide(NewService),
+	fx.Provide(NewConfiguration),
 )

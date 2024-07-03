@@ -3,7 +3,7 @@ package http
 import (
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/net/http"
-	"github.com/alexfalkowski/konfig/server/service"
+	"github.com/alexfalkowski/konfig/server/config"
 )
 
 type (
@@ -37,14 +37,14 @@ type (
 	}
 
 	configHandler struct {
-		service *service.Service
+		service *config.Configuration
 	}
 )
 
 func (h *configHandler) Handle(ctx http.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
 	resp := &GetConfigResponse{}
 
-	cfg, err := service.NewConfig(req.Application, req.Version,
+	cfg, err := config.NewConfig(req.Application, req.Version,
 		req.Environment, req.Continent, req.Country,
 		req.Command, req.Kind)
 	if err != nil {
