@@ -3,6 +3,7 @@ package http
 import (
 	"net/http"
 
+	nh "github.com/alexfalkowski/go-service/net/http"
 	"github.com/alexfalkowski/go-service/net/http/rpc"
 	"github.com/alexfalkowski/konfig/server/config"
 )
@@ -15,11 +16,11 @@ func Register(service *config.Configuration) {
 
 func handleError(err error) error {
 	if config.IsInvalidArgument(err) {
-		return rpc.Error(http.StatusBadRequest, err.Error())
+		return nh.Error(http.StatusBadRequest, err.Error())
 	}
 
 	if config.IsNotFound(err) {
-		return rpc.Error(http.StatusNotFound, err.Error())
+		return nh.Error(http.StatusNotFound, err.Error())
 	}
 
 	return err
