@@ -2,7 +2,7 @@ package http
 
 import (
 	"github.com/alexfalkowski/go-service/meta"
-	"github.com/alexfalkowski/go-service/net/http"
+	"github.com/alexfalkowski/go-service/net/http/rpc"
 	"github.com/alexfalkowski/konfig/server/config"
 )
 
@@ -23,7 +23,7 @@ type (
 	}
 )
 
-func (h *secretsHandler) Handle(ctx http.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
+func (h *secretsHandler) Handle(ctx rpc.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
 	resp := &GetSecretsResponse{}
 
 	secrets, err := h.service.GetSecrets(ctx, req.Secrets)
