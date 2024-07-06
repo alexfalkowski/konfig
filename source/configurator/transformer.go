@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/alexfalkowski/go-service/marshaller"
+	"github.com/alexfalkowski/go-service/encoding"
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/konfig/provider"
 )
@@ -22,18 +22,18 @@ var (
 
 // Transformer for config.
 type Transformer struct {
-	pt *provider.Transformer
-	mm *marshaller.Map
+	pt  *provider.Transformer
+	enc *encoding.Map
 }
 
 // NewTransformer for config.
-func NewTransformer(pt *provider.Transformer, mm *marshaller.Map) *Transformer {
-	return &Transformer{pt: pt, mm: mm}
+func NewTransformer(pt *provider.Transformer, enc *encoding.Map) *Transformer {
+	return &Transformer{pt: pt, enc: enc}
 }
 
 // Transform config.
 func (t *Transformer) Transform(ctx context.Context, kind string, data []byte) ([]byte, error) {
-	m := t.mm.Get(kind)
+	m := t.enc.Get(kind)
 
 	c := map[string]any{}
 	if err := m.Unmarshal(data, &c); err != nil {

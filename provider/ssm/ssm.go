@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/alexfalkowski/go-service/marshaller"
+	"github.com/alexfalkowski/go-service/encoding/json"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/aws/aws-sdk-go-v2/service/ssm/types"
@@ -21,12 +21,12 @@ type Secret struct {
 // Transformer for SSM.
 type Transformer struct {
 	client *ssm.Client
-	json   *marshaller.JSON
+	json   *json.Marshaller
 	tracer trace.Tracer
 }
 
 // NewTransformer for SSM.
-func NewTransformer(client *ssm.Client, json *marshaller.JSON, tracer trace.Tracer) *Transformer {
+func NewTransformer(client *ssm.Client, json *json.Marshaller, tracer trace.Tracer) *Transformer {
 	return &Transformer{client: client, json: json, tracer: tracer}
 }
 
