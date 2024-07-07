@@ -1,8 +1,9 @@
 package http
 
 import (
+	"context"
+
 	"github.com/alexfalkowski/go-service/meta"
-	"github.com/alexfalkowski/go-service/net/http/rpc"
 	"github.com/alexfalkowski/konfig/server/config"
 )
 
@@ -41,7 +42,7 @@ type (
 	}
 )
 
-func (h *configHandler) Handle(ctx rpc.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
+func (h *configHandler) Handle(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
 	resp := &GetConfigResponse{}
 
 	cfg, err := config.NewConfig(req.Application, req.Version,

@@ -9,8 +9,8 @@ import (
 
 // Register for HTTP.
 func Register(service *config.Configuration) {
-	rpc.Handle("/v1/config", &configHandler{service: service})
-	rpc.Handle("/v1/secrets", &secretsHandler{service: service})
+	rpc.Unary("/v1/config", &configHandler{service: service})
+	rpc.Unary("/v1/secrets", &secretsHandler{service: service})
 }
 
 func handleError(err error) error {
