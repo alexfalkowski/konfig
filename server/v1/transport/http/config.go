@@ -42,7 +42,7 @@ type (
 	}
 )
 
-func (h *configHandler) Handle(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
+func (h *configHandler) GetConfig(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
 	resp := &GetConfigResponse{}
 
 	cfg, err := config.NewConfig(req.Application, req.Version,

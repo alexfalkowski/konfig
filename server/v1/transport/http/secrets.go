@@ -24,7 +24,7 @@ type (
 	}
 )
 
-func (h *secretsHandler) Handle(ctx context.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
+func (h *secretsHandler) GetSecrets(ctx context.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
 	resp := &GetSecretsResponse{}
 
 	secrets, err := h.service.GetSecrets(ctx, req.Secrets)
