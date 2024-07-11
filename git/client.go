@@ -3,7 +3,7 @@ package git
 import (
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/google/go-github/v62/github"
+	"github.com/google/go-github/v63/github"
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"

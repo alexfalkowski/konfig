@@ -9,7 +9,7 @@ import (
 	"github.com/alexfalkowski/konfig/source/configurator/git"
 	cs3 "github.com/alexfalkowski/konfig/source/configurator/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
-	"github.com/google/go-github/v62/github"
+	"github.com/google/go-github/v63/github"
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
