@@ -9,7 +9,7 @@ import (
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/git"
 	ce "github.com/alexfalkowski/konfig/source/configurator/errors"
-	"github.com/google/go-github/v62/github"
+	"github.com/google/go-github/v63/github"
 	"go.opentelemetry.io/otel/trace"
 )
 
