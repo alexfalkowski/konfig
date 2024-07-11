@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.199.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.199.0) - 2024-07-11
+
+- [`4cb474a`](https://github.com/alexfalkowski/konfig/commit/4cb474a075f76ca71d316bf5a0104385a225ef67) feat(deps): upgrade github.com/google/go-github/v63 to v63.0.0 (#1368)
+- [`8262359`](https://github.com/alexfalkowski/konfig/commit/82623597117272b2b2f631092b6617e7c2f3a5d1) feat(deps): bump github.com/aws/aws-sdk-go-v2/config from 1.27.24 to 1.27.25 (#1364)
+- [`9d78345`](https://github.com/alexfalkowski/konfig/commit/9d78345feb25343173ad72de8609f18c6096bd27) test(deps): bump ruby-lsp from 0.17.5 to 0.17.6 in /test (#1362)
+- [`d0daa33`](https://github.com/alexfalkowski/konfig/commit/d0daa33898447b6d9044386e6cc4394140316514) test(deps): bump rubocop from 1.64.1 to 1.65.0 in /test (#1363)
+- [`17ade54`](https://github.com/alexfalkowski/konfig/commit/17ade54adfca8bc154cd1f88ea1657f6be563a8f) test(deps): bump ruby-lsp from 0.17.4 to 0.17.5 in /test (#1361)
+
 ## [v1.198.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.198.0) - 2024-07-09
 
 - [`c59ef97`](https://github.com/alexfalkowski/konfig/commit/c59ef97fb20117bf633c16a393aee6f5a0731ff3) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.246.0 (#1360)
