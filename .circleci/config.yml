@@ -55,7 +55,8 @@ jobs:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run: make build-docker
       - run: make trivy
     resource_class: large
@@ -209,7 +210,8 @@ jobs:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: make login
           command: echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
