@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.207.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.207.0) - 2024-07-23
+
+- [`5510c69`](https://github.com/alexfalkowski/konfig/commit/5510c69ebd67c5f5388f97df1649750584ed7b50) feat(deps): bump github.com/alexfalkowski/go-service from 1.248.1 to 1.251.0 (#1382)
+- [`3454254`](https://github.com/alexfalkowski/konfig/commit/3454254769a6b617eb667bf5d70d0f2c9eb23ff7) test(deps): bump ruby-lsp from 0.17.8 to 0.17.9 in /test (#1380)
+- [`747cb66`](https://github.com/alexfalkowski/konfig/commit/747cb665cc8ff98c5a5f3ad3b3d93867dd056732) test(deps): bump nonnative from 1.80.0 to 1.81.0 in /test (#1381)
+- [`4e22611`](https://github.com/alexfalkowski/konfig/commit/4e226111a3751572be76a567f7f3180a9313b677) test(deps): bump rexml from 3.3.1 to 3.3.2 in /test (#1379)
+
 ## [v1.206.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.206.0) - 2024-07-20
 
 - [`fc93eec`](https://github.com/alexfalkowski/konfig/commit/fc93eecbd7b876b47548a75a3483578beb1ff5bc) feat(deps): bump github.com/aws/aws-sdk-go-v2/config from 1.27.26 to 1.27.27 (#1377)
