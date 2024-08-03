@@ -39,7 +39,7 @@ func NewClient(options ClientOpts) (*g.ClientConn, error) {
 		grpc.WithClientTokenGenerator(options.Generator), sec,
 	}
 
-	conn, err := grpc.NewClient(options.Client.Host, opts...)
+	conn, err := grpc.NewClient(options.Client.Address, opts...)
 
 	options.Lifecycle.Append(fx.Hook{
 		OnStop: func(_ context.Context) error {
