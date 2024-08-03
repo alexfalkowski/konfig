@@ -1,6 +1,6 @@
 client:
   v1:
-    host: localhost:12000
+    address: localhost:12000
     user_agent: "Konfig-client/1.0 gRPC/1.0"
     retry:
       attempts: 3
@@ -28,13 +28,13 @@ telemetry:
     kind: prometheus
   tracer:
     kind: otlp
-    host: http://localhost:4318/v1/traces
+    url: http://localhost:4318/v1/traces
 token:
   argon2:
     hash: $argon2id$v=19$m=65536,t=3,p=4$HKvNAPz7okGD8blLQ/8hmA$Qk2nwk9vWf2rWTv/J4ejgg6WlpnHQJC2YKZMqArsn6o
 transport:
   http:
-    port: 11000
+    address: :11000
     user_agent: "Konfig-server/1.0 HTTP/1.0"
     retry:
       attempts: 3
@@ -42,7 +42,7 @@ transport:
       timeout: 10s
     timeout: 5s
   grpc:
-    port: 12000
+    address: :12000
     user_agent: "Konfig-server/1.0 gRPC/1.0"
     retry:
       attempts: 3
