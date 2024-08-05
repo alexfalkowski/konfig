@@ -14,10 +14,7 @@ features-http:
 	$(MAKE) feature=features tags=@http features
 
 # Diagrams generated from https://github.com/loov/goda.
-diagrams: client-diagram server-diagram
-
-client-diagram:
-	$(MAKE) package=client create-diagram
+diagrams: server-diagram
 
 server-diagram:
 	$(MAKE) package=server create-diagram
