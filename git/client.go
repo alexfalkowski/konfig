@@ -26,6 +26,7 @@ func NewClient(params ClientParams) *github.Client {
 	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.UserAgent),
+		http.WithClientTimeout(params.Config.Timeout),
 	)
 
 	return github.NewClient(client)

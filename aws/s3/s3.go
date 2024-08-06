@@ -31,6 +31,7 @@ func NewClient(params ClientParams) (*s3.Client, error) {
 	client := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.UserAgent),
+		http.WithClientTimeout(params.Config.Timeout),
 	)
 
 	ctx := context.Background()
