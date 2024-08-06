@@ -26,7 +26,7 @@ type RegistrationsParams struct {
 
 // NewRegistrations for health.
 func NewRegistrations(params RegistrationsParams) health.Registrations {
-	client := http.NewClient(http.WithClientUserAgent(params.UserAgent))
+	client := http.NewClient(http.WithClientUserAgent(params.UserAgent), http.WithClientTimeout(params.HTTP.Timeout))
 	d := time.MustParseDuration(params.Health.Duration)
 	registrations := health.Registrations{
 		server.NewRegistration("noop", d, checker.NewNoopChecker()),
