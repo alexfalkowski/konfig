@@ -26,11 +26,12 @@ type RegistrationsParams struct {
 
 // NewRegistrations for health.
 func NewRegistrations(params RegistrationsParams) health.Registrations {
-	client := http.NewClient(http.WithClientUserAgent(params.UserAgent), http.WithClientTimeout(params.HTTP.Timeout))
+	rt := http.NewRoundTripper(http.WithClientUserAgent(params.UserAgent))
+	t := time.MustParseDuration(params.Health.Timeout)
 	d := time.MustParseDuration(params.Health.Duration)
 	registrations := health.Registrations{
 		server.NewRegistration("noop", d, checker.NewNoopChecker()),
-		server.NewRegistration("vault", d, checker.NewHTTPChecker(params.Vault.Address, client)),
+		server.NewRegistration("vault", d, checker.NewHTTPChecker(params.Vault.Address, rt, t)),
 	}
 
 	return registrations
