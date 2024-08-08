@@ -134,7 +134,7 @@ GEM
       rspec-expectations (>= 3, < 4)
       sinatra (>= 2, < 5)
     parallel (1.25.1)
-    parser (3.3.4.0)
+    parser (3.3.4.1)
       ast (~> 2.4.1)
       racc
     prism (0.30.0)
