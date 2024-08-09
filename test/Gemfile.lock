@@ -122,7 +122,7 @@ GEM
       ruby2_keywords (~> 0.0.1)
     netrc (0.11.0)
     nio4r (2.7.3)
-    nonnative (1.81.0)
+    nonnative (1.82.0)
       concurrent-ruby (>= 1, < 2)
       config (>= 5, < 6)
       cucumber (>= 7, < 10)
