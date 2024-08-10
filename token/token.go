@@ -6,7 +6,7 @@ import (
 	"errors"
 
 	"github.com/alexfalkowski/go-service/os"
-	"github.com/alexfalkowski/go-service/security/token"
+	"github.com/alexfalkowski/go-service/token"
 )
 
 // ErrInvalid for token.
