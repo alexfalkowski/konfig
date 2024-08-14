@@ -114,7 +114,7 @@ jobs:
           path: test/reports
       - store_artifacts:
           path: test/reports
-      - run: make -C test leave-coverage
+      - run: make leave-coverage
       - persist_to_workspace:
           root: test
           paths:
@@ -173,7 +173,7 @@ jobs:
           path: test/reports
       - store_artifacts:
           path: test/reports
-      - run: make -C test leave-coverage
+      - run: make leave-coverage
       - persist_to_workspace:
           root: test
           paths:
