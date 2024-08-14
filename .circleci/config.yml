@@ -1,12 +1,9 @@
 version: 2.1
 
-orbs:
-  codecov: codecov/codecov@4.0.1
-
 jobs:
   build-service:
     docker:
-      - image: alexfalkowski/go:1.22
+      - image: alexfalkowski/go:1.23
     working_directory: ~/konfig
     steps:
       - checkout
@@ -50,7 +47,7 @@ jobs:
     resource_class: large
   build-docker:
     docker:
-      - image: alexfalkowski/go:1.22
+      - image: alexfalkowski/go:1.23
     working_directory: ~/konfig
     steps:
       - checkout
@@ -63,7 +60,7 @@ jobs:
     resource_class: large
   features-grpc:
     docker:
-      - image: alexfalkowski/go:1.22
+      - image: alexfalkowski/go:1.23
       - image: localstack/localstack:3.4
         environment:
           SERVICES: s3,ssm
@@ -122,7 +119,7 @@ jobs:
     resource_class: large
   features-http:
     docker:
-      - image: alexfalkowski/go:1.22
+      - image: alexfalkowski/go:1.23
       - image: localstack/localstack:3.4
         environment:
           SERVICES: s3,ssm
@@ -181,7 +178,7 @@ jobs:
     resource_class: large
   features-coverage:
     docker:
-      - image: alexfalkowski/go:1.22
+      - image: alexfalkowski/go:1.23
     working_directory: ~/konfig
     steps:
       - checkout
@@ -192,8 +189,7 @@ jobs:
       - run: make coverage
       - store_artifacts:
           path: test/reports
-      - codecov/upload:
-          file: test/reports/final.cov
+      - run: make codecov-upload
     resource_class: large
   release:
     docker:
@@ -205,7 +201,7 @@ jobs:
     resource_class: large
   push-docker:
     docker:
-      - image: alexfalkowski/go:1.22
+      - image: alexfalkowski/go:1.23
     working_directory: ~/konfig
     steps:
       - checkout
