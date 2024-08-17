@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.235.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.235.0) - 2024-08-17
+
+- [`edb861e`](https://github.com/alexfalkowski/konfig/commit/edb861e1a387896a04c1aba3bad8c32a457cf97d) feat(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 from 1.58.3 to 1.59.0 (#1435)
+- [`6afa01b`](https://github.com/alexfalkowski/konfig/commit/6afa01bd0d5cce1d2437e2e24338cc5440948b64) test(deps): bump aws-sdk-s3 from 1.157.0 to 1.158.0 in /test (#1431)
+
 ## [v1.234.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.234.0) - 2024-08-14
 
 - [`0e49107`](https://github.com/alexfalkowski/konfig/commit/0e49107bd79bddbc025c02337fdbbd923c0c9d7a) feat(deps): bump github.com/aws/smithy-go from 1.20.3 to 1.20.4 (#1430)
