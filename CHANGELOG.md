@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.240.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.240.0) - 2024-08-21
+
+- [`cc71d06`](https://github.com/alexfalkowski/konfig/commit/cc71d066639591b7975b68bc1b56543a5b3a5b55) feat(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 from 1.59.0 to 1.60.0 (#1443)
+- [`6de5898`](https://github.com/alexfalkowski/konfig/commit/6de589859342d1f954437d0589ff5bfd95f0d9d8) test(deps): bump ruby-lsp from 0.17.14 to 0.17.15 in /test (#1441)
+- [`380e7db`](https://github.com/alexfalkowski/konfig/commit/380e7db8679c83f2527f5ebea61ca510dc66d1ee) test(deps): bump aws-sdk-s3 from 1.158.0 to 1.159.0 in /test (#1439)
+- [`3e5f93b`](https://github.com/alexfalkowski/konfig/commit/3e5f93bc1370e3f7d88d0ef626bbb5bbce6ba171) test(deps): bump rspec-expectations from 3.13.1 to 3.13.2 in /test (#1440)
+
 ## [v1.239.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.239.0) - 2024-08-20
 
 - [`56e9fca`](https://github.com/alexfalkowski/konfig/commit/56e9fcacd958bfb1aeff9df46149be28c1f7af62) feat(deps): bump github.com/alexfalkowski/go-service from 1.277.0 to 1.278.0 (#1437)
