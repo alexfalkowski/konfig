@@ -38,12 +38,12 @@ jobs:
       - run: make lint
       - run: make proto-breaking
       - run: make sec
+      - run: make build analyse
       - save_cache:
           name: save go build cache
           key: konfig-build-service-go-build-cache-{{ checksum "go.sum" }}
           paths:
             - /home/circleci/.cache/go-build
-      - run: make build analyse
     resource_class: large
   build-docker:
     docker:
