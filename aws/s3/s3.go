@@ -37,7 +37,7 @@ func NewClient(params ClientParams) (*s3.Client, error) {
 	ctx := context.Background()
 	opts := []func(*config.LoadOptions) error{
 		config.WithHTTPClient(client),
-		config.WithRetryMaxAttempts(int(params.Config.Retry.Attempts)),
+		config.WithRetryMaxAttempts(int(params.Config.Retry.Attempts)), //nolint:gosec
 	}
 
 	r := &resolver{EndpointResolverV2: s3.NewDefaultEndpointResolverV2()}

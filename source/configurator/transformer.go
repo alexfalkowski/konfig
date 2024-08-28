@@ -23,11 +23,11 @@ var (
 // Transformer for config.
 type Transformer struct {
 	pt  *provider.Transformer
-	enc *encoding.Map
+	enc *encoding.MarshallerMap
 }
 
 // NewTransformer for config.
-func NewTransformer(pt *provider.Transformer, enc *encoding.Map) *Transformer {
+func NewTransformer(pt *provider.Transformer, enc *encoding.MarshallerMap) *Transformer {
 	return &Transformer{pt: pt, enc: enc}
 }
 
