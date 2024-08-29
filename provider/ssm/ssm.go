@@ -1,6 +1,7 @@
 package ssm
 
 import (
+	"bytes"
 	"context"
 	"errors"
 
@@ -21,12 +22,12 @@ type Secret struct {
 // Transformer for SSM.
 type Transformer struct {
 	client *ssm.Client
-	json   *json.Marshaller
+	json   *json.Encoder
 	tracer trace.Tracer
 }
 
 // NewTransformer for SSM.
-func NewTransformer(client *ssm.Client, json *json.Marshaller, tracer trace.Tracer) *Transformer {
+func NewTransformer(client *ssm.Client, json *json.Encoder, tracer trace.Tracer) *Transformer {
 	return &Transformer{client: client, json: json, tracer: tracer}
 }
 
@@ -52,7 +53,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 
 	var sec Secret
 
-	if err := t.json.Unmarshal([]byte(*out.Parameter.Value), &sec); err != nil {
+	if err := t.json.Decode(bytes.NewReader([]byte(*out.Parameter.Value)), &sec); err != nil {
 		tracer.Error(err, span)
 
 		return value, err
