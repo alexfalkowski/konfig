@@ -6,6 +6,7 @@ import (
 	"errors"
 
 	"github.com/alexfalkowski/go-service/encoding/json"
+	"github.com/alexfalkowski/go-service/maps"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/aws/aws-sdk-go-v2/service/ssm/types"
@@ -16,7 +17,7 @@ var errMissing = errors.New("missing value")
 
 // Secret from SSM.
 type Secret struct {
-	Data map[string]any `json:"data"`
+	Data maps.StringAny `json:"data"`
 }
 
 // Transformer for SSM.

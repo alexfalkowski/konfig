@@ -6,6 +6,7 @@ import (
 	"errors"
 
 	"github.com/alexfalkowski/go-service/encoding"
+	"github.com/alexfalkowski/go-service/maps"
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/konfig/provider"
 )
@@ -35,7 +36,7 @@ func NewTransformer(pt *provider.Transformer, enc *encoding.Map) *Transformer {
 // Transform config.
 func (t *Transformer) Transform(ctx context.Context, kind string, data []byte) ([]byte, error) {
 	m := t.enc.Get(kind)
-	c := map[string]any{}
+	c := maps.StringAny{}
 
 	if err := m.Decode(bytes.NewReader(data), &c); err != nil {
 		meta.WithAttribute(ctx, "configDecodeError", meta.Error(err))
@@ -59,7 +60,7 @@ func (t *Transformer) Transform(ctx context.Context, kind string, data []byte) (
 	return b.Bytes(), nil
 }
 
-func (t *Transformer) traverse(ctx context.Context, cfg map[string]any) error {
+func (t *Transformer) traverse(ctx context.Context, cfg maps.StringAny) error {
 	for key, val := range cfg {
 		switch v := val.(type) {
 		case string:
@@ -69,7 +70,7 @@ func (t *Transformer) traverse(ctx context.Context, cfg map[string]any) error {
 			}
 
 			cfg[key] = vt
-		case map[string]any:
+		case maps.StringAny:
 			if err := t.traverse(ctx, v); err != nil {
 				return err
 			}
