@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.259.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.259.0) - 2024-09-04
+
+- [`f6cc57d`](https://github.com/alexfalkowski/konfig/commit/f6cc57d066ac4be996eea652c543c18c09123afb) feat(deps): bump github.com/aws/aws-sdk-go-v2/config from 1.27.32 to 1.27.33 (#1485)
+- [`f0fa31b`](https://github.com/alexfalkowski/konfig/commit/f0fa31bd20c569ece57b6ad10b48102fe15cc11a) test(deps): bump rubocop from 1.66.0 to 1.66.1 in /test (#1481)
+- [`606a89e`](https://github.com/alexfalkowski/konfig/commit/606a89ed344cc36b8f3246ff9d9232c64f0a7b73) test(deps): bump rexml from 3.3.6 to 3.3.7 in /test (#1480)
+- [`7947dca`](https://github.com/alexfalkowski/konfig/commit/7947dca393e0c08b4bd96dfcbd1812b7557d3eb7) test(deps): bump aws-sdk-ssm from 1.175.0 to 1.176.0 in /test (#1482)
+- [`6357f29`](https://github.com/alexfalkowski/konfig/commit/6357f2910c3e21cdc2f604869330611e4c4a08d7) build(sec): disable G115 (#1483)
+
 ## [v1.258.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.258.0) - 2024-09-04
 
 - [`2e72e6f`](https://github.com/alexfalkowski/konfig/commit/2e72e6f693b3efba2feb30793a238e5238921fcf) feat(deps): bump github.com/aws/aws-sdk-go-v2/service/ssm from 1.52.6 to 1.52.7 (#1479)
