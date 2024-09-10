@@ -12,7 +12,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.52.8
 	github.com/aws/smithy-go v1.20.4
 	github.com/google/go-github/v63 v63.0.0
-	github.com/hashicorp/vault/api v1.14.0
+	github.com/hashicorp/vault/api v1.15.0
 	go.opentelemetry.io/otel/metric v1.29.0
 	go.opentelemetry.io/otel/trace v1.29.0
 	go.uber.org/fx v1.22.2
@@ -48,7 +48,6 @@ require (
 	github.com/beevik/ntp v1.4.3 // indirect
 	github.com/beevik/nts v0.1.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
-	github.com/cenkalti/backoff/v3 v3.2.2 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cilium/ebpf v0.9.1 // indirect
