@@ -14,8 +14,8 @@ github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 h1:+JkXLHME8vLJafGhOH4ao
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1/go.mod h1:nuudZmJhzWtx2212z+pkuy7B6nkBqa+xwNXZHL1j8cg=
 github.com/alexfalkowski/go-health v1.19.0 h1:p8gx3OJ+jpxXHh6W5eXF1pfCys1DMWgzE/yyH/u1v5E=
 github.com/alexfalkowski/go-health v1.19.0/go.mod h1:OxtnkvUD2qKWQWTOvUJxPOSHaueFICXNDtAsXJejFBQ=
-github.com/alexfalkowski/go-service v1.290.0 h1:ObVwcv2KrtU7M+kpsS5waN1TGra9jmBE2UIqnjrwW+k=
-github.com/alexfalkowski/go-service v1.290.0/go.mod h1:ta5XHYFR4PHRHPIkJrXOGTsA9UXpsC3tDZm5I+rMZ2E=
+github.com/alexfalkowski/go-service v1.291.0 h1:/LUDV4SA+m6CLhVwg+i3UDvquRs5MGHuaZNbei3Hasc=
+github.com/alexfalkowski/go-service v1.291.0/go.mod h1:pBGYAo/UUd4Y57lTtEwzY+o7+dRVPjb3xxPs+Hmy1Jc=
 github.com/arl/statsviz v0.6.0 h1:jbW1QJkEYQkufd//4NDYRSNBpwJNrdzPahF7ZmoGdyE=
 github.com/arl/statsviz v0.6.0/go.mod h1:0toboo+YGSUXDaS4g1D5TVS4dXs7S7YYT5J/qnW2h8s=
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
@@ -322,8 +322,8 @@ github.com/onsi/gomega v1.24.1/go.mod h1:3AOiACssS3/MajrniINInwbfOOtfZvplPzuRSmv
 github.com/onsi/gomega v1.25.0/go.mod h1:r+zV744Re+DiYCIPRlYOTxn0YkOLcAnW8k1xXdMPGhM=
 github.com/onsi/gomega v1.27.10 h1:naR28SdDFlqrG6kScpT8VWpu1xWY5nJRCF3XaYyBjhI=
 github.com/onsi/gomega v1.27.10/go.mod h1:RsS8tutOdbdgzbPtzzATp12yT7kM5I5aElG3evPbQ0M=
-github.com/open-feature/go-sdk v1.12.0 h1:V0MAG3lC9o7Pmq0gxlqtKpoasDTm3to9vuvZKyUhhPk=
-github.com/open-feature/go-sdk v1.12.0/go.mod h1:UDNuwVrwY5FRHIluVRYzvxuS3nBkhjE6o4tlwFuHxiI=
+github.com/open-feature/go-sdk v1.13.0 h1:D5NXPhhCL0SNR/DRvrTOm/xY7uE9m0zQQEttgKHlwtI=
+github.com/open-feature/go-sdk v1.13.0/go.mod h1:poPa+RFCJumHcb59wgp+tnSyNvMU2C07ykFJ0gczyaM=
 github.com/open-feature/go-sdk-contrib/hooks/open-telemetry v0.3.4 h1:1+YZs4PjvIX2vGjg3FenuXJpN8m83jiTAdfudUjAQuU=
 github.com/open-feature/go-sdk-contrib/hooks/open-telemetry v0.3.4/go.mod h1:QiuIhaGRUFNmW+w1q0OaYLm92lfm//aJr4uTPQonSGQ=
 github.com/opencontainers/runtime-spec v1.0.2 h1:UfAcuLBJB9Coz72x1hgl8O5RVzTdNiaglX6v2DM6FI0=
@@ -564,8 +564,8 @@ google.golang.org/genproto/googleapis/api v0.0.0-20240822170219-fc7c04adadcd h1:
 google.golang.org/genproto/googleapis/api v0.0.0-20240822170219-fc7c04adadcd/go.mod h1:fO8wJzT2zbQbAjbIoos1285VfEIYKDDY+Dt+WpTkh6g=
 google.golang.org/genproto/googleapis/rpc v0.0.0-20240822170219-fc7c04adadcd h1:6TEm2ZxXoQmFWFlt1vNxvVOa1Q0dXFQD1m/rYjXmS0E=
 google.golang.org/genproto/googleapis/rpc v0.0.0-20240822170219-fc7c04adadcd/go.mod h1:UqMtugtsSgubUsoxbuAoiCXvqvErP7Gf0so0mK9tHxU=
-google.golang.org/grpc v1.66.0 h1:DibZuoBznOxbDQxRINckZcUvnCEvrW9pcWIE2yF9r1c=
-google.golang.org/grpc v1.66.0/go.mod h1:s3/l6xSSCURdVfAnL+TqCNMyTDAGN6+lZeVxnZR128Y=
+google.golang.org/grpc v1.66.1 h1:hO5qAXR19+/Z44hmvIM4dQFMSYX9XcWsByfoxutBpAM=
+google.golang.org/grpc v1.66.1/go.mod h1:s3/l6xSSCURdVfAnL+TqCNMyTDAGN6+lZeVxnZR128Y=
 google.golang.org/protobuf v0.0.0-20200109180630-ec00e32a8dfd/go.mod h1:DFci5gLYBciE7Vtevhsrf46CRTquxDuWsQurQQe4oz8=
 google.golang.org/protobuf v0.0.0-20200221191635-4d8936d0db64/go.mod h1:kwYJMbMJ01Woi6D6+Kah6886xMZcty6N08ah7+eCXa0=
 google.golang.org/protobuf v0.0.0-20200228230310-ab0ca4ff8a60/go.mod h1:cfTl7dwQJ+fmap5saPgwCLgHXTUD7jkjRqWcaiX5VyM=
