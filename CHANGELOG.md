@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.266.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.266.0) - 2024-09-10
+
+- [`537cbae`](https://github.com/alexfalkowski/konfig/commit/537cbae3ec537fc6bb6933174ffb96fea150256e) build(deps): bump bin from `1eca781` to `b975eab` (#1496)
+- [`561d0de`](https://github.com/alexfalkowski/konfig/commit/561d0dee5be184ac2710fc0aaabf6e84a1dd9ca3) feat(deps): bump github.com/hashicorp/vault/api from 1.14.0 to 1.15.0 (#1494)
+
 ## [v1.265.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.265.0) - 2024-09-10
 
 - [`28903d2`](https://github.com/alexfalkowski/konfig/commit/28903d246f40a2942c03d32abaef56ccdb069688) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.291.0 (#1493)
