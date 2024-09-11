@@ -6,7 +6,7 @@ toolchain go1.23.0
 
 require (
 	github.com/alexfalkowski/go-health v1.19.0
-	github.com/alexfalkowski/go-service v1.292.0
+	github.com/alexfalkowski/go-service v1.292.1
 	github.com/aws/aws-sdk-go-v2/config v1.27.33
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.61.2
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.52.8
@@ -17,7 +17,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.30.0
 	go.uber.org/fx v1.22.2
 	go.uber.org/zap v1.27.0
-	google.golang.org/grpc v1.66.1
+	google.golang.org/grpc v1.66.2
 	google.golang.org/protobuf v1.34.2
 )
 
