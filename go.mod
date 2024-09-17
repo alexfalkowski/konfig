@@ -7,7 +7,7 @@ toolchain go1.23.0
 require (
 	github.com/alexfalkowski/go-health v1.19.0
 	github.com/alexfalkowski/go-service v1.294.0
-	github.com/aws/aws-sdk-go-v2/config v1.27.33
+	github.com/aws/aws-sdk-go-v2/config v1.27.34
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.61.2
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.52.8
 	github.com/aws/smithy-go v1.20.4
