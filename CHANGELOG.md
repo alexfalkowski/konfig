@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.276.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.276.0) - 2024-09-20
+
+- [`4c75159`](https://github.com/alexfalkowski/konfig/commit/4c75159403dbfda5aaeeb9f6609133df83f53def) feat(deps): bump github.com/aws/smithy-go from 1.20.4 to 1.21.0 (#1513)
+- [`ae584ab`](https://github.com/alexfalkowski/konfig/commit/ae584ab46935153678774bfe3d391ab23c624fb5) test(deps): bump google-protobuf from 4.28.1 to 4.28.2 in /test (#1515)
+- [`ac813f8`](https://github.com/alexfalkowski/konfig/commit/ac813f8babf38978bdc73218aa6ae4691de278c9) test(deps): bump ruby-lsp from 0.17.17 to 0.18.0 in /test (#1514)
+
 ## [v1.275.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.275.0) - 2024-09-19
 
 - [`b9e9893`](https://github.com/alexfalkowski/konfig/commit/b9e989364f36afaaca4004cf8952ad7f85a96ba5) feat(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 from 1.61.3 to 1.62.0 (#1512)
