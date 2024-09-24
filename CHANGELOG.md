@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.278.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.278.1) - 2024-09-24
+
+- [`2d02220`](https://github.com/alexfalkowski/konfig/commit/2d02220ec03a33c2622e1031ac45de917731b844) fix(deps): update aws-sdk-go-v2 (#1532)
+- [`c802801`](https://github.com/alexfalkowski/konfig/commit/c802801ccf1cfdd20b659389abab9e9a06576ee8) build(api): buf lint (#1525)
+- [`34ebb6c`](https://github.com/alexfalkowski/konfig/commit/34ebb6c70b509f241671571ee93c7f897ff0f627) build(scripts): add a way to update aws deps (#1524)
+
 ## [v1.278.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.278.0) - 2024-09-23
 
 - [`212e25b`](https://github.com/alexfalkowski/konfig/commit/212e25b26e48ffa3ca94ae045b8d79d4882b3059) feat(deps): update aws-sdk-go-v2 (#1523)
