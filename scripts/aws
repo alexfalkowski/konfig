@@ -2,6 +2,8 @@
 
 set -e
 
+readonly desc=$1
+
 # Update all the aws deps.
 make module=github.com/aws/aws-sdk-go-v2/service/ssm go-update-dep
 make module=github.com/aws/aws-sdk-go-v2/service/s3 go-update-dep
@@ -9,3 +11,6 @@ make module=github.com/aws/aws-sdk-go-v2/config go-update-dep
 
 # Update all tghe ruby deps.
 make ruby-update-all-dep
+
+# Raise new PR.
+make msg="update aws-sdk-go-v2" desc="$desc" ready
