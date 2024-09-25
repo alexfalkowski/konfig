@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.279.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.279.0) - 2024-09-25
+
+- [`dbfd109`](https://github.com/alexfalkowski/konfig/commit/dbfd109fd48e2a18330f4720bfb4ea25a3eef35e) feat(deps): bump github.com/alexfalkowski/go-service from 1.297.0 to 1.300.0 (#1536)
+- [`cafcb46`](https://github.com/alexfalkowski/konfig/commit/cafcb46c1e4035941c0cde301afcd419d667c833) test(deps): bump aws-sdk-ssm from 1.181.0 to 1.182.0 in /test (#1535)
+- [`e791f87`](https://github.com/alexfalkowski/konfig/commit/e791f877513902b3106092b5310b41d6b9e2d9fb) test(deps): bump aws-sdk-s3 from 1.165.0 to 1.166.0 in /test (#1534)
+- [`08908b7`](https://github.com/alexfalkowski/konfig/commit/08908b7766ec0a3737b8b8888646939eee6fdc94) test(deps): bump ruby-lsp from 0.18.2 to 0.18.3 in /test (#1533)
+
 ## [v1.278.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.278.1) - 2024-09-24
 
 - [`2d02220`](https://github.com/alexfalkowski/konfig/commit/2d02220ec03a33c2622e1031ac45de917731b844) fix(deps): update aws-sdk-go-v2 (#1532)
