@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.279.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.279.1) - 2024-09-26
+
+- [`76c5dfc`](https://github.com/alexfalkowski/konfig/commit/76c5dfc0470cf3bc29c31e8a9ee4b5b137e93734) fix(deps): update aws-sdk-go-v2 (#1541)
+
 ## [v1.279.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.279.0) - 2024-09-25
 
 - [`dbfd109`](https://github.com/alexfalkowski/konfig/commit/dbfd109fd48e2a18330f4720bfb4ea25a3eef35e) feat(deps): bump github.com/alexfalkowski/go-service from 1.297.0 to 1.300.0 (#1536)
