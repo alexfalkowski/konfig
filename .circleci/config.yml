@@ -219,7 +219,8 @@ workflows:
   konfig:
     jobs:
       - build-service
-      - build-docker
+      - build-docker:
+          context: gh
       - features-grpc
       - features-http
       - features-coverage:
