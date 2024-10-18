@@ -206,7 +206,7 @@ GEM
       rack-protection (= 4.0.0)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11604)
+    sorbet-runtime (0.5.11608)
     sys-uname (1.3.0)
       ffi (~> 1.1)
     tilt (2.4.0)
