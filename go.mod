@@ -8,7 +8,7 @@ require (
 	github.com/alexfalkowski/go-health v1.19.0
 	github.com/alexfalkowski/go-service v1.307.1
 	github.com/aws/aws-sdk-go-v2/config v1.28.0
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.66.0
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.66.1
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.55.2
 	github.com/aws/smithy-go v1.22.0
 	github.com/google/go-github/v63 v63.0.0
