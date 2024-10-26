@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.292.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.292.0) - 2024-10-26
+
+- [`dfc73aa`](https://github.com/alexfalkowski/konfig/commit/dfc73aa4883031f6350ad9e8b5012a0b79266a26) feat(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 from 1.66.0 to 1.66.1 (#1595)
+- [`75d5c58`](https://github.com/alexfalkowski/konfig/commit/75d5c580439cef22536a54c0134f43bb0da0cb3e) test(deps): bump rexml from 3.3.8 to 3.3.9 in /test (#1594)
+- [`ba184bf`](https://github.com/alexfalkowski/konfig/commit/ba184bf8b8caf39fcfe85a94953c20485b70dda9) test(deps): bump aws-sdk-ssm from 1.182.0 to 1.183.0 in /test (#1592)
+- [`8f2bc97`](https://github.com/alexfalkowski/konfig/commit/8f2bc9714d981042f5634eb4a9bf85ab8cab638d) test(deps): bump aws-sdk-s3 from 1.168.0 to 1.169.0 in /test (#1593)
+
 ## [v1.291.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.291.1) - 2024-10-18
 
 - [`18dc5b9`](https://github.com/alexfalkowski/konfig/commit/18dc5b967d5812701f01bc2b4ca48f07b5dec209) fix(deps): upgraded github.com/alexfalkowski/go-service to v1.307.1 (#1591)
