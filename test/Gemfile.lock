@@ -193,7 +193,7 @@ GEM
       unicode-display_width (>= 2.4.0, < 3.0)
     rubocop-ast (1.33.0)
       parser (>= 3.3.1.0)
-    ruby-lsp (0.21.1)
+    ruby-lsp (0.21.2)
       language_server-protocol (~> 3.17.0)
       prism (>= 1.2, < 2.0)
       rbs (>= 3, < 4)
