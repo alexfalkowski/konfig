@@ -6,7 +6,7 @@ toolchain go1.23.0
 
 require (
 	github.com/alexfalkowski/go-health v1.19.0
-	github.com/alexfalkowski/go-service v1.315.0
+	github.com/alexfalkowski/go-service v1.316.0
 	github.com/aws/aws-sdk-go-v2/config v1.28.5
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.69.0
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.56.0
@@ -65,6 +65,7 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-ole/go-ole v1.3.0 // indirect
 	github.com/go-redis/cache/v9 v9.0.0 // indirect
+	github.com/go-resty/resty/v2 v2.16.2 // indirect
 	github.com/go-sprout/sprout v0.6.0 // indirect
 	github.com/go-sql-driver/mysql v1.8.1 // indirect
 	github.com/goccy/go-json v0.10.3 // indirect
@@ -153,7 +154,7 @@ require (
 	golang.org/x/sync v0.9.0 // indirect
 	golang.org/x/sys v0.27.0 // indirect
 	golang.org/x/text v0.20.0 // indirect
-	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
+	golang.org/x/time v0.6.0 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20241104194629-dd2ea8efbc28 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241104194629-dd2ea8efbc28 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
