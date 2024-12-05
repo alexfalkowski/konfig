@@ -153,7 +153,7 @@ GEM
       rack (>= 3.0.0)
     rainbow (3.1.1)
     rake (13.2.1)
-    rbs (3.6.1)
+    rbs (3.7.0)
       logger
     regexp_parser (2.9.3)
     rest-client (2.1.0)
