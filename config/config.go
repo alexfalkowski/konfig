@@ -5,7 +5,6 @@ import (
 	"github.com/alexfalkowski/go-service/config"
 	"github.com/alexfalkowski/konfig/health"
 	"github.com/alexfalkowski/konfig/source"
-	"github.com/alexfalkowski/konfig/token"
 )
 
 // NewConfigurator for config.
@@ -24,7 +23,6 @@ func IsEnabled(cfg *Config) bool {
 type Config struct {
 	Source         *source.Config `yaml:"source,omitempty" json:"source,omitempty" toml:"source,omitempty"`
 	Health         *health.Config `yaml:"health,omitempty" json:"health,omitempty" toml:"health,omitempty"`
-	Token          *token.Config  `yaml:"token,omitempty" json:"token,omitempty" toml:"token,omitempty"`
 	*config.Config `yaml:",inline" json:",inline" toml:",inline"`
 }
 
@@ -50,12 +48,4 @@ func healthConfig(cfg *Config) *health.Config {
 	}
 
 	return cfg.Health
-}
-
-func tokenConfig(cfg *Config) *token.Config {
-	if !IsEnabled(cfg) || !token.IsEnabled(cfg.Token) {
-		return nil
-	}
-
-	return cfg.Token
 }
