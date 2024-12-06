@@ -14,6 +14,7 @@ import (
 	"github.com/alexfalkowski/konfig/server/health"
 	v1 "github.com/alexfalkowski/konfig/server/v1"
 	"github.com/alexfalkowski/konfig/source"
+	"github.com/alexfalkowski/konfig/token"
 	"go.uber.org/fx"
 )
 
@@ -23,6 +24,6 @@ var ServerOptions = []fx.Option{
 	runtime.Module, debug.Module, feature.Module,
 	transport.Module, telemetry.Module,
 	health.Module, config.Module,
-	provider.Module, source.Module,
+	provider.Module, source.Module, token.Module,
 	v1.Module, Module,
 }
