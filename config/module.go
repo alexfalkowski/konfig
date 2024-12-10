@@ -9,7 +9,7 @@ import (
 // Module for fx.
 var Module = fx.Options(
 	crypto.Module,
-	fx.Provide(NewConfig),
+	fx.Provide(config.NewConfig[Config]),
 	config.Module,
 	fx.Decorate(decorateConfig),
 	fx.Provide(sourceConfig),
