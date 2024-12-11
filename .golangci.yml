@@ -1,93 +1,24 @@
 issues:
-  exclude-files:
+  exclude-dirs:
     - ".*\\.pb*"
 linters-settings:
   lll:
-    line-length: 150
+    line-length: 140
 linters:
-  disable-all: true
-  enable:
-    - asasalint
-    - asciicheck
-    - bidichk
-    - bodyclose
-    - containedctx
-    - contextcheck
-    - copyloopvar
-    - cyclop
-    - decorder
-    - dogsled
-    - dupl
-    - dupword
-    - durationcheck
-    - errcheck
-    - errchkjson
-    - errname
-    - errorlint
-    - exhaustive
-    - forbidigo
-    - funlen
+  enable-all: true
+  disable:
+    - exportloopref
+    - tagalign
     - gochecknoinits
-    - gci
-    - gocognit
-    - goconst
-    - gocritic
-    - gocyclo
-    - godot
-    - godox
-    - gofmt
-    - gofumpt
-    - goheader
-    - goimports
-    - gomoddirectives
-    - gomodguard
-    - goprintffuncname
-    - gosec
-    - gosmopolitan
-    - gosimple
-    - govet
-    - grouper
-    - importas
-    - inamedparam
-    - ineffassign
-    - lll
-    - loggercheck
-    - maintidx
-    - makezero
-    - mirror
-    - misspell
-    - musttag
-    - nakedret
-    - nestif
-    - nilerr
-    - nilnil
-    - nlreturn
-    - noctx
-    - nolintlint
-    - nonamedreturns
-    - nosprintfhostport
-    - perfsprint
-    - prealloc
-    - predeclared
-    - promlinter
-    - protogetter
-    - reassign
-    - revive
-    - rowserrcheck
-    - sloglint
-    - sqlclosecheck
-    - staticcheck
-    - stylecheck
-    - tenv
-    - testableexamples
-    - testifylint
-    - testpackage
-    - thelper
-    - tparallel
-    - typecheck
-    - unconvert
-    - unparam
-    - unused
-    - wastedassign
-    - whitespace
-    - wsl
+    - bodyclose
+    - depguard
+    - exhaustruct
+    - fatcontext
+    - forcetypeassert
+    - gochecknoglobals
+    - ireturn
+    - mnd
+    - paralleltest
+    - varnamelen
+    - wrapcheck
+    - tagliatelle

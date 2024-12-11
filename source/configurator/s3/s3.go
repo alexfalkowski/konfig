@@ -70,6 +70,7 @@ func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string)
 	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.%s", app, ver, env, continent, country, cmd, kind)
 }
 
+//nolint:spancheck
 func (c *Configurator) span(ctx context.Context) (context.Context, trace.Span) {
 	ctx, span := c.tracer.Start(ctx, operationName("get config"), trace.WithSpanKind(trace.SpanKindClient))
 	ctx = tracer.WithTraceID(ctx, span)
