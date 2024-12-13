@@ -16,8 +16,7 @@ func main() {
 func command() *sc.Command {
 	c := sc.New(cmd.Version)
 	c.RegisterInput(c.Root(), "env:KONFIG_CONFIG_FILE")
-
-	c.AddServer(cmd.ServerOptions...)
+	c.AddServer("server", "Start konfig server", cmd.ServerOptions...)
 
 	return c
 }
