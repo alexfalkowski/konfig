@@ -2,8 +2,8 @@ package health
 
 import (
 	"github.com/alexfalkowski/go-service/health"
-	"github.com/alexfalkowski/konfig/server/health/transport/grpc"
-	"github.com/alexfalkowski/konfig/server/health/transport/http"
+	"github.com/alexfalkowski/konfig/health/transport/grpc"
+	"github.com/alexfalkowski/konfig/health/transport/http"
 	"go.uber.org/fx"
 )
 
