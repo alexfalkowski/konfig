@@ -1,11 +1,11 @@
 package v1
 
 import (
+	"github.com/alexfalkowski/konfig/api/config"
+	"github.com/alexfalkowski/konfig/api/v1/transport/grpc"
+	"github.com/alexfalkowski/konfig/api/v1/transport/http"
 	"github.com/alexfalkowski/konfig/aws"
 	"github.com/alexfalkowski/konfig/git"
-	"github.com/alexfalkowski/konfig/server/config"
-	"github.com/alexfalkowski/konfig/server/v1/transport/grpc"
-	"github.com/alexfalkowski/konfig/server/v1/transport/http"
 	"go.uber.org/fx"
 )
 

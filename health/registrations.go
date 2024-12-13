@@ -7,7 +7,6 @@ import (
 	"github.com/alexfalkowski/go-service/health"
 	"github.com/alexfalkowski/go-service/time"
 	"github.com/alexfalkowski/go-service/transport/http"
-	h "github.com/alexfalkowski/konfig/health"
 	"github.com/alexfalkowski/konfig/source"
 	"github.com/hashicorp/vault/api"
 	"go.uber.org/fx"
@@ -20,7 +19,7 @@ type RegistrationsParams struct {
 	HTTP      *http.Config
 	Source    *source.Config
 	Vault     *api.Config
-	Health    *h.Config
+	Health    *Config
 	UserAgent env.UserAgent
 }
 

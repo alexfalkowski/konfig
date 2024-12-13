@@ -2,8 +2,8 @@ package grpc
 
 import (
 	"github.com/alexfalkowski/go-service/transport/grpc"
+	"github.com/alexfalkowski/konfig/api/config"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
-	"github.com/alexfalkowski/konfig/server/config"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

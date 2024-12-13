@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/alexfalkowski/go-service/meta"
+	"github.com/alexfalkowski/konfig/api/config"
 	v1 "github.com/alexfalkowski/konfig/api/konfig/v1"
-	"github.com/alexfalkowski/konfig/server/config"
 )
 
 // GetConfig for gRPC.
