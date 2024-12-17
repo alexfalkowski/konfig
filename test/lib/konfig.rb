@@ -18,10 +18,6 @@ require 'konfig/v1/service_services_pb'
 
 module Konfig
   class << self
-    def observability
-      @observability ||= Nonnative::Observability.new('http://localhost:11000')
-    end
-
     def vault
       @vault ||= Konfig::Vault.new
     end
