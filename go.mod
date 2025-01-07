@@ -6,7 +6,7 @@ toolchain go1.23.0
 
 require (
 	github.com/alexfalkowski/go-health v1.20.0
-	github.com/alexfalkowski/go-service v1.355.0
+	github.com/alexfalkowski/go-service v1.356.0
 	github.com/aws/aws-sdk-go-v2/config v1.28.7
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.72.0
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.56.2
@@ -27,7 +27,7 @@ require (
 	dario.cat/mergo v1.0.0 // indirect
 	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/BurntSushi/toml v1.4.0 // indirect
-	github.com/KimMachineGun/automemlimit v0.6.1 // indirect
+	github.com/KimMachineGun/automemlimit v0.7.0 // indirect
 	github.com/Masterminds/semver/v3 v3.2.1 // indirect
 	github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 // indirect
 	github.com/arl/statsviz v0.6.0 // indirect
@@ -52,12 +52,8 @@ require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
-	github.com/cilium/ebpf v0.9.1 // indirect
 	github.com/cloudevents/sdk-go/v2 v2.15.2 // indirect
-	github.com/containerd/cgroups/v3 v3.0.1 // indirect
-	github.com/coreos/go-systemd/v22 v22.3.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
-	github.com/docker/go-units v0.4.0 // indirect
 	github.com/ebitengine/purego v0.8.1 // indirect
 	github.com/elnormous/contenttype v1.0.4 // indirect
 	github.com/felixge/fgprof v0.9.5 // indirect
@@ -71,7 +67,6 @@ require (
 	github.com/go-sprout/sprout v0.6.0 // indirect
 	github.com/go-sql-driver/mysql v1.8.1 // indirect
 	github.com/goccy/go-json v0.10.4 // indirect
-	github.com/godbus/dbus/v5 v5.0.4 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.1 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/pprof v0.0.0-20240227163752-401108e1b7e7 // indirect
@@ -113,7 +108,6 @@ require (
 	github.com/onsi/gomega v1.27.10 // indirect
 	github.com/open-feature/go-sdk v1.14.0 // indirect
 	github.com/open-feature/go-sdk-contrib/hooks/open-telemetry v0.3.4 // indirect
-	github.com/opencontainers/runtime-spec v1.0.2 // indirect
 	github.com/pbnjay/memory v0.0.0-20210728143218-7b4eea64cf58 // indirect
 	github.com/power-devops/perfstat v0.0.0-20240221224432-82ca36839d55 // indirect
 	github.com/prometheus/client_golang v1.20.5 // indirect
@@ -125,7 +119,6 @@ require (
 	github.com/secure-io/siv-go v0.0.0-20180922214919-5ff40651e2c4 // indirect
 	github.com/sethvargo/go-limiter v1.0.0 // indirect
 	github.com/shirou/gopsutil/v4 v4.24.12 // indirect
-	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/sony/gobreaker v1.0.0 // indirect
 	github.com/spf13/cast v1.6.0 // indirect
 	github.com/spf13/cobra v1.8.1 // indirect
