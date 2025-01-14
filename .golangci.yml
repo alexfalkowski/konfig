@@ -9,16 +9,12 @@ linters:
   disable:
     - exportloopref
     - tagalign
-    - gochecknoinits
     - bodyclose
     - depguard
     - exhaustruct
-    - fatcontext
-    - forcetypeassert
     - gochecknoglobals
     - ireturn
     - mnd
     - paralleltest
     - varnamelen
     - wrapcheck
-    - tagliatelle
