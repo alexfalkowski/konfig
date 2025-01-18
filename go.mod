@@ -9,7 +9,7 @@ require (
 	github.com/alexfalkowski/go-service v1.376.0
 	github.com/aws/aws-sdk-go-v2/config v1.29.0
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.73.1
-	github.com/aws/aws-sdk-go-v2/service/ssm v1.56.6
+	github.com/aws/aws-sdk-go-v2/service/ssm v1.56.7
 	github.com/aws/smithy-go v1.22.1
 	github.com/google/go-github/v63 v63.0.0
 	github.com/hashicorp/vault/api v1.15.0
