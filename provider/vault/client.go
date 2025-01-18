@@ -23,7 +23,7 @@ type ConfigParams struct {
 
 // NewConfig for vault.
 func NewConfig(params ConfigParams) *api.Config {
-	client := http.NewClient(
+	client, _ := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.UserAgent),
 		http.WithClientTimeout(params.Config.Timeout),
