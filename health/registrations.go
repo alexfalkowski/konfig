@@ -25,7 +25,7 @@ type RegistrationsParams struct {
 
 // NewRegistrations for health.
 func NewRegistrations(params RegistrationsParams) health.Registrations {
-	rt := http.NewRoundTripper(http.WithClientUserAgent(params.UserAgent))
+	rt, _ := http.NewRoundTripper(http.WithClientUserAgent(params.UserAgent))
 	t := time.MustParseDuration(params.Health.Timeout)
 	d := time.MustParseDuration(params.Health.Duration)
 	registrations := health.Registrations{
