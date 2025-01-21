@@ -6,7 +6,7 @@ toolchain go1.23.5
 
 require (
 	github.com/alexfalkowski/go-health v1.20.1
-	github.com/alexfalkowski/go-service v1.382.0
+	github.com/alexfalkowski/go-service v1.383.0
 	github.com/aws/aws-sdk-go-v2/config v1.29.1
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.73.2
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.56.7
@@ -95,6 +95,7 @@ require (
 	github.com/lib/pq v1.10.9 // indirect
 	github.com/linxGnu/mssqlx v1.1.8 // indirect
 	github.com/lufia/plan9stats v0.0.0-20240909124753-873cd0166683 // indirect
+	github.com/matoous/go-nanoid v1.5.1 // indirect
 	github.com/matthewhartstonge/argon2 v1.1.1 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
@@ -104,6 +105,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/ngrok/sqlmw v0.0.0-20220520173518-97c9c04efc79 // indirect
+	github.com/oklog/ulid v1.3.1 // indirect
 	github.com/onsi/gomega v1.27.10 // indirect
 	github.com/open-feature/go-sdk v1.14.0 // indirect
 	github.com/open-feature/go-sdk-contrib/hooks/open-telemetry v0.3.4 // indirect
@@ -114,8 +116,10 @@ require (
 	github.com/prometheus/common v0.61.0 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/redis/go-redis/v9 v9.7.0 // indirect
+	github.com/rs/xid v1.6.0 // indirect
 	github.com/ryanuber/go-glob v1.0.0 // indirect
 	github.com/secure-io/siv-go v0.0.0-20180922214919-5ff40651e2c4 // indirect
+	github.com/segmentio/ksuid v1.0.4 // indirect
 	github.com/sethvargo/go-limiter v1.0.0 // indirect
 	github.com/sethvargo/go-retry v0.3.0 // indirect
 	github.com/shirou/gopsutil/v4 v4.24.12 // indirect
