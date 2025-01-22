@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.367.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.367.0) - 2025-01-22
+
+- [`e087b2d`](https://github.com/alexfalkowski/konfig/commit/e087b2d62095ecbcbd45ca67bdfcc2ffbd9434b8) feat(provider): provider can return strings (#1795)
+
 ## [v1.366.2](https://github.com/alexfalkowski/konfig/releases/tag/v1.366.2) - 2025-01-22
 
 - [`b5a63af`](https://github.com/alexfalkowski/konfig/commit/b5a63af2fb98d5e52eca8f816c3111e8fe92f882) fix(deps): upgraded github.com/aws/smithy-go v1.22.1 => v1.22.2 (#1794)
