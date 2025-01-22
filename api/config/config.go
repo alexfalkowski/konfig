@@ -79,12 +79,7 @@ func (s *Configuration) GetSecrets(ctx context.Context, secs map[string]string) 
 			return nil, err
 		}
 
-		switch c := t.(type) {
-		case string:
-			secrets[n] = []byte(c)
-		default:
-			secrets[n] = []byte(v)
-		}
+		secrets[n] = []byte(t)
 	}
 
 	return secrets, nil

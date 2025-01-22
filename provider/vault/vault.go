@@ -23,7 +23,7 @@ func NewTransformer(client *api.Client, t trace.Tracer) *Transformer {
 }
 
 // Transform for vault.
-func (t *Transformer) Transform(ctx context.Context, value string) (any, error) {
+func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
 	ctx, span := t.tracer.Start(ctx, operationName("transform"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
@@ -51,7 +51,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 		return value, errMissing
 	}
 
-	return md["value"], nil
+	return md["value"].(string), nil //nolint:forcetypeassert
 }
 
 // IsMissing value for vault.

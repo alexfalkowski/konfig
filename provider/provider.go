@@ -10,7 +10,7 @@ import (
 )
 
 type transformer interface {
-	Transform(ctx context.Context, value string) (any, error)
+	Transform(ctx context.Context, value string) (string, error)
 	IsMissing(err error) bool
 }
 
@@ -33,7 +33,7 @@ func NewTransformer(et *env.Transformer, vt *vault.Transformer, st *ssm.Transfor
 }
 
 // Transform for provider.
-func (t *Transformer) Transform(ctx context.Context, value string) (any, error) {
+func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
 	args := strings.Split(value, ":")
 	if len(args) != 2 {
 		return value, nil
