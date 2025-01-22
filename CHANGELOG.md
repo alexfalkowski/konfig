@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.371.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.371.0) - 2025-01-22
+
+- [`c6553f9`](https://github.com/alexfalkowski/konfig/commit/c6553f9d363755737e28551ee9aec54c197cc481) feat(api): simplify expressions (#1807)
+
 ## [v1.370.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.370.0) - 2025-01-22
 
 - [`988306a`](https://github.com/alexfalkowski/konfig/commit/988306a05bf5417de0e793c386f839f519c53f46) build(ci): make sure we have clean state (#1805)
