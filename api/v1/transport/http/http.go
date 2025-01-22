@@ -9,15 +9,26 @@ import (
 )
 
 // Register for HTTP.
-func Register(service *config.Configuration) {
-	ch := &configHandler{service: service}
-	rpc.Route("/v1/config", ch.GetConfig)
-
-	sh := &secretsHandler{service: service}
-	rpc.Route("/v1/secrets", sh.GetSecrets)
+func Register(handler *Handler) {
+	rpc.Route("/v1/config", handler.GetConfig)
+	rpc.Route("/v1/secrets", handler.GetSecrets)
 }
 
-func handleError(err error) error {
+// NewServer for HTTP.
+func NewHandler(service *config.Configuration) *Handler {
+	return &Handler{service: service}
+}
+
+// Handler for HTTP.
+type Handler struct {
+	service *config.Configuration
+}
+
+func (h *Handler) error(err error) error {
+	if err == nil {
+		return nil
+	}
+
 	if config.IsInvalidArgument(err) {
 		return status.Error(http.StatusBadRequest, err.Error())
 	}

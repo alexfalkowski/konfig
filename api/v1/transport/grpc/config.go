@@ -25,21 +25,19 @@ func (s *Server) GetConfig(ctx context.Context, req *v1.GetConfigRequest) (*v1.G
 		return resp, s.error(err)
 	}
 
-	resp.Config = &v1.Config{
-		Application: cfg.Application(), Version: cfg.Version(),
-		Environment: cfg.Environment(), Continent: cfg.Continent(),
-		Country: cfg.Country(), Command: cfg.Command(), Kind: cfg.Kind(),
-	}
-
 	data, err := s.service.GetConfig(ctx, cfg)
-	if err != nil {
-		resp.Meta = meta.CamelStrings(ctx, "")
 
-		return resp, s.error(err)
+	resp.Meta = meta.CamelStrings(ctx, "")
+	resp.Config = &v1.Config{
+		Application: cfg.Application(),
+		Version:     cfg.Version(),
+		Environment: cfg.Environment(),
+		Continent:   cfg.Continent(),
+		Country:     cfg.Country(),
+		Command:     cfg.Command(),
+		Kind:        cfg.Kind(),
+		Data:        data,
 	}
 
-	resp.Config.Data = data
-	resp.Meta = meta.CamelStrings(ctx, "")
-
-	return resp, nil
+	return resp, s.error(err)
 }

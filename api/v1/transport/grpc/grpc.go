@@ -8,7 +8,7 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-// Register server.
+// Register for gRPC.
 func Register(gs *grpc.Server, server v1.ServiceServer) {
 	v1.RegisterServiceServer(gs.Server(), server)
 }
@@ -25,6 +25,10 @@ type Server struct {
 }
 
 func (s *Server) error(err error) error {
+	if err == nil {
+		return nil
+	}
+
 	if config.IsInvalidArgument(err) {
 		return status.Error(codes.InvalidArgument, err.Error())
 	}
