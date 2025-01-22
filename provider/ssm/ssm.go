@@ -12,6 +12,13 @@ import (
 	"go.opentelemetry.io/otel/trace"
 )
 
+// IsNotFound for SSM.
+func IsNotFound(err error) bool {
+	var perr *types.ParameterNotFound
+
+	return errors.As(err, &perr)
+}
+
 var errMissing = errors.New("missing value")
 
 // Secret from SSM.
@@ -32,7 +39,7 @@ func NewTransformer(client *ssm.Client, json *json.Encoder, tracer trace.Tracer)
 }
 
 // Transform for SSM.
-func (t *Transformer) Transform(ctx context.Context, value string) (any, error) {
+func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
 	ctx, span := t.tracer.Start(ctx, operationName("transform"), trace.WithSpanKind(trace.SpanKindClient))
 	defer span.End()
 
@@ -41,8 +48,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 
 	out, err := t.client.GetParameter(ctx, &ssm.GetParameterInput{Name: &value})
 	if err != nil {
-		var perr *types.ParameterNotFound
-		if errors.As(err, &perr) {
+		if IsNotFound(err) {
 			return value, errMissing
 		}
 
@@ -59,8 +65,8 @@ func (t *Transformer) Transform(ctx context.Context, value string) (any, error) 
 		return value, err
 	}
 
-	v := sec.Data["value"]
-	if v == nil {
+	v, ok := sec.Data["value"].(string)
+	if !ok {
 		return value, errMissing
 	}
 
