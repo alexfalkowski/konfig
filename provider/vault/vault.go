@@ -37,10 +37,6 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 		return value, err
 	}
 
-	if sec == nil || sec.Data == nil {
-		return value, errMissing
-	}
-
 	d := sec.Data["data"]
 	if d == nil {
 		return value, errMissing
