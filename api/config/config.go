@@ -55,9 +55,15 @@ func NewConfiguration(provider *provider.Transformer, config source.Configurator
 
 // GetConfig for service.
 func (s *Configuration) GetConfig(ctx context.Context, cfg *Config) ([]byte, error) {
-	d, err := s.config.GetConfig(ctx, cfg.application, cfg.version,
-		cfg.environment, cfg.continent, cfg.country,
-		cfg.command, cfg.kind)
+	d, err := s.config.GetConfig(ctx,
+		cfg.application,
+		cfg.version,
+		cfg.environment,
+		cfg.continent,
+		cfg.country,
+		cfg.command,
+		cfg.kind,
+	)
 	if err != nil {
 		if ce.IsNotFound(err) {
 			return nil, fmt.Errorf("%s: %w", cfg, ErrNotFound)

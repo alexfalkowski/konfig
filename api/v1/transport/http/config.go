@@ -36,13 +36,10 @@ type (
 		Kind        string `json:"kind,omitempty"`
 		Data        []byte `json:"data,omitempty"`
 	}
-
-	configHandler struct {
-		service *config.Configuration
-	}
 )
 
-func (h *configHandler) GetConfig(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
+// GetConfig for HTTP.
+func (h *Handler) GetConfig(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
 	resp := &GetConfigResponse{}
 
 	cfg, err := config.NewConfig(
@@ -55,23 +52,22 @@ func (h *configHandler) GetConfig(ctx context.Context, req *GetConfigRequest) (*
 		req.Kind,
 	)
 	if err != nil {
-		return resp, handleError(err)
+		return resp, h.error(err)
 	}
 
 	data, err := h.service.GetConfig(ctx, cfg)
-	if err != nil {
-		resp.Meta = meta.CamelStrings(ctx, "")
-
-		return resp, handleError(err)
-	}
 
 	resp.Meta = meta.CamelStrings(ctx, "")
 	resp.Config = &Config{
-		Application: cfg.Application(), Version: cfg.Version(),
-		Environment: cfg.Environment(), Continent: cfg.Continent(),
-		Country: cfg.Country(), Command: cfg.Command(), Kind: cfg.Kind(),
-		Data: data,
+		Application: cfg.Application(),
+		Version:     cfg.Version(),
+		Environment: cfg.Environment(),
+		Continent:   cfg.Continent(),
+		Country:     cfg.Country(),
+		Command:     cfg.Command(),
+		Kind:        cfg.Kind(),
+		Data:        data,
 	}
 
-	return resp, err
+	return resp, h.error(err)
 }

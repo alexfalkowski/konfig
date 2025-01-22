@@ -16,5 +16,6 @@ var Module = fx.Options(
 	git.Module,
 	fx.Provide(grpc.NewServer),
 	fx.Invoke(grpc.Register),
+	fx.Provide(http.NewHandler),
 	fx.Invoke(http.Register),
 )

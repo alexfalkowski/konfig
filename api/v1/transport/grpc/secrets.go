@@ -10,16 +10,10 @@ import (
 // GetSecrets for gRPC.
 func (s *Server) GetSecrets(ctx context.Context, req *v1.GetSecretsRequest) (*v1.GetSecretsResponse, error) {
 	resp := &v1.GetSecretsResponse{}
-
 	secrets, err := s.service.GetSecrets(ctx, req.GetSecrets())
-	if err != nil {
-		resp.Meta = meta.CamelStrings(ctx, "")
-
-		return resp, s.error(err)
-	}
 
 	resp.Meta = meta.CamelStrings(ctx, "")
 	resp.Secrets = secrets
 
-	return resp, nil
+	return resp, s.error(err)
 }
