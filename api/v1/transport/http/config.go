@@ -59,11 +59,6 @@ func (h *configHandler) GetConfig(ctx context.Context, req *GetConfigRequest) (*
 	}
 
 	data, err := h.service.GetConfig(ctx, cfg)
-	if err != nil {
-		resp.Meta = meta.CamelStrings(ctx, "")
-
-		return resp, handleError(err)
-	}
 
 	resp.Meta = meta.CamelStrings(ctx, "")
 	resp.Config = &Config{
@@ -73,5 +68,5 @@ func (h *configHandler) GetConfig(ctx context.Context, req *GetConfigRequest) (*
 		Data: data,
 	}
 
-	return resp, err
+	return resp, handleError(err)
 }

@@ -25,6 +25,10 @@ type Server struct {
 }
 
 func (s *Server) error(err error) error {
+	if err == nil {
+		return nil
+	}
+
 	if config.IsInvalidArgument(err) {
 		return status.Error(codes.InvalidArgument, err.Error())
 	}

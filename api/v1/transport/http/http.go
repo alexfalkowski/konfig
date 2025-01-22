@@ -18,6 +18,10 @@ func Register(service *config.Configuration) {
 }
 
 func handleError(err error) error {
+	if err == nil {
+		return nil
+	}
+
 	if config.IsInvalidArgument(err) {
 		return status.Error(http.StatusBadRequest, err.Error())
 	}

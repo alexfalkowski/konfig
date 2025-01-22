@@ -26,16 +26,10 @@ type (
 
 func (h *secretsHandler) GetSecrets(ctx context.Context, req *GetSecretsRequest) (*GetSecretsResponse, error) {
 	resp := &GetSecretsResponse{}
-
 	secrets, err := h.service.GetSecrets(ctx, req.Secrets)
-	if err != nil {
-		resp.Meta = meta.CamelStrings(ctx, "")
-
-		return resp, handleError(err)
-	}
 
 	resp.Meta = meta.CamelStrings(ctx, "")
 	resp.Secrets = secrets
 
-	return resp, nil
+	return resp, handleError(err)
 }
