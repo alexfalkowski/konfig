@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.368.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.368.0) - 2025-01-22
+
+- [`f2d0a74`](https://github.com/alexfalkowski/konfig/commit/f2d0a74c1f42af114ee9c74c9bb4b37a10fddc92) feat(vault): data is never missing (#1798)
+- [`b0e3fcb`](https://github.com/alexfalkowski/konfig/commit/b0e3fcbaceec9ef7aa253e512e0129627bc115f8) test(ssm): pass invalid json (#1797)
+- [`de48b40`](https://github.com/alexfalkowski/konfig/commit/de48b4051ed0c0d497155b78e817f63c1d6207bc) test(api): pass blank kind (#1796)
+
 ## [v1.367.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.367.0) - 2025-01-22
 
 - [`e087b2d`](https://github.com/alexfalkowski/konfig/commit/e087b2d62095ecbcbd45ca67bdfcc2ffbd9434b8) feat(provider): provider can return strings (#1795)
