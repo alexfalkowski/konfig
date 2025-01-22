@@ -14,7 +14,8 @@ end
 
 Then('I should receive a valid config from gRPC:') do |table|
   rows = table.rows_hash
-  data = Konfig.load_config(rows['kind'], @response.config.data)
+  kind = rows['kind'].empty? ? 'yaml' : rows['kind']
+  data = Konfig.load_config(kind, @response.config.data)
 
   expect(@response.meta.length).to be > 0
   expect(@response.config.application).to eq(rows['app'])
@@ -23,7 +24,9 @@ Then('I should receive a valid config from gRPC:') do |table|
   expect(@response.config.continent).to eq(rows['continent'])
   expect(@response.config.country).to eq(rows['country'])
   expect(@response.config.command).to eq(rows['cmd'])
-  expect(@response.config.kind).to eq(rows['kind'])
+
+  expect(@response.config.kind).to eq(kind)
+
   expect(data['test']['duration']).to eq('1s')
   expect(data['test']['invalid_value']).to eq('none:value')
   expect(data['test']['http_user_agent']).to eq('Konfig-server/1.0 http/1.0')

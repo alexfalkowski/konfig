@@ -23,7 +23,8 @@ Then('I should receive a valid config from HTTP:') do |table|
   resp = JSON.parse(@response.body)
   config = resp['config']
   rows = table.rows_hash
-  data = Konfig.load_config(rows['kind'], Base64.decode64(config['data']))
+  kind = rows['kind'].empty? ? 'yaml' : rows['kind']
+  data = Konfig.load_config(kind, Base64.decode64(config['data']))
 
   expect(resp['meta'].length).to be > 0
   expect(config['application']).to eq(rows['app'])
@@ -32,7 +33,7 @@ Then('I should receive a valid config from HTTP:') do |table|
   expect(config['continent']).to eq(rows['continent'])
   expect(config['country']).to eq(rows['country'])
   expect(config['command']).to eq(rows['cmd'])
-  expect(config['kind']).to eq(rows['kind'])
+  expect(config['kind']).to eq(kind)
   expect(data['test']['duration']).to eq('1s')
   expect(data['test']['invalid_value']).to eq('none:value')
   expect(data['test']['http_user_agent']).to eq('Konfig-server/1.0 http/1.0')
