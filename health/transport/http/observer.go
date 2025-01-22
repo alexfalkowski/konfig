@@ -3,14 +3,19 @@ package http
 import (
 	"github.com/alexfalkowski/go-health/server"
 	"github.com/alexfalkowski/go-service/health/transport/http"
+	aws "github.com/alexfalkowski/konfig/aws/endpoint"
 	"github.com/alexfalkowski/konfig/source"
 )
 
 // NewHealthObserver for HTTP.
-func NewHealthObserver(healthServer *server.Server, source *source.Config) *http.HealthObserver {
+func NewHealthObserver(healthServer *server.Server, source *source.Config, endpoint aws.Endpoint) *http.HealthObserver {
 	names := []string{"vault"}
 	if source.IsGit() {
 		names = append(names, "git")
+	}
+
+	if endpoint.IsSet() {
+		names = append(names, "aws")
 	}
 
 	return &http.HealthObserver{Observer: healthServer.Observe(names...)}

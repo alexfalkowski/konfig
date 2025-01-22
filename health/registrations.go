@@ -7,6 +7,7 @@ import (
 	"github.com/alexfalkowski/go-service/health"
 	"github.com/alexfalkowski/go-service/time"
 	"github.com/alexfalkowski/go-service/transport/http"
+	aws "github.com/alexfalkowski/konfig/aws/endpoint"
 	"github.com/alexfalkowski/konfig/source"
 	"github.com/hashicorp/vault/api"
 	"go.uber.org/fx"
@@ -20,6 +21,7 @@ type RegistrationsParams struct {
 	Source    *source.Config
 	Vault     *api.Config
 	Health    *Config
+	Endpoint  aws.Endpoint
 	UserAgent env.UserAgent
 }
 
@@ -31,6 +33,11 @@ func NewRegistrations(params RegistrationsParams) health.Registrations {
 	registrations := health.Registrations{
 		server.NewRegistration("noop", d, checker.NewNoopChecker()),
 		server.NewRegistration("vault", d, checker.NewHTTPChecker(params.Vault.Address, rt, t)),
+	}
+
+	if params.Endpoint.IsSet() {
+		reg := server.NewRegistration("aws", d, checker.NewHTTPChecker(string(params.Endpoint), rt, t))
+		registrations = append(registrations, reg)
 	}
 
 	return registrations

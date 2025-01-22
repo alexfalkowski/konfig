@@ -280,6 +280,9 @@ Feature: Config
   Scenario Outline: Existing config with gRPC and broken vault
     Given I have a "<source>" valid setup
     And I start the system
+    And I do not have the following provider information:
+      | provider | key                                    |
+      | ssm      | /secret/data/transport/http/user_agent |
     And I have the following provider information:
       | provider | key                                    | value                                               |
       | vault    | /secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
@@ -309,3 +312,37 @@ Feature: Config
       | git    | test | v1.11.0 | staging | *         | *       | server | toml |
       | folder | test | v1.11.0 | staging | *         | *       | server | toml |
       | s3     | test | v1.11.0 | staging | *         | *       | server | toml |
+
+  Scenario Outline: Existing config with gRPC and broken aws
+    Given I have a "<source>" valid setup
+    And I start the system
+    And I do not have the following provider information:
+      | provider | key                                    |
+      | vault    | /secret/data/transport/http/user_agent |
+    And I have the following provider information:
+      | provider | key                                    | value                                               |
+      | ssm      | /secret/data/transport/grpc/user_agent | {"data": { "value": "Konfig-server/1.0 grpc/1.0" }} |
+    And I set the proxy for service 'aws' to 'close_all'
+    And I should see "aws" as unhealthy
+    When I request a config with gRPC:
+      | source    | <source>    |
+      | app       | <app>       |
+      | ver       | <ver>       |
+      | env       | <env>       |
+      | continent | <continent> |
+      | country   | <country>   |
+      | cmd       | <cmd>       |
+      | kind      | <kind>      |
+    Then I should receive an internal error from gRPC
+    And I should reset the proxy for service 'aws'
+    And I should see "aws" as healthy
+
+    Examples: With YAML kind
+      | source | app  | ver     | env     | continent | country | cmd    | kind |
+      | git    | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
+
+    Examples: With TOML kind
+      | source | app  | ver     | env     | continent | country | cmd    | kind |
+      | git    | test | v1.11.0 | staging | *         | *       | server | toml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | toml |

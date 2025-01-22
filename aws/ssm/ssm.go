@@ -2,13 +2,14 @@ package ssm
 
 import (
 	"context"
-	"os"
 
 	"github.com/alexfalkowski/go-service/env"
+	"github.com/alexfalkowski/go-service/id"
 	"github.com/alexfalkowski/go-service/transport/http"
+	"github.com/alexfalkowski/konfig/aws/endpoint"
+	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
-	endpoints "github.com/aws/smithy-go/endpoints"
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
@@ -18,11 +19,12 @@ import (
 // ConfigParams for SSM.
 type ClientParams struct {
 	fx.In
-
-	Config    *http.Config
-	Logger    *zap.Logger
 	Tracer    trace.Tracer
 	Meter     metric.Meter
+	ID        id.Generator
+	Endpoint  endpoint.Endpoint
+	Config    *http.Config
+	Logger    *zap.Logger
 	UserAgent env.UserAgent
 }
 
@@ -31,7 +33,7 @@ func NewClient(params ClientParams) (*ssm.Client, error) {
 	client, _ := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.UserAgent),
-		http.WithClientTimeout(params.Config.Timeout),
+		http.WithClientTimeout(params.Config.Timeout), http.WithClientID(params.ID),
 	)
 
 	ctx := context.Background()
@@ -40,21 +42,12 @@ func NewClient(params ClientParams) (*ssm.Client, error) {
 		config.WithRetryMaxAttempts(int(params.Config.Retry.Attempts)), //nolint:gosec
 	}
 
-	r := &resolver{EndpointResolverV2: ssm.NewDefaultEndpointResolverV2()}
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
+	cl := ssm.NewFromConfig(cfg, func(o *ssm.Options) {
+		if params.Endpoint.IsSet() {
+			o.BaseEndpoint = aws.String(string(params.Endpoint))
+		}
+	})
 
-	return ssm.NewFromConfig(cfg, ssm.WithEndpointResolverV2(r)), err
-}
-
-type resolver struct {
-	ssm.EndpointResolverV2
-}
-
-func (r *resolver) ResolveEndpoint(ctx context.Context, params ssm.EndpointParameters) (endpoints.Endpoint, error) {
-	u := os.Getenv("AWS_URL")
-	if u != "" {
-		params.Endpoint = &u
-	}
-
-	return r.EndpointResolverV2.ResolveEndpoint(ctx, params)
+	return cl, err
 }

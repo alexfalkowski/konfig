@@ -45,9 +45,15 @@ type (
 func (h *configHandler) GetConfig(ctx context.Context, req *GetConfigRequest) (*GetConfigResponse, error) {
 	resp := &GetConfigResponse{}
 
-	cfg, err := config.NewConfig(req.Application, req.Version,
-		req.Environment, req.Continent, req.Country,
-		req.Command, req.Kind)
+	cfg, err := config.NewConfig(
+		req.Application,
+		req.Version,
+		req.Environment,
+		req.Continent,
+		req.Country,
+		req.Command,
+		req.Kind,
+	)
 	if err != nil {
 		return resp, handleError(err)
 	}
@@ -62,8 +68,9 @@ func (h *configHandler) GetConfig(ctx context.Context, req *GetConfigRequest) (*
 	resp.Meta = meta.CamelStrings(ctx, "")
 	resp.Config = &Config{
 		Application: cfg.Application(), Version: cfg.Version(),
-		Environment: cfg.Environment(), Continent: cfg.Continent(), Country: cfg.Country(),
-		Command: cfg.Command(), Kind: cfg.Kind(), Data: data,
+		Environment: cfg.Environment(), Continent: cfg.Continent(),
+		Country: cfg.Country(), Command: cfg.Command(), Kind: cfg.Kind(),
+		Data: data,
 	}
 
 	return resp, err
