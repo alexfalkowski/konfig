@@ -1,6 +1,5 @@
 @manual @http
 Feature: Config
-
   Config allows users to manage their application configurations.
 
   Scenario Outline: Existing config with HTTP
@@ -34,12 +33,15 @@ Feature: Config
       | git    | test | v1.11.0 | staging | *         | *       | server | yaml |
       | git    | test | v1.11.0 | staging | eu        | *       | server | yaml |
       | git    | test | v1.11.0 | staging | eu        | de      | server | yaml |
+      | git    | test | v1.11.0 | staging | eu        | de      | server |      |
       | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
       | folder | test | v1.11.0 | staging | eu        | *       | server | yaml |
       | folder | test | v1.11.0 | staging | eu        | de      | server | yaml |
+      | folder | test | v1.11.0 | staging | eu        | de      | server |      |
       | s3     | test | v1.11.0 | staging | *         | *       | server | yaml |
       | s3     | test | v1.11.0 | staging | eu        | *       | server | yaml |
       | s3     | test | v1.11.0 | staging | eu        | de      | server | yaml |
+      | s3     | test | v1.11.0 | staging | eu        | de      | server |      |
 
     Examples: With TOML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
