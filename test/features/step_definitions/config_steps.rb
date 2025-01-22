@@ -7,7 +7,7 @@ Given('I have a {string} valid setup') do |source|
   when 'git'
     Nonnative.configuration.processes[0].environment['KONFIG_GIT_TOKEN'] = ENV.fetch('GITHUB_TOKEN', nil)
   when 's3'
-    Nonnative.configuration.processes[0].environment['AWS_URL'] = 'http://localhost:4566'
+    Nonnative.configuration.processes[0].environment['AWS_URL'] = 'http://localhost:4600'
 
     files = [
       ['test/v1.11.0/staging/server.yaml', '.config/test/v1.11.0/staging/server.yaml'],

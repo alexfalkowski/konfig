@@ -7,7 +7,7 @@ client:
       backoff: 100ms
       timeout: 10s
     timeout: 5s
-environment: production
+environment: development
 limiter:
   kind: token
   tokens: 1000
