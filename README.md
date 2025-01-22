@@ -226,10 +226,6 @@ Kind is `yaml`, `toml`.
 
 The server is defined by the following [proto contract](api/konfig/v1/service.proto). So each version of the service will have a new contract.
 
-### Dependencies
-
-![Dependencies](./assets/server.png)
-
 ## Health
 
 The system defines a way to monitor all of it's dependencies.
