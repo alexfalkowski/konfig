@@ -1,6 +1,12 @@
-@manual @grpc
+@manual @config
 Feature: Config
   Config allows users to manage their application configurations.
+
+  Background:
+    Given I do not have the following provider information:
+      | provider | key                                    |
+      | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
 
   Scenario Outline: Existing config with gRPC
     Given I have a "<source>" valid setup
@@ -58,10 +64,6 @@ Feature: Config
   Scenario Outline: Existing config with non existent information with gRPC
     Given I have a "<source>" valid setup
     And I start the system
-    And I do not have the following provider information:
-      | provider | key                                    |
-      | vault    | /secret/data/transport/http/user_agent |
-      | ssm      | /secret/data/transport/grpc/user_agent |
     When I request a config with gRPC:
       | source    | <source>    |
       | app       | <app>       |
@@ -280,9 +282,6 @@ Feature: Config
   Scenario Outline: Existing config with gRPC and broken vault
     Given I have a "<source>" valid setup
     And I start the system
-    And I do not have the following provider information:
-      | provider | key                                    |
-      | ssm      | /secret/data/transport/http/user_agent |
     And I have the following provider information:
       | provider | key                                    | value                                               |
       | vault    | /secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
@@ -316,9 +315,6 @@ Feature: Config
   Scenario Outline: Existing config with gRPC and broken aws
     Given I have a "<source>" valid setup
     And I start the system
-    And I do not have the following provider information:
-      | provider | key                                    |
-      | vault    | /secret/data/transport/http/user_agent |
     And I have the following provider information:
       | provider | key                                    | value                                               |
       | ssm      | /secret/data/transport/grpc/user_agent | {"data": { "value": "Konfig-server/1.0 grpc/1.0" }} |

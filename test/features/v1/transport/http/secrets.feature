@@ -1,6 +1,12 @@
-@manual @http
+@manual @secrets
 Feature: Secrets
   Secrets allows get the configured secrets.
+
+  Background:
+    Given I do not have the following provider information:
+      | provider | key                                    |
+      | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
 
   Scenario: Secrets with HTTP
     Given I have a "git" valid setup
