@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.369.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.369.0) - 2025-01-22
+
+- [`af2a74f`](https://github.com/alexfalkowski/konfig/commit/af2a74f06aae87a6839ad419910936b568f2637c) feat(aws): verify endpoints (#1799)
+
 ## [v1.368.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.368.0) - 2025-01-22
 
 - [`f2d0a74`](https://github.com/alexfalkowski/konfig/commit/f2d0a74c1f42af114ee9c74c9bb4b37a10fddc92) feat(vault): data is never missing (#1798)
