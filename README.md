@@ -228,7 +228,7 @@ The server is defined by the following [proto contract](api/konfig/v1/service.pr
 
 ### Dependencies
 
-![Dependencies](./assets/server.png)
+![Dependencies](./assets/api.png)
 
 ## Health
 

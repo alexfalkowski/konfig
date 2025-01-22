@@ -17,4 +17,4 @@ features-http:
 diagrams: server-diagram
 
 server-diagram:
-	$(MAKE) package=server create-diagram
+	$(MAKE) package=api create-diagram
