@@ -2,9 +2,53 @@
 Feature: Config
   Config allows users to manage their application configurations.
 
+  Scenario Outline: Existing config with non existent information with HTTP
+    Given I have a "<source>" valid setup
+    And I start the system
+    When I request a config with HTTP:
+      | source    | <source>    |
+      | app       | <app>       |
+      | ver       | <ver>       |
+      | env       | <env>       |
+      | continent | <continent> |
+      | country   | <country>   |
+      | cmd       | <cmd>       |
+      | kind      | <kind>      |
+    Then I should receive a valid config with missing information from HTTP:
+      | source    | <source>    |
+      | app       | <app>       |
+      | ver       | <ver>       |
+      | env       | <env>       |
+      | continent | <continent> |
+      | country   | <country>   |
+      | cmd       | <cmd>       |
+      | kind      | <kind>      |
+
+    Examples: With YAML kind
+      | source | app  | ver     | env     | continent | country | cmd    | kind |
+      | git    | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | git    | test | v1.11.0 | staging | eu        | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | eu        | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | eu        | *       | server | yaml |
+
+    Examples: With TOML kind
+      | source | app  | ver     | env     | continent | country | cmd    | kind |
+      | git    | test | v1.11.0 | staging | *         | *       | server | toml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | toml |
+      | git    | test | v1.11.0 | staging | eu        | *       | server | toml |
+      | folder | test | v1.11.0 | staging | eu        | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | eu        | *       | server | toml |
+
   Scenario Outline: Existing config with HTTP
     Given I have a "<source>" valid setup
     And I start the system
+    And I do not have the following provider information:
+      | provider | key                                    |
+      | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
     And I have the following provider information:
       | provider | key                                    | value                                               |
       | vault    | /secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
@@ -55,53 +99,13 @@ Feature: Config
       | s3     | test | v1.11.0 | staging | eu        | *       | server | toml |
       | s3     | test | v1.11.0 | staging | eu        | de      | server | toml |
 
-  Scenario Outline: Existing config with non existent information with HTTP
+  Scenario Outline: Existing config with missing information with HTTP
     Given I have a "<source>" valid setup
     And I start the system
     And I do not have the following provider information:
       | provider | key                                    |
       | vault    | /secret/data/transport/http/user_agent |
       | ssm      | /secret/data/transport/grpc/user_agent |
-    When I request a config with HTTP:
-      | source    | <source>    |
-      | app       | <app>       |
-      | ver       | <ver>       |
-      | env       | <env>       |
-      | continent | <continent> |
-      | country   | <country>   |
-      | cmd       | <cmd>       |
-      | kind      | <kind>      |
-    Then I should receive a valid config with missing information from HTTP:
-      | source    | <source>    |
-      | app       | <app>       |
-      | ver       | <ver>       |
-      | env       | <env>       |
-      | continent | <continent> |
-      | country   | <country>   |
-      | cmd       | <cmd>       |
-      | kind      | <kind>      |
-
-    Examples: With YAML kind
-      | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.11.0 | staging | *         | *       | server | yaml |
-      | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
-      | s3     | test | v1.11.0 | staging | *         | *       | server | yaml |
-      | git    | test | v1.11.0 | staging | eu        | *       | server | yaml |
-      | folder | test | v1.11.0 | staging | eu        | *       | server | yaml |
-      | s3     | test | v1.11.0 | staging | eu        | *       | server | yaml |
-
-    Examples: With TOML kind
-      | source | app  | ver     | env     | continent | country | cmd    | kind |
-      | git    | test | v1.11.0 | staging | *         | *       | server | toml |
-      | folder | test | v1.11.0 | staging | *         | *       | server | toml |
-      | s3     | test | v1.11.0 | staging | *         | *       | server | toml |
-      | git    | test | v1.11.0 | staging | eu        | *       | server | toml |
-      | folder | test | v1.11.0 | staging | eu        | *       | server | toml |
-      | s3     | test | v1.11.0 | staging | eu        | *       | server | toml |
-
-  Scenario Outline: Existing config with missing information with HTTP
-    Given I have a "<source>" valid setup
-    And I start the system
     And I have the following provider information:
       | provider | key                                    | value        |
       | vault    | /secret/data/transport/http/user_agent | {"data": {}} |
@@ -146,6 +150,10 @@ Feature: Config
   Scenario Outline: Existing config with invalid information with HTTP
     Given I have a "<source>" valid setup
     And I start the system
+    And I do not have the following provider information:
+      | provider | key                                    |
+      | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
     And I have the following provider information:
       | provider | key                                    | value   |
       | ssm      | /secret/data/transport/grpc/user_agent | invalid |
@@ -181,6 +189,10 @@ Feature: Config
   Scenario Outline: Missing config with HTTP
     Given I have a "<source>" valid setup
     And I start the system
+    And I do not have the following provider information:
+      | provider | key                                    |
+      | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
     When I request a config with HTTP:
       | source    | <source>    |
       | app       | <app>       |
@@ -213,6 +225,10 @@ Feature: Config
   Scenario Outline: Misconfigured config with HTTP
     Given I have a "<source>" invalid setup
     And I start the system
+    And I do not have the following provider information:
+      | provider | key                                    |
+      | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
     When I request a config with HTTP:
       | source    | <source>    |
       | app       | <app>       |
@@ -238,6 +254,10 @@ Feature: Config
   Scenario Outline: Invalid config with HTTP
     Given I have a "<source>" valid setup
     And I start the system
+    And I do not have the following provider information:
+      | provider | key                                    |
+      | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
     When I request a config with HTTP:
       | source | <source> |
       | app    | <app>    |
@@ -282,7 +302,8 @@ Feature: Config
     And I start the system
     And I do not have the following provider information:
       | provider | key                                    |
-      | ssm      | /secret/data/transport/http/user_agent |
+      | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
     And I have the following provider information:
       | provider | key                                    | value                                               |
       | vault    | /secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
@@ -319,6 +340,7 @@ Feature: Config
     And I do not have the following provider information:
       | provider | key                                    |
       | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
     And I have the following provider information:
       | provider | key                                    | value                                               |
       | ssm      | /secret/data/transport/grpc/user_agent | {"data": { "value": "Konfig-server/1.0 grpc/1.0" }} |

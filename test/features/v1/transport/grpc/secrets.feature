@@ -2,10 +2,16 @@
 Feature: Secrets
   Secrets allows get the configured secrets.
 
-  Scenario: Secrets with gRPC
+  Background:
     Given I have a "git" valid setup
     And I start the system
-    And I have the following provider information:
+    And I do not have the following provider information:
+      | provider | key                                    |
+      | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
+
+  Scenario: Secrets with gRPC
+    Given I have the following provider information:
       | provider | key                                    | value                                               |
       | vault    | /secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
       | ssm      | /secret/data/transport/grpc/user_agent | {"data": { "value": "Konfig-server/1.0 grpc/1.0" }} |
@@ -17,9 +23,7 @@ Feature: Secrets
       | ssm   | Konfig-server/1.0 grpc/1.0 |
 
   Scenario: Secrets with gRPC and broken vault
-    Given I have a "git" valid setup
-    And I start the system
-    And I have the following provider information:
+    Given I have the following provider information:
       | provider | key                                    | value                                               |
       | vault    | /secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
     And I set the proxy for service 'vault' to 'close_all'
