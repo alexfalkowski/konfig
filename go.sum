@@ -18,8 +18,8 @@ github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 h1:+JkXLHME8vLJafGhOH4ao
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1/go.mod h1:nuudZmJhzWtx2212z+pkuy7B6nkBqa+xwNXZHL1j8cg=
 github.com/alexfalkowski/go-health v1.20.1 h1:d6ndE6TtsJ3Id5hBWMzV6kd23tkF//fvLkSOB/LlxJM=
 github.com/alexfalkowski/go-health v1.20.1/go.mod h1:dd4TJ92/K5QgmtjbJAPLoXv3bAkcb6WTxskKh5meXWQ=
-github.com/alexfalkowski/go-service v1.383.0 h1:GpFIA4HDLwq+qz42xbDwsShE7SqY3jUCsHaNANoz0B4=
-github.com/alexfalkowski/go-service v1.383.0/go.mod h1:n3ltEuPbp6mOr09AtsmtZYh3Kv7xYlmy8Fs4eX1jE5Q=
+github.com/alexfalkowski/go-service v1.383.1 h1:/KifjbrbhoQ9r6/YqWyiWqx5R+Et80MronzgKdBELCs=
+github.com/alexfalkowski/go-service v1.383.1/go.mod h1:lXyBhB31ylkOybLAH9Y2mEtxWyETN3nFWzcPH5UlV4w=
 github.com/arl/statsviz v0.6.0 h1:jbW1QJkEYQkufd//4NDYRSNBpwJNrdzPahF7ZmoGdyE=
 github.com/arl/statsviz v0.6.0/go.mod h1:0toboo+YGSUXDaS4g1D5TVS4dXs7S7YYT5J/qnW2h8s=
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
@@ -315,8 +315,8 @@ github.com/onsi/gomega v1.24.1/go.mod h1:3AOiACssS3/MajrniINInwbfOOtfZvplPzuRSmv
 github.com/onsi/gomega v1.25.0/go.mod h1:r+zV744Re+DiYCIPRlYOTxn0YkOLcAnW8k1xXdMPGhM=
 github.com/onsi/gomega v1.27.10 h1:naR28SdDFlqrG6kScpT8VWpu1xWY5nJRCF3XaYyBjhI=
 github.com/onsi/gomega v1.27.10/go.mod h1:RsS8tutOdbdgzbPtzzATp12yT7kM5I5aElG3evPbQ0M=
-github.com/open-feature/go-sdk v1.14.0 h1:+B+Z94QS4HXPAn6OnaWWjMNAJkHlh6pIqW2Y1194yF8=
-github.com/open-feature/go-sdk v1.14.0/go.mod h1:t337k0VB/t/YxJ9S0prT30ISUHwYmUd/jhUZgFcOvGg=
+github.com/open-feature/go-sdk v1.14.1 h1:jcxjCIG5Up3XkgYwWN5Y/WWfc6XobOhqrIwjyDBsoQo=
+github.com/open-feature/go-sdk v1.14.1/go.mod h1:t337k0VB/t/YxJ9S0prT30ISUHwYmUd/jhUZgFcOvGg=
 github.com/open-feature/go-sdk-contrib/hooks/open-telemetry v0.3.4 h1:1+YZs4PjvIX2vGjg3FenuXJpN8m83jiTAdfudUjAQuU=
 github.com/open-feature/go-sdk-contrib/hooks/open-telemetry v0.3.4/go.mod h1:QiuIhaGRUFNmW+w1q0OaYLm92lfm//aJr4uTPQonSGQ=
 github.com/orisano/pixelmatch v0.0.0-20220722002657-fb0b55479cde/go.mod h1:nZgzbfBr3hhjoZnS66nKrHmduYNpc34ny7RK4z5/HM0=
