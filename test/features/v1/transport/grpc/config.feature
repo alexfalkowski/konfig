@@ -251,6 +251,35 @@ Feature: Config
       | folder | test | v1.11.0 | staging | *         | *       | server | toml |
       | s3     | test | v1.11.0 | staging | *         | *       | server | toml |
 
+  Scenario Outline: Invalid file with gRPC
+    Given I have a "<source>" valid setup
+    And I start the system
+    And I do not have the following provider information:
+      | provider | key                                    |
+      | vault    | /secret/data/transport/http/user_agent |
+      | ssm      | /secret/data/transport/grpc/user_agent |
+    And I have the following provider information:
+      | provider | key                                    | value                                               |
+      | vault    | /secret/data/transport/http/user_agent | {"data": { "value": "Konfig-server/1.0 http/1.0" }} |
+      | ssm      | /secret/data/transport/grpc/user_agent | {"data": { "value": "Konfig-server/1.0 grpc/1.0" }} |
+    When I request a config with gRPC:
+      | source    | <source>    |
+      | app       | <app>       |
+      | ver       | <ver>       |
+      | env       | <env>       |
+      | continent | <continent> |
+      | cmd       | <cmd>       |
+      | kind      | <kind>      |
+    Then I should receive an internal error from gRPC
+
+    Examples: With YAML kind
+      | source | app  | ver     | env     | continent | country | cmd     | kind |
+      | folder | test | v1.11.0 | staging | *         | *       | invalid | yaml |
+
+    Examples: With TOML kind
+      | source | app  | ver     | env     | continent | country | cmd     | kind |
+      | folder | test | v1.11.0 | staging | *         | *       | invalid | toml |
+
   Scenario Outline: Invalid config with gRPC
     Given I have a "<source>" valid setup
     And I start the system
