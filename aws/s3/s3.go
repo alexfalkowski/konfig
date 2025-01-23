@@ -2,6 +2,7 @@ package s3
 
 import (
 	"context"
+	"errors"
 
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/id"
@@ -10,11 +11,19 @@ import (
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/aws/aws-sdk-go-v2/service/s3/types"
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
+
+// IsNotFound for S3.
+func IsNotFound(err error) bool {
+	var nerr *types.NoSuchKey
+
+	return errors.As(err, &nerr)
+}
 
 // ConfigParams for S3.
 type ClientParams struct {

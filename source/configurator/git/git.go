@@ -27,22 +27,28 @@ type Configurator struct {
 
 // GetConfig for git.
 func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd, kind string) ([]byte, error) {
+	ctx, span := c.span(ctx)
+	defer span.End()
+
 	t, err := c.cfg.GetToken()
 	if err != nil {
+		tracer.Meta(ctx, span)
+		tracer.Error(err, span)
+
 		return nil, err
 	}
 
 	client := c.client.WithAuthToken(t)
 	path := c.path(app, env, continent, country, cmd, kind)
 
-	ctx, span := c.span(ctx)
-	defer span.End()
-
 	tag := fmt.Sprintf("%s/%s", app, ver)
 	opts := &github.RepositoryContentGetOptions{Ref: tag}
 
 	rc, _, err := client.Repositories.DownloadContents(ctx, c.cfg.Owner, c.cfg.Repository, path, opts)
 	if err != nil {
+		tracer.Meta(ctx, span)
+		tracer.Error(err, span)
+
 		if git.IsNotFound(err) {
 			meta.WithAttribute(ctx, "gitError", meta.Error(err))
 
@@ -52,9 +58,9 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		return nil, err
 	}
 
-	d, err := io.ReadAll(rc)
+	tracer.Meta(ctx, span)
 
-	return d, err
+	return io.ReadAll(rc)
 }
 
 func (c *Configurator) path(app, env, continent, country, cmd, kind string) string {

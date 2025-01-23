@@ -29,6 +29,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	defer span.End()
 
 	if _, err := os.Stat(c.cfg.Dir); os.IsNotExist(err) {
+		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
 
 		return nil, err
@@ -39,6 +40,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
+		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
 
 		if os.IsNotExist(err) {
@@ -49,6 +51,8 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 
 		return nil, err
 	}
+
+	tracer.Meta(ctx, span)
 
 	return data, nil
 }

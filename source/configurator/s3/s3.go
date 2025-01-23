@@ -2,14 +2,13 @@ package s3
 
 import (
 	"context"
-	"errors"
 	"fmt"
 	"io"
 
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
+	ks "github.com/alexfalkowski/konfig/aws/s3"
 	ke "github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
-	"github.com/aws/aws-sdk-go-v2/service/s3/types"
 	"go.opentelemetry.io/otel/trace"
 )
 
@@ -27,35 +26,26 @@ type Configurator struct {
 
 // GetConfig for s3.
 func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd, kind string) ([]byte, error) {
-	path := c.path(app, ver, env, continent, country, cmd, kind)
-
 	ctx, span := c.span(ctx)
 	defer span.End()
+
+	path := c.path(app, ver, env, continent, country, cmd, kind)
 
 	out, err := c.client.GetObject(ctx, &s3.GetObjectInput{Bucket: &c.cfg.Bucket, Key: &path})
 	if err != nil {
 		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
 
-		var nerr *types.NoSuchKey
-		if errors.As(err, &nerr) {
+		if ks.IsNotFound(err) {
 			return nil, ke.ErrNotFound
 		}
 
 		return nil, err
 	}
 
-	data, err := io.ReadAll(out.Body)
-	if err != nil {
-		tracer.Meta(ctx, span)
-		tracer.Error(err, span)
-
-		return nil, err
-	}
-
 	tracer.Meta(ctx, span)
 
-	return data, nil
+	return io.ReadAll(out.Body)
 }
 
 func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string) string {
