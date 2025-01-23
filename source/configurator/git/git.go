@@ -14,14 +14,14 @@ import (
 )
 
 // NewConfigurator for git.
-func NewConfigurator(client *github.Client, cfg *Config, t trace.Tracer) *Configurator {
-	return &Configurator{cfg: cfg, tracer: t, client: client}
+func NewConfigurator(client *github.Client, config *Config, tracer trace.Tracer) *Configurator {
+	return &Configurator{config: config, tracer: tracer, client: client}
 }
 
 // Configurator for git.
 type Configurator struct {
 	tracer trace.Tracer
-	cfg    *Config
+	config *Config
 	client *github.Client
 }
 
@@ -30,7 +30,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	ctx, span := c.span(ctx)
 	defer span.End()
 
-	t, err := c.cfg.GetToken()
+	t, err := c.config.GetToken()
 	if err != nil {
 		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
@@ -44,7 +44,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	tag := fmt.Sprintf("%s/%s", app, ver)
 	opts := &github.RepositoryContentGetOptions{Ref: tag}
 
-	rc, _, err := client.Repositories.DownloadContents(ctx, c.cfg.Owner, c.cfg.Repository, path, opts)
+	rc, _, err := client.Repositories.DownloadContents(ctx, c.config.Owner, c.config.Repository, path, opts)
 	if err != nil {
 		tracer.Meta(ctx, span)
 		tracer.Error(err, span)

@@ -13,13 +13,13 @@ import (
 )
 
 // NewConfigurator for folder.
-func NewConfigurator(cfg *Config, t trace.Tracer) *Configurator {
-	return &Configurator{cfg: cfg, tracer: t}
+func NewConfigurator(config *Config, tracer trace.Tracer) *Configurator {
+	return &Configurator{config: config, tracer: tracer}
 }
 
 // Configurator for folder.
 type Configurator struct {
-	cfg    *Config
+	config *Config
 	tracer trace.Tracer
 }
 
@@ -28,7 +28,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	ctx, span := c.span(ctx)
 	defer span.End()
 
-	if _, err := os.Stat(c.cfg.Dir); os.IsNotExist(err) {
+	if _, err := os.Stat(c.config.Dir); os.IsNotExist(err) {
 		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
 
@@ -36,7 +36,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	}
 
 	p := c.path(app, ver, env, continent, country, cmd, kind)
-	path := filepath.Join(c.cfg.Dir, p)
+	path := filepath.Join(c.config.Dir, p)
 
 	data, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
