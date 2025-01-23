@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.373.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.373.0) - 2025-01-23
+
+- [`130c100`](https://github.com/alexfalkowski/konfig/commit/130c100a2b364010c56d074e50eb916d44b6fc9b) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.384.0 (#1813)
+- [`05ae190`](https://github.com/alexfalkowski/konfig/commit/05ae190da6a9b36b1f8c968627d242e3b2286619) test(source): simulate s3 fault (#1811)
+
 ## [v1.372.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.372.1) - 2025-01-23
 
 - [`4b3ec9c`](https://github.com/alexfalkowski/konfig/commit/4b3ec9cab883e5343a3b8f109b06a25e0d464761) fix(deps): upgraded github.com/alexfalkowski/go-service to v1.383.2 (#1810)
