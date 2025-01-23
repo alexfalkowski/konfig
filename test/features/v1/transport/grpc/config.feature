@@ -392,8 +392,11 @@ Feature: Config
       | source | app  | ver     | env     | continent | country | cmd    | kind |
       | git    | test | v1.11.0 | staging | *         | *       | server | yaml |
       | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | folder | test | v1.11.0 | staging | *         | *       | server | yaml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | yaml |
 
     Examples: With TOML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
       | git    | test | v1.11.0 | staging | *         | *       | server | toml |
       | folder | test | v1.11.0 | staging | *         | *       | server | toml |
+      | s3     | test | v1.11.0 | staging | *         | *       | server | toml |

@@ -13,14 +13,14 @@ import (
 )
 
 // NewConfigurator for s3.
-func NewConfigurator(client *s3.Client, cfg *Config, t trace.Tracer) *Configurator {
-	return &Configurator{client: client, cfg: cfg, tracer: t}
+func NewConfigurator(client *s3.Client, config *Config, tracer trace.Tracer) *Configurator {
+	return &Configurator{client: client, config: config, tracer: tracer}
 }
 
 // Configurator for s3.
 type Configurator struct {
 	client *s3.Client
-	cfg    *Config
+	config *Config
 	tracer trace.Tracer
 }
 
@@ -31,7 +31,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 
 	path := c.path(app, ver, env, continent, country, cmd, kind)
 
-	out, err := c.client.GetObject(ctx, &s3.GetObjectInput{Bucket: &c.cfg.Bucket, Key: &path})
+	out, err := c.client.GetObject(ctx, &s3.GetObjectInput{Bucket: &c.config.Bucket, Key: &path})
 	if err != nil {
 		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
