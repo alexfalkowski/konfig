@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.372.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.372.0) - 2025-01-23
+
+- [`c69d3d2`](https://github.com/alexfalkowski/konfig/commit/c69d3d2cd18078817d5977baf90e01fc0d14a82a) feat(source): make sure we observe consistently (#1809)
+- [`c6d3538`](https://github.com/alexfalkowski/konfig/commit/c6d3538243d412d43cbca02737a3055dba930a15) test(source): decode invalid file (#1808)
+
 ## [v1.371.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.371.0) - 2025-01-22
 
 - [`c6553f9`](https://github.com/alexfalkowski/konfig/commit/c6553f9d363755737e28551ee9aec54c197cc481) feat(api): simplify expressions (#1807)
