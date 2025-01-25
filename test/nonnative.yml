@@ -1,5 +1,6 @@
 version: "1.0"
 url: http://localhost:11000
+wait: 1
 processes:
   - name: server
     go:
