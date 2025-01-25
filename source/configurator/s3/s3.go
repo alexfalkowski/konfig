@@ -5,9 +5,10 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	ks "github.com/alexfalkowski/konfig/aws/s3"
-	ke "github.com/alexfalkowski/konfig/source/configurator/errors"
+	"github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"go.opentelemetry.io/otel/trace"
 )
@@ -37,7 +38,9 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		tracer.Error(err, span)
 
 		if ks.IsNotFound(err) {
-			return nil, ke.ErrNotFound
+			meta.WithAttribute(ctx, "s3Error", meta.Error(err))
+
+			return nil, errors.ErrNotFound
 		}
 
 		return nil, err

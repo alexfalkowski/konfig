@@ -1,6 +1,8 @@
 package git
 
 import (
+	"net/url"
+
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/google/go-github/v63/github"
@@ -16,6 +18,7 @@ type ClientParams struct {
 
 	Config    *http.Config
 	Logger    *zap.Logger
+	Endpoint  Endpoint
 	Tracer    trace.Tracer
 	Meter     metric.Meter
 	UserAgent env.UserAgent
@@ -28,6 +31,13 @@ func NewClient(params ClientParams) *github.Client {
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.UserAgent),
 		http.WithClientTimeout(params.Config.Timeout),
 	)
+	github := github.NewClient(client)
+	endpoint := params.Endpoint
 
-	return github.NewClient(client)
+	if endpoint.IsSet() {
+		u, _ := url.Parse(string(endpoint))
+		github.BaseURL = u
+	}
+
+	return github
 }

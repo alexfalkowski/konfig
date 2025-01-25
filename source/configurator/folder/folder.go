@@ -44,7 +44,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		tracer.Error(err, span)
 
 		if os.IsNotExist(err) {
-			meta.WithAttribute(ctx, "folderFileError", meta.Error(err))
+			meta.WithAttribute(ctx, "folderError", meta.Error(err))
 
 			return nil, errors.ErrNotFound
 		}

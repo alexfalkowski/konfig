@@ -4,20 +4,30 @@ import (
 	"context"
 	"errors"
 	"os"
+
+	"github.com/alexfalkowski/go-service/telemetry/tracer"
+	"go.opentelemetry.io/otel/trace"
 )
 
 var errMissing = errors.New("missing value")
 
 // Transformer for env.
-type Transformer struct{}
+type Transformer struct {
+	tracer trace.Tracer
+}
 
 // NewTransformer for env.
-func NewTransformer() *Transformer {
-	return &Transformer{}
+func NewTransformer(tracer trace.Tracer) *Transformer {
+	return &Transformer{tracer: tracer}
 }
 
 // Transform for env.
-func (e *Transformer) Transform(_ context.Context, value string) (string, error) {
+func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
+	ctx, span := t.tracer.Start(ctx, operationName("transform"), trace.WithSpanKind(trace.SpanKindClient))
+	defer span.End()
+
+	tracer.Meta(ctx, span)
+
 	v := os.Getenv(value)
 	if v != "" {
 		return v, nil
@@ -27,6 +37,10 @@ func (e *Transformer) Transform(_ context.Context, value string) (string, error)
 }
 
 // IsMissing value for env.
-func (e *Transformer) IsMissing(err error) bool {
+func (t *Transformer) IsMissing(err error) bool {
 	return errors.Is(err, errMissing)
+}
+
+func operationName(name string) string {
+	return tracer.OperationName("env", name)
 }
