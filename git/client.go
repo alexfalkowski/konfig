@@ -13,11 +13,11 @@ import (
 // ConfigParams for git.
 type ClientParams struct {
 	fx.In
-
-	Config    *http.Config
-	Logger    *zap.Logger
 	Tracer    trace.Tracer
 	Meter     metric.Meter
+	Config    *http.Config
+	Logger    *zap.Logger
+	Endpoint  *Endpoint
 	UserAgent env.UserAgent
 }
 
@@ -28,6 +28,12 @@ func NewClient(params ClientParams) *github.Client {
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.UserAgent),
 		http.WithClientTimeout(params.Config.Timeout),
 	)
+	github := github.NewClient(client)
+	endpoint := params.Endpoint
 
-	return github.NewClient(client)
+	if endpoint.IsSet() {
+		github.BaseURL = endpoint.URL
+	}
+
+	return github
 }

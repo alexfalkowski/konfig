@@ -10,6 +10,7 @@ require 'vault'
 require 'toml-rb'
 require 'grpc/health/v1/health_services_pb'
 
+require 'konfig/github'
 require 'konfig/s3'
 require 'konfig/ssm'
 require 'konfig/vault'

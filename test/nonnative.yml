@@ -1,5 +1,6 @@
 version: "1.0"
 url: http://localhost:11000
+wait: 1.0
 processes:
   - name: server
     go:
@@ -13,11 +14,17 @@ processes:
     log: reports/server.log
     environment:
       KONFIG_CONFIG_FILE: .config/folder.server.yaml
+      GITHUB_API_URL: http://localhost:4567/
       AWS_URL: http://localhost:4600
       AWS_REGION: eu-west-1
       AWS_ACCESS_KEY: access
       AWS_SECRET_KEY: secret
-
+servers:
+  - name: github
+    class: Konfig::GitHubServer
+    timeout: 5
+    port: 4567
+    log: reports/github.log
 services:
   - name: vault
     host: 127.0.0.1
