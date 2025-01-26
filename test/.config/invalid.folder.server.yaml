@@ -18,7 +18,7 @@ limiter:
 source:
   kind: folder
   folder:
-    dir: bob
+    dir: none
 telemetry:
   logger:
     level: info

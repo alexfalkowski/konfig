@@ -3,23 +3,24 @@ package folder
 import (
 	"context"
 	"fmt"
-	"os"
 	"path/filepath"
 
 	"github.com/alexfalkowski/go-service/meta"
+	"github.com/alexfalkowski/go-service/os"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/source/configurator/errors"
 	"go.opentelemetry.io/otel/trace"
 )
 
 // NewConfigurator for folder.
-func NewConfigurator(config *Config, tracer trace.Tracer) *Configurator {
-	return &Configurator{config: config, tracer: tracer}
+func NewConfigurator(config *Config, fs os.FileSystem, tracer trace.Tracer) *Configurator {
+	return &Configurator{config: config, fs: fs, tracer: tracer}
 }
 
 // Configurator for folder.
 type Configurator struct {
 	config *Config
+	fs     os.FileSystem
 	tracer trace.Tracer
 }
 
@@ -28,7 +29,9 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	ctx, span := c.span(ctx)
 	defer span.End()
 
-	if _, err := os.Stat(c.config.Dir); os.IsNotExist(err) {
+	if !c.fs.PathExists(c.config.Dir) {
+		err := fmt.Errorf("%s: %w", c.config.Dir, errors.ErrInvalidFolder)
+
 		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
 
@@ -38,12 +41,12 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	p := c.path(app, ver, env, continent, country, cmd, kind)
 	path := filepath.Join(c.config.Dir, p)
 
-	data, err := os.ReadFile(filepath.Clean(path))
+	data, err := c.fs.ReadFile(path)
 	if err != nil {
 		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
 
-		if os.IsNotExist(err) {
+		if c.fs.IsNotExist(err) {
 			meta.WithAttribute(ctx, "folderError", meta.Error(err))
 
 			return nil, errors.ErrNotFound
@@ -54,7 +57,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 
 	tracer.Meta(ctx, span)
 
-	return data, nil
+	return []byte(data), nil
 }
 
 func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string) string {
