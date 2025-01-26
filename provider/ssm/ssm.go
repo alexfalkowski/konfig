@@ -44,15 +44,15 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 	defer span.End()
 
 	ctx = tracer.WithTraceID(ctx, span)
-	tracer.Meta(ctx, span)
 
 	out, err := t.client.GetParameter(ctx, &ssm.GetParameterInput{Name: &value})
 	if err != nil {
+		tracer.Meta(ctx, span)
+		tracer.Error(err, span)
+
 		if IsNotFound(err) {
 			return value, errMissing
 		}
-
-		tracer.Error(err, span)
 
 		return value, err
 	}
@@ -60,10 +60,13 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 	var sec Secret
 
 	if err := t.json.Decode(bytes.NewReader([]byte(*out.Parameter.Value)), &sec); err != nil {
+		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
 
 		return value, err
 	}
+
+	tracer.Meta(ctx, span)
 
 	v, ok := sec.Data["value"].(string)
 	if !ok {

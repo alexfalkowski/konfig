@@ -8,7 +8,7 @@ import (
 	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/git"
-	ce "github.com/alexfalkowski/konfig/source/configurator/errors"
+	"github.com/alexfalkowski/konfig/source/configurator/errors"
 	"github.com/google/go-github/v63/github"
 	"go.opentelemetry.io/otel/trace"
 )
@@ -52,7 +52,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		if git.IsNotFound(err) {
 			meta.WithAttribute(ctx, "gitError", meta.Error(err))
 
-			return nil, ce.ErrNotFound
+			return nil, errors.ErrNotFound
 		}
 
 		return nil, err

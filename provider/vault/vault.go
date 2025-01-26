@@ -28,14 +28,16 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 	defer span.End()
 
 	ctx = tracer.WithTraceID(ctx, span)
-	tracer.Meta(ctx, span)
 
 	sec, err := t.client.Logical().ReadWithContext(ctx, value)
 	if err != nil {
+		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
 
 		return value, err
 	}
+
+	tracer.Meta(ctx, span)
 
 	if sec == nil {
 		return value, errMissing

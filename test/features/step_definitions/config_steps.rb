@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 Given('I have a {string} valid setup') do |source|
-  Nonnative.configuration.processes[0].environment['KONFIG_CONFIG_FILE'] = ".config/#{source}.server.yaml"
+  process = Nonnative.configuration.processes[0]
+  process.environment['KONFIG_CONFIG_FILE'] = ".config/#{source}.server.yaml"
 
   case source
   when 'git'
-    Nonnative.configuration.processes[0].environment['KONFIG_GIT_TOKEN'] = ENV.fetch('GITHUB_TOKEN', nil)
+    process.environment['KONFIG_GIT_TOKEN'] = ENV.fetch('GITHUB_TOKEN', nil)
   when 's3'
-    Nonnative.configuration.processes[0].environment['AWS_URL'] = 'http://localhost:4600'
+    process.environment['AWS_URL'] = 'http://localhost:4600'
 
     files = [
       ['test/v1.11.0/staging/server.yaml', '.config/test/v1.11.0/staging/server.yaml'],
@@ -22,11 +23,12 @@ Given('I have a {string} valid setup') do |source|
 end
 
 Given('I have a {string} invalid setup') do |source|
-  Nonnative.configuration.processes[0].environment['KONFIG_CONFIG_FILE'] = ".config/invalid.#{source}.server.yaml"
+  process = Nonnative.configuration.processes[0]
+  process.environment['KONFIG_CONFIG_FILE'] = ".config/invalid.#{source}.server.yaml"
 
   case source
   when 's3'
-    Nonnative.configuration.processes[0].environment['AWS_URL'] = 'does_not_exist'
+    process.environment['AWS_URL'] = 'does_not_exist'
 
     files = [
       'test/v1.11.0/staging/server.yaml', 'test/v1.11.0/staging/eu/server.yaml', 'test/v1.11.0/staging/eu/de/server.yaml',
