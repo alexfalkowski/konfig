@@ -3,23 +3,17 @@ package configurator
 import (
 	"bytes"
 	"context"
-	"errors"
 
 	"github.com/alexfalkowski/go-service/encoding"
-	"github.com/alexfalkowski/go-service/meta"
+	"github.com/alexfalkowski/go-service/errors"
+	"github.com/alexfalkowski/go-service/runtime"
 	"github.com/alexfalkowski/konfig/provider"
 )
 
-var (
-	// ErrDecodeError in config.
-	ErrDecodeError = errors.New("decode issue")
-
-	// ErrEncodeError in config.
-	ErrEncodeError = errors.New("encode issue")
-
-	// ErrTraverseError in config.
-	ErrTraverseError = errors.New("traverse issue")
-)
+// NewTransformer for config.
+func NewTransformer(pt *provider.Transformer, enc *encoding.Map) *Transformer {
+	return &Transformer{pt: pt, enc: enc}
+}
 
 // Transformer for config.
 type Transformer struct {
@@ -27,36 +21,35 @@ type Transformer struct {
 	enc *encoding.Map
 }
 
-// NewTransformer for config.
-func NewTransformer(pt *provider.Transformer, enc *encoding.Map) *Transformer {
-	return &Transformer{pt: pt, enc: enc}
-}
-
 // Transform config.
-func (t *Transformer) Transform(ctx context.Context, kind string, data []byte) ([]byte, error) {
+//
+//nolint:nonamedreturns
+func (t *Transformer) Transform(ctx context.Context, kind string, data []byte) (transformed []byte, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			err = errors.Prefix("transform", runtime.ConvertRecover(r))
+		}
+	}()
+
+	var (
+		c map[string]any
+		b bytes.Buffer
+	)
+
 	m := t.enc.Get(kind)
-	c := map[string]any{}
 
-	if err := m.Decode(bytes.NewReader(data), &c); err != nil {
-		meta.WithAttribute(ctx, "configDecodeError", meta.Error(err))
+	err = m.Decode(bytes.NewReader(data), &c)
+	runtime.Must(err)
 
-		return nil, ErrDecodeError
-	}
+	err = t.traverse(ctx, c)
+	runtime.Must(err)
 
-	if err := t.traverse(ctx, c); err != nil {
-		meta.WithAttribute(ctx, "configTraverseError", meta.Error(err))
+	err = m.Encode(&b, c)
+	runtime.Must(err)
 
-		return nil, ErrTraverseError
-	}
+	transformed = b.Bytes()
 
-	var b bytes.Buffer
-	if err := m.Encode(&b, c); err != nil {
-		meta.WithAttribute(ctx, "configEncodeError", meta.Error(err))
-
-		return nil, ErrEncodeError
-	}
-
-	return b.Bytes(), nil
+	return
 }
 
 func (t *Transformer) traverse(ctx context.Context, cfg map[string]any) error {
