@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.379.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.379.0) - 2025-01-26
+
+- [`962275d`](https://github.com/alexfalkowski/konfig/commit/962275d5a09611c178583ca4829b9fe1281d2b1f) feat(configurator): user recover to reduce err checks (#1829)
+
 ## [v1.378.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.378.0) - 2025-01-26
 
 - [`a227511`](https://github.com/alexfalkowski/konfig/commit/a2275114c5d9cab27e4da7c4900d91faa4d39704) feat(folder): use fs from service (#1828)
