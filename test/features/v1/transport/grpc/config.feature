@@ -430,3 +430,13 @@ Feature: Config
     Examples: With TOML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
       | git    | test | v1.11.0 | staging | *         | *       | server | toml |
+
+  Scenario Outline: Invalid service configurations
+    When I have a "<source>" invalid setup
+    Then starting the system should raise an error
+    And I should see a log entry of "no configurator" in the file "reports/server.log"
+
+    Examples:
+      | source  |
+      | missing |
+      | wrong   |

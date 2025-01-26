@@ -34,14 +34,19 @@ type ConfiguratorParams struct {
 
 // NewConfigurator for source.
 func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
+	config := params.Config
+	if !IsEnabled(config) {
+		return nil, ErrNoConfigurator
+	}
+
 	var configurator configurator.Configurator
 
 	switch {
-	case params.Config.IsFolder():
+	case config.IsFolder():
 		configurator = folder.NewConfigurator(params.Config.Folder, params.Tracer)
-	case params.Config.IsGit():
+	case config.IsGit():
 		configurator = git.NewConfigurator(params.GitClient, params.Config.Git, params.Tracer)
-	case params.Config.IsS3():
+	case config.IsS3():
 		configurator = cs3.NewConfigurator(params.S3Client, params.Config.S3, params.Tracer)
 	default:
 		return nil, ErrNoConfigurator

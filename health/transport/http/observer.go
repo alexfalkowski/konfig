@@ -8,9 +8,9 @@ import (
 )
 
 // NewHealthObserver for HTTP.
-func NewHealthObserver(healthServer *server.Server, source *source.Config, endpoint aws.Endpoint) *http.HealthObserver {
+func NewHealthObserver(healthServer *server.Server, config *source.Config, endpoint aws.Endpoint) *http.HealthObserver {
 	names := []string{"vault"}
-	if source.IsGit() {
+	if source.IsEnabled(config) && config.IsGit() {
 		names = append(names, "git")
 	}
 

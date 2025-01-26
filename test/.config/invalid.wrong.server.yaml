@@ -1,0 +1,47 @@
+client:
+  v1:
+    address: localhost:12000
+    user_agent: "Konfig-client/1.0 gRPC/1.0"
+    retry:
+      attempts: 3
+      backoff: 100ms
+      timeout: 10s
+    timeout: 5s
+environment: development
+health:
+  duration: 1s
+  timeout: 1s
+limiter:
+  kind: token
+  tokens: 1000
+  interval: 1s
+source:
+  kind: onen
+telemetry:
+  logger:
+    level: info
+  metrics:
+    kind: prometheus
+  tracer:
+    kind: otlp
+    url: http://localhost:4318/v1/traces
+token:
+  kind: key
+  key: secrets/token
+transport:
+  http:
+    address: :11000
+    user_agent: "Konfig-server/1.0 HTTP/1.0"
+    retry:
+      attempts: 3
+      backoff: 100ms
+      timeout: 10s
+    timeout: 5s
+  grpc:
+    address: :12000
+    user_agent: "Konfig-server/1.0 gRPC/1.0"
+    retry:
+      attempts: 3
+      backoff: 100ms
+      timeout: 10s
+    timeout: 5s
