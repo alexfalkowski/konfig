@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/alexfalkowski/go-service/env"
+	"github.com/alexfalkowski/go-service/os"
 	"github.com/alexfalkowski/konfig/source/configurator"
 	"github.com/alexfalkowski/konfig/source/configurator/folder"
 	"github.com/alexfalkowski/konfig/source/configurator/git"
@@ -22,13 +23,13 @@ var ErrNoConfigurator = errors.New("no configurator")
 // ConfiguratorParams for source.
 type ConfiguratorParams struct {
 	fx.In
-
+	Tracer    trace.Tracer
+	Meter     metric.Meter
+	FS        os.FileSystem
 	Config    *Config
 	S3Client  *s3.Client
 	GitClient *github.Client
 	Logger    *zap.Logger
-	Tracer    trace.Tracer
-	Meter     metric.Meter
 	UserAgent env.UserAgent
 }
 
@@ -43,7 +44,7 @@ func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, erro
 
 	switch {
 	case config.IsFolder():
-		configurator = folder.NewConfigurator(params.Config.Folder, params.Tracer)
+		configurator = folder.NewConfigurator(params.Config.Folder, params.FS, params.Tracer)
 	case config.IsGit():
 		configurator = git.NewConfigurator(params.GitClient, params.Config.Git, params.Tracer)
 	case config.IsS3():

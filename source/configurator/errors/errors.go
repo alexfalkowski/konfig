@@ -4,8 +4,13 @@ import (
 	"errors"
 )
 
-// ErrNotFound in source.
-var ErrNotFound = errors.New("not found")
+var (
+	// ErrNotFound in source.
+	ErrNotFound = errors.New("not found")
+
+	// ErrInvalidFolder in source.
+	ErrInvalidFolder = errors.New("invalid folder")
+)
 
 // IsNotFound in source.
 func IsNotFound(err error) bool {
