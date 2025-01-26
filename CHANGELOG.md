@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.380.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.380.0) - 2025-01-26
+
+- [`0ce673c`](https://github.com/alexfalkowski/konfig/commit/0ce673ca2b02fe34a0f612fe9e5006653446189d) feat(configurator): wrap error (#1830)
+
 ## [v1.379.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.379.0) - 2025-01-26
 
 - [`962275d`](https://github.com/alexfalkowski/konfig/commit/962275d5a09611c178583ca4829b9fe1281d2b1f) feat(configurator): user recover to reduce err checks (#1829)
