@@ -6,6 +6,11 @@ import (
 	"github.com/alexfalkowski/konfig/source/configurator/s3"
 )
 
+// IsEnabled the source config.
+func IsEnabled(config *Config) bool {
+	return config != nil && config.Kind != ""
+}
+
 // Config for source.
 type Config struct {
 	Git    *git.Config    `yaml:"git,omitempty" json:"git,omitempty" toml:"git,omitempty"`
