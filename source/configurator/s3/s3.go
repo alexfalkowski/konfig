@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	ks "github.com/alexfalkowski/konfig/aws/s3"
 	"github.com/alexfalkowski/konfig/source/configurator/errors"
@@ -38,9 +37,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		tracer.Error(err, span)
 
 		if ks.IsNotFound(err) {
-			meta.WithAttribute(ctx, "s3Error", meta.Error(err))
-
-			return nil, errors.ErrNotFound
+			return nil, fmt.Errorf("%w: %w", err, errors.ErrNotFound)
 		}
 
 		return nil, err

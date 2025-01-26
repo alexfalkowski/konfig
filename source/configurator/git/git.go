@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/alexfalkowski/go-service/meta"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/git"
 	"github.com/alexfalkowski/konfig/source/configurator/errors"
@@ -50,9 +49,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		tracer.Error(err, span)
 
 		if git.IsNotFound(err) {
-			meta.WithAttribute(ctx, "gitError", meta.Error(err))
-
-			return nil, errors.ErrNotFound
+			return nil, fmt.Errorf("%w: %w", err, errors.ErrNotFound)
 		}
 
 		return nil, err
