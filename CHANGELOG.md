@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.381.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.381.0) - 2025-01-27
+
+- [`7aeb81d`](https://github.com/alexfalkowski/konfig/commit/7aeb81d5c0d7f0bd6cd3302e887fd48fd5544c31) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.387.0 (#1832)
+- [`355d0b9`](https://github.com/alexfalkowski/konfig/commit/355d0b9ea2965269933ff58f1ea597dfc3ef3826) test(deps): update nonnative (1.88.0) (#1831)
+
 ## [v1.380.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.380.0) - 2025-01-26
 
 - [`0ce673c`](https://github.com/alexfalkowski/konfig/commit/0ce673ca2b02fe34a0f612fe9e5006653446189d) feat(configurator): wrap error (#1830)
