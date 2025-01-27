@@ -7,8 +7,8 @@ processes:
       output: reports
       executable: ../konfig
       command: server
-    timeout: 5
-    wait: 1
+    timeout: 3
+    wait: 0.2
     host: 127.0.0.1
     port: 12000
     log: reports/server.log
@@ -22,7 +22,7 @@ processes:
 servers:
   - name: github
     class: Konfig::GitHubServer
-    timeout: 5
+    timeout: 3
     port: 4567
     log: reports/github.log
 services:
