@@ -1,4 +1,4 @@
-@manual @grpc
+@manual @http
 Feature: Reliability
   This feature groups all the reliability features to assure we handle problems well.
 
