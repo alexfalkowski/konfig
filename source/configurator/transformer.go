@@ -1,24 +1,25 @@
 package configurator
 
 import (
-	"bytes"
 	"context"
 
 	"github.com/alexfalkowski/go-service/encoding"
 	"github.com/alexfalkowski/go-service/errors"
 	"github.com/alexfalkowski/go-service/runtime"
+	"github.com/alexfalkowski/go-service/sync"
 	"github.com/alexfalkowski/konfig/provider"
 )
 
 // NewTransformer for config.
-func NewTransformer(pt *provider.Transformer, enc *encoding.Map) *Transformer {
-	return &Transformer{pt: pt, enc: enc}
+func NewTransformer(pt *provider.Transformer, enc *encoding.Map, pool *sync.BufferPool) *Transformer {
+	return &Transformer{pt: pt, enc: enc, pool: pool}
 }
 
 // Transformer for config.
 type Transformer struct {
-	pt  *provider.Transformer
-	enc *encoding.Map
+	pt   *provider.Transformer
+	enc  *encoding.Map
+	pool *sync.BufferPool
 }
 
 // Transform config.
@@ -31,23 +32,27 @@ func (t *Transformer) Transform(ctx context.Context, kind string, data []byte) (
 		}
 	}()
 
-	var (
-		c map[string]any
-		b bytes.Buffer
-	)
+	buffer := t.pool.Get()
+	defer t.pool.Put(buffer)
+
+	buffer.Write(data)
+
+	var result map[string]any
 
 	m := t.enc.Get(kind)
 
-	err = m.Decode(bytes.NewReader(data), &c)
+	err = m.Decode(buffer, &result)
 	runtime.Must(err)
 
-	err = t.traverse(ctx, c)
+	err = t.traverse(ctx, result)
 	runtime.Must(err)
 
-	err = m.Encode(&b, c)
+	buffer.Reset()
+
+	err = m.Encode(buffer, result)
 	runtime.Must(err)
 
-	transformed = b.Bytes()
+	transformed = t.pool.Copy(buffer)
 
 	return
 }
