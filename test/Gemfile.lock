@@ -123,7 +123,7 @@ GEM
     mustermann (3.0.3)
       ruby2_keywords (~> 0.0.1)
     netrc (0.11.0)
-    nonnative (1.90.1)
+    nonnative (1.91.0)
       concurrent-ruby (>= 1, < 2)
       config (>= 5, < 6)
       cucumber (>= 7, < 10)
