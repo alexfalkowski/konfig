@@ -34,7 +34,7 @@ services:
       host: 127.0.0.1
       port: 8200
       log: reports/proxy_vault.log
-      wait: 1
+      wait: 2
       options:
         delay: 2
   - name: aws
@@ -45,6 +45,6 @@ services:
       host: 127.0.0.1
       port: 4566
       log: reports/proxy_aws.log
-      wait: 1
+      wait: 2
       options:
         delay: 2
