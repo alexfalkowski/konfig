@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.385.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.385.0) - 2025-01-29
+
+- [`4d3c075`](https://github.com/alexfalkowski/konfig/commit/4d3c07550e439507f2b20fb64351c339dbd5b9f1) feat(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 from 1.74.1 to 1.75.0 (#1847)
+- [`ccc6c35`](https://github.com/alexfalkowski/konfig/commit/ccc6c35b875852acd6512d418f2e891a7b6bac76) build(deps): bump bin from `cb313fe` to `5b56b0c` (#1846)
+- [`30ae638`](https://github.com/alexfalkowski/konfig/commit/30ae638886e650edf8daaf1ecbe37dc3315cf02f) test(deps): update nonnative (1.92.0) (#1845)
+- [`cbbc6b7`](https://github.com/alexfalkowski/konfig/commit/cbbc6b79c792989bdcef423e96d98449cf8d0d34) test(deps): bump nonnative from 1.90.1 to 1.91.0 in /test (#1843)
+- [`a347c23`](https://github.com/alexfalkowski/konfig/commit/a347c23644f743310bdd9bf156d055d9be8125c7) test(deps): bump ruby-lsp from 0.23.6 to 0.23.7 in /test (#1842)
+- [`43aa967`](https://github.com/alexfalkowski/konfig/commit/43aa967ef888793275839a032c47b225813a7215) build(ci): update alexfalkowski/go:1.8 (#1841)
+- [`d71d157`](https://github.com/alexfalkowski/konfig/commit/d71d157b1d43b94665c7fae3ec8c880a3a04892f) test(deps): update nonnative (1.90.1) (#1840)
+
 ## [v1.384.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.384.0) - 2025-01-28
 
 - [`a443338`](https://github.com/alexfalkowski/konfig/commit/a443338507b8e090aa0d441e3804402e320b812c) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.391.0 (#1837)
