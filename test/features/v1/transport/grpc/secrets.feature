@@ -22,6 +22,7 @@ Feature: Secrets
       | vault | Konfig-server/1.0 http/1.0 |
       | ssm   | Konfig-server/1.0 grpc/1.0 |
 
+  @reset
   Scenario: Secrets with gRPC and broken vault
     Given I have the following provider information:
       | provider | key                                    | value                                               |

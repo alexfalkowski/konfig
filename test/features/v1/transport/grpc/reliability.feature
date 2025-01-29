@@ -2,6 +2,7 @@
 Feature: Reliability
   This feature groups all the reliability features to assure we handle problems well.
 
+  @reset
   Scenario Outline: Existing config with gRPC and broken vault
     Given I have a "<source>" valid setup
     And I start the system
@@ -39,6 +40,7 @@ Feature: Reliability
       | folder | test | v1.11.0 | staging | *         | *       | server | toml |
       | s3     | test | v1.11.0 | staging | *         | *       | server | toml |
 
+  @reset
   Scenario Outline: Existing config with gRPC and broken aws
     Given I have a "<source>" valid setup
     And I start the system
@@ -76,9 +78,9 @@ Feature: Reliability
       | folder | test | v1.11.0 | staging | *         | *       | server | toml |
       | s3     | test | v1.11.0 | staging | *         | *       | server | toml |
 
-  Scenario Outline: Existing config with gRPC and broken GitHub
+  Scenario Outline: Existing config with gRPC and broken github
     Given I have a "<source>" valid setup
-    And the GitHub API is down
+    And the github api is down
     And I start the system
     And I do not have the following provider information:
       | provider | key                                    |
@@ -97,7 +99,7 @@ Feature: Reliability
       | cmd       | <cmd>       |
       | kind      | <kind>      |
     Then I should receive an internal error from gRPC
-    And the GitHub API is back up
+    And the github api is back up
 
     Examples: With YAML kind
       | source | app  | ver     | env     | continent | country | cmd    | kind |
