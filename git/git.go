@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/google/go-github/v63/github"
+	"github.com/google/go-github/v68/github"
 )
 
 // IsNotFound for git.
