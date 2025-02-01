@@ -1,3 +1,4 @@
+![Gopher](assets/gopher.png)
 [![CircleCI](https://circleci.com/gh/alexfalkowski/konfig.svg?style=shield)](https://circleci.com/gh/alexfalkowski/konfig)
 [![codecov](https://codecov.io/gh/alexfalkowski/konfig/graph/badge.svg?token=EZQ0Y4847T)](https://codecov.io/gh/alexfalkowski/konfig)
 [![Go Report Card](https://goreportcard.com/badge/github.com/alexfalkowski/konfig)](https://goreportcard.com/report/github.com/alexfalkowski/konfig)
