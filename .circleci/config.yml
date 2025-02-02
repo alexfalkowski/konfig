@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-service:
     docker:
-      - image: alexfalkowski/go:1.8
+      - image: alexfalkowski/go:1.9
     working_directory: ~/konfig
     steps:
       - checkout
@@ -47,7 +47,7 @@ jobs:
     resource_class: large
   build-docker:
     docker:
-      - image: alexfalkowski/go:1.8
+      - image: alexfalkowski/go:1.9
     working_directory: ~/konfig
     steps:
       - checkout
@@ -60,11 +60,11 @@ jobs:
     resource_class: large
   features-grpc:
     docker:
-      - image: alexfalkowski/go:1.8
+      - image: alexfalkowski/go:1.9
       - image: localstack/localstack:3.4
         environment:
           SERVICES: s3,ssm
-      - image: hashicorp/vault:1.16
+      - image: hashicorp/vault:1.18
         environment:
           VAULT_DEV_ROOT_TOKEN_ID: vault-plaintext-root-token
       - image: grafana/mimir:latest
@@ -119,11 +119,11 @@ jobs:
     resource_class: large
   features-http:
     docker:
-      - image: alexfalkowski/go:1.8
+      - image: alexfalkowski/go:1.9
       - image: localstack/localstack:3.4
         environment:
           SERVICES: s3,ssm
-      - image: hashicorp/vault:1.16
+      - image: hashicorp/vault:1.18
         environment:
           VAULT_DEV_ROOT_TOKEN_ID: vault-plaintext-root-token
       - image: grafana/mimir:latest
@@ -178,7 +178,7 @@ jobs:
     resource_class: large
   features-coverage:
     docker:
-      - image: alexfalkowski/go:1.8
+      - image: alexfalkowski/go:1.9
     working_directory: ~/konfig
     steps:
       - checkout
@@ -193,7 +193,7 @@ jobs:
     resource_class: large
   release:
     docker:
-      - image: alexfalkowski/release:3.5
+      - image: alexfalkowski/release:3.6
     working_directory: ~/konfig
     steps:
       - checkout
@@ -201,7 +201,7 @@ jobs:
     resource_class: large
   push-docker:
     docker:
-      - image: alexfalkowski/go:1.8
+      - image: alexfalkowski/go:1.9
     working_directory: ~/konfig
     steps:
       - checkout
