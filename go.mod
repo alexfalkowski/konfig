@@ -2,7 +2,7 @@ module github.com/alexfalkowski/konfig
 
 go 1.23.3
 
-toolchain go1.23.5
+toolchain go1.23.6
 
 require (
 	github.com/alexfalkowski/go-health v1.20.1
