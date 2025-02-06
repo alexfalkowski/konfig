@@ -1,6 +1,6 @@
 version: v2
 plugins:
-  - remote: buf.build/protocolbuffers/go:v1.36.0
+  - remote: buf.build/protocolbuffers/go:v1.36.4
     out: .
     opt:
       - paths=source_relative
@@ -8,7 +8,7 @@ plugins:
     out: .
     opt:
       - paths=source_relative
-  - remote: buf.build/protocolbuffers/ruby:v29.1
+  - remote: buf.build/protocolbuffers/ruby:v29.3
     out: ../test/lib
-  - remote: buf.build/grpc/ruby:v1.68.2
+  - remote: buf.build/grpc/ruby:v1.70.1
     out: ../test/lib
