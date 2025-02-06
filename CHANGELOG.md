@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.408.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.408.0) - 2025-02-06
+
+- [`22127d7`](https://github.com/alexfalkowski/konfig/commit/22127d72ab22e0b97be5347250a1a0c6aa7d538b) feat(deps): udate buf (#1889)
+
 ## [v1.407.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.407.0) - 2025-02-06
 
 - [`d2210d5`](https://github.com/alexfalkowski/konfig/commit/d2210d586ee8daa0adb3a28c9f7299029e6d0e1f) feat(deps): update aws-sdk-go-v2 (#1888)
