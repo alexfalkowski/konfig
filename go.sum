@@ -16,10 +16,10 @@ github.com/Masterminds/semver/v3 v3.3.1 h1:QtNSWtVZ3nBfk8mAOu/B6v7FMJ+NHTIgUPi7r
 github.com/Masterminds/semver/v3 v3.3.1/go.mod h1:4V+yj/TJE1HU9XfppCwVMZq3I84lprf4nC11bSS5beM=
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 h1:+JkXLHME8vLJafGhOH4aoV2Iu8bR55nU6iKMVfYVLjY=
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1/go.mod h1:nuudZmJhzWtx2212z+pkuy7B6nkBqa+xwNXZHL1j8cg=
-github.com/alexfalkowski/go-health v1.20.1 h1:d6ndE6TtsJ3Id5hBWMzV6kd23tkF//fvLkSOB/LlxJM=
-github.com/alexfalkowski/go-health v1.20.1/go.mod h1:dd4TJ92/K5QgmtjbJAPLoXv3bAkcb6WTxskKh5meXWQ=
-github.com/alexfalkowski/go-service v1.413.0 h1:X+gtfxsOI0ANHj2AmLQs9XWWF9hnr8SSuv8NIDQowS8=
-github.com/alexfalkowski/go-service v1.413.0/go.mod h1:WD8CoBs+Jxu8pcjiJbMMLEhuclZ+jkzWGlmKYnKkwtE=
+github.com/alexfalkowski/go-health v1.21.0 h1:gSHKVynRMGnYoEdfDymBgVhyxqJMOO8aQTQ98boc2fU=
+github.com/alexfalkowski/go-health v1.21.0/go.mod h1:8i6PMSHmfrMVt8wsaslOCpsxrrSbY4cbrudTty9koZw=
+github.com/alexfalkowski/go-service v1.415.0 h1:G5VdKNmQydEjTJQRwSl1BMcV3Dh49mMKNf/mb7N2xHE=
+github.com/alexfalkowski/go-service v1.415.0/go.mod h1:rJBh+YE6Im4m5dSw4+DvHmq1EKsQ9uKOH06XWi9UsCk=
 github.com/arl/statsviz v0.6.0 h1:jbW1QJkEYQkufd//4NDYRSNBpwJNrdzPahF7ZmoGdyE=
 github.com/arl/statsviz v0.6.0/go.mod h1:0toboo+YGSUXDaS4g1D5TVS4dXs7S7YYT5J/qnW2h8s=
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
@@ -391,8 +391,8 @@ google.golang.org/genproto/googleapis/rpc v0.0.0-20250115164207-1a7da9e5054f h1:
 google.golang.org/genproto/googleapis/rpc v0.0.0-20250115164207-1a7da9e5054f/go.mod h1:+2Yz8+CLJbIfL9z73EW45avw8Lmge3xVElCP9zEKi50=
 google.golang.org/grpc v1.70.0 h1:pWFv03aZoHzlRKHWicjsZytKAiYCtNS0dHbXnIdq7jQ=
 google.golang.org/grpc v1.70.0/go.mod h1:ofIJqVKDXx/JiXrwr2IG4/zwdH9txy3IlF40RmcJSQw=
-google.golang.org/protobuf v1.36.4 h1:6A3ZDJHn/eNqc1i+IdefRzy/9PokBTPvcqMySR7NNIM=
-google.golang.org/protobuf v1.36.4/go.mod h1:9fA7Ob0pmnwhb644+1+CVWFRbNajQ6iRojtC/QF5bRE=
+google.golang.org/protobuf v1.36.5 h1:tPhr+woSbjfYvY6/GPufUoYizxw1cF/yFoxJ2fmpwlM=
+google.golang.org/protobuf v1.36.5/go.mod h1:9fA7Ob0pmnwhb644+1+CVWFRbNajQ6iRojtC/QF5bRE=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c h1:Hei/4ADfdWqJk1ZMxUNpqntNwaWcugrBjAiHlqqRiVk=
 gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c/go.mod h1:JHkPIbrfpd72SG/EVd6muEfDQjcINNoR0C8j2r3qZ4Q=

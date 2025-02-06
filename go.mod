@@ -5,8 +5,8 @@ go 1.23.3
 toolchain go1.23.6
 
 require (
-	github.com/alexfalkowski/go-health v1.20.1
-	github.com/alexfalkowski/go-service v1.413.0
+	github.com/alexfalkowski/go-health v1.21.0
+	github.com/alexfalkowski/go-service v1.415.0
 	github.com/aws/aws-sdk-go-v2 v1.36.1
 	github.com/aws/aws-sdk-go-v2/config v1.29.6
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.75.4
@@ -18,7 +18,7 @@ require (
 	go.uber.org/fx v1.23.0
 	go.uber.org/zap v1.27.0
 	google.golang.org/grpc v1.70.0
-	google.golang.org/protobuf v1.36.4
+	google.golang.org/protobuf v1.36.5
 )
 
 require (
