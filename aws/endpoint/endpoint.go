@@ -1,12 +1,12 @@
 package endpoint
 
 import (
-	"os"
+	"github.com/alexfalkowski/go-service/os"
 )
 
 // NewEndpoint for AWS.
 func NewEndpoint() Endpoint {
-	return Endpoint(os.Getenv("AWS_URL"))
+	return Endpoint(os.GetVariable("AWS_URL"))
 }
 
 // Endpoint for AWS.

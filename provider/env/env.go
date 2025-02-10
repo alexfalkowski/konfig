@@ -3,8 +3,8 @@ package env
 import (
 	"context"
 	"errors"
-	"os"
 
+	"github.com/alexfalkowski/go-service/os"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"go.opentelemetry.io/otel/trace"
 )
@@ -28,7 +28,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 
 	tracer.Meta(ctx, span)
 
-	v := os.Getenv(value)
+	v := os.GetVariable(value)
 	if v != "" {
 		return v, nil
 	}
