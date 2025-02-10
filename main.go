@@ -1,16 +1,12 @@
 package main
 
 import (
-	"os"
-
 	sc "github.com/alexfalkowski/go-service/cmd"
 	"github.com/alexfalkowski/konfig/cmd"
 )
 
 func main() {
-	if err := command().Run(); err != nil {
-		os.Exit(1)
-	}
+	command().ExitOnError()
 }
 
 func command() *sc.Command {
