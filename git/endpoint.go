@@ -1,12 +1,12 @@
 package git
 
 import (
-	"os"
+	"github.com/alexfalkowski/go-service/os"
 )
 
 // NewEndpoint for GitHub.
 func NewEndpoint() Endpoint {
-	return Endpoint(os.Getenv("GITHUB_API_URL"))
+	return Endpoint(os.GetVariable("GITHUB_API_URL"))
 }
 
 // Endpoint for GitHub.
