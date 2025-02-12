@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-service:
     docker:
-      - image: alexfalkowski/go:1.10
+      - image: alexfalkowski/go:1.12
     working_directory: ~/konfig
     steps:
       - checkout
@@ -47,7 +47,7 @@ jobs:
     resource_class: large
   build-docker:
     docker:
-      - image: alexfalkowski/go:1.10
+      - image: alexfalkowski/go:1.12
     working_directory: ~/konfig
     steps:
       - checkout
@@ -60,7 +60,7 @@ jobs:
     resource_class: large
   features-grpc:
     docker:
-      - image: alexfalkowski/go:1.10
+      - image: alexfalkowski/go:1.12
       - image: localstack/localstack:3.4
         environment:
           SERVICES: s3,ssm
@@ -119,7 +119,7 @@ jobs:
     resource_class: large
   features-http:
     docker:
-      - image: alexfalkowski/go:1.10
+      - image: alexfalkowski/go:1.12
       - image: localstack/localstack:3.4
         environment:
           SERVICES: s3,ssm
@@ -178,7 +178,7 @@ jobs:
     resource_class: large
   features-coverage:
     docker:
-      - image: alexfalkowski/go:1.10
+      - image: alexfalkowski/go:1.12
     working_directory: ~/konfig
     steps:
       - checkout
@@ -201,7 +201,7 @@ jobs:
     resource_class: large
   push-docker:
     docker:
-      - image: alexfalkowski/go:1.10
+      - image: alexfalkowski/go:1.12
     working_directory: ~/konfig
     steps:
       - checkout
