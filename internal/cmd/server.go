@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/alexfalkowski/go-service/cmd"
 	"github.com/alexfalkowski/go-service/debug"
 	"github.com/alexfalkowski/go-service/feature"
 	"github.com/alexfalkowski/go-service/module"
@@ -12,14 +13,15 @@ import (
 	"github.com/alexfalkowski/konfig/internal/provider"
 	"github.com/alexfalkowski/konfig/internal/source"
 	"github.com/alexfalkowski/konfig/internal/token"
-	"go.uber.org/fx"
 )
 
-// ServerOptions for cmd.
-var ServerOptions = []fx.Option{
-	module.Module, debug.Module, feature.Module,
-	transport.Module, telemetry.Module,
-	health.Module, config.Module,
-	provider.Module, source.Module, token.Module,
-	v1.Module, Module,
+// RegisterServer for cmd.
+func RegisterServer(command *cmd.Command) {
+	command.AddServer("server", "Start konfig server",
+		module.Module, debug.Module, feature.Module,
+		transport.Module, telemetry.Module,
+		health.Module, config.Module,
+		provider.Module, source.Module, token.Module,
+		v1.Module, Module,
+	)
 }
