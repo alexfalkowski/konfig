@@ -16,14 +16,6 @@ updates:
       prefix: "test"
       prefix-development: "test"
       include: "scope"
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "feat"
-      prefix-development: "fix"
-      include: "scope"
   - package-ecosystem: "gitsubmodule"
     directory: "/"
     schedule:
