@@ -12,7 +12,6 @@ func main() {
 
 func command() *sc.Command {
 	command := sc.New(env.NewVersion().String())
-	command.RegisterInput(command.Root(), "env:KONFIG_CONFIG_FILE")
 
 	cmd.RegisterServer(command)
 

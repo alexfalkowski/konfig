@@ -4,6 +4,7 @@ import (
 	"github.com/alexfalkowski/go-service/cmd"
 	"github.com/alexfalkowski/go-service/debug"
 	"github.com/alexfalkowski/go-service/feature"
+	"github.com/alexfalkowski/go-service/flags"
 	"github.com/alexfalkowski/go-service/module"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/transport"
@@ -17,7 +18,10 @@ import (
 
 // RegisterServer for cmd.
 func RegisterServer(command *cmd.Command) {
-	command.AddServer("server", "Start konfig server",
+	flags := flags.NewFlagSet("server")
+
+	command.RegisterInput(flags, "env:KONFIG_CONFIG_FILE")
+	command.AddServer("server", "Start konfig server", flags,
 		module.Module, debug.Module, feature.Module,
 		transport.Module, telemetry.Module,
 		health.Module, config.Module,
