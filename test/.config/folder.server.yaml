@@ -1,12 +1,3 @@
-client:
-  v1:
-    address: localhost:12000
-    user_agent: "Konfig-client/1.0 gRPC/1.0"
-    retry:
-      attempts: 3
-      backoff: 100ms
-      timeout: 10s
-    timeout: 5s
 environment: development
 limiter:
   kind: token
