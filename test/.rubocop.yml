@@ -1,10 +1,10 @@
 AllCops:
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.4
   DisplayCopNames: true
   NewCops: enable
   Exclude:
-    - 'vendor/**/*'
-    - 'lib/**/*_pb.rb'
+    - "vendor/**/*"
+    - "lib/**/*_pb.rb"
 
 Layout/LineLength:
   Max: 150
