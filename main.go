@@ -11,7 +11,7 @@ func main() {
 }
 
 func command() *sc.Command {
-	command := sc.New(env.NewVersion().String())
+	command := sc.New(env.NewName(), env.NewVersion())
 
 	cmd.RegisterServer(command)
 
