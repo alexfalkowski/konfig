@@ -5,46 +5,53 @@ import (
 	"strings"
 
 	"github.com/alexfalkowski/konfig/internal/provider/env"
+	"github.com/alexfalkowski/konfig/internal/provider/file"
 	"github.com/alexfalkowski/konfig/internal/provider/ssm"
+	"github.com/alexfalkowski/konfig/internal/provider/transformer"
 	"github.com/alexfalkowski/konfig/internal/provider/vault"
+	"go.uber.org/fx"
 )
 
-type transformer interface {
-	Transform(ctx context.Context, value string) (string, error)
-	IsMissing(err error) bool
-}
+// TransformerParams for provider.
+type TransformerParams struct {
+	fx.In
 
-type transformers map[string]transformer
-
-// Transformer for provider.
-type Transformer struct {
-	ts transformers
+	ENV   *env.Transformer
+	Vault *vault.Transformer
+	SSM   *ssm.Transformer
+	File  *file.Transformer
 }
 
 // NewTransformer for provider.
-func NewTransformer(et *env.Transformer, vt *vault.Transformer, st *ssm.Transformer) *Transformer {
-	ts := transformers{
-		"env":   et,
-		"vault": vt,
-		"ssm":   st,
+func NewTransformer(params TransformerParams) *Transformer {
+	ts := transformer.Transformers{
+		"env":   params.ENV,
+		"vault": params.Vault,
+		"ssm":   params.SSM,
+		"file":  params.File,
 	}
 
 	return &Transformer{ts: ts}
 }
 
+// Transformer for provider.
+type Transformer struct {
+	ts transformer.Transformers
+}
+
 // Transform for provider.
 func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
-	args := strings.Split(value, ":")
-	if len(args) != 2 {
-		return value, nil
-	}
-
-	tr, ok := t.ts[args[0]]
+	k, v, ok := strings.Cut(value, ":")
 	if !ok {
 		return value, nil
 	}
 
-	a, err := tr.Transform(ctx, args[1])
+	tr, ok := t.ts[k]
+	if !ok {
+		return value, nil
+	}
+
+	a, err := tr.Transform(ctx, v)
 	if err != nil {
 		if tr.IsMissing(err) {
 			return value, nil
