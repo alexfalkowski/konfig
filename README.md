@@ -49,6 +49,20 @@ The configuration can be augmented with values that might be sensitive and need 
 
 To retrieve an environment variables the value of the key in the config should be `env:VARIABLE`, ex: `env:GITHUB_URL`.
 
+#### Files
+
+To retrieve a secret file that is mounted, you can use the following format:
+
+```url
+file:/path/to/file
+```
+
+An example:
+
+```url
+file:secrets/token
+```
+
 #### Vault
 
 You can store values in [vault](https://learn.hashicorp.com/vault) for safe keeping.

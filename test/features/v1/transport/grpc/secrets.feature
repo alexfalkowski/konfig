@@ -18,9 +18,21 @@ Feature: Secrets
     When I request secrets with gRPC:
       | vault | vault:/secret/data/transport/http/user_agent |
       | ssm   | ssm:/secret/data/transport/grpc/user_agent   |
+      | file  | file:secrets/test                            |
     Then I should receive valid secrets from gRPC:
       | vault | Konfig-server/1.0 http/1.0 |
       | ssm   | Konfig-server/1.0 grpc/1.0 |
+      | file  | This is a secret           |
+
+  Scenario: Missing secrets with gRPC
+    When I request secrets with gRPC:
+      | vault | vault:/secret/data/transport/http/user_agent |
+      | ssm   | ssm:/secret/data/transport/grpc/user_agent   |
+      | file  | file:../secrets/test                         |
+    Then I should receive valid secrets from gRPC:
+      | vault | vault:/secret/data/transport/http/user_agent |
+      | ssm   | ssm:/secret/data/transport/grpc/user_agent   |
+      | file  | file:../secrets/test                         |
 
   @reset
   Scenario: Secrets with gRPC and broken vault

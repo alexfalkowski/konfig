@@ -18,8 +18,8 @@ type Transformer struct {
 }
 
 // NewTransformer for vault.
-func NewTransformer(client *api.Client, t trace.Tracer) *Transformer {
-	return &Transformer{client: client, tracer: t}
+func NewTransformer(client *api.Client, tracer trace.Tracer) *Transformer {
+	return &Transformer{client: client, tracer: tracer}
 }
 
 // Transform for vault.
