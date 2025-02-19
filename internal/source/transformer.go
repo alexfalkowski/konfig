@@ -1,4 +1,4 @@
-package configurator
+package source
 
 import (
 	"context"
@@ -10,12 +10,12 @@ import (
 	"github.com/alexfalkowski/konfig/internal/provider"
 )
 
-// NewTransformer for config.
+// NewTransformer for source.
 func NewTransformer(pt *provider.Transformer, enc *encoding.Map, pool *sync.BufferPool) *Transformer {
 	return &Transformer{pt: pt, enc: enc, pool: pool}
 }
 
-// Transformer for config.
+// Transformer for source.
 type Transformer struct {
 	pt   *provider.Transformer
 	enc  *encoding.Map

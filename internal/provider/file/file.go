@@ -6,7 +6,6 @@ import (
 
 	"github.com/alexfalkowski/go-service/os"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
-	"go.opentelemetry.io/otel/trace"
 )
 
 var errMissing = errors.New("missing value")
@@ -24,7 +23,7 @@ func NewTransformer(fs os.FileSystem, tracer *tracer.Tracer) *Transformer {
 
 // Transform for file.
 func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
-	ctx, span := t.tracer.Start(ctx, operationName("transform"), trace.WithSpanKind(trace.SpanKindClient))
+	ctx, span := t.tracer.StartClient(ctx, operationName("transform"))
 	defer span.End()
 
 	tracer.Meta(ctx, span)

@@ -7,9 +7,8 @@ import (
 
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/internal/git"
-	"github.com/alexfalkowski/konfig/internal/source/configurator/errors"
+	"github.com/alexfalkowski/konfig/internal/source/errors"
 	"github.com/google/go-github/v68/github"
-	"go.opentelemetry.io/otel/trace"
 )
 
 // NewConfigurator for git.
@@ -26,7 +25,7 @@ type Configurator struct {
 
 // GetConfig for git.
 func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd, kind string) ([]byte, error) {
-	ctx, span := c.span(ctx)
+	ctx, span := c.tracer.StartClient(ctx, operationName("get config"))
 	defer span.End()
 
 	t, err := c.config.GetToken()
@@ -70,14 +69,6 @@ func (c *Configurator) path(app, env, continent, country, cmd, kind string) stri
 	}
 
 	return fmt.Sprintf("%s/%s/%s/%s/%s.%s", app, env, continent, country, cmd, kind)
-}
-
-//nolint:spancheck
-func (c *Configurator) span(ctx context.Context) (context.Context, trace.Span) {
-	ctx, span := c.tracer.Start(ctx, operationName("get config"), trace.WithSpanKind(trace.SpanKindClient))
-	ctx = tracer.WithTraceID(ctx, span)
-
-	return ctx, span
 }
 
 func operationName(name string) string {

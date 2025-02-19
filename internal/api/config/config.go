@@ -6,8 +6,8 @@ import (
 	"fmt"
 
 	"github.com/alexfalkowski/konfig/internal/provider"
-	source "github.com/alexfalkowski/konfig/internal/source/configurator"
-	ce "github.com/alexfalkowski/konfig/internal/source/configurator/errors"
+	"github.com/alexfalkowski/konfig/internal/source"
+	errs "github.com/alexfalkowski/konfig/internal/source/errors"
 )
 
 var (
@@ -65,7 +65,7 @@ func (s *Configuration) GetConfig(ctx context.Context, cfg *Config) ([]byte, err
 		cfg.kind,
 	)
 	if err != nil {
-		if ce.IsNotFound(err) {
+		if errs.IsNotFound(err) {
 			return nil, fmt.Errorf("%s: %w", cfg, ErrNotFound)
 		}
 

@@ -9,7 +9,6 @@ import (
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/aws/aws-sdk-go-v2/service/ssm/types"
-	"go.opentelemetry.io/otel/trace"
 )
 
 // IsNotFound for SSM.
@@ -40,10 +39,8 @@ func NewTransformer(client *ssm.Client, json *json.Encoder, tracer *tracer.Trace
 
 // Transform for SSM.
 func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
-	ctx, span := t.tracer.Start(ctx, operationName("transform"), trace.WithSpanKind(trace.SpanKindClient))
+	ctx, span := t.tracer.StartClient(ctx, operationName("transform"))
 	defer span.End()
-
-	ctx = tracer.WithTraceID(ctx, span)
 
 	out, err := t.client.GetParameter(ctx, &ssm.GetParameterInput{Name: &value})
 	if err != nil {
