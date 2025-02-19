@@ -6,14 +6,14 @@ import (
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/os"
 	"github.com/alexfalkowski/go-service/telemetry/logger"
+	"github.com/alexfalkowski/go-service/telemetry/metrics"
+	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/internal/source/configurator"
 	"github.com/alexfalkowski/konfig/internal/source/configurator/folder"
 	"github.com/alexfalkowski/konfig/internal/source/configurator/git"
 	cs3 "github.com/alexfalkowski/konfig/internal/source/configurator/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/google/go-github/v68/github"
-	"go.opentelemetry.io/otel/metric"
-	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 )
 
@@ -23,8 +23,8 @@ var ErrNoConfigurator = errors.New("no configurator")
 // ConfiguratorParams for source.
 type ConfiguratorParams struct {
 	fx.In
-	Tracer    trace.Tracer
-	Meter     metric.Meter
+	Tracer    *tracer.Tracer
+	Meter     *metrics.Meter
 	FS        os.FileSystem
 	Config    *Config
 	S3Client  *s3.Client

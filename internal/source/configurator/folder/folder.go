@@ -12,7 +12,7 @@ import (
 )
 
 // NewConfigurator for folder.
-func NewConfigurator(config *Config, fs os.FileSystem, tracer trace.Tracer) *Configurator {
+func NewConfigurator(config *Config, fs os.FileSystem, tracer *tracer.Tracer) *Configurator {
 	return &Configurator{config: config, fs: fs, tracer: tracer}
 }
 
@@ -20,7 +20,7 @@ func NewConfigurator(config *Config, fs os.FileSystem, tracer trace.Tracer) *Con
 type Configurator struct {
 	config *Config
 	fs     os.FileSystem
-	tracer trace.Tracer
+	tracer *tracer.Tracer
 }
 
 // GetConfig for folder.

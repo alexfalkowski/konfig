@@ -13,13 +13,13 @@ import (
 )
 
 // NewConfigurator for git.
-func NewConfigurator(client *github.Client, config *Config, tracer trace.Tracer) *Configurator {
+func NewConfigurator(client *github.Client, config *Config, tracer *tracer.Tracer) *Configurator {
 	return &Configurator{config: config, tracer: tracer, client: client}
 }
 
 // Configurator for git.
 type Configurator struct {
-	tracer trace.Tracer
+	tracer *tracer.Tracer
 	config *Config
 	client *github.Client
 }

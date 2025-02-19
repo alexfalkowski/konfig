@@ -4,18 +4,18 @@ import (
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/id"
 	"github.com/alexfalkowski/go-service/telemetry/logger"
+	"github.com/alexfalkowski/go-service/telemetry/metrics"
+	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/hashicorp/vault/api"
-	"go.opentelemetry.io/otel/metric"
-	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 )
 
 // ConfigParams for vault.
 type ConfigParams struct {
 	fx.In
-	Tracer    trace.Tracer
-	Meter     metric.Meter
+	Tracer    *tracer.Tracer
+	Meter     *metrics.Meter
 	ID        id.Generator
 	Config    *http.Config
 	Logger    *logger.Logger
