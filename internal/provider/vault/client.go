@@ -3,12 +3,12 @@ package vault
 import (
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/id"
+	"github.com/alexfalkowski/go-service/telemetry/logger"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/hashicorp/vault/api"
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
-	"go.uber.org/zap"
 )
 
 // ConfigParams for vault.
@@ -18,7 +18,7 @@ type ConfigParams struct {
 	Meter     metric.Meter
 	ID        id.Generator
 	Config    *http.Config
-	Logger    *zap.Logger
+	Logger    *logger.Logger
 	UserAgent env.UserAgent
 }
 
