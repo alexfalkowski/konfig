@@ -5,6 +5,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/os"
+	"github.com/alexfalkowski/go-service/telemetry/logger"
 	"github.com/alexfalkowski/konfig/internal/source/configurator"
 	"github.com/alexfalkowski/konfig/internal/source/configurator/folder"
 	"github.com/alexfalkowski/konfig/internal/source/configurator/git"
@@ -14,7 +15,6 @@ import (
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
-	"go.uber.org/zap"
 )
 
 // ErrNoConfigurator is defined in the config.
@@ -29,7 +29,7 @@ type ConfiguratorParams struct {
 	Config    *Config
 	S3Client  *s3.Client
 	GitClient *github.Client
-	Logger    *zap.Logger
+	Logger    *logger.Logger
 	UserAgent env.UserAgent
 }
 

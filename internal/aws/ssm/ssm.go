@@ -5,6 +5,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/id"
+	"github.com/alexfalkowski/go-service/telemetry/logger"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/alexfalkowski/konfig/internal/aws/endpoint"
 	"github.com/aws/aws-sdk-go-v2/aws"
@@ -13,7 +14,6 @@ import (
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
-	"go.uber.org/zap"
 )
 
 // ConfigParams for SSM.
@@ -24,7 +24,7 @@ type ClientParams struct {
 	ID        id.Generator
 	Endpoint  endpoint.Endpoint
 	Config    *http.Config
-	Logger    *zap.Logger
+	Logger    *logger.Logger
 	UserAgent env.UserAgent
 }
 

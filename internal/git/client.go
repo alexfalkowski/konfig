@@ -4,12 +4,12 @@ import (
 	"net/url"
 
 	"github.com/alexfalkowski/go-service/env"
+	"github.com/alexfalkowski/go-service/telemetry/logger"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/google/go-github/v68/github"
 	"go.opentelemetry.io/otel/metric"
 	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
-	"go.uber.org/zap"
 )
 
 // ConfigParams for git.
@@ -17,7 +17,7 @@ type ClientParams struct {
 	fx.In
 
 	Config    *http.Config
-	Logger    *zap.Logger
+	Logger    *logger.Logger
 	Endpoint  Endpoint
 	Tracer    trace.Tracer
 	Meter     metric.Meter
