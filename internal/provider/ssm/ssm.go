@@ -30,11 +30,11 @@ type Secret struct {
 type Transformer struct {
 	client *ssm.Client
 	json   *json.Encoder
-	tracer trace.Tracer
+	tracer *tracer.Tracer
 }
 
 // NewTransformer for SSM.
-func NewTransformer(client *ssm.Client, json *json.Encoder, tracer trace.Tracer) *Transformer {
+func NewTransformer(client *ssm.Client, json *json.Encoder, tracer *tracer.Tracer) *Transformer {
 	return &Transformer{client: client, json: json, tracer: tracer}
 }
 

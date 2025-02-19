@@ -14,11 +14,11 @@ var errMissing = errors.New("missing value")
 // Transformer for vault.
 type Transformer struct {
 	client *api.Client
-	tracer trace.Tracer
+	tracer *tracer.Tracer
 }
 
 // NewTransformer for vault.
-func NewTransformer(client *api.Client, tracer trace.Tracer) *Transformer {
+func NewTransformer(client *api.Client, tracer *tracer.Tracer) *Transformer {
 	return &Transformer{client: client, tracer: tracer}
 }
 

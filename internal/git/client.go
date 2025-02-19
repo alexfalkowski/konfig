@@ -5,10 +5,10 @@ import (
 
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/telemetry/logger"
+	"github.com/alexfalkowski/go-service/telemetry/metrics"
+	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/google/go-github/v68/github"
-	"go.opentelemetry.io/otel/metric"
-	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 )
 
@@ -19,8 +19,8 @@ type ClientParams struct {
 	Config    *http.Config
 	Logger    *logger.Logger
 	Endpoint  Endpoint
-	Tracer    trace.Tracer
-	Meter     metric.Meter
+	Tracer    *tracer.Tracer
+	Meter     *metrics.Meter
 	UserAgent env.UserAgent
 }
 

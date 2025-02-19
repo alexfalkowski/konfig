@@ -13,11 +13,11 @@ var errMissing = errors.New("missing value")
 
 // Transformer for env.
 type Transformer struct {
-	tracer trace.Tracer
+	tracer *tracer.Tracer
 }
 
 // NewTransformer for env.
-func NewTransformer(tracer trace.Tracer) *Transformer {
+func NewTransformer(tracer *tracer.Tracer) *Transformer {
 	return &Transformer{tracer: tracer}
 }
 

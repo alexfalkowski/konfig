@@ -14,11 +14,11 @@ var errMissing = errors.New("missing value")
 // Transformer for file.
 type Transformer struct {
 	fs     os.FileSystem
-	tracer trace.Tracer
+	tracer *tracer.Tracer
 }
 
 // NewTransformer for file.
-func NewTransformer(fs os.FileSystem, tracer trace.Tracer) *Transformer {
+func NewTransformer(fs os.FileSystem, tracer *tracer.Tracer) *Transformer {
 	return &Transformer{fs: fs, tracer: tracer}
 }
 

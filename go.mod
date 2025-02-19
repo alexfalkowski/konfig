@@ -4,14 +4,13 @@ go 1.24.0
 
 require (
 	github.com/alexfalkowski/go-health v1.22.0
-	github.com/alexfalkowski/go-service v1.456.0
+	github.com/alexfalkowski/go-service v1.457.0
 	github.com/aws/aws-sdk-go-v2 v1.36.2
 	github.com/aws/aws-sdk-go-v2/config v1.29.7
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.77.1
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.56.13
 	github.com/google/go-github/v68 v68.0.0
 	github.com/hashicorp/vault/api v1.16.0
-	go.opentelemetry.io/otel/metric v1.34.0
 	go.opentelemetry.io/otel/trace v1.34.0
 	go.uber.org/fx v1.23.0
 	google.golang.org/grpc v1.70.0
@@ -104,9 +103,9 @@ require (
 	github.com/open-feature/go-sdk-contrib/hooks/open-telemetry v0.3.4 // indirect
 	github.com/pbnjay/memory v0.0.0-20210728143218-7b4eea64cf58 // indirect
 	github.com/power-devops/perfstat v0.0.0-20240221224432-82ca36839d55 // indirect
-	github.com/prometheus/client_golang v1.20.5 // indirect
+	github.com/prometheus/client_golang v1.21.0 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
-	github.com/prometheus/common v0.61.0 // indirect
+	github.com/prometheus/common v0.62.0 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
 	github.com/rs/xid v1.6.0 // indirect
 	github.com/ryanuber/go-glob v1.0.0 // indirect
@@ -131,6 +130,7 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.34.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.34.0 // indirect
 	go.opentelemetry.io/otel/exporters/prometheus v0.56.0 // indirect
+	go.opentelemetry.io/otel/metric v1.34.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.34.0 // indirect
 	go.opentelemetry.io/otel/sdk/metric v1.34.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.5.0 // indirect

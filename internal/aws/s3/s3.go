@@ -7,14 +7,14 @@ import (
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/id"
 	"github.com/alexfalkowski/go-service/telemetry/logger"
+	"github.com/alexfalkowski/go-service/telemetry/metrics"
+	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"github.com/alexfalkowski/konfig/internal/aws/endpoint"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3/types"
-	"go.opentelemetry.io/otel/metric"
-	"go.opentelemetry.io/otel/trace"
 	"go.uber.org/fx"
 )
 
@@ -28,8 +28,8 @@ func IsNotFound(err error) bool {
 // ConfigParams for S3.
 type ClientParams struct {
 	fx.In
-	Tracer    trace.Tracer
-	Meter     metric.Meter
+	Tracer    *tracer.Tracer
+	Meter     *metrics.Meter
 	ID        id.Generator
 	Endpoint  endpoint.Endpoint
 	Config    *http.Config
