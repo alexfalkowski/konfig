@@ -8,10 +8,9 @@ import (
 	"github.com/alexfalkowski/go-service/telemetry/logger"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
-	"github.com/alexfalkowski/konfig/internal/source/configurator"
-	"github.com/alexfalkowski/konfig/internal/source/configurator/folder"
-	"github.com/alexfalkowski/konfig/internal/source/configurator/git"
-	cs3 "github.com/alexfalkowski/konfig/internal/source/configurator/s3"
+	"github.com/alexfalkowski/konfig/internal/source/folder"
+	"github.com/alexfalkowski/konfig/internal/source/git"
+	cs3 "github.com/alexfalkowski/konfig/internal/source/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/google/go-github/v68/github"
 	"go.uber.org/fx"
@@ -34,13 +33,13 @@ type ConfiguratorParams struct {
 }
 
 // NewConfigurator for source.
-func NewConfigurator(params ConfiguratorParams) (configurator.Configurator, error) {
+func NewConfigurator(params ConfiguratorParams) (Configurator, error) {
 	config := params.Config
 	if !IsEnabled(config) {
 		return nil, ErrNoConfigurator
 	}
 
-	var configurator configurator.Configurator
+	var configurator Configurator
 
 	switch {
 	case config.IsFolder():

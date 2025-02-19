@@ -7,9 +7,8 @@ import (
 
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	ks "github.com/alexfalkowski/konfig/internal/aws/s3"
-	"github.com/alexfalkowski/konfig/internal/source/configurator/errors"
+	"github.com/alexfalkowski/konfig/internal/source/errors"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
-	"go.opentelemetry.io/otel/trace"
 )
 
 // NewConfigurator for s3.
@@ -26,7 +25,7 @@ type Configurator struct {
 
 // GetConfig for s3.
 func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd, kind string) ([]byte, error) {
-	ctx, span := c.span(ctx)
+	ctx, span := c.tracer.StartClient(ctx, operationName("get config"))
 	defer span.End()
 
 	path := c.path(app, ver, env, continent, country, cmd, kind)
@@ -58,14 +57,6 @@ func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string)
 	}
 
 	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.%s", app, ver, env, continent, country, cmd, kind)
-}
-
-//nolint:spancheck
-func (c *Configurator) span(ctx context.Context) (context.Context, trace.Span) {
-	ctx, span := c.tracer.Start(ctx, operationName("get config"), trace.WithSpanKind(trace.SpanKindClient))
-	ctx = tracer.WithTraceID(ctx, span)
-
-	return ctx, span
 }
 
 func operationName(name string) string {

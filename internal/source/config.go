@@ -1,9 +1,9 @@
 package source
 
 import (
-	"github.com/alexfalkowski/konfig/internal/source/configurator/folder"
-	"github.com/alexfalkowski/konfig/internal/source/configurator/git"
-	"github.com/alexfalkowski/konfig/internal/source/configurator/s3"
+	"github.com/alexfalkowski/konfig/internal/source/folder"
+	"github.com/alexfalkowski/konfig/internal/source/git"
+	"github.com/alexfalkowski/konfig/internal/source/s3"
 )
 
 // IsEnabled the source config.

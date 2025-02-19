@@ -1,10 +1,10 @@
-package configurator
+package source
 
 import (
 	"context"
 )
 
-// Configurator for configurator.
+// Configurator for source.
 type Configurator interface {
 	GetConfig(ctx context.Context, app, ver, env, continent, country, cmd, kind string) ([]byte, error)
 }

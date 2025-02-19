@@ -6,7 +6,6 @@ import (
 
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/hashicorp/vault/api"
-	"go.opentelemetry.io/otel/trace"
 )
 
 var errMissing = errors.New("missing value")
@@ -24,10 +23,8 @@ func NewTransformer(client *api.Client, tracer *tracer.Tracer) *Transformer {
 
 // Transform for vault.
 func (t *Transformer) Transform(ctx context.Context, value string) (string, error) {
-	ctx, span := t.tracer.Start(ctx, operationName("transform"), trace.WithSpanKind(trace.SpanKindClient))
+	ctx, span := t.tracer.StartClient(ctx, operationName("transform"))
 	defer span.End()
-
-	ctx = tracer.WithTraceID(ctx, span)
 
 	sec, err := t.client.Logical().ReadWithContext(ctx, value)
 	if err != nil {

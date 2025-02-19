@@ -7,8 +7,7 @@ import (
 
 	"github.com/alexfalkowski/go-service/os"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
-	"github.com/alexfalkowski/konfig/internal/source/configurator/errors"
-	"go.opentelemetry.io/otel/trace"
+	"github.com/alexfalkowski/konfig/internal/source/errors"
 )
 
 // NewConfigurator for folder.
@@ -25,7 +24,7 @@ type Configurator struct {
 
 // GetConfig for folder.
 func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, country, cmd, kind string) ([]byte, error) {
-	ctx, span := c.span(ctx)
+	ctx, span := c.tracer.StartClient(ctx, operationName("get config"))
 	defer span.End()
 
 	if !c.fs.PathExists(c.config.Dir) {
@@ -67,14 +66,6 @@ func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string)
 	}
 
 	return fmt.Sprintf("%s/%s/%s/%s/%s/%s.%s", app, ver, env, continent, country, cmd, kind)
-}
-
-//nolint:spancheck
-func (c *Configurator) span(ctx context.Context) (context.Context, trace.Span) {
-	ctx, span := c.tracer.Start(ctx, operationName("get config"), trace.WithSpanKind(trace.SpanKindClient))
-	ctx = tracer.WithTraceID(ctx, span)
-
-	return ctx, span
 }
 
 func operationName(name string) string {
