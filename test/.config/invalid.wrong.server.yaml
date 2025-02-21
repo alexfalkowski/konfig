@@ -10,6 +10,7 @@ source:
   kind: onen
 telemetry:
   logger:
+    kind: stdout
     level: info
   metrics:
     kind: prometheus

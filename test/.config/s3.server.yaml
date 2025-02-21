@@ -12,6 +12,7 @@ source:
     bucket: bucket
 telemetry:
   logger:
+    kind: stdout
     level: info
   metrics:
     kind: prometheus

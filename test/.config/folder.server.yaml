@@ -12,6 +12,7 @@ source:
     dir: .config
 telemetry:
   logger:
+    kind: stdout
     level: info
   metrics:
     kind: prometheus

@@ -3,7 +3,7 @@ GEM
   specs:
     ast (2.4.2)
     aws-eventstream (1.3.1)
-    aws-partitions (1.1052.0)
+    aws-partitions (1.1053.0)
     aws-sdk-core (3.219.0)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -215,7 +215,7 @@ GEM
       rack-protection (= 4.1.1)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11839)
+    sorbet-runtime (0.5.11845)
     sys-uname (1.3.1)
       ffi (~> 1.1)
     tilt (2.6.0)
