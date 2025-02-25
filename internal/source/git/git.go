@@ -8,7 +8,7 @@ import (
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/konfig/internal/git"
 	"github.com/alexfalkowski/konfig/internal/source/errors"
-	"github.com/google/go-github/v68/github"
+	"github.com/google/go-github/v69/github"
 )
 
 // NewConfigurator for git.

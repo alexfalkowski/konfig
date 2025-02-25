@@ -8,7 +8,7 @@ import (
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/google/go-github/v68/github"
+	"github.com/google/go-github/v69/github"
 	"go.uber.org/fx"
 )
 
