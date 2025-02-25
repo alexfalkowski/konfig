@@ -12,7 +12,7 @@ import (
 	"github.com/alexfalkowski/konfig/internal/source/git"
 	cs3 "github.com/alexfalkowski/konfig/internal/source/s3"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
-	"github.com/google/go-github/v68/github"
+	"github.com/google/go-github/v69/github"
 	"go.uber.org/fx"
 )
 
