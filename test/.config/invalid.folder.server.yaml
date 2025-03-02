@@ -12,7 +12,7 @@ source:
     dir: none
 telemetry:
   logger:
-    kind: stdout
+    kind: text
     level: info
   metrics:
     kind: prometheus

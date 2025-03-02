@@ -14,7 +14,7 @@ source:
     token: invalid_token
 telemetry:
   logger:
-    kind: stdout
+    kind: text
     level: info
   metrics:
     kind: prometheus
