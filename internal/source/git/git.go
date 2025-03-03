@@ -28,7 +28,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 	ctx, span := c.tracer.StartClient(ctx, operationName("get config"))
 	defer span.End()
 
-	t, err := c.config.GetToken()
+	token, err := c.config.GetToken()
 	if err != nil {
 		tracer.Meta(ctx, span)
 		tracer.Error(err, span)
@@ -36,7 +36,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 		return nil, err
 	}
 
-	client := c.client.WithAuthToken(t)
+	client := c.client.WithAuthToken(string(token))
 	path := c.path(app, env, continent, country, cmd, kind)
 
 	tag := fmt.Sprintf("%s/%s", app, ver)

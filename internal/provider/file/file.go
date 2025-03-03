@@ -28,7 +28,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 
 	tracer.Meta(ctx, span)
 
-	v, err := t.fs.ReadFile(value)
+	bytes, err := t.fs.ReadFile(value)
 	if err != nil {
 		tracer.Error(err, span)
 
@@ -39,7 +39,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 		return value, err
 	}
 
-	return v, nil
+	return string(bytes), nil
 }
 
 // IsMissing value for file.
