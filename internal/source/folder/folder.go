@@ -53,7 +53,7 @@ func (c *Configurator) GetConfig(ctx context.Context, app, ver, env, continent, 
 
 	tracer.Meta(ctx, span)
 
-	return []byte(data), nil
+	return data, nil
 }
 
 func (c *Configurator) path(app, ver, env, continent, country, cmd, kind string) string {
