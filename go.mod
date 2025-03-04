@@ -12,7 +12,7 @@ require (
 	github.com/google/go-github/v69 v69.2.0
 	github.com/hashicorp/vault/api v1.16.0
 	go.uber.org/fx v1.23.0
-	google.golang.org/grpc v1.70.0
+	google.golang.org/grpc v1.71.0
 	google.golang.org/protobuf v1.36.5
 )
 
