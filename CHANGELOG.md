@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.487.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.487.0) - 2025-03-13
+
+- [`9b4cc30`](https://github.com/alexfalkowski/konfig/commit/9b4cc30fe37956e092d9aeccbbdb89668e4e7a01) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.489.0 (#2006)
+- [`96e2cc3`](https://github.com/alexfalkowski/konfig/commit/96e2cc3b97798bbd79414084bd2524d40781df36) test(deps): bump toml-rb from 3.0.1 to 4.0.0 in /test (#2005)
+- [`b92f03d`](https://github.com/alexfalkowski/konfig/commit/b92f03d3bfdc05d2a594cc1771c3a26c47c512f0) test(deps): bump json from 2.10.1 to 2.10.2 in /test (#2004)
+
 ## [v1.486.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.486.0) - 2025-03-12
 
 - [`c267883`](https://github.com/alexfalkowski/konfig/commit/c2678835a41a3fd6ecbd590337b0af1b35bde40e) feat(deps): bump github.com/aws/aws-sdk-go-v2/service/s3 from 1.78.1 to 1.78.2 (#2003)
