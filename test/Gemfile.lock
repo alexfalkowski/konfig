@@ -3,7 +3,7 @@ GEM
   specs:
     ast (2.4.2)
     aws-eventstream (1.3.2)
-    aws-partitions (1.1065.0)
+    aws-partitions (1.1067.0)
     aws-sdk-core (3.220.1)
       aws-eventstream (~> 1, >= 1.3.0)
       aws-partitions (~> 1, >= 1.992.0)
@@ -70,22 +70,22 @@ GEM
     get_process_mem (1.0.0)
       bigdecimal (>= 2.0)
       ffi (~> 1.0)
-    google-protobuf (4.30.0)
+    google-protobuf (4.30.1)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.30.0-aarch64-linux)
+    google-protobuf (4.30.1-aarch64-linux)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.30.0-arm64-darwin)
+    google-protobuf (4.30.1-arm64-darwin)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.30.0-x86-linux)
+    google-protobuf (4.30.1-x86-linux)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.30.0-x86_64-darwin)
+    google-protobuf (4.30.1-x86_64-darwin)
       bigdecimal
       rake (>= 13)
-    google-protobuf (4.30.0-x86_64-linux)
+    google-protobuf (4.30.1-x86_64-linux)
       bigdecimal
       rake (>= 13)
     googleapis-common-protos-types (1.18.0)
@@ -199,7 +199,7 @@ GEM
       rubocop-ast (>= 1.38.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.38.1)
+    rubocop-ast (1.39.0)
       parser (>= 3.3.1.0)
     ruby-lsp (0.23.11)
       language_server-protocol (~> 3.17.0)
@@ -215,7 +215,7 @@ GEM
       rack-protection (= 4.1.1)
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
-    sorbet-runtime (0.5.11930)
+    sorbet-runtime (0.5.11934)
     sys-uname (1.3.1)
       ffi (~> 1.1)
     tilt (2.6.0)
