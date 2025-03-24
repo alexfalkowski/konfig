@@ -8,7 +8,7 @@ require (
 	github.com/aws/aws-sdk-go-v2 v1.36.3
 	github.com/aws/aws-sdk-go-v2/config v1.29.9
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.78.2
-	github.com/aws/aws-sdk-go-v2/service/ssm v1.57.2
+	github.com/aws/aws-sdk-go-v2/service/ssm v1.58.0
 	github.com/google/go-github/v69 v69.2.0
 	github.com/hashicorp/vault/api v1.16.0
 	go.uber.org/fx v1.23.0
