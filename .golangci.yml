@@ -1,13 +1,7 @@
-issues:
-  exclude-dirs:
-    - ".*\\.pb*"
-linters-settings:
-  lll:
-    line-length: 140
+version: "2"
 linters:
-  enable-all: true
+  default: all
   disable:
-    - tagalign
     - bodyclose
     - depguard
     - exhaustruct
@@ -15,6 +9,34 @@ linters:
     - ireturn
     - mnd
     - paralleltest
+    - tagalign
     - varnamelen
     - wrapcheck
-    - tenv
+  settings:
+    lll:
+      line-length: 140
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - .*\.pb*
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - .*\.pb*
+      - third_party$
+      - builtin$
+      - examples$
