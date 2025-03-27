@@ -19,6 +19,7 @@ jobs:
           keys:
             - konfig-build-service-ruby-cache-{{ checksum "test/Gemfile.lock" }}
             - konfig-build-service-ruby-cache-
+      - run: make clean
       - run: make dep
       - save_cache:
           name: save go deps
@@ -35,6 +36,7 @@ jobs:
           keys:
             - konfig-build-service-go-build-cache-{{ checksum "go.sum" }}
             - konfig-build-service-go-build-cache-
+      - run: make clean
       - run: make lint
       - run: make proto-breaking
       - run: make sec
@@ -85,6 +87,7 @@ jobs:
           keys:
             - konfig-features-grpc-ruby-cache-{{ checksum "test/Gemfile.lock" }}
             - konfig-features-grpc-ruby-cache-
+      - run: make clean
       - run: make dep
       - save_cache:
           name: save go deps
@@ -101,6 +104,7 @@ jobs:
           keys:
             - konfig-features-grpc-go-build-cache-{{ checksum "go.sum" }}
             - konfig-features-grpc-go-build-cache-
+      - run: make clean
       - run: make setup-secret features-grpc
       - save_cache:
           name: save go build cache
@@ -144,6 +148,7 @@ jobs:
           keys:
             - konfig-features-http-ruby-cache-{{ checksum "test/Gemfile.lock" }}
             - konfig-features-http-ruby-cache-
+      - run: make clean
       - run: make dep
       - save_cache:
           name: save go deps
@@ -160,6 +165,7 @@ jobs:
           keys:
             - konfig-features-http-go-build-cache-{{ checksum "go.sum" }}
             - konfig-features-http-go-build-cache-
+      - run: make clean
       - run: make setup-secret features-http
       - save_cache:
           name: save go build cache
