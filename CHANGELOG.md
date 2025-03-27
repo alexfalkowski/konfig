@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.511.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.511.0) - 2025-03-27
+
+- [`0380c45`](https://github.com/alexfalkowski/konfig/commit/0380c450ca1f2486d0d10dd3146e5079f6c9c0e0) feat(deps): update aws-sdk-go-v2 (#2051)
+- [`03768cc`](https://github.com/alexfalkowski/konfig/commit/03768cc9fc351592ba21fac9b3f3a035856a44ed) build(deps): bump bin from `db4042b` to `16e2296` (#2052)
+- [`6e11686`](https://github.com/alexfalkowski/konfig/commit/6e1168653cf981f48470f496e52b57d1be0257a1) build(ci): add clean (#2050)
+- [`827ff0e`](https://github.com/alexfalkowski/konfig/commit/827ff0efa0583016ade826e9b2f95f8f29c7fe82) build(deps): bump bin from `c661929` to `db4042b` (#2049)
+- [`cb4ff96`](https://github.com/alexfalkowski/konfig/commit/cb4ff96c54458d83c383877a8210200108831e73) test(deps): bump rubocop from 1.74.0 to 1.75.1 in /test (#2047)
+- [`8d6d20c`](https://github.com/alexfalkowski/konfig/commit/8d6d20c4d00cf4ca1c795842f9b93f2352789d60) build(deps): bump bin from `446c480` to `c661929` (#2046)
+- [`1a3205b`](https://github.com/alexfalkowski/konfig/commit/1a3205b10be3a3df4f16c1372e6683bf55f683c5) build(scripts): set failure (#2045)
+- [`e69cf8b`](https://github.com/alexfalkowski/konfig/commit/e69cf8b26bc9fabc1d4178c95d190952d30e3167) build(ci): use alexfalkowski/go:2.2 (#2044)
+
 ## [v1.510.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.510.0) - 2025-03-26
 
 - [`f30c6bf`](https://github.com/alexfalkowski/konfig/commit/f30c6bf17a54118de688eee27cd41aa3cde0f718) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.515.0 (#2043)
