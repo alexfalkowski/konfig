@@ -2,12 +2,14 @@ module github.com/alexfalkowski/konfig
 
 go 1.24.0
 
+toolchain go1.24.1
+
 require (
 	github.com/alexfalkowski/go-health v1.22.0
 	github.com/alexfalkowski/go-service v1.519.0
 	github.com/aws/aws-sdk-go-v2 v1.36.3
 	github.com/aws/aws-sdk-go-v2/config v1.29.12
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.78.2
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.79.0
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.58.0
 	github.com/google/go-github/v69 v69.2.0
 	github.com/hashicorp/vault/api v1.16.0
