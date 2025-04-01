@@ -18,8 +18,8 @@ github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 h1:+JkXLHME8vLJafGhOH4ao
 github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1/go.mod h1:nuudZmJhzWtx2212z+pkuy7B6nkBqa+xwNXZHL1j8cg=
 github.com/alexfalkowski/go-health v1.22.0 h1:CEsW96hziLT90C727025Q/6wybbvAAZEn9PturYdy3M=
 github.com/alexfalkowski/go-health v1.22.0/go.mod h1:9VBjoge/Zz9dzk855IGtjioDsBvBXjB+lb+algeUO00=
-github.com/alexfalkowski/go-service v1.519.0 h1:bxkecSteUS/VV7pLs0maVL+UJEn7KHTHknortaPjOwo=
-github.com/alexfalkowski/go-service v1.519.0/go.mod h1:H8lreJ/zhHmMgAbTkld3t7BcijbLSxR++IoaYu2DVJo=
+github.com/alexfalkowski/go-service v1.520.0 h1:w2127QIleFB+cSS39MDbuBpuUMDS5ECtQk+s1vErhWA=
+github.com/alexfalkowski/go-service v1.520.0/go.mod h1:qrX3QoVINIMyC912Nq9uS7RrTC7duVh4vrSsIrRynr4=
 github.com/arl/statsviz v0.6.0 h1:jbW1QJkEYQkufd//4NDYRSNBpwJNrdzPahF7ZmoGdyE=
 github.com/arl/statsviz v0.6.0/go.mod h1:0toboo+YGSUXDaS4g1D5TVS4dXs7S7YYT5J/qnW2h8s=
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
@@ -91,8 +91,8 @@ github.com/ebitengine/purego v0.8.2 h1:jPPGWs2sZ1UgOSgD2bClL0MJIqu58nOmIcBuXr62z
 github.com/ebitengine/purego v0.8.2/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=
 github.com/elnormous/contenttype v1.0.4 h1:FjmVNkvQOGqSX70yvocph7keC8DtmJaLzTTq6ZOQCI8=
 github.com/elnormous/contenttype v1.0.4/go.mod h1:5KTOW8m1kdX1dLMiUJeN9szzR2xkngiv2K+RVZwWBbI=
-github.com/faabiosr/cachego v0.22.2 h1:uGqEsNlyCTe6JOEKpvE0dq8nnk/EZlkztm3NVfdHsBs=
-github.com/faabiosr/cachego v0.22.2/go.mod h1:MouiH/OC8/rap7nkIGj7Oe0bITC+CaWR9UN9tTNVAt8=
+github.com/faabiosr/cachego v0.22.3 h1:Gqkd3xgaKzclx34V/13v7Dw+TGl5LMTcO+gmNoBYSiA=
+github.com/faabiosr/cachego v0.22.3/go.mod h1:qbHMxvpEuGvWouUgwmrTjoXKo958MPiobvRPZr3Pp/M=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/fatih/color v1.16.0 h1:zmkK9Ngbjj+K0yRhTVONQh1p/HknKYSlNT+vZCzyokM=
 github.com/fatih/color v1.16.0/go.mod h1:fL2Sau1YI5c0pdGEVCbKQbLXB6edEj1ZgiY4NijnWvE=
