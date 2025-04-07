@@ -23,6 +23,8 @@ telemetry:
     url: http://localhost:4318/v1/traces
 token:
   kind: opaque
+  opaque:
+    name: konfig
 transport:
   http:
     address: :11000
