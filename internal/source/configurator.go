@@ -1,8 +1,6 @@
 package source
 
-import (
-	"context"
-)
+import "context"
 
 // Configurator for source.
 type Configurator interface {

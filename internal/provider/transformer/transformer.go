@@ -1,8 +1,6 @@
 package transformer
 
-import (
-	"context"
-)
+import "context"
 
 type (
 	// Transformer is an interface for transforming values.

@@ -1,8 +1,6 @@
 package endpoint
 
-import (
-	"github.com/alexfalkowski/go-service/os"
-)
+import "github.com/alexfalkowski/go-service/os"
 
 // NewEndpoint for AWS.
 func NewEndpoint() Endpoint {

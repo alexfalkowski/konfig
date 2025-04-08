@@ -1,8 +1,6 @@
 package git
 
-import (
-	"github.com/alexfalkowski/go-service/os"
-)
+import "github.com/alexfalkowski/go-service/os"
 
 // Config for git.
 type Config struct {

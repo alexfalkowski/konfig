@@ -1,8 +1,6 @@
 package errors
 
-import (
-	"errors"
-)
+import "errors"
 
 var (
 	// ErrNotFound in source.
