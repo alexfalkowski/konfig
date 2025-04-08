@@ -1,8 +1,6 @@
 package git
 
-import (
-	"github.com/alexfalkowski/go-service/os"
-)
+import "github.com/alexfalkowski/go-service/os"
 
 // NewEndpoint for GitHub.
 func NewEndpoint() Endpoint {

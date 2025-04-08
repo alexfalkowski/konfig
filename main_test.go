@@ -2,9 +2,7 @@
 
 package main
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestFeatures(t *testing.T) {
 	if err := command().Run(); err != nil {
