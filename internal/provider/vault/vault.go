@@ -18,6 +18,10 @@ type Transformer struct {
 
 // NewTransformer for vault.
 func NewTransformer(client *api.Client, tracer *tracer.Tracer) *Transformer {
+	if client == nil {
+		return nil
+	}
+
 	return &Transformer{client: client, tracer: tracer}
 }
 

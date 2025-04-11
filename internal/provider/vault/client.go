@@ -3,6 +3,7 @@ package vault
 import (
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/id"
+	"github.com/alexfalkowski/go-service/os"
 	"github.com/alexfalkowski/go-service/telemetry/logger"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
@@ -24,6 +25,10 @@ type ConfigParams struct {
 
 // NewConfig for vault.
 func NewConfig(params ConfigParams) *api.Config {
+	if os.GetVariable(api.EnvVaultAddress) == "" {
+		return nil
+	}
+
 	client, _ := http.NewClient(
 		http.WithClientLogger(params.Logger), http.WithClientTracer(params.Tracer),
 		http.WithClientMetrics(params.Meter), http.WithClientUserAgent(params.UserAgent),
@@ -38,5 +43,9 @@ func NewConfig(params ConfigParams) *api.Config {
 
 // NewClient for vault.
 func NewClient(cfg *api.Config) (*api.Client, error) {
+	if cfg == nil {
+		return nil, nil
+	}
+
 	return api.NewClient(cfg)
 }

@@ -7,6 +7,7 @@ linters:
     - exhaustruct
     - gochecknoglobals
     - ireturn
+    - nilnil
     - mnd
     - paralleltest
     - tagalign
