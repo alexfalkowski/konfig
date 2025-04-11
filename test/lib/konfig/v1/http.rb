@@ -12,12 +12,12 @@ module Konfig
 
       def get_config(params, opts = {})
         with_retry(tries, wait) do
-          post('/v1/config', params.to_json, opts)
+          post('/konfig.v1.Service/GetConfig', params.to_json, opts)
         end
       end
 
       def get_secrets(params, opts = {})
-        post('/v1/secrets', { secrets: params }.to_json, opts)
+        post('/konfig.v1.Service/GetSecrets', { secrets: params }.to_json, opts)
       end
 
       private
