@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.531.1](https://github.com/alexfalkowski/konfig/releases/tag/v1.531.1) - 2025-04-11
+
+- [`d5363c3`](https://github.com/alexfalkowski/konfig/commit/d5363c3da12997a6ce31749579143d67bfbbd689) fix(vault): check if it exists (#2087)
+
 ## [v1.531.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.531.0) - 2025-04-11
 
 - [`8213268`](https://github.com/alexfalkowski/konfig/commit/8213268bb3df7ff3571036a49b1c9dc928979391) feat(vault): ignore if it is not setup (#2086)
