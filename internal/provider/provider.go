@@ -25,10 +25,14 @@ type TransformerParams struct {
 // NewTransformer for provider.
 func NewTransformer(params TransformerParams) *Transformer {
 	ts := transformer.Transformers{
-		"env":   params.ENV,
-		"vault": params.Vault,
-		"ssm":   params.SSM,
-		"file":  params.File,
+		"env":  params.ENV,
+		"ssm":  params.SSM,
+		"file": params.File,
+	}
+
+	vault := params.Vault
+	if vault != nil {
+		ts["vault"] = vault
 	}
 
 	return &Transformer{ts: ts}

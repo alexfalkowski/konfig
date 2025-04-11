@@ -1,15 +1,17 @@
 package http
 
 import (
-	"github.com/alexfalkowski/go-health/server"
+	health "github.com/alexfalkowski/go-health/server"
 	"github.com/alexfalkowski/go-service/health/transport/http"
 	aws "github.com/alexfalkowski/konfig/internal/aws/endpoint"
 	"github.com/alexfalkowski/konfig/internal/source"
+	"github.com/hashicorp/vault/api"
 )
 
 // NewHealthObserver for HTTP.
-func NewHealthObserver(healthServer *server.Server, config *source.Config, endpoint aws.Endpoint) *http.HealthObserver {
-	names := []string{"vault"}
+func NewHealthObserver(server *health.Server, config *source.Config, endpoint aws.Endpoint, client *api.Client) *http.HealthObserver {
+	names := []string{"noop"}
+
 	if source.IsEnabled(config) && config.IsGit() {
 		names = append(names, "git")
 	}
@@ -18,15 +20,19 @@ func NewHealthObserver(healthServer *server.Server, config *source.Config, endpo
 		names = append(names, "aws")
 	}
 
-	return &http.HealthObserver{Observer: healthServer.Observe(names...)}
+	if client != nil {
+		names = append(names, "vault")
+	}
+
+	return &http.HealthObserver{Observer: server.Observe(names...)}
 }
 
 // NewLivenessObserver for HTTP.
-func NewLivenessObserver(healthServer *server.Server) *http.LivenessObserver {
-	return &http.LivenessObserver{Observer: healthServer.Observe("noop")}
+func NewLivenessObserver(server *health.Server) *http.LivenessObserver {
+	return &http.LivenessObserver{Observer: server.Observe("noop")}
 }
 
 // NewReadinessObserver for HTTP.
-func NewReadinessObserver(healthServer *server.Server) *http.ReadinessObserver {
-	return &http.ReadinessObserver{Observer: healthServer.Observe("noop")}
+func NewReadinessObserver(server *health.Server) *http.ReadinessObserver {
+	return &http.ReadinessObserver{Observer: server.Observe("noop")}
 }
