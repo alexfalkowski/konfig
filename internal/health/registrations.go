@@ -32,12 +32,14 @@ func NewRegistrations(params RegistrationsParams) health.Registrations {
 	d := time.MustParseDuration(params.Health.Duration)
 	registrations := health.Registrations{
 		server.NewRegistration("noop", d, checker.NewNoopChecker()),
-		server.NewRegistration("vault", d, checker.NewHTTPChecker(params.Vault.Address, rt, t)),
 	}
 
 	if params.Endpoint.IsSet() {
-		reg := server.NewRegistration("aws", d, checker.NewHTTPChecker(string(params.Endpoint), rt, t))
-		registrations = append(registrations, reg)
+		registrations = append(registrations, server.NewRegistration("aws", d, checker.NewHTTPChecker(string(params.Endpoint), rt, t)))
+	}
+
+	if params.Vault != nil {
+		registrations = append(registrations, server.NewRegistration("vault", d, checker.NewHTTPChecker(params.Vault.Address, rt, t)))
 	}
 
 	return registrations
