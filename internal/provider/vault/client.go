@@ -4,6 +4,7 @@ import (
 	"github.com/alexfalkowski/go-service/env"
 	"github.com/alexfalkowski/go-service/id"
 	"github.com/alexfalkowski/go-service/os"
+	"github.com/alexfalkowski/go-service/strings"
 	"github.com/alexfalkowski/go-service/telemetry/logger"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
@@ -25,7 +26,7 @@ type ConfigParams struct {
 
 // NewConfig for vault.
 func NewConfig(params ConfigParams) *api.Config {
-	if os.GetVariable(api.EnvVaultAddress) == "" {
+	if strings.IsEmpty(os.GetVariable(api.EnvVaultAddress)) {
 		return nil
 	}
 

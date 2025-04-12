@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/alexfalkowski/go-service/strings"
 	"github.com/alexfalkowski/konfig/internal/provider"
 	"github.com/alexfalkowski/konfig/internal/source"
 	errs "github.com/alexfalkowski/konfig/internal/source/errors"
@@ -93,31 +94,31 @@ func (s *Configuration) GetSecrets(ctx context.Context, secs map[string]string) 
 
 // NewConfig for service.
 func NewConfig(app, ver, env, continent, country, cmd, kind string) (*Config, error) {
-	if continent == "" {
+	if strings.IsEmpty(continent) {
 		continent = "*"
 	}
 
-	if country == "" {
+	if strings.IsEmpty(country) {
 		country = "*"
 	}
 
-	if kind == "" {
+	if strings.IsEmpty(kind) {
 		kind = "yaml"
 	}
 
-	if app == "" {
+	if strings.IsEmpty(app) {
 		return nil, fmt.Errorf("application: %w", ErrInvalidArgument)
 	}
 
-	if ver == "" {
+	if strings.IsEmpty(ver) {
 		return nil, fmt.Errorf("version: %w", ErrInvalidArgument)
 	}
 
-	if env == "" {
+	if strings.IsEmpty(env) {
 		return nil, fmt.Errorf("environment: %w", ErrInvalidArgument)
 	}
 
-	if cmd == "" {
+	if strings.IsEmpty(cmd) {
 		return nil, fmt.Errorf("command: %w", ErrInvalidArgument)
 	}
 

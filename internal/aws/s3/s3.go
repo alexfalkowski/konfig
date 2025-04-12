@@ -56,7 +56,7 @@ func NewClient(params ClientParams) (*s3.Client, error) {
 		o.UsePathStyle = true
 
 		if params.Endpoint.IsSet() {
-			o.BaseEndpoint = aws.String(string(params.Endpoint))
+			o.BaseEndpoint = aws.String(params.Endpoint.String())
 		}
 	})
 

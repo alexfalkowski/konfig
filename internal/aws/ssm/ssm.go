@@ -46,7 +46,7 @@ func NewClient(params ClientParams) (*ssm.Client, error) {
 	cfg, err := config.LoadDefaultConfig(ctx, opts...)
 	cl := ssm.NewFromConfig(cfg, func(o *ssm.Options) {
 		if params.Endpoint.IsSet() {
-			o.BaseEndpoint = aws.String(string(params.Endpoint))
+			o.BaseEndpoint = aws.String(params.Endpoint.String())
 		}
 	})
 

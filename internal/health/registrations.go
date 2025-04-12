@@ -35,7 +35,7 @@ func NewRegistrations(params RegistrationsParams) health.Registrations {
 	}
 
 	if params.Endpoint.IsSet() {
-		registrations = append(registrations, server.NewRegistration("aws", d, checker.NewHTTPChecker(string(params.Endpoint), rt, t)))
+		registrations = append(registrations, server.NewRegistration("aws", d, checker.NewHTTPChecker(params.Endpoint.String(), rt, t)))
 	}
 
 	if params.Vault != nil {
