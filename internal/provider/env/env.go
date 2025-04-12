@@ -5,6 +5,7 @@ import (
 	"errors"
 
 	"github.com/alexfalkowski/go-service/os"
+	"github.com/alexfalkowski/go-service/strings"
 	"github.com/alexfalkowski/go-service/telemetry/tracer"
 )
 
@@ -27,8 +28,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 
 	tracer.Meta(ctx, span)
 
-	v := os.GetVariable(value)
-	if v != "" {
+	if v := os.GetVariable(value); !strings.IsEmpty(v) {
 		return v, nil
 	}
 

@@ -1,6 +1,7 @@
 package source
 
 import (
+	"github.com/alexfalkowski/go-service/strings"
 	"github.com/alexfalkowski/konfig/internal/source/folder"
 	"github.com/alexfalkowski/konfig/internal/source/git"
 	"github.com/alexfalkowski/konfig/internal/source/s3"
@@ -8,7 +9,7 @@ import (
 
 // IsEnabled the source config.
 func IsEnabled(config *Config) bool {
-	return config != nil && config.Kind != ""
+	return config != nil && !strings.IsEmpty(config.Kind)
 }
 
 // Config for source.
