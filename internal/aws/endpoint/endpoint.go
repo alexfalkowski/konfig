@@ -7,7 +7,7 @@ import (
 
 // NewEndpoint for AWS.
 func NewEndpoint() Endpoint {
-	return Endpoint(os.GetVariable("AWS_URL"))
+	return Endpoint(os.Getenv("AWS_URL"))
 }
 
 // Endpoint for AWS.

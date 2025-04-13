@@ -26,7 +26,7 @@ type ConfigParams struct {
 
 // NewConfig for vault.
 func NewConfig(params ConfigParams) *api.Config {
-	if strings.IsEmpty(os.GetVariable(api.EnvVaultAddress)) {
+	if strings.IsEmpty(os.Getenv(api.EnvVaultAddress)) {
 		return nil
 	}
 
