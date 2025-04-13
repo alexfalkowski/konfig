@@ -28,7 +28,7 @@ func (t *Transformer) Transform(ctx context.Context, value string) (string, erro
 
 	tracer.Meta(ctx, span)
 
-	if v := os.GetVariable(value); !strings.IsEmpty(v) {
+	if v := os.Getenv(value); !strings.IsEmpty(v) {
 		return v, nil
 	}
 

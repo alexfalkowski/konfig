@@ -7,7 +7,7 @@ import (
 
 // NewEndpoint for GitHub.
 func NewEndpoint() Endpoint {
-	return Endpoint(os.GetVariable("GITHUB_API_URL"))
+	return Endpoint(os.Getenv("GITHUB_API_URL"))
 }
 
 // Endpoint for GitHub.

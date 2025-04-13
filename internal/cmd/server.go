@@ -18,7 +18,7 @@ import (
 // RegisterServer for cmd.
 func RegisterServer(command *cmd.Command) {
 	flags := cmd.NewFlagSet("server")
-	flags.AddInput("env:KONFIG_CONFIG_FILE")
+	flags.AddInput("")
 
 	command.AddServer("server", "Start konfig server", flags,
 		module.Module, debug.Module, feature.Module,
