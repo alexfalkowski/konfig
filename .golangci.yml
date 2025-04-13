@@ -5,6 +5,7 @@ linters:
     - bodyclose
     - depguard
     - exhaustruct
+    - funcorder
     - gochecknoglobals
     - ireturn
     - nilnil
