@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.542.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.542.0) - 2025-04-20
+
+- [`5bac8f9`](https://github.com/alexfalkowski/konfig/commit/5bac8f9a2aa6880f722b99061392ef5463c111c0) feat(bin): use the new field allignment (#2099)
+
 ## [v1.541.0](https://github.com/alexfalkowski/konfig/releases/tag/v1.541.0) - 2025-04-19
 
 - [`b5fcfae`](https://github.com/alexfalkowski/konfig/commit/b5fcfaeb70551a6b8ec0fcb2504e7245392f2ed4) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.542.0 (#2098)
