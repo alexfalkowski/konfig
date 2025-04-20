@@ -21,7 +21,7 @@ updates:
     schedule:
       interval: "daily"
     commit-message:
-      prefix: "build"
+      prefix: "feat"
       prefix-development: "build"
       include: "scope"
     allow:
