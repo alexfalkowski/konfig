@@ -1,5 +1,6 @@
 version: "1.0"
 url: http://localhost:11000
+log: reports/nonnative.log
 processes:
   - name: server
     go:
